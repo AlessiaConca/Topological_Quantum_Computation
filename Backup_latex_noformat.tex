@@ -1,0 +1,514 @@
+\documentclass[12pt]{report}
+
+\usepackage[a4paper, margin=1in]{geometry}
+
+\usepackage[english]{babel}
+\usepackage{amsmath} % Add this in the preamble
+\usepackage{amssymb}
+\usepackage{enumitem}
+
+\title{Tuo Titolo di Laurea}
+\author{Tuo Nome}
+\date{\today} % O la data desiderata
+\newcommand{\university}{Nome dell'Università}
+\newcommand{\faculty}{Nome della Facoltà}
+
+
+\begin{document}
+	\maketitle
+	
+	\begin{abstract}
+		Il tuo abstract qui.
+	\end{abstract}
+	
+	\tableofcontents
+	
+	\pagestyle{headings}
+	
+	
+	\newpage
+	\section*{Selected Notation}
+	\addcontentsline{toc}{section}{Selected Notation}
+	
+	\begin{itemize}[label=\textbullet]
+		\item we denote an Hermitian operator as $A^H$ instead of $A^*$ in order to distinguish such notation with the one of the conjugate matrix $A^*$.
+		
+		\item 
+		
+		\item 
+		
+	\end{itemize}
+	
+	
+	\chapter{Toric codes}
+	% Altre sezioni
+	
+	
+	\begin{minipage}{1\textwidth}
+		
+		\textbf{Definition 1.1.} (Torus) A torus is a bidimensional square lattice with periodic boundary conditions.\newline 
+		
+		Let G be a graph with vertices V and edges E, where V is a set of points representing lattice sites, and E is a set of connections between these points. The lattice is bidimensional, meaning each lattice site has two neighbors in the horizontal and vertical directions.\newline
+		
+		The square lattice can be represented as a regular grid of lattice sites, typically arranged in rows and columns. Mathematically, it can be defined as a pair (V, E) such that:\newline
+		
+		1. V is a set of points $(x, y)$, where $x$ and $y$ are integers representing the coordinates of lattice sites, and $x, y \in \mathbb{Z} $.\newline
+		
+		2. E is a set of edges connecting neighboring lattice sites. If $(x1, y1)$ and $(x2, y2)$ are two lattice sites, there is an edge $(x1, y1) - (x2, y2)$ in E if and only if $|x1 - x2| = 1$ and $|y1 - y2| = 0$ or $|x1 - x2| = 0$ and $|y1 - y2| = 1$. This reflects the square lattice's grid structure.\newline
+		
+		The periodic boundary conditions mean that the lattice wraps around in both the horizontal and vertical directions. This can be expressed as follows:\newline
+		
+		For any lattice site $(x, y)$, there are periodic boundary conditions such that if $x$ is at the edge of the lattice in the horizontal direction, $(x + 1, y)$ is identified with $(x - Lx + 1, y)$, where $Lx$ is the size of the lattice in the $x$-$direction$, and similarly for the vertical direction. This identification allows for the lattice to be considered as a torus, and lattice sites at the boundaries are connected to their counterparts on the opposite edge.\newline
+		
+		
+		\textbf{Definition 1.2.} (Spin-$\frac{1}{2}$ particle) A fermion with spin $S=\frac{(2k-1)}{2}$ for $k \in \mathbb{N}$ equal to 1.\newline
+		
+		\textbf{Definition 1.4.} (Vertex and Plaquette operators) Given a vertex v and a plaquette p of a torus we can define the following vertex and plaquette operators as tensor products over Pauli operators acting on individual spins indicated by the indices $j \in star(v)$ and $j \in bdy(p)$  \newline 
+		
+		\begin{center}
+			$ Av = \prod_{j \in star(v)} Z_j $ \newline
+			
+			$ Bp = \prod_{j \in bdy(v)} X_j $.\newline
+		\end{center}
+		
+		
+		
+		
+		
+		
+    \end{minipage}
+        
+    
+    \begin{minipage}{1\textwidth}
+    	
+    	\textbf{Definition 1.3.} (Toric Code Hamiltonian) Given v, p, application sites of,  respectively, vertex and plaquette operators, and given spin-$\frac{1}{2}$ particles located on each edge of a torus, we can define the following Hamiltonian for the system\newline
+    	
+    	\begin{center}
+    		
+    		$H = -\sum_{v} 
+    		Av - \sum_{p} Bp $.\newline
+    		
+    	\end{center}
+    	
+    	Recall the following definitions from linear algebra \newline
+    	
+    	\textbf{Definition 1.5.} (Linear map) Let $V$, $V'$ be the vector spaces over the field K. A linear mapping $F$; $V \rightarrow V'$ is a mapping that satisfies the following two properties \newline
+    	
+    	1. For any elements $u,v \in V$ we have $F(u + v)=F(u)+F(v)$\newline
+    	
+    	2. For all c in $K$ and $v \in V$ we have $F(cv)=cF(v)$\newline
+    	
+    	
+    	\textbf{Definition 1.6.} (Hermitian operator) Let $V$ be  a finite dimensional vector space over $\mathbb{C}$, with a fixed positive definite hermitian product defined as $<v,w>$ for $v,w \in V$. Let $A$: $V \rightarrow V$ be a linear map. An operator is called Hermitian (or self-adjoint) if $A^H=A$. This means that for all $u,v \in V$ we have\newline
+    	
+    	\begin{center}
+    		$<Av,w> = <v,Aw>$.
+    	\end{center}
+    	
+    	In particular, it is important for the following appplications to specify that a square matrix $A$ of complex numbers is called hermitian if $(A^*)^T = A$, i.e. if the conjugate-transpose of $A$ is equal to $A$ itself. Note also that for real matrices it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
+    	
+    	\textbf{Definition 1.7.} (Unitary operator) Let $V$ be  a finite dimensional vector space over $\mathbb{C}$, with a positive definite hermitian product. Let $A$: $V \rightarrow V$ be a linear map. We define A to be complex unitary if \newline
+    	
+    	\begin{center}
+    		$<Av,Aw> = <v,w>$.
+    	\end{center}
+    	
+    	for all $v,w \in V$. We can define a complex matrix $A$ to be unitary if $ (A^*)^T=A^{-1}$. We note that it is possible to define an operator to be real unitary, with the only difference that $(A)^T = A^{-1}$. Then, we can also define that a real matrix is unitary if $(A)^T = A^{-1}$ or, equivalently, if $(A)^T A=I$.\newline
+    	
+    \end{minipage}  	
+	
+	\begin{minipage}{1\textwidth}
+		
+		
+	    
+	    \textbf{Proposition 1.1.} (Properties of $Av$ and $Bp$ operators) $Av$ and $Bp$ operators are Hermitian and involutory, therefore they have eigenvalues $\pm 1$.
+	    \newline
+	
+     	\textit{Proof}\newline
+     	
+     	We know that the operator $ Av = \prod_{j \in star(v)} Z_j $ and that $ Bp = \prod_{j \in bdy(v)} X_j $ .\newline
+     	
+     	Firstly, recall the form of the $\sigma_x$ and $\sigma_z$ matrices representing the Pauli gates $X$ and $Z$:
+	
+	
+	    
+	    \[
+	    \text{Z = $\sigma_z$} =
+	    \begin{bmatrix}
+	    	1 & 0 \\
+	    	0 & -1
+	    \end{bmatrix}
+	    \]
+	    
+	 
+	    \[
+	    \text{X = $\sigma_x$} =
+	    \begin{bmatrix}
+	    	0 & 1 \\
+	    	1 & 0
+	    \end{bmatrix}
+	    \]
+	    
+	    
+	    Prove that they are Hermitian:\newline
+	    
+	    \[
+	    \text{$( \sigma_z )^{H}$} = 
+	    \begin{bmatrix}
+	    	1 & 0 \\
+	    	0 & -1
+	    \end{bmatrix} ^H =
+	    \begin{bmatrix}
+	    	1 & 0 \\
+	    	0 & -1
+	    \end{bmatrix}^T =
+	    \begin{bmatrix}
+	    	1 & 0 \\
+	    	0 & -1
+	    \end{bmatrix}
+	    = \text{$ \sigma_z $}
+	    \]
+	    
+	    
+	    \[
+	    \text{$( \sigma_x )^{H}$} = 
+	    \begin{bmatrix}
+	    	0 & 1 \\
+	    	1 & 0
+	    \end{bmatrix} ^H =
+	    \begin{bmatrix}
+	    	0 & 1 \\
+	    	1 & 0
+	    \end{bmatrix}^T =
+	    \begin{bmatrix}
+	    	0 & 1 \\
+	    	1 & 0
+	    \end{bmatrix}
+	    = \text{$ \sigma_x $}
+	    \]\newline
+	    
+	    Note that Pauli matrices are real matrices, i.e. $A^H=A^T$.
+	    Then, knowing that $[\sigma_i,\sigma_j]=0 for i=j$ we can write		\newline
+	    
+	    \begin{center}
+	    $(Av)^{H} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{H} = \sigma_{x_1}^H \sigma_{x_2}^H \sigma_{x_3}^H \sigma_{x_4}^H = \sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4} = Av$ \newline
+	    
+	    $(Bp)^{H} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{H} = \sigma_{z_1}^H \sigma_{z_2}^H \sigma_{z_3}^H \sigma_{z_4}^H = \sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4} = Bp$\newline
+	    \end{center}
+	    
+	     Prove the involutory propertyy:\newline
+	    
+	    \[
+	    \text{$( \sigma_z )^{2}$} = 
+	    \begin{bmatrix}
+	    	1 & 0 \\
+	    	0 & -1
+	    \end{bmatrix} *
+	    \begin{bmatrix}
+	    	1 & 0 \\
+	    	0 & -1
+	    \end{bmatrix} =
+	    \begin{bmatrix}
+	    	1 & 0 \\
+	    	0 & 1
+	    \end{bmatrix}
+	    = \text{$I$}
+	    \]
+	    
+	    
+	    \[
+	    \text{$( \sigma_x )^{2}$} = 
+	    \begin{bmatrix}
+	    	0 & 1 \\
+	    	1 & 0
+	    \end{bmatrix} *
+	    \begin{bmatrix}
+	    	0 & 1 \\
+	    	1 & 0
+	    \end{bmatrix} =
+	    \begin{bmatrix}
+	    	1 & 0 \\
+	    	0 & 1
+	    \end{bmatrix}
+	    = \text{$I$}
+	    \]\newline
+	    
+	    
+	     Then, again we can write\newline
+	    
+	    \begin{center}
+	    $(Av)^{2} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{2} = \sigma_{x_1}^2 \sigma_{x_2}^2 \sigma_{x_3}^2 \sigma_{x_4}^2 = I$ \newline
+	    
+	    $(Bp)^{2} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{2} = \sigma_{z_1}^2 \sigma_{z_2}^2 \sigma_{z_3}^2 \sigma_{z_4}^2 = I$\newline
+     	\end{center}
+	    
+    \end{minipage}    
+    
+	\begin{minipage}{1\textwidth}
+	    
+	    
+	    As regards the second part of the proposition, we prove that Hermitian operators have real eigenvalues: \newline
+	    
+	    Write the expression for the eigenvalues $Av |\xi> = \lambda |\xi>$ and take as hypothesis that $|\xi> \neq 0$. Then, by means of the scalar product\newline
+	    
+     	\begin{center}
+	    $<\xi|Av|\xi> = \lambda <\xi |\xi>$\newline
+	    
+	    $\lambda = \frac {<\xi|Av|\xi>}{<\xi |\xi>}$ = $\frac {<\xi|Av|\xi>}{||\xi||^2}$ = $\frac {<\xi|Av^H|\xi>}{||\xi||^2}$ = $\frac {<\xi|Av|\xi>^*}{||\xi||^2}$ = $\lambda^*$\newline
+	    \end{center}
+	
+	    Note that we applied antidistributivity: \newline
+	    
+	    \begin{center}
+	    $(<\xi|Av^H|\xi>)^H$ = $|\xi>^H (Av^H)^H <\xi|^H$ = $<\xi|Av|\xi>^*$. \newline
+	    \end{center}
+	
+	    Using hermiticity with the fact that $(Av)^2=I$ we can derive the unitarity of $Av$ and state that $Av Av^H = Av^H Av = (Av)^2 = I$, i.e. for a unitary operator $U$ we have $U^H=U^{-1}$. \newline
+	    
+	    One property of unitary operators states that their eigenvalues have modulus equal to one:\newline 
+	    
+	    
+	    By taking as hypothesis $|\xi> \neq 0$, we write the expression $U |\xi> = \lambda |\xi>$ and its self-adjoint $<\xi| U^H = \lambda^* <\xi|$. Then, knowing that $U^H=U^{-1}$, by means of the scalar product we obtain \newline
+	    
+	    \begin{center}
+	    $<\xi|U U^H|\xi> = \lambda \lambda^* <\xi |\xi>$\newline
+	    
+	    $<\xi|I|\xi> = \lambda \lambda^* <\xi |\xi>$\newline
+	    
+	    $<\xi|\xi> = \lambda \lambda^* <\xi |\xi>$\newline
+	    \end{center}
+	    
+	    Finally, since we already know that Hermitian operators have real eigenvalues we can write $|\lambda|^2 = 1$.\newline
+	    
+	    Putting together the fact that $Av$ has real eigenvalues with unitarity we obtain that the only two remaining possibilities for the eigenvalues of $Av$ are $\pm 1$. \newline
+	    
+	    The same reasoning can be carried out for the $Bp$ operator.
+	    
+	    \hfill $\square$
+	    
+	    
+	\end{minipage}
+	
+	\begin{minipage}{1\textwidth}
+		
+		
+		\textbf{Proposition 1.2.} (Spectrum of $Av$ and $Bp$ operators) The spectrum of $Av$ and $Bp$ operators is $\{-1,+1\}$. \newline
+		
+	    
+    	\textbf{Proposition 1.3.} (Commutation of $Av$ and $Bp$ operators) The operator Av commutes with the operator Bp for an even number of edges.
+    	\newline
+    	
+    	\textbf{Proposition 1.4.} (Anticommutation of $Av$ and $Bp$ operators) The operator $Av$ anticommutes with the operator $Bp$ for an odd number of edges.
+    	\newline
+    	
+    	\textit{Proof}\newline 
+    	%Av commutes with itself.\newline
+    	%Bp commutes with itself.\newline
+    	%Av commutes with Bp for an even number of edges.\newline
+    	
+    	Fix the origin of the coordinate system in the bottom left corner of the lattice as indicated in the picture below:\newline
+    	
+    	%picture
+    	
+    	then, we can define the two vectors representing the site of application of the vertex and plaquette operator, respectively over the lattice L and dual lattice L'
+    	
+    	\begin{center}
+    		$\vec{v}$= $n\hat{e_1} + m\hat{e_2}$, where $n,m \in \mathbb{Z}$ \newline
+    		
+    		$\vec{p}$= $(n + \frac{1}{2}) \hat{e_1} + (m + \frac{1}{2}) \hat{e_2}$, where $n,m \in \mathbb{Z}$\newline
+    	\end{center}
+    	
+    	Rewrite the operators as follows:\newline
+    	
+    	\begin{center}
+    		
+    		$A_{\vec{v}} = \sigma^z_{\vec{v}+\frac{1}{2}\hat{e_1}} \sigma^z_{\vec{v}+\frac{1}{2}\hat{e_2}} \sigma^z_{\vec{v}-\frac{1}{2}\hat{e_1}} \sigma^z_{\vec{v}-\frac{1}{2}\hat{e_2}}$ \newline
+    		
+    		$B_{\vec{p}} = \sigma^x_{\vec{p}+\frac{1}{2}\hat{e_1}} \sigma^x_{\vec{p}+\frac{1}{2}\hat{e_2}} \sigma^x_{\vec{p}-\frac{1}{2}\hat{e_1}} \sigma^x_{\vec{p}-\frac{1}{2}\hat{e_2}}$\newline
+    	
+    	\end{center}
+    	
+    	In order to simplify the calculations we rewrite $Bp$ on the lattice L by rewriting the indeces in terms of vector $\vec{v}$
+    	
+    	\begin{center}
+    		$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_2}= n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})$\newline
+    		
+    		$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_1}= (n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}$\newline
+    		
+    		$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_1}+\hat{e_2}= (n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}$\newline
+    		
+    		$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_2}+\hat{e_1}= (n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}$\newline
+    	\end{center}
+    	
+    	Then the $B_{\vec{p}}$ operator becomes:
+    	
+    	\begin{center}
+    		
+    		$B_{\vec{v}} = \sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}}$\newline
+    		
+    	\end{center}
+    	
+    	and the Hamiltonian can be written by grouping the indices:\newline
+    	
+    	\begin{center}
+    	
+    	$H = - \sum_{m,n \in \mathbb{Z}} \{ 
+    	\sigma^z_{(n+\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m+\frac{1}{2})\hat{e_2}} \sigma^z_{(n-\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m-\frac{1}{2})\hat{e_2}} +
+    	\sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}} \} $
+    	
+       \end{center}
+    	
+	
+    \end{minipage}
+	
+	\begin{minipage}{1\textwidth}
+		
+		Now calcuate the commutator $[A_{\vec{v}},B_{\vec{v}}] = A_{\vec{v}}B_{\vec{v}} - B_{\vec{v}}A_{\vec{v}}$ by focusiing on the first term:\newline
+		
+		\begin{center}
+			
+			$ A_{\vec{v}}B_{\vec{v}} =
+			\sigma^z_{(n+\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m+\frac{1}{2})\hat{e_2}} \sigma^z_{(n-\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m-\frac{1}{2})\hat{e_2}} $ *
+		
+			$\sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}}$\newline
+			
+		\end{center}
+		
+		
+		Matrices do not commute but for Pauli matrices we have the following commutation relationship :\newline
+		
+		
+		\begin{center}
+			$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'} = \sigma^z_{\vec{v}'} \sigma^x_{\vec{v}} + 2* \sigma^x_{\vec{v}}\sigma^z_{\vec{v}'} \delta_{\vec{v} \vec{v}'}$\newline
+	    \end{center}
+	    
+		
+		where $\hspace{1cm} \delta_{\vec{v} \vec{v}'} =$
+		$\begin{cases}
+			1, \hspace{1cm} if \hspace{1cm}  \vec{v} = \vec{v}'\\
+			0, \hspace{1cm} if \hspace{1cm} \vec{v} \neq \vec{v}'
+		\end{cases}$\newline
+		
+		which states that 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'}$ commutate for $\vec{v} \neq \vec{v}'$   but anticommutate for $\vec{v} = \vec{v}'$. This is known from the anticommutation relationship of Pauli matrices $\sigma^x \sigma^z = - \sigma^x \sigma^z$. Thus, for an even numer of overlapping edges, in our case 2 or 4, the commutator becomes:\newline
+	
+	    \begin{center}
+	    	
+	    	$[A_{\vec{v}},B_{\vec{v}}] = 2 *
+	    	\sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}}*
+	    	\sigma^z_{(n+\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m+\frac{1}{2})\hat{e_2}} \sigma^z_{(n-\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m-\frac{1}{2})\hat{e_2}} $ 	\newline 
+	    
+	    	
+	    \end{center}
+	    Instead, for an odd number of edges it becomes null $[A_{\vec{v}},B_{\vec{v}}]=0$.\newline
+	    
+	    This calculations conclude that $A_{\vec{v}},B_{\vec{p}}$ commute for an even numer of edges but anticommute for an odd number of edges.\newline
+		
+		\hfill $\square$\newline
+		
+		
+	\end{minipage}
+	
+	
+	
+	
+	\begin{minipage}{1\textwidth}
+		
+		\textbf{Proposition 1.5.} (Ground state(s) of the Hamiltonian) The ground states of the Hamiltonian are the simultaneous $+1$ eigenstates of all the $Av$ and $Bp$ operators. \newline
+		
+		\textit{Proof}\newline 
+		
+		Recall the form of the Hamiltonianin, having N lattice sites, the following way \newline
+		
+		\begin{center}
+			
+			$H = -\sum_{i=1}^{N}
+			Av_i - \sum_{j=1}^{N} Bp_j $.\newline
+			
+		\end{center}
+		
+		we already know that Hermitian matrices are simultaneously diagonalizable, therefore we can determine the possible eigenvalues for each of the $Av$ and $Bp$ operators. From Proposition 1.2. we know that such eigenvalues can assume two values $\{-1,+1\}$ due to the specific properties of our operators.\newline
+		
+		To determine the Ground state(s) of the Hamiltonian we have to determine the minimum energy of the system. Therefore we compute all the possible combinations of the eigenvalues associated to the vertex and palquette operators to obtain the following spectrum of values\newline
+		
+		
+		$\sigma( H) =$
+		$\begin{cases}
+			2N, \hspace{1cm} if \ all\ Av,Bp \ have \ \lambda_{H}= -1\\
+			2N-1,\\
+			.\\
+			intermediate \ energies,\\
+			.\\
+			-2N+1\\
+			-2N, \hspace{1cm} if \ all \ Av,Bp \ have \ \lambda_{H}= +1
+		\end{cases}$
+		\newline
+		
+		
+		Taking the minimum of this spectrum means $\sigma(H)=-2N$, thus considering only eigenstates for the Hamiltonian associated to $+1$ eigenvalues.\newline
+		
+		Those will form a basis for the Ground State manifold of the system.\newline
+		
+		\hfill $\square$\newline
+		
+		
+		Now we focus on determining the form of such ground state(s).\newline
+		
+		\textbf{Proposition 1.6.} (Dimension of the Ground State manifold) The dimension of the Ground State manifold is $4$. \newline
+		
+		\textit{Proof}\newline 
+		
+		
+	\end{minipage}
+	
+	
+	
+	
+	\chapter{Fault-tolerant computation }
+	% Altre sezioni
+	
+	\begin{thebibliography}{99} % "99" è solo un esempio del numero massimo di voci che ti aspetti nella tua bibliografia
+		\bibitem{ref1} A. Kitaev, Ann. Phys. (N. Y). 303, 2 (2003),
+		arXiv:9707021 [quant-ph].
+		
+		%\bibitem{ref2}D. Arovas, J. R. Schrieffer, and F. Wilczek,
+		%Phys. Rev. Lett. 53, 722 (1984).
+		
+		%\bibitem{ref3}H. Bartolomei, M. Kumar, R. Bisognin,
+		%A. Marguerite, J.-M. Berroir, E. Bocquillon, B. Pla¸cais, A. Cavanna, Q. Dong,
+		%U. Gennser, Y. Jin, and G. F`eve, Science
+		%(80-. ). 368, 173 (2020), arXiv:2006.13157.
+		
+		\bibitem{ref4} D. Browne, (2014). "Topological Codes and Computation,".
+		
+		\bibitem{ref5} S. B. Bravyi and A. Y. Kitaev, (1998).
+		arXiv:9811052 [quant-ph].
+		
+		\bibitem{ref6}  Rao, S., (2017). Introduction to abelian and non-abelian anyons. In: Bhattacharjee, S., Mj, M., Bandyopadhyay, A. (eds) Topology and Condensed Matter Physics. Texts and Readings in Physical Sciences, vol 19. Springer, Singapore. %https://doi.org/10.1007/978-981-10-6841-6_16
+		
+		%\bibitem{ref6}R. Raussendorf, J. Harrington, and
+		%K. Goyal, New J. Phys. 9, 199 (2007),
+		%arXiv:0703143 [quant-ph].
+		
+		\bibitem{ref7} L. Oddis, Ph.D. Thesis in Mathematics: "Two-Anyon Schrodinger Operators".
+		
+		\bibitem{ref} A. Hatcher, Algebraic Topology, Cambridge University Press, 2002.
+		
+		\bibitem{ref8} Nielsen, M. A., Chuang, I. L. (2011). Quantum Computation and Quantum Information: 10th Anniversary Edition. Cambridge University Press.
+		
+		\bibitem{ref9} Preskill, J. (1998). Fault-tolerant quantum computation. An Introduction to quantum computation and information (pp. 213-269).
+		
+		\bibitem{ref} A. Pondini, (2020) Quantum error correction e toric code.
+		
+		\bibitem{ref10} Daley, A.J., Bloch, I., Kokail, C. et al. Practical quantum advantage in quantum simulation.
+		
+		\bibitem{ref11} Herman, D., Googin, C., Liu, X. et al. Quantum computing for finance. Nat Rev Phys 5, 450–465 (2023).
+		
+		\bibitem{ref12} V.E. Elfving, B.W. Broer, M. Webber, J. Gavartin, M.D. Halls, K. P. Lorton, A. Bochevarov, arXiv:2009.12472 [quant-ph].
+		
+		\bibitem{ref12} S. Lang, Linear Algebra, Springer (pp. 191-205).
+		
+		
+	\end{thebibliography}
+	
+
+\end{document}
