@@ -1,0 +1,140 @@
+\documentclass[margin=10pt]{standalone}
+\usepackage{ifthen}
+\usepackage[rgb]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{cd, arrows, matrix, intersections, math, calc}
+
+\begin{document}
+\tikzmath{%
+  real \ry, \rz, \longit, \latit, \tox, \toy, \toz;
+  real \newxx, \newxy, \newyx, \newyy, \newzx, \newzy;  
+  integer \Ny, \Nz, \prevj, \prevk;
+  % \j moves around Oy and \k moves around Oz.
+  % They must describe full circles of radii \ry and \rz respectively.
+  \ry = 4;
+  \rz = 1.5;
+  \longit = 24;
+  \latit = 35;
+  \tox = sin(\longit)*cos(\latit);
+  \toy = sin(\latit);
+  \toz = cos(\longit)*cos(\latit);
+  \newxx = cos(\longit); \newxy = -sin(\longit)*sin(\latit);
+  \newyy = cos(\latit);
+  \newzx = -sin(\longit); \newzy = -cos(\longit)*sin(\latit);
+  \Nz = 36;
+  \Ny = 84;
+  \ktmp = \Nz-1; 
+  \jtmp = \Ny-1;
+  function isSeen(\j, \k) {
+    let \px = cos(360*(\k/\Nz))*cos(360*(\j/\Ny));
+    let \py = -sin(360*(\k/\Nz));
+    let \pz = cos(360*(\k/\Nz))*sin(360*(\j/\Ny));
+    let \res = \px*\tox + \py*\toy + \pz*\toz;
+    if \res>0 then {return 1;} else {return 0;};
+  };
+}
+\begin{tikzpicture}[every node/.style={scale=.8},
+  x={(\newxx cm, \newxy cm)},
+  y={(0 cm, \newyy cm)},
+  z={(\newzx cm, \newzy cm)},
+  evaluate={%
+    int \j, \k;
+    for \j in {0, 1, ..., \Ny}{%   \Ny = 84
+      for \k in {0, 1, ..., \Nz}{%  \Nz = 36
+        \test{\j,\k} = isSeen(\j, \k);
+      };
+    };
+  }]
+
+  % coordinate system $Oxyz$; first layer
+  % must be drawn in two steps (there are 2 objects in the final figure)
+  \draw[green!50!black]
+  (0, 0, 0) -- (\ry, 0, 0)
+  % (0, 0, 0) -- (0, \ry+\rz, 0)
+  (0, 0, 0) -- (0, 0, \ry);
+
+  % points (P-\j-\k)
+  % The minus sign for the y component is due to the fact that
+  % the points (for a vertical circle) are to be considered 
+  % clockwise starting with 3 o'clock.  Of course, it depends on the
+  % observer's position, but in case this position is in the first
+  % quadrant, this is the good order.
+  \foreach \j in {0, ..., \Ny}{%
+    \foreach \k in {0, ..., \Nz}{%
+      \path
+      ( {( \ry+\rz*cos(360*(\k/\Nz)) )*cos(360*(\j/\Ny))},
+      {-\rz*sin(360*(\k/\Nz))},
+      {( \ry+\rz*cos(360*(\k/\Nz)) )*sin(360*(\j/\Ny))} )
+      coordinate (P-\j-\k);
+    }
+  }
+
+  % "squares"---the mesh
+  % first j then k; in this way the upper "latitude bands" are drawn
+  % at the end and the torus appears correctly.
+  \foreach \k [remember=\k as \prevk (initially 0)] in {1, ..., \Nz}{%
+    \foreach \j [remember=\j as \prevj (initially 0)] in {1, ..., \Ny}{%
+      \ifthenelse{\test{\j,\k}=1}{
+        \draw[blue!50, very thin, fill=blue!15]
+        (P-\j-\prevk) -- (P-\prevj-\prevk)
+        -- (P-\prevj-\k) --(P-\j-\k) -- cycle;
+      }{}
+    }
+  }
+
+  % cube inside the torus with one face on the torus defined by
+  % latitude and longitude cycles
+  \begin{scope}[evaluate={%
+      for \j in {0, 1, 2}{ \a{\j} = int(\Ny/4+3+\j); };
+      for \k in {0, 1, 2, 3}{ \b{\k} = int(\Nz-3+\k); };
+    }]
+    % face of the "cube"
+    \filldraw[blue!25] (P-\a{0}-\b{0})
+    \foreach \k in {1, 2, 3}{-- (P-\a{0}-\b{\k})}
+    -- (P-\a{1}-\b{3}) -- (P-\a{2}-\b{3})
+    \foreach \k in {2, 1, 0}{-- (P-\a{2}-\b{\k})}
+    -- (P-\a{1}-\b{0}) -- cycle;    
+
+    % the "cube"'s four other vertices
+    \foreach \j in {0, 2}{%
+      \foreach \k in {0, 3}{%
+        \path
+        ( {( \ry+.5*\rz*cos(360*(\b{\k}/\Nz)) )*cos(360*(\a{\j}/\Ny))},
+        {-.5*\rz*sin(360*(\b{\k}/\Nz))},
+        {( \ry+.5*\rz*cos(360*(\b{\k}/\Nz)) )*sin(360*(\a{\j}/\Ny))} )
+        coordinate (Q-\j-\k);
+      }
+    }
+    % faces of the cube inside the torus
+    \filldraw[blue!80, very thin]
+    (P-\a{0}-\b{0}) -- (Q-0-0) -- (Q-0-3) -- (P-\a{0}-\b{3}) -- cycle;
+    \filldraw[B!50, very thin]
+    (P-\a{0}-\b{0}) -- (Q-0-0) -- (Q-2-0) -- (P-\a{2}-\b{0}) -- cycle;
+
+    % longitude cycles
+    \foreach \j in {0, 2}{%
+      \foreach \k [remember=\k as \prevk (initially 0)] in {1, ..., \Nz}{
+        \ifthenelse{\test{\a{\j},\k}=1}{
+          \draw[red] (P-\a{\j}-\prevk) -- (P-\a{\j}-\k);
+        }{}
+      }
+    }
+    % latitude cycles
+    \foreach \k in {0, 3}{%
+      \foreach \j [remember=\j as \prevj (initially 0)] in {1, ..., \Ny}{%
+        \ifthenelse{\test{\j,\b{\k}}=1}{
+          \draw[red] (P-\prevj-\b{\k}) -- (P-\j-\b{\k});
+        }{}
+      }
+    }
+  \end{scope}
+  
+  % coordinate system $Oxyz$; second layer
+  \draw[green!50!black, -{Latex[length=5pt, width=5pt]}]
+  (\ry+\rz, 0, 0) -- (8, 0, 0) node[right] {$x$};
+  \draw[green!50!black, -{Latex[length=5pt, width=5pt]}]
+  (0, 0, 0) -- (0, 6, 0) node[above] {$y$};
+  \draw[green!50!black, -{Latex[length=5pt, width=5pt]}]
+  (0, 0, \ry+\rz) -- (0, 0, 8) node[below left] {$z$};
+\end{tikzpicture} 
+\end{document}
