@@ -2,6 +2,23 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.15}
 \begin{document}
+
+	\begin{tikzpicture}[scale=0.5]
+		\begin{axis}[colormap/blackwhite,
+			view={30}{60},axis lines=none
+			]
+			% Plot the surface
+			\addplot3[surf,opacity=0.7,
+			samples=50, point meta=x+3*z*z-0.25*y,
+			domain=0:2*pi,y domain=0:2*pi,
+			z buffer=sort]
+			({(3+cos(deg(x)))*cos(deg(y))}, 
+			{(3+cos(deg(x)))*sin(deg(y))}, 
+			{sin(deg(x))});
+			
+		\end{axis}
+		
+	\end{tikzpicture}
 	\begin{tikzpicture}[scale=0.5]
 		\begin{axis}[colormap/blackwhite,
 			view={30}{60},axis lines=none
