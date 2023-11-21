@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{tikz}
+\begin{document}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (\i,-3) -- (\i,3);
+		}
+		\foreach \j in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (-3,\j) -- (3,\j);
+		}
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-3,-3) grid (3,3);
+		\foreach \i in {-2.5,...,2.5}
+		{
+			\foreach \j in {-2.5,...,2.5}
+			{
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Draw circles at the midpoints of each side
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+	\end{tikzpicture}
+\end{document}
