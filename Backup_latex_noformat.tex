@@ -453,10 +453,62 @@
 		
 		Now we focus on determining the form of such ground state(s).\newline
 		
+		
+	\end{minipage}
+
+ 
+	\begin{minipage}{1\textwidth}
+		
+		In order to determine which are the admissible configurations that can form the Ground State(s), we treat the $Av$ and $Bp$ operators as constraints over the Torus.\newline
+		
+		This means that all of our configurations will need to respect the folloqing equations:\newline
+		
+		\begin{center}
+		 (1)	$Av|\psi>$ = $+1|\psi>$
+		\end{center}
+		
+		\begin{center}
+		 (2)	$Bp|\psi>$ = $+1|\psi>$
+		\end{center}
+		
+		In this sense $|\psi>$ will be an eigenvector for both $Av$ and $Bp$ operators. \newline
+		
+		In order to satisfy equation (1), look for loop configurations $|\psi>$ such that if we apply $Av$ to that state, the result would still yield a positive eigenvalue.\newline
+		
+		Graphically, we need to identify the loop configurations through strings of 'occupied' edges each identified by $|1>$. Then,if we apply $Av$ at one of the open ends of such strings, we have two possibilities: leaving the string of occupied edges open or closing the string over the $Av$ operator.\newline
+		
+		%drawings
+		
+		In the first case $\sigma^{z} |1>$ implies obtaining $-1|1>$ as a result, thus violating contraint (1). The second case is a natural consequence following the first result: respecting contraint (1) implies considering only closed loops. Such loops will always have an even length and will always involve a maximum of two extremities of the $Av$ operator.\newline
+		
+		In a more formal notation what we are stating is that:\newline
+		
+		\begin{center}
+			$\prod_{i=1}^{4} \sigma_{i}^{z} |\psi> = +1 |\psi>$. \newline
+		\end{center}
+		
+		Considering only closed loops, we identify different configuraztions having such characteristic. The below illustrations show some examples of them:\newline
+		
+		%drawings
+		
+		Each of these loops is an eigenstate for $Av$, since no matter how I locally apply $Av$, I will always preserve the sign of the state. \newline
+		
+		Now look at constraint (2). We want to apply the plaquette operator $Bp$ only to eigenstates of $Av$, which we have determined above. The illustration below shows how to do it with one of the loops above:\newline
+		
+		%drawings
+		
+		We see that, after the transformation, we do always end up in a valid eigenstate of $Av$ but the new state $|\psi'>$ is not an eigenstate of $Bp$ by itself.\newline
+		
+		
+		
+	\end{minipage}
+	
+	
+	
+	\begin{minipage}{1\textwidth}
 		\textbf{Proposition 1.6.} (Dimension of the Ground State manifold) The dimension of the Ground State manifold is $4$. \newline
 		
 		\textit{Proof}\newline 
-		
 		
 	\end{minipage}
 	
