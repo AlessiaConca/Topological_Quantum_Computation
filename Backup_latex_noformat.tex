@@ -430,7 +430,7 @@
 		
 		To determine the Ground state(s) of the Hamiltonian we have to determine the minimum energy of the system. Therefore we compute all the possible combinations of the eigenvalues associated to the vertex and palquette operators to obtain the following spectrum of values\newline
 		
-		
+		\begin{center}
 		$\sigma( H) =$
 		$\begin{cases}
 			2N, \hspace{1cm} if \ all\ Av,Bp \ have \ \lambda_{H}= -1\\
@@ -442,7 +442,7 @@
 			-2N, \hspace{1cm} if \ all \ Av,Bp \ have \ \lambda_{H}= +1
 		\end{cases}$
 		\newline
-		
+     	\end{center}
 		
 		Taking the minimum of this spectrum means $\sigma(H)=-2N$, thus considering only eigenstates for the Hamiltonian associated to $+1$ eigenvalues.\newline
 		
@@ -453,15 +453,14 @@
 		
 		Now we focus on determining the form of such ground state(s).\newline
 		
-		
 	\end{minipage}
-
- 
+	
+	
 	\begin{minipage}{1\textwidth}
 		
-		In order to determine which are the admissible configurations that can form the Ground State(s), we treat the $Av$ and $Bp$ operators as constraints over the Torus.\newline
+		In order to determine which are the admissible configurations that we can use to form the Ground State(s), we treat the $Av$ and $Bp$ operators as constraint equations over the Torus, i.e. the lattice and dual lattice.\newline
 		
-		This means that all of our configurations will need to respect the folloqing equations:\newline
+		All of our configurations will need to respect the following equations:\newline
 		
 		\begin{center}
 		 (1)	$Av|\psi>$ = $+1|\psi>$
@@ -471,15 +470,15 @@
 		 (2)	$Bp|\psi>$ = $+1|\psi>$
 		\end{center}
 		
-		In this sense $|\psi>$ will be an eigenvector for both $Av$ and $Bp$ operators. \newline
+		This means that configuration $|\psi>$ needs to be be an eigenvector for both $Av$ and $Bp$ operators. \newline
 		
-		In order to satisfy equation (1), look for loop configurations $|\psi>$ such that if we apply $Av$ to that state, the result would still yield a positive eigenvalue.\newline
+		In order to satisfy equation (1), we look for loop configurations such that if we apply $Av$ to that state, the result would still yield a positive eigenvalue.\newline
 		
-		Graphically, we need to identify the loop configurations through strings of 'occupied' edges each identified by $|1>$. Then,if we apply $Av$ at one of the open ends of such strings, we have two possibilities: leaving the string of occupied edges open or closing the string over the $Av$ operator.\newline
+		Graphically, we identify the loop configurations through strings of 'occupied' edges (here shaded in black), each identified by $|1>$. Then,if we apply $Av$ at one of the open ends of such strings, we have two possibilities: leaving the string of occupied edges open or closing the string over the $Av$ operator (here highlighted in blue).\newline
 		
 		%drawings
 		
-		In the first case $\sigma^{z} |1>$ implies obtaining $-1|1>$ as a result, thus violating contraint (1). The second case is a natural consequence following the first result: respecting contraint (1) implies considering only closed loops. Such loops will always have an even length and will always involve a maximum of two extremities of the $Av$ operator.\newline
+		In the first case, what we do is computing $\sigma^{z} |1>$, which implies obtaining $-1|1>$ as a result, thus violating contraint (1). The second case is a natural consequence following the first result. Thus, in order to respect contraint (1) we are interested only in closed loops. notice that such loops will always have an even length and will always involve a maximum of two extremities of the $Av$ operator.\newline
 		
 		In a more formal notation what we are stating is that:\newline
 		
@@ -487,17 +486,12 @@
 			$\prod_{i=1}^{4} \sigma_{i}^{z} |\psi> = +1 |\psi>$. \newline
 		\end{center}
 		
-		Considering only closed loops, we identify different configuraztions having such characteristic. The below illustrations show some examples of them:\newline
+		Considering only closed loops, we identify different configurations having such characteristic. The below illustrations show some examples of them:\newline
 		
 		%drawings
 		
 		Each of these loops is an eigenstate for $Av$, since no matter how I locally apply $Av$, I will always preserve the sign of the state. \newline
-		
-		Now look at constraint (2). We want to apply the plaquette operator $Bp$ only to eigenstates of $Av$, which we have determined above. The illustration below shows how to do it with one of the loops above:\newline
-		
-		%drawings
-		
-		We see that, after the transformation, we do always end up in a valid eigenstate of $Av$ but the new state $|\psi'>$ is not an eigenstate of $Bp$ by itself.\newline
+	
 		
 		
 		
@@ -506,13 +500,107 @@
 	
 	
 	\begin{minipage}{1\textwidth}
-		\textbf{Proposition 1.6.} (Dimension of the Ground State manifold) The dimension of the Ground State manifold is $4$. \newline
 		
-		\textit{Proof}\newline 
+		Then we focus on constraint (2). We want to apply the plaquette operator $Bp$ only to eigenstates of $Av$, which we have determined above. The illustration below shows how to do it with one of the loops above:\newline
+		
+		%drawings
+	
+		
+		Notice that, after the transformation, we do always end up in a valid eigenstate of $Av$ but the new state $|\psi'>$ is not an eigenstate of $Bp$ by itself.\newline
+		
+		Furthermore, any new configuration that we obtain through the application of the plaquette operator to an eigenstate of $Av$ simply yields one of the possible permutations of the edges of the initial state, provided that the topological characteristics of the loop are preserved.\newline
+		
+		This means that if we firstly partition the eigenstates of $Av$ in the following fours classes: \newline
+		
+		- class 0 : contains all closed loops and thus the vacuum state,
+		since all of the closed loops can be continuously deformed into a null state; \newline
+		
+		- class 1 : contains loops that wind all the way around the horizontal dimension of the torus and their permutations;\newline
+		
+		- class 2 : contains loops that wind all the way around the vertical dimension of the toru and their permutations;\newline
+		
+		- class 3 : contains loops that wind all the way around both dimension of the Torus and their permutations; notice that the vertical loop must be taken on the dual lattice to have a valid configuration.\newline
+		
+		Then, applying a plaquette operator to any of the eigenstates belonging to one of the classes above must yield an eigenstate that lies in the same class. This is formally expressed by stating that the class is invariant under the action of the operator $Bp$. \newline
+		
+		\textbf{Proposition 1.6.} (Invariance under $Bp$) The four classes of eigenstates of $Av$ are invariant under the action of the $Bp$ operator. \newline
+		
+		We can prove that the above definition holds by means of counterexamples.\newline
+		 
+		If we take the loop illustrated below, we would be brought to believe that there indeed exist a way to apply the operator $Bp$ such that we exit class zero and land in class 1. \newline
+		
+		%drawings
+		
+		In order to show the impossibility of the above action, we define two topological indeces to label the four categories of eigenstaes, which can assume values in $\mathbb{Z}_2=\{\overline{0},\overline{1} \}$. These elements respectively represent the 'sets' of even and odd numbers. In our context such numerosities identify the number of vertical and horizontal loops trapassing the dimensions of the Torus. \newline
+		
+		The above indecs can also be expressed as follows: 
+		
+		\begin{center}
+			$n_x= (number \ of \ vertical \ intersections)mod2 = 
+			\begin{cases} 
+				0mod2 \\
+			    1mod2  
+			\end{cases}$ 
+			$n_y= (number \ of \ horizontal \ intersections)mod2 =\begin{cases} 
+				0mod2 \\
+				1mod2  
+			\end{cases}$ 
+		\end{center}
+		
+		
+	
+	\end{minipage}
+	
+	
+	
+	
+	
+	\begin{minipage}{1 \textwidth}
+		
+		in order to create a correspondence with the actual definition of the Torus over $(\mathbb{Z}$ x $\mathbb{Z})$. 
+		We only change the representatives of the elements $\{\overline{0},\overline{1} \}$ in the intermediate step. \newline
+		
+		So, in total our classes are labelled as : $(\overline{0},\overline{0} )$, $(\overline{0},\overline{1} )$, $(\overline{1},\overline{0})$, $(\overline{1},\overline{1})$.\newline
+		
+		Notice that the intersections are meant to be computed by fixing two circles: one horizontal circle passing through the spins (the princiapla lattice) and one vertical circle passing in the middle of the lattice plaquettes, i.e. taken on the dual lattice.\newline
+		 
+		For example if we take the below configuration: \newline
+		
+		%drawing
+		
+		We have 1 vertical intersection and 1 horizontal intersection, therefore we are in the class three indexed by $n_x=1mod2$ and $n_y=1mod2$, which is labelled as $(\overline{1},\overline{1})$. This would have been true for any odd number of vertical and horizintal intersections, since they all fall in the set of numbers given by $1mod2$.\newline
+		
+		Going back to the initial example, this would mean that we land not in class 1, but in class 0, as we have an even number of horizontal intersections and an even number of vertical intersections, i.e.   $(\overline{0}, \overline{0})$.\newline
+		
+		Thus, all the classes are $Bp-invariant$ due to the topological characteristics of the Torus.\newline
+		
+		More formally we can now write that, given a set of eigenstates of $Av$ named $|\psi_1>,...,|\psi_i>,...,|\psi_n>$ all belonging to the same class and forming state $|\psi>$. Given that we know that $Bp|\psi_i>=+|\psi_j>$, then if we apply $Bp$ to the normalized state $|\psi>$ then we get:
+		
+		\begin{center}
+			$|\Xi>= Bp \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_i> = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} Bp |\psi_i> = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_J> =|\Xi>$
+		\end{center}
+		
+		because what $Bp$ does is only permuting the $|\psi_i>$, thus we get back our initial state. \newline
+		
+		Which leads to the following Proposition:\newline
+		
+		\textbf{Proposition 1.7.}(Eigenstates of $Bp$) Eigenstates of $Av$ are not eigenstates of $Bp$ by themselves but completely symmetric superspositions of any of them.\newline
+		
+		From Proposition 1.6 and Proposition 1.7, naturally follows the degeneracy (and dimension) of the Ground State:\newline
+
+		\textbf{Proposition 1.8.} (Degeneracy of the Ground State manifold) The degeneracy of the Ground State manifold is $4$. \newline
+		
+		As the four classes of eigenstates are $Bp-invariant$, then we can construct a valid Ground State through the configurations belonging to one the four classes, as these configurations respect both contraint (1) and (2).\newline
 		
 	\end{minipage}
 	
 	
+	
+	
+	\begin{minipage}{1 \textwidth}
+		
+		
+	\end{minipage}
 	
 	
 	\chapter{Fault-tolerant computation }
