@@ -595,16 +595,112 @@
 	\end{minipage}
 	
 	
+	\begin{minipage}{1 \textwidth}
+		\textbf{Exchange statistics in 3D }\newline
+		Let us first consider the exchange statistics of two particles in three dimensions.  We can describe a system of two particles moving from point $(r_1(t_1),r_2(t_1))$ to point $(r'_1(t_2),r'_2(t_2))$ through the following path integral formulation 
+		
+		\begin{center}
+			$A$ = $\sum_{paths} e^{iS}$
+		\end{center}
+		
+		where S represents the integral of the Lagrangian $L$ over time, which provides a measure of the total "action" along a particular trajectory or path taken by the system. 
+		
+		\begin{center}
+			$S = \int_{t_1}^{t_2}dt \textit{L} [ r_1(t),r_2(t) ] $
+		\end{center}
+		
+		In quantum mechanics, the path integral formulation involves considering all possible paths between the initial and final point and assigning a phase factor $e^{iS}$ to each.\newline
+		
+		Then, the probability amplitude for a system to evolve from one point to another is given by the sum (or integral) over all paths of these phase factors. Though, in order to obtain the actual probability of the system evolving between the two points we should compute:
+		
+		\begin{center}
+			$P= |A|^2 $
+		\end{center}
+		
+		Overall, we have:\newline
+		
+		-Probability Amplitude $A$: It is a complex number that encodes both the magnitude and phase information associated with a quantum process. The probability amplitude is used in quantum mechanics, particularly in the context of the path integral formulation, to describe the evolution of a system and calculate probabilities.\newline
+		
+		-Probability ($P$): It is a real number representing the likelihood of a particular outcome or event. In quantum mechanics, the probability is obtained by taking the squared magnitude of the probability amplitude. Mathematically, this ensures that the probability is a non-negative real value. So, P represents how likely it is that our system of two particles will evolve from a point at t1 to a point at t2.\newline
+		
+		Since we are talking about a system of indistinguishable particles, we will only have two classes of paths in three dimensions, the direct paths and paths with exchanges as pictured below.\newline
+		
+		%picture
+		
+	    This is because, as we can see above, the final configuration at time $t_2$ will always be the same wheter we end up having $(r_1(t_2),r_2(t_2))$ or $(r_2(t_2),r_1(t_2))$, indeed due to indistinguishability.\newline
+		
+		Though, notice that even though two paths may lead to the same final configuration but they can exhibit different behaviors regarding the relative coordinates. By defining the center of mass $R= \frac{r_1+r_2}{2}$ , it becomes evident that the center of mass motion remains consistent for both paths, while the relative coordinate $r=r_2-r_1$ undergoes distinct changes.
+		
+		To visualize this in configuration space, consider maintaining the magnitude of the relative coordinate $|r|$ fixed and non-zero, implying that the particles do not intersect. \newline 
+		
 	
+		
+	\end{minipage}
 	
 	\begin{minipage}{1 \textwidth}
 		
+		In such a scenario, paths are constrained to move along the surface of the sphere due to the fixed magnitude of the relative coordinate. Closed paths on the sphere emerge when particles return to their original positions (no exchange) or reach the antipodal point (exchange). If particles are exchanged a second time, $r$ completes a full revolution around the sphere. \newline
+		% in three-dimensional space, a vector with a fixed magnitude can be represented as a point on the surface of a sphere.
+		
+		Eliminating coincident points ensures that the wave-function remains non-singular and well-defined across all points in configuration space, particularly on the surface of the sphere. Consequently, the phase acquired by the wave-function remains well-defined and invariant under continuous deformations of the path.\newline
+		
+		Examining the possible phases of the wave-function along three distinct paths: A (no exchange), B (single exchange), and C (two exchanges), as shown in the figure below, we discover distinct characteristics: \newline
+		
+		-Path A, being a closed loop without exchange, can be continuously shrunk to a point, implying that the wave-function cannot acquire any phase other than unity.\newline 
+		
+		-Path B, involving a single exchange, connects two fixed points on the sphere, making it impossible to shrink to a single point. Consequently, this exchange introduces a non-trivial phase in the wave-function. \newline
+		
+		-Path C, forming a closed loop with two exchanges, can be continuously shrunk to a point by envisioning the path as a physical string looped around a sphere. As a result, path C does not acquire any additional phase.\newline
+		
+		Let $\eta$ represent the phase acquired by the wave function under a single exchange. Since two exchanges are equivalent to no exchange $\eta^2=1$, then it follows that $\eta = \pm 1 $. Therefore, the only possible statistics in three dimensions are Fermi statistics or Bose statistics.\newline
+		
+		In terms of the path integral formulation above what we will get is thus:
+		
+		\begin{center}
+			$A[r_1(t_1),r_2(t_1) \rightarrow r'_1(t_2),r'_2(t_2)]$ = $\sum_{direct \ paths} e^{iS}$ + $\sum_{exchange \ paths} e^{iS}$
+		\end{center}
+		
+		In terms of the path integral, we can also introduce a phase
+		between the two classes of paths and write: 
+		
+		\begin{center}
+			$A[r_1(t_1),r_2(t_1) \rightarrow r'_1(t_2),r'_2(t_2)]$ = $\sum_{direct \ paths} e^{iS}$ + $e^{i \phi} \sum_{exchange \ paths} e^{iS}$
+		\end{center}
+		
+		Since exchanging the particles twice leads again to a direct path, we will have $e^{2i \phi} = 1$. Solving this equation, implies that $\phi$ can only be 0 or $\pi$ giving rise to bosons and fermions. \newline	
+		
+		-$\phi = 0$: This case leads to the constructive interference of the exchange paths. The resulting particles are known as bosons, and their behavior is characterized by this specific phase condition.\newline
+		
+		-$\phi = \pi$: This case results in destructive interference between the exchange paths. The particles corresponding to this scenario are referred to as fermions, and their behavior is governed by this particular phase condition.\newline
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		\textbf{Exchange statistics in 2D }\newline
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		\textbf{Anyons obey Braid Group Statistics}\newline
+		\textbf{Toric Code : excitations of the Ground State }\newline
+		\textbf{Statistics and Braiding properties of the excitations}\newline
 		
 	\end{minipage}
 	
 	
 	\chapter{Fault-tolerant computation }
 	% Altre sezioni
+	\begin{minipage}{1 \textwidth}
+		
+		
+		
+	\end{minipage}
 	
 	\begin{thebibliography}{99} % "99" è solo un esempio del numero massimo di voci che ti aspetti nella tua bibliografia
 		\bibitem{ref1} A. Kitaev, Ann. Phys. (N. Y). 303, 2 (2003),
