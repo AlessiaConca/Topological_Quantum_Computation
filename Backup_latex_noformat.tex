@@ -593,10 +593,27 @@
 		As the four classes of eigenstates are $Bp-invariant$, then we can construct a valid Ground State through the configurations belonging to one the four classes, as these configurations respect both contraint (1) and (2).\newline
 		
 	\end{minipage}
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 	
 	\begin{minipage}{1 \textwidth}
-		\textbf{Exchange statistics in 3D }\newline
+		\textbf{Exchange statistic in 3D }\newline
+		
 		Let us first consider the exchange statistics of two particles in three dimensions.  We can describe a system of two particles moving from point $(r_1(t_1),r_2(t_1))$ to point $(r'_1(t_2),r'_2(t_2))$ through the following path integral formulation 
 		
 		\begin{center}
@@ -609,7 +626,7 @@
 			$S = \int_{t_1}^{t_2}dt \textit{L} [ r_1(t),r_2(t) ] $
 		\end{center}
 		
-		In quantum mechanics, the path integral formulation involves considering all possible paths between the initial and final point and assigning a phase factor $e^{iS}$ to each.\newline
+		In quantum mechanics, the path integral formulation involves considering all possible paths between the initial and final states and assigning a phase factor $e^{iS}$ to each.\newline
 		
 		Then, the probability amplitude for a system to evolve from one point to another is given by the sum (or integral) over all paths of these phase factors. Though, in order to obtain the actual probability of the system evolving between the two points we should compute:
 		
@@ -629,7 +646,7 @@
 		
 	    This is because, as we can see above, the final configuration at time $t_2$ will always be the same wheter we end up having $(r_1(t_2),r_2(t_2))$ or $(r_2(t_2),r_1(t_2))$, indeed due to indistinguishability.\newline
 		
-		Though, notice that even though two paths may lead to the same final configuration but they can exhibit different behaviors regarding the relative coordinates. By defining the center of mass $R= \frac{r_1+r_2}{2}$ , it becomes evident that the center of mass motion remains consistent for both paths, while the relative coordinate $r=r_2-r_1$ undergoes distinct changes.
+		Though, notice that even though two paths may lead to the same final configuration they can exhibit different behaviors when it comes to considering the relative coordinates. By defining the center of mass $R= \frac{r_1+r_2}{2}$ , it becomes evident that the center of mass motion remains consistent for both paths, while the relative coordinate $r=r_2-r_1$ undergoes distinct changes.\newline
 		
 		To visualize this in configuration space, consider maintaining the magnitude of the relative coordinate $|r|$ fixed and non-zero, implying that the particles do not intersect. \newline 
 		
@@ -646,15 +663,16 @@
 		
 		Examining the possible phases of the wave-function along three distinct paths: A (no exchange), B (single exchange), and C (two exchanges), as shown in the figure below, we discover distinct characteristics: \newline
 		
-		-Path A, being a closed loop without exchange, can be continuously shrunk to a point, implying that the wave-function cannot acquire any phase other than unity.\newline 
+		-Path A: being a closed loop without exchange, it can be continuously shrunk to a point, implying that the wave-function cannot acquire any phase other than unity.\newline 
 		
-		-Path B, involving a single exchange, connects two fixed points on the sphere, making it impossible to shrink to a single point. Consequently, this exchange introduces a non-trivial phase in the wave-function. \newline
+		-Path B: involving a single exchange, it connects two fixed points on the sphere, making it impossible to shrink to a single point. Consequently, this exchange introduces a non-trivial phase in the wave-function. \newline
 		
-		-Path C, forming a closed loop with two exchanges, can be continuously shrunk to a point by envisioning the path as a physical string looped around a sphere. As a result, path C does not acquire any additional phase.\newline
+		-Path C: forming a closed loop with two exchanges, it can be continuously shrunk to a point by envisioning the path as a physical string looped around a sphere. As a result, path C does not acquire any additional phase.\newline
 		
-		Let $\eta$ represent the phase acquired by the wave function under a single exchange. Since two exchanges are equivalent to no exchange $\eta^2=1$, then it follows that $\eta = \pm 1 $. Therefore, the only possible statistics in three dimensions are Fermi statistics or Bose statistics.\newline
+		Overall, we only have two classes of paths, those that do not involve any exchange as in class A and C, and those that are characterised by an exchange as in class B.\newline
+		Then, if we let $\eta$ represent the phase acquired by the wave function under a single exchange. Since two exchanges are equivalent to no exchange $\eta^2=1$, then it follows that $\eta = \pm 1 $. Therefore, the only possible statistics in three dimensions are Fermi statistics or Bose statistics.\newline
 		
-		In terms of the path integral formulation above what we will get is thus:
+		In terms of the path integral formulation that we have provided above, what we will get is thus:
 		
 		\begin{center}
 			$A[r_1(t_1),r_2(t_1) \rightarrow r'_1(t_2),r'_2(t_2)]$ = $\sum_{direct \ paths} e^{iS}$ + $\sum_{exchange \ paths} e^{iS}$
@@ -673,21 +691,62 @@
 		
 		-$\phi = \pi$: This case results in destructive interference between the exchange paths. The particles corresponding to this scenario are referred to as fermions, and their behavior is governed by this particular phase condition.\newline
 		
-	\end{minipage}
-	
-	\begin{minipage}{1 \textwidth}
-		\textbf{Exchange statistics in 2D }\newline
-		
-	\end{minipage}
-	
-	\begin{minipage}{1 \textwidth}
-		
 		
 		
 	\end{minipage}
 	
 	\begin{minipage}{1 \textwidth}
+		\textbf{Exchange statistic in 2D }\newline
+		
+		In two dimensions the topology of the space configuartion changes. That is, by proceeding in the same way as we did in three dimensions, thus by fixing the magnitude of the relative coordinate we end up moving on a circle.\newline
+		
+		Though, in this case several possible paths are possible, particularly closed paths.
+		If we look at the three classes of paths A,B,C we see that :\newline
+		
+		-Path A: can be shrunk into a point as it simply moves on the circle, as exemplified in the picture below. \newline
+		
+		-Path B: cannot be contracted into a point as the endpoints remain fixed. \newline
+		
+		-Path C: also this kind of paths cannot be shrunk into a point since they wind all  the way around the circle. In three dimensions, the path that forms under two exchanges can be shrunk to a point. This is not possible if the motion is restricted to a plane.\newline
+		
+		%picture
+		
+		
+		Let $\eta$ represent the phase associated with a single exchange, $\eta^2$
+		denote the phase under two exchanges, and $\eta^3$ signify the phase under three exchanges, and so forth. The crucial observation is that, given that the wave-function's modulus remains constant during exchanges, we can express $\eta$ as a phase factor $e^{i\theta}$. \newline
+		
+		In terms of path integrals what we get as probability amplitude is: \newline
+		
+		\begin{center}
+			$A$ = $\sum_{direct \ paths} e^{iS}$ + $e^{i \phi} \sum_{ one \ exchange} e^{iS}$  + $e^{2i \phi} \sum_{ two \ exchanges} e^{iS}$  + ...
+		\end{center}
+		
+		where for $ \phi = 0, \pi$ we would obtain the usual bosons and fermions statistics, but since in general, $e^{in\phi} \neq 1$ for any $n$ (n exchanges never yield the identity), $\phi$ can be anything so any statistic is possible in two dimensions.\newline
+		
+		This elucidates the flexibility in obtaining diverse statistics in two dimensions, which are called 'anyonic'.\newline
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
 		\textbf{Anyons obey Braid Group Statistics}\newline
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
 		\textbf{Toric Code : excitations of the Ground State }\newline
 		\textbf{Statistics and Braiding properties of the excitations}\newline
 		
