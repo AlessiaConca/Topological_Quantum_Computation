@@ -748,20 +748,127 @@
 	
 	\begin{minipage}{1 \textwidth}
 		
+		\textbf{Toric Code : low-energy excitations}\newline
+		
+		We shall now examine the case of a square lattice with boundary conditions, i.e. the toric code. \newline
+		
+		Taking into account the results yielded by the examination of the physical system in the previous chapters (especially the four fold degeneracy) we will now proceed to firstly describe what are the excitations of the ground state, what kind of excitations we can obtain on the ground state, identify their respective statistics and ultimately we will examine the exchange statistics of the excitations.\newline
+		
+		In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent collective deviations from the system's ground state. These excitations are associated with elementary quantum modes that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties, and response to external perturbations. \newline
+		
+		In the particular case of the Toric Code, such low-energy excitations can be created in two ways:  \newline
+		
+		1. by applying an open-ended string $S^x$ made up of $\sigma_x$ operators on the Ground State;\newline
+		
+		2. by applying an open-ended string $S^z$ made up of $\sigma_z$ operators on the Ground State;\newline
+		
+		At the extremities of the above mentioned strings particles are created. We will call the pairs of particles obtained through the application of operator $S^x$ "electric charges", while the ones obatained by applying an $S^z$ operator to the Ground State "magnetic vortices".\newline
+		
+		%picture
+		
+		We can prove that if a string $S^x$ of $\sigma_x$ operators is open-ended, then the $\sigma_x$ operators at its two extremes of the string will anticommute with one $A_v$ each.\newline
+		
+		\textit{Proof}\newline 
+		
+		We want to show that $A_v S^x + S^x A_v=0$.\newline
+		
+		Knowing that 
+		
+		\begin{center}
+			$A_v = \prod_{i=1}^{4} \sigma_i^z$ \\ 
+			$S^x = \prod_{j=1}^{N} \sigma_j^x$
+		\end{center}
+		
+		by substitution we obtain the following expression: \newline
+		
+		\begin{center}
+			$\prod_{i=1}^{4} \prod_{j=1}^{N} \sigma_j^x + \prod_{j=1}^{N} \sigma_j^x \prod_{i=1}^{4} \sigma_i^z = 0$ $(1)$
+		\end{center}
+		
+		remeber that only one $\sigma_i^z$ will overlap with the extremity of the string $S^x$; thus, only one $\sigma_i^z$ will anticommute with the extremity of the string $S^x$. Knowing that for Pauli matrices acting on the same edge we have anticommutation
+		
 		
 		
 	\end{minipage}
 	
+	
 	\begin{minipage}{1 \textwidth}
 		
+		\begin{center}
+			$\sigma_{v'}^x \sigma_{v'}^z = - \sigma_{v'}^z \sigma_v^x$ for $v=v'$ \\
+			$\sigma_v^x \sigma_{v'}^z =  \sigma_{v'}^z \sigma_v^x$ for $v \neq v'$ 
+		\end{center}
+		
+		if for simplicity we fix $N=2$ we can easily see that :\newline
+		
+		$(\sigma_1^z \sigma_2^z \sigma_3^z \sigma_4^z)(\sigma_1^x \sigma_2^x)  = - (\sigma_1^x \sigma_2^x)(\sigma_1^z \sigma_2^z \sigma_3^z \sigma_4^z) $ \newline
+		
+		having supposed that, for example, the extremity $\sigma_1^x$ overlaps with the $\sigma_3^z$ edge part of the $A_v$ operator. This can then be easily generalized for $N$ Pauli operators. Finally, if we substitute such expressione in $(1)$ we obtain that the overall equation is in fact equal to zero.\newline
+		
+		Of course, this procedure should be repeated also for the other extremity of the string $S^x$ to show that the operator commutes with two $A_v$ operators, one for each endpoint.\newline
+		
+		\hfill $\square$ \newline
+		
+		Similarly, if we take a string $S^z$ made up of $\sigma_z$ operators still open-ended, we can prove that the $\sigma_z$ operators at its endpoints will anticommute with one $B_p$ each.\newline
+		
+		\textit{Proof}\newline 
+		
+		\hfill $\square$ \newline
+		
+		The effect of putting such strings on the Ground State correspond to raising the associated energy of the GS by 2. In fact, we can prove that it is impossible to create unitary excitations on the Ground State.\newline
+		
+		\textit{Proof}
+  Recall that for a string operator, here we will choose $S^x$, both equations hold:
+		
+		\begin{center}
+			$\begin{cases} 
+				A_{v1} S^x + S^x A_{v1} =0 \\
+				A_{v2} S^x + S^x A_{v2} =0
+			\end{cases}$ 
+	    \end{center}
+		
+		If we apply the string operator to the Ground State, taking into account anticommutativity stated above, we obtain that:
+		
+		\begin{center}
+			$\begin{cases}
+				A_{v1} S^x |GS> = - S^x A_{v1} |GS> = - S^x |GS> \\
+				
+				A_{v2} S^x |GS> = - S^x A_{v2} |GS> = - S^x |GS> 
+			\end{cases}$ 
+	    \end{center}
+		
+		since $A_{v1}|GS> = +1|GS>$ and $A_{v2}|GS> = +1|GS>$.
+		Summing up term by term :\newline
+		
+		\begin{center}
+			$\begin{cases}
+				A_{v1} S^x |GS> + A_{v2} S^x |GS> = - 2 S^x A_{v1} |GS> 
+			\end{cases}$ 
+		\end{center}
+		
+		Thus, if the energy of the Ground State as we have defined it in the previous chapters is $-2N$ by acting with a string operator on  it we ibtain $-2N+2$.
+		
+		\hfill $\square$ \newline
 		
 		
 	\end{minipage}
 	
+	
 	\begin{minipage}{1 \textwidth}
-		
-		\textbf{Toric Code : excitations of the Ground State }\newline
 		\textbf{Statistics and Braiding properties of the excitations}\newline
+		
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		
 		
 	\end{minipage}
 	
