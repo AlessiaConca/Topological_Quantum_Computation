@@ -855,10 +855,39 @@
 	
 	
 	\begin{minipage}{1 \textwidth}
+ 
 		\textbf{Statistics and Braiding properties of the excitations}\newline
 		
+		Firstly, we study the individual statistics of electric charges and magnetic votices, then we argue their mutual statistics.\newline
+		
+		Let's analyze the statistics of e-particles in the context of the ground state. The operator $\sigma^z|GS>$ , where $|GS>$ denotes the ground state, creates two e-particles in the vertices adjacent to the edge. The presence of a string operator $\prod_{j=1}^{N} \sigma_j^z$ allows the separation of these two excitations. No only, ass illustrated below, the exchange of these particles becomes possible by applying the string operators. However, due to the commutation of all $\sigma^z$ with each other, regardless of the path taken during the exchange, there is no acquired phase. Consequently, the e-excitations exhibit bosonic statistics. \newline
+		
+		%picture
+		
+		A similar argument can be made for the m-excitations, establishing them as bosons as well.
+		
+		Let's examine the mutual statistics between e and m particles. Initially, we generate pairs of e and m excitations at distinct chosen sites by applying the operator $\sigma^z\sigma^x|GS>$. Afterward, we separate the excitations using string operators and we move an m-particle around an e-particle, as depicted below. Notably, there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. The closed loop can be eliminated, leading to the following transformation:
+		
+		\begin{center}
+			$\sigma_i^z\sigma_j^x|GS> = - \sigma_i^x\sigma^z|GS>$
+		\end{center}
+		
+		if we denote the exchange operator as $R$ then the wave function relation should be the following:
+		
+		\begin{center}
+			$R^2\psi(e,m) = - \psi(e,m)$
+		\end{center}
+		
+		since we are going all the way around the particle, we assume to have two exchanges. Then we simply find out that:
+		
+		\begin{center}
+			$R^2 = - 1 \rightarrow ( e^{-\frac{i\pi}{2}})^2 = - 1  \rightarrow R = e^{-\frac{i\pi}{2}} = \pm i $
+		\end{center}
+		
+		this results falls out of the usual bosonic/fermionic statistics, thus we can say that the low-energy excitations of the ground state exhibit anyonic statistics.\newline
 		
 	\end{minipage}
+	
 	
 	\begin{minipage}{1 \textwidth}
 		
