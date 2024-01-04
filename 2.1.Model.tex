@@ -83,7 +83,7 @@
 	\begin{minipage}{1\textwidth}
 		
 		The above mentioned cells in the Toric model are called "plaquettes", while the lattice points are called "verteces".
-		Then, in order to complete the description of the model we define the following operators as the main actors of the model:\newline
+		In order to complete the description of the system we define the following operators as the main actors of the model:\newline
 		
 		\textbf{Definition 2.1.1.} (Vertex and Plaquette operators) Given a vertex $v$ and a plaquette $p$, we can define the following vertex and plaquette operators as tensor products over Pauli operators acting on individual spins indicated by the indices $j \in star(v)$ and $j \in bdy(p)$  \newline 
 		
@@ -164,7 +164,7 @@
 		
 		Given definition 2.1.1., we can now write the Hamiltonian of the whole system as follows:\newline
 		
-		\textbf{Definition 2.1.2.} (Toric Code Hamiltonian) Given the application sites v and p of  respectively, vertex and plaquette operators, and given spin-$\frac{1}{2}$ particles located on each edge of the torus, we can define the following Hamiltonian for the system:\newline
+		\textbf{Definition 2.1.2.} (Toric Code Hamiltonian) Given the application sites $v$ and $p$ of  respectively, vertex and plaquette operators, and given spin-$\frac{1}{2}$ particles located on each edge of the torus, we can define the following Hamiltonian for the system:\newline
 		
 		\begin{center}
 			
@@ -184,27 +184,28 @@
 	\begin{minipage}{1\textwidth}	
 		
 		
-		\textbf{Definition 2.1.3.} (Hermitian operator) Let $V$ be  a finite dimensional vector space over $\mathbb{C}$, with a fixed positive definite hermitian product defined as $<v,w>$ for $v,w \in V$. Let $A$: $V \rightarrow V$ be a linear map. An operator is called Hermitian (or self-adjoint) if $A^H=A$. This means that for all $u,v \in V$ we have\newline
+		\textbf{Definition 2.1.3.} (Hermitian operator) Let $H$ be an Hilbert space and  $A$: $H \rightarrow H$ be a linear operator. An operator $A$ is called Hermitian if for all $\psi,\phi \in H$ we have that\newline
 		
 		\begin{center}
-			$<Av,w> = <v,Aw>$.
+			$<A\psi|\phi> = \overline{<\phi|A^{\dagger}\psi>}$.
 		\end{center}
 		
-		In particular, it is important for the following applications to specify that a square matrix $A$ of complex numbers is called hermitian if $(A^*)^T = A$, i.e. if the conjugate-transpose of $A$ is equal to $A$ itself. Note also that for real matrices it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
+		where the daga symbol $\dagger$ represents the conjugate transpose and the $<,>$ the inner product.
+		In particular, it is important for the following applications to specify that a square matrix $A$ of complex numbers, representing a linear operator, is called hermitian if $(A^*)^T = A$. One important consequence of Hermiticity is that the corresponding eigenvalues of the operator are real. Note also that for real matrices, as in the case of our operators, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
 		
-		Then, the involutory property comes from the unitarity of the matrices representing the vertex and plaquette operators, i.e. $X$ and $Z$ Pauli matrices, which are real matrices. \newline
+		Then, the involutory property comes from the unitarity of the matrices representing the vertex and plaquette operators, i.e. $X$ and $Z$ Pauli matrices. \newline
 		
-		\textbf{Definition 2.1.4.} (Unitary operator) Let $V$ be  a finite dimensional vector space over $\mathbb{C}$, with a positive definite hermitian product. Let $A$: $V \rightarrow V$ be a linear map. We define A to be complex unitary if \newline
+		\textbf{Definition 2.1.4.} (Unitary operator) Let $H$ be an Hilbert space. Let $U$: $H \rightarrow U$ be a linear operator. We define $U$ to be complex unitary if for all $\psi,\phi \in H$ we have that\newline
 		
 		\begin{center}
-			$<Av,Aw> = <v,w>$.
+			$<U\psi|U\phi> = <\psi|\phi>$.
 		\end{center}
 		
-		for all $v,w \in V$. We can define a complex matrix $A$ to be unitary if $ (A^*)^T=A^{-1}$. We note that it is possible to define an operator to be real unitary, with the only difference that $(A)^T = A^{-1}$. Then, we can also define that a real matrix is unitary if $(A)^T = A^{-1}$ or, equivalently, if $(A)^T A=I$.\newline
+	    In terms of the conjugate transpose, we can define a complex matrix $U$ to be unitary if $ (U^*)^T=U^{-1}$. We note that it is possible to define an operator to be real unitary, with the only difference that $(U)^T = U^{-1}$. Then, we can also define that a real matrix $U$, representing a linear operator, is unitary if $(U)^T = U^{-1}$ or, equivalently, if $(U)^T U=I$. Note also that one important property of  unitary operators is that their eigenvalues have modulus equal to one.\newline
 		
 		Given the considerations made in Definition 2.1.3. and 2.1.4. for ral matrices, we can easily prove the first following proposition: \newline
 		
-		textbf{Proposition 2.1.1.} (Hermiticity and involutory property of $Av$ and $Bp$ operators)
+		\textbf{Proposition 2.1.1.} (Hermiticity and involutory property of $Av$ and $Bp$ operators)
 		$Av$ and $Bp$ operators are Hermitian and satisfy the involutory property.\newline
 		
 		\textit{Proof}\newline
@@ -343,7 +344,7 @@
 		
 		\textit{Proof}\newline
 		
-		Given the Hermiticity and involutory proof in 2.1.1, we prove that Hermitian operators (and therefore our vertex and plaquette operators) have real eigenvalues: \newline
+		Given the Hermiticity and involutory proof in 2.1.1, we firstly prove that Hermitian operators (and therefore our vertex and plaquette operators) have real eigenvalues: \newline
 		
 		Write the expression for the eigenvalues $Av |\xi> = \lambda |\xi>$ and take as hypothesis that $|\xi> \neq 0$. Then, by means of the scalar product\newline
 		
@@ -361,7 +362,7 @@
 		
 		Using hermiticity with the fact that $(Av)^2=I$ we can derive the unitarity of $Av$ and state that $Av Av^H = Av^H Av = (Av)^2 = I$, i.e. for a unitary operator $U$ we have $U^H=U^{-1}$. \newline
 		
-		One property of unitary operators states that their eigenvalues have modulus equal to one:\newline 
+		Given the property of unitary operators that states that their eigenvalues have modulus equal to one:\newline 
 		
 		
 		By taking as hypothesis $|\xi> \neq 0$, we write the expression $U |\xi> = \lambda |\xi>$ and its self-adjoint $<\xi| U^H = \lambda^* <\xi|$. Then, knowing that $U^H=U^{-1}$, by means of the scalar product we obtain \newline
