@@ -21,7 +21,7 @@
 		
 		The toric code model is defined on a square lattice with periodic boundary conditions in both directions; these latter characteristics in topology are typical of what is known as a torus topology or simply a Torus, from which the name of the model.\newline
 		
-		A square lattice $L$ is a particular lattice defined in a two dimensional Euclidian space. It is denoted as $\mathbb{Z}^{2}$, such that each lattice point is identified with a tuple of integers. Though, the above mentioned boundary conditions also specify that for any point $(i, j)$ in the lattice, the neighboring points are going to be the following: $(i+1 \ mod \ L, j)$, $(i-1 \ mod \ L, j)$, $(i, j+1 \ mod \ L)$, and $(i, j-1 \ mod \ L)$.  \newline
+		A square lattice $L$ is a particular lattice defined in a two dimensional Euclidian space. It is denoted as $\mathbb{Z}^{2}$, such that each lattice point is identified with a tuple of integers. Though, the above mentioned boundary conditions also specify that for any point $(i, j)$ in the lattice, the neighboring points are going to be the following: $(i+1 \ mod \ L, j)$, $(i-1 \ mod \ L, j)$, $(i, j+1 \ mod \ L)$ and $(i, j-1 \ mod \ L)$.  \newline
 		
 		In our case, we are also going to consider a dual lattice, which will be denoted as $L'$ and that will be positioned in the following way.\newline
 		
@@ -93,7 +93,7 @@
 			$ Bp = \prod_{j \in bdy(v)} X_j $.\newline
 		\end{center}
 		
-		The $Av$ operator is going to be shaded in blu, while the $Bp$ operator will be coloured in red, as exemplified in the picture below. \newline
+		The $Av$ operators wre going to be shaded in blu, while the $Bp$ operators will be coloured in red, as exemplified in the picture below. \newline
 		
 		\begin{center}
 		\begin{tikzpicture}
@@ -142,20 +142,50 @@
 					}
 				}
 				
-				\foreach \i in {-2,...,-2}
+				\foreach \i in {-1,...,-1} %column
 				{
 					
-					\draw[blue, line width=1.5mm] (\i,1.5) -- (\i,2.5);
-					\node[draw, circle, fill=blue] at (\i,1.5) {};
-					\node[draw, circle, fill=blue] at (\i,2.5) {};
+					\draw[blue!50, line width=1.5mm] (\i,0.5) -- (\i,1.5);
+					\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,0.5) {};
+					\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1.5) {};
 					
 				}
-				\foreach \j in {2,...,2}
+				\foreach \j in {1,...,1}
 				{
 					
-					\draw[blue, line width=1.5mm] (-2.5, \j) -- (-1.5, \j);
-					\draw node[draw,circle,fill=blue] at (-2.5,\j) {};
-					\draw node[draw,circle,fill=blue] at (-1.5,\j) {};
+					\draw[blue!50, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
+					\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},,label=\textbf{Av}] at (-1.5,\j) {};
+					\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-0.5,\j) {};
+					
+				}
+				
+				
+				\foreach \i in {2,...,2}
+				{
+					
+					\draw[red!80, line width=1.5mm] (\i,-1) -- (\i,0);
+					\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-0.5) {};
+					
+				}
+				\foreach \j in {-1,...,-1}
+				{
+					
+					\draw[red!80, line width=1.5mm] (2, \j) -- (1, \j);
+					\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (1.5,\j) {};
+					
+				}
+				\foreach \i in {1,...,1}
+				{
+					
+					\draw[red!80, line width=1.5mm] (\i,-1) -- (\i,0);
+					\node[draw, circle, fill=red!80,label=center:\textbf{X},label=left:\textbf{Bp}] at (\i,-0.5) {};
+					
+				}
+				\foreach \j in {0,...,0}
+				{
+					
+					\draw[red!80, line width=1.5mm] (2, \j) -- (1, \j);
+					\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (1.5,\j) {};
 					
 				}
 				
@@ -187,11 +217,11 @@
 		\textbf{Definition 2.1.3.} (Hermitian operator) Let $H$ be an Hilbert space and  $A$: $H \rightarrow H$ be a linear operator. An operator $A$ is called Hermitian if for all $\psi,\phi \in H$ we have that\newline
 		
 		\begin{center}
-			$<A\psi|\phi> = \overline{<\phi|A^{\dagger}\psi>}$.
+			$<A\psi|\phi> = <\psi|A^{\dagger}\phi> = <\phi|A\psi>^{*}$.
 		\end{center}
 		
-		where the daga symbol $\dagger$ represents the conjugate transpose and the $<,>$ the inner product.
-		In particular, it is important for the following applications to specify that a square matrix $A$ of complex numbers, representing a linear operator, is called hermitian if $(A^*)^T = A$. One important consequence of Hermiticity is that the corresponding eigenvalues of the operator are real. Note also that for real matrices, as in the case of our operators, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
+		where the daga symbol $\dagger$ represents the conjugate transpose and the $<,>$ the Hermitian inner product. \newline
+		It is important for the following applications to specify that a square matrix $A$ of complex numbers, representing a linear operator, is called hermitian if $A^{\dagger} = (A^*)^T = A$. One important consequence of Hermiticity is that the corresponding eigenvalues of the operator are real. Note also that for real matrices, as in the case of our operators, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
 		
 		Then, the involutory property comes from the unitarity of the matrices representing the vertex and plaquette operators, i.e. $X$ and $Z$ Pauli matrices. \newline
 		
@@ -275,13 +305,13 @@
 		= \text{$ \sigma_x $}
 		\]\newline
 		
-		Note that Pauli matrices are real matrices, i.e. $A^H=A^T$.
+		Note that Pauli matrices are real matrices, i.e. $A^{\dagger}=A^T$.
 		Then, knowing that $[\sigma_i,\sigma_j]=0 \ for \ i=j$ we can write		\newline
 		
 		\begin{center}
-			$(Av)^{H} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{H} = \sigma_{x_1}^H \sigma_{x_2}^H \sigma_{x_3}^H \sigma_{x_4}^H = \sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4} = Av$ \newline
+			$(Av)^{\dagger} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{\dagger} = \sigma_{x_1}^{\dagger} \sigma_{x_2}^{\dagger} \sigma_{x_3}^{\dagger} \sigma_{x_4}^{\dagger} = \sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4} = Av$ \newline
 			
-			$(Bp)^{H} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{H} = \sigma_{z_1}^H \sigma_{z_2}^H \sigma_{z_3}^H \sigma_{z_4}^H = \sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4} = Bp$\newline
+			$(Bp)^{\dagger} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{\dagger} = \sigma_{z_1}^{\dagger} \sigma_{z_2}^{\dagger} \sigma_{z_3}^{\dagger} \sigma_{z_4}^{\dagger} = \sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4} = Bp$\newline
 		\end{center}
 		
 		Prove the involutory propertyy:\newline
@@ -349,26 +379,26 @@
 		Write the expression for the eigenvalues $Av |\xi> = \lambda |\xi>$ and take as hypothesis that $|\xi> \neq 0$. Then, by means of the scalar product\newline
 		
 		\begin{center}
-			$<\xi|Av|\xi> = \lambda <\xi |\xi>$\newline
+			$<\xi|Av|\xi> = \lambda <\xi \| \xi>$\newline
 			
-			$\lambda = \frac {<\xi|Av|\xi>}{<\xi |\xi>}$ = $\frac {<\xi|Av|\xi>}{||\xi||^2}$ = $\frac {<\xi|Av^H|\xi>}{||\xi||^2}$ = $\frac {<\xi|Av|\xi>^*}{||\xi||^2}$ = $\lambda^*$\newline
+			$\lambda = \frac {<\xi|Av|\xi>}{<\xi |\xi>}$ = $\frac {<\xi|Av|\xi>}{||\xi||^2}$ = $\frac {<\xi|Av^{\dagger}|\xi>}{||\xi||^2}$ = $\frac {<\xi|Av|\xi>^*}{||\xi||^2}$ = $\lambda^*$\newline
 		\end{center}
 		
-		Note that we applied antidistributivity: \newline
+		Notice that we have applied antilinearity of the adjoint in the penultimate equality: \newline
 		
 		\begin{center}
-			$(<\xi|Av^H|\xi>)^H$ = $|\xi>^H (Av^H)^H <\xi|^H$ = $<\xi|Av|\xi>^*$. \newline
+			$(<\xi|Av^{\dagger}|\xi>)^{\dagger}$ = $|\xi>^{\dagger} (Av^{\dagger})^{\dagger} <\xi|^{\dagger}$ = $<\xi|Av|\xi>^*$. \newline
 		\end{center}
 		
-		Using hermiticity with the fact that $(Av)^2=I$ we can derive the unitarity of $Av$ and state that $Av Av^H = Av^H Av = (Av)^2 = I$, i.e. for a unitary operator $U$ we have $U^H=U^{-1}$. \newline
+		Using hermiticity with the fact that $(Av)^2=I$ we can derive the unitarity of $Av$ and state that $Av Av^{\dagger} = Av^{\dagger} Av = (Av)^2 = I$, i.e. for a unitary operator $U$ we have $U^{\dagger}=U^{-1}$. \newline
 		
 		Given the property of unitary operators that states that their eigenvalues have modulus equal to one:\newline 
 		
 		
-		By taking as hypothesis $|\xi> \neq 0$, we write the expression $U |\xi> = \lambda |\xi>$ and its self-adjoint $<\xi| U^H = \lambda^* <\xi|$. Then, knowing that $U^H=U^{-1}$, by means of the scalar product we obtain \newline
+		By taking as hypothesis $|\xi> \neq 0$, we write the expression $U |\xi> = \lambda |\xi>$ and its self-adjoint $<\xi| U^{\dagger} = \lambda^* <\xi|$. Then, knowing that $U^{\dagger}=U^{-1}$, by means of the scalar product we obtain \newline
 		
 		\begin{center}
-			$<\xi|U U^H|\xi> = \lambda \lambda^* <\xi |\xi>$\newline
+			$<\xi|U U^{\dagger}|\xi> = \lambda \lambda^* <\xi |\xi>$\newline
 			
 			$<\xi|I|\xi> = \lambda \lambda^* <\xi |\xi>$\newline
 			
