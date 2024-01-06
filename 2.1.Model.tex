@@ -73,7 +73,7 @@
 	    \end{center}
 	    
 	    The continuous line represents the main lattice $L$, while the dashed line represents its dual $L'$.\newline 
-		On each edge is located a spin-$\frac{1}{2}$ particle, i.e. a Fermion (or Electron), represented in the image above with an empty circle.
+		On each edge is located a spin-$\frac{1}{2}$ particle, i.e. a Fermion, represented in the image above with an empty circle.
 		For each cell of $L$ we are going to consider two spins, therefore the total number of spins will correspond to $2N$, where $N$ represents the total number of cells in $L$ and the dimension of the lattice. \newline
 		Since all of these spins exhibit the same characteristics they are identcial particles, which will be useful to know to study further properties of the model.
 	
@@ -85,7 +85,7 @@
 		The above mentioned cells in the Toric model are called "plaquettes", while the lattice points are called "verteces".
 		In order to complete the description of the system we define the following operators as the main actors of the model:\newline
 		
-		\textbf{Definition 2.1.1.} (Vertex and Plaquette operators) Given a vertex $v$ and a plaquette $p$, we can define the following vertex and plaquette operators as tensor products over Pauli operators acting on individual spins indicated by the indices $j \in star(v)$ and $j \in bdy(p)$  \newline 
+		\textbf{Definition 2.1.1.} (Vertex and Plaquette operators) Given a vertex $v$ and a plaquette $p$, we can define the following Vertex and Plaquette operators as tensor products over Pauli operators acting on individual spins indicated by the indices $j \in star(v)$ and $j \in bdy(p)$  \newline 
 		
 		\begin{center}
 			$ Av = \prod_{j \in star(v)} Z_j $ \newline
@@ -93,7 +93,7 @@
 			$ Bp = \prod_{j \in bdy(v)} X_j $.\newline
 		\end{center}
 		
-		The $Av$ operators wre going to be shaded in blu, while the $Bp$ operators will be coloured in red, as exemplified in the picture below. \newline
+		The $Av$ operators are going to be shaded in blu, while the $Bp$ operators will be coloured in red, as exemplified in the picture below. \newline
 		
 		\begin{center}
 		\begin{tikzpicture}
@@ -369,7 +369,7 @@
 		
 		Given Proposition 2.1.1., we can know further characterize the opeartors in terms of their eigenvalues and define their spectrum.	\newline
 		
-		\textbf{Proposition 2.1.2.} (Eigenvalues of $Av$ and $Bp$ operators) Given $Av$ and $Bp$ operators Hermitian and satisfying the involutory property, their eigenvalues are $\pm 1$.
+		\textbf{Proposition 2.1.2.} (Eigenvalues of $Av$ and $Bp$ operators) Given Hermitian operators $Av$ and $Bp$, which satisfying the involutory property, their eigenvalues are $\pm 1$.
 		\newline
 		
 		\textit{Proof}\newline
@@ -421,7 +421,7 @@
 		
 		Given the result of proposition 2.1.2., the spectrum of the operators is easy to find:	\newline
 		
-		\textbf{Proposition 2.1.3.} (Spectrum of $Av$ and $Bp$ operators) The spectrum of $Av$ and $Bp$ operators is $ \sigma \ = \ \{-1,+1\}$. \newline
+		\textbf{Proposition 2.1.3.} (Spectrum of $Av$ and $Bp$ operators) The spectrum of $Av$ and $Bp$ operators is equal to $ \{-1,+1\}$. \newline
 		
 		We now analyze the relationship between vertex and plaquette operators. Such relationship is characterized by two fundamental mathematical concepts called "commutation" and "anticommutation". These relations serve as an important result in understanding the stability and fault-tolerance of the toric code.	\newline
 		
