@@ -889,26 +889,172 @@
 	\end{minipage}
 	
 	
-	\begin{minipage}{1 \textwidth}
-		
-		
-		
+	\begin{minipage}{1 \textwidth}	
 	\end{minipage}
 	
-	\begin{minipage}{1 \textwidth}
-		
-		
-		
-	\end{minipage}
-	
-	
-	\chapter{Fault-tolerant computation }
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	\chapter{Coding}
 	% Altre sezioni
 	\begin{minipage}{1 \textwidth}
 		
+		%1
+		\textbf{0. Introduction}\newline
+		
+		%4
+		\textbf{1. Classical Error-Correction}\newline
+		
+		In Classical Computing the most elementary unit of information takes the name of bit. A bit stores binary information, meaning that it can either assume value 1 or 0. When we transmit information, we immagine to make strings of bits travel through a channel as the one depicted below: \newline
+		
+		%image
+		
+		
+		Though, a bit can change its value during the transmission, either going from 1 to 0 or viceversa, this event is called a bit-flip and it tells us that an error occured in the transmission. A bit-flip can occur independently on each bit with a certain probability that we will denote as $p << 1$. In such a way we expect each bit to be corrupted after $O(\frac{1}{p})$. \newline
+		
+		The noisy channel described as such, is one of the easiest error models also known as the $\textit{Binary Symmetric Channel}$. An error model, in the context of information theory and communication, is a mathematical or conceptual representation of how errors can occur in the transmission or processing of data. It describes the types of errors that can happen, the probabilities associated with each type of error, and the conditions under which these errors occur. \newline
+		
+		In order to protect information we introduce redundancy, this heps us detecting errors and correcting them. 
+		Introducing redundacy means duplicating bits of infromation before sending them through a channel. Formally we say that we encode information into bit strings, for example: 0 is encoded into 00 and 1 into 11. This is useful to detect errors because in this way, whenever a bit changes we know that an error has occured, since 10 and 01 pairs should never occur. Formally we have introduced a parity: the strings 00 and 11 have even parity while 10 and 01 have odd parity. Whenever we catch a string with odd parity, we have an error.		\newline
+		
+		Though, in order to be able to also correct errors the redundancy above is not enough since we wouldn't be able to define a criterion for which correcting the corrupted information. Thus, we introduce a third redundant bit; in this way, when we decode information at the destination, we can apply what is called as majority voting. Majority voting decodes into ones those triplets that have most bits set to 1 and decodes as zeros the ones that have most bits set to 0.
+		
+	
+		
+	\end{minipage}
+	
+	
+	
+	\begin{minipage}{1 \textwidth}
+		
+		For example, if we receive 010 we will decode it into 0. \newline
+		We can still define a parity rule; in this case, we look at two parities: the parity
+		of the first two bits, and the parity of the second two bits.  For example 000 and 111 have parity 00 while all the other combinations have at least one bit set to 1.  When we check for parity we perform what is called as parity-check and we call the obtained values error syndromes. If we know the latter, we know what error has occured and how to correct it.\newline
+		
+		00 no error (coresponds to codeword 000 or 111);\newline
+		01 3rd bit flipped (coresponds to codeword 001 or 110);\newline
+		10 1st bit flipped (coresponds to codeword 100 or 011);\newline
+		11 2nd bit flipped (coresponds to codeword 010 or 101).\newline
+		
+		The above Redundant Code is actually an example of what is called a Linear code.
+		We can in fact reframe all of the above in terms of linear algebra.\newline
+		
+		To do so we define what is called the Generator matrix  \textbf{G}, which is the one that we use to introduce redundancy. \textbf{G} encodes the original information into codewords. For example, if we have a single bit to be encoded in a three bit codeword we can do the following: \newline 
+		
+		\begin{center}
+			\textbf{G} = $[1 \ 1 \ 1]^{T}$  
+		\end{center}
+		\begin{center}
+			a = $[i]$, where i = 0,1 
+		\end{center}
+		\begin{center}
+			$[1 \ 1 \ 1]^{T}$ $[0]$ = $[0 \ 0 \ 0]^{T}$
+		\end{center}
+		
+		A linear code encoding k-bit messages into an m-bit codespace \textbf{C} is specified by an m x k generator matrix G whose entries are all elements of $\mathbb{Z}_2$. A code defined in this way is an [m, k] code. \newline 
+		
+		The generator matrix is used to encode information before sending it through the channel above but we have also said that a realistic channel is noisy so it can modify the codewords we send. Thus, we also need to define an operator to specify how an error occurs and to detect it. We will call such operators $\textbf{N}_j$ $\in \textbf{N}$ where $j$ denotes the element that will be modified in the original codeword. 
+		Overall, the codeword is mapped by $\textbf{N}_j$ into codeword $c' =c + n_j$ where $\textbf{n}_j$ is an mx1 vector having a 1 at the jth row and zeros elsewhere, in such way we model the noise through sum modulo 2. \newline
+		
+		Having defined all of the above we can come to parity-check performed after transmission. Again we define a parity check matrix $\textbf{H}$ having size m-k x n.
+		To check parity we can simply perform multiplication of H by the received codeword, the result will be: 
+		
+		\begin{center}
+			\textbf{H}c = 0  
+		\end{center}
+		
+		for any valid codeword. Instead, for any corrupted codeword the computation yields:
+		
+		\begin{center}
+			$\textbf{H}c'$ = $\textbf{H} ( c + n_j )$ = $0 + \textbf{H} n_j $  = $\textbf{H}n_j $ 
+		\end{center}
+		
+		which is the error syndrome. \newline
+		
+	\end{minipage}
+	
+	
+	
+	\begin{minipage}{1 \textwidth}
+		
+		The error syndrome serves as a crucial indicator of errors within a coding and decoding system. In the absence of errors or when only a single error occurs, the error syndrome is represented as 0. This indicates a clean transmission. Conversely, in the case of a single error, the error syndrome is denoted as Hnj, providing information about the specific bit, j, within the codeword where the error has taken place. Consequently, the corrupted codeword can be successfully decoded by correcting the jth bit. \newline
+		
+		However, when two errors, ni and nj, are present, the error syndrome becomes H(ni + nj). This scenario introduces potential ambiguity, as an additional error, nq, could exist such that nq equals ni + nj. In such cases, determining which bit to correct becomes uncertain, as the error syndrome could be associated with the qth bit instead of the intended jth bit. This ambiguity arises due to the possibility of multiple error combinations leading to the same syndrome. \newline
+		
+		To mitigate this ambiguity, it is essential to verify that any additional error, nq, does not satisfy the condition nq = ni + nj. If there are no such instances where nq equals ni + nj, the decoding process can proceed with confidence. However, if such instances are detected, ambiguity arises, and corrective action becomes challenging. One possible approach is to reject the codeword, prompting a request for retransmission from the sender. Alternatively, refining the encoding/decoding scheme may be considered to address and minimize the potential for ambiguous error correction, ensuring the reliability of the overall communication system. \newline
+		
+		This approach aims to maintain data integrity and prevent the propagation of errors within the encoded information. \newline
+		
+	\end{minipage}
+	
+	
+	
+	\begin{minipage}{1 \textwidth}
+		
+		Though, because of the ambiguity that can arise in error correction it is essential to discuss the detectability and correctability of errors. \newline
+		
+		We have mentioned how a codeword can be rejected if corrupted and how a receiver can ask to resend information. In the context of safeguarding the code against a set of noise operators, the efficacy of the encoding/decoding scheme is evaluated on its ability to either maintain the integrity of information or detect errors caused by each noise operator. Therefore, we can assert that a code successfully detects a noise operator $\textbf{N}$ if, for every codeword c within the code, the outcome is either $\textbf{N}$c = c or $\textbf{N}$c is not a member of the code $\textbf{C}$.\newline
+		
+		\textbf{Theorem 3.1.} $\textbf{N}$ is detectable by a code if and only if for each c in $\textbf{C}$, $\textbf{N}$c = c or $\textbf{N}$c $ \notin \ \textbf{C}$. \newline
+		
+		
+		Error correction involves an active process where the decoder not only identifies errors but also rectifies them. 
+		In the context of a code $\textbf{C}$ and a set of error operators $\textbf{N}$, the primary goal is to establish the presence of a decoding procedure capable of correcting errors introduced by $\textbf{N}$. 
+		Assuming the existence of distinct codewords $c_m$ and $c_n$ within the code, and for specific indices i and j in $\textbf{N}$, let $c_q = \textbf{N}_ic_m = \textbf{N}_jc_n$. 
+		This expression indicates that applying the error operator Ni to the codeword cm and the error operator $\textbf{N}_j$ to the codeword $c_n$ results in the same state $c_q$. In other words, after these specific errors occur, both codewords end up in the identical state represented by $c_q$. \newline
+		
+		When an unidentified error in N occurs, resulting in the state cq, the challenge lies in determining whether the original codeword was $c_m$ or $c_n$. 
+		The error is unidentified meaning that it occurs in the set of error operators $\textbf{N}$, but we don't know which specific error operator caused it.  Because the same state $c_q$ can be obtained from applying different error operators to distinct codewords, the challenge arises when trying to determine whether the original codeword was cm or $c_n$. In simpler terms, given the state $c_q$, we cannot conclusively say which codeword was initially sent due to the ambiguity in identifying the specific error that occurred. \newline 
+		
+		\textbf{Theorem 3.1.} $\textbf{N}$ is correctable if and only if for all $c_m \neq c_n$ in the code and for all i, j, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$.
 		
 		
 	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		In the context of linear codes, we gain insights into the two essential steps of error recovery: error detection and error correction. A receiver may possess the capability for error detection only, prompting it to request retransmission of codewords upon detecting errors. Conversely, a receiver can be designed to autonomously correct errors after detection, although the effectiveness of error correction varies with different decoding schemes. \newline
+		
+		In the realm of code designs, matrix representations play a pivotal role in encoding/decoding procedures, offering a compact representation. This parallels the use of operators in quantum mechanics, where operators intuitively serve as encoding and decoding operations in quantum error-correcting codes. \newline
+		
+		The process of error correction in codewords involves measuring the syndrome, a representation that exclusively captures information about errors. This concept is particularly advantageous in quantum error-correcting codes. Unlike measurements in classical mechanics that often collapse the measured target, measuring the syndrome in quantum mechanics preserves the information of the data while also providing guidance on how to correct the errors. \newline
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+
+
+
+
+
+
+
+
+
+
+
+
+ 
 	
 	\begin{thebibliography}{99} % "99" è solo un esempio del numero massimo di voci che ti aspetti nella tua bibliografia
 		\bibitem{ref1} A. Kitaev, Ann. Phys. (N. Y). 303, 2 (2003),
