@@ -1005,7 +1005,7 @@
 		
 		We have mentioned how a codeword can be rejected if corrupted and how a receiver can ask to resend information. In the context of safeguarding the code against a set of noise operators, the efficacy of the encoding/decoding scheme is evaluated on its ability to either maintain the integrity of information or detect errors caused by each noise operator. Therefore, we can assert that a code successfully detects a noise operator $\textbf{N}$ if, for every codeword c within the code, the outcome is either $\textbf{N}$c = c or $\textbf{N}$c is not a member of the code $\textbf{C}$.\newline
 		
-		\textbf{Theorem 3.1.} $\textbf{N}$ is detectable by a code if and only if for each c in $\textbf{C}$, $\textbf{N}$c = c or $\textbf{N}$c $ \notin \ \textbf{C}$. \newline
+		\textbf{Theorem 3.1.} $\textbf{N}$ is detectable by a code if and only if for each $c_m \neq c_n$ in the code, $\textbf{N}c_n \neq c_m $.\newline
 		
 		
 		Error correction involves an active process where the decoder not only identifies errors but also rectifies them. 
@@ -1016,7 +1016,8 @@
 		When an unidentified error in N occurs, resulting in the state cq, the challenge lies in determining whether the original codeword was $c_m$ or $c_n$. 
 		The error is unidentified meaning that it occurs in the set of error operators $\textbf{N}$, but we don't know which specific error operator caused it.  Because the same state $c_q$ can be obtained from applying different error operators to distinct codewords, the challenge arises when trying to determine whether the original codeword was cm or $c_n$. In simpler terms, given the state $c_q$, we cannot conclusively say which codeword was initially sent due to the ambiguity in identifying the specific error that occurred. \newline 
 		
-		\textbf{Theorem 3.1.} $\textbf{N}$ is correctable if and only if for all $c_m \neq c_n$ in the code and for all i, j, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$.
+		\textbf{Theorem 3.1.} $\textbf{N}$ is correctable if and only if for all $c_m \neq c_n$ in the code and for all i, j, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$. \newline
+		
 		
 		
 	\end{minipage}
@@ -1042,7 +1043,29 @@
 	\begin{minipage}{1 \textwidth}
 		
 	\end{minipage}
-
+	
+	
+	
+	\begin{minipage}{1 \textwidth}
+		
+		%10
+		\textbf{2. Quantum Error}\newline
+		
+		\textbf{2.1. Quantum Error Detection}\newline
+		
+		\textbf{2.2. Quantum Error Correction}\newline
+		
+		\textbf{2.3. Fault-Tolerant}\newline \newline 
+		
+		%5
+		\textbf{3. Gates and Computations in the Toric Code}\newline 
+		
+		%20 pagine
+		%https://viterbi-web.usc.edu/~tbrun/Course/
+		%https://arxiv.org/pdf/quant-ph/0602157.pdf
+		
+	\end{minipage}
+	
 
 
 
