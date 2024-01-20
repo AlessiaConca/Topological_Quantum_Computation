@@ -1031,8 +1031,90 @@
 		The process of error correction in codewords involves measuring the syndrome, a representation that exclusively captures information about errors. This concept is particularly advantageous in quantum error-correcting codes. Unlike measurements in classical mechanics that often collapse the measured target, measuring the syndrome in quantum mechanics preserves the information of the data while also providing guidance on how to correct the errors. \newline
 		
 	\end{minipage}
+
+
+
+
+ 
 	
 	\begin{minipage}{1 \textwidth}
+		
+	%5
+	\textbf{2. Quantum Error}\newline
+		
+		Due to the no-cloning theorem, which states that we cannot replicate quantum information in a quantum system, one might be brought to think that quantum error correction does not exists. Though we shall demonstarte that this problem can be solved, despite the three main issues that arise in quantum systems: \newline
+		
+		1. No Cloning Limitation: The attempt to implement a repetition code in the quantum realm by duplicating a quantum state multiple times violates the no-cloning theorem. This theorem unequivocally forbids the exact replication of an unknown quantum state. Even if cloning were feasible, the measurement and comparison of the three quantum states output from the channel would still be an insurmountable challenge.\newline
+		
+		2. Continuous Error Spectrum: Quantum errors manifest as a continuous spectrum, introducing a formidable challenge for error correction on a single qubit. Effectively identifying and correcting these errors seems to demand infinite precision, implying a need for infinite resources. The continuous nature of errors complicates the task of detecting and rectifying errors within a quantum system.\newline
+		
+		3. Information Loss through Measurement: In contrast to classical error-correction methods where observation aids in determining the appropriate decoding strategy, quantum mechanics presents a different issue. The act of measuring a quantum state typically results in the loss of quantum information contained in that state. As a consequence, the recovery of the original quantum information becomes impossible after measurement, introducing an additional layer of complexity to quantum error correction. \newline
+		
+		
+		We shall now discuss how it is still possible to overcome such obstacles.\newline
+		
+		
+		In the context of quantum computation, classical bits are replaced by quantum bits or qubits, which are represented using a two-state quantum system. More precisely, a qubit lives in an Hilbert space of dimension 2. We can represent the Hilbert space of a system of n qubits by means of a tensor product of Hilbert spaces referring to single qubits. A common physical realization of qubits involves spin-$\frac{1}{2}$ particles, such as electrons. The quantum state space of a qubit is spanned by two orthogonal basis states, conventionally denoted as $ |0 \rangle$ and $ |1 \rangle$, corresponding to the classical binary states 0 and 1. Mathematically, any qubit state 
+		$ |\psi \rangle$ can be expressed as a superposition of these basis states:
+		
+		
+		\begin{center}
+			$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ =  $[ \ \alpha \ \ \beta \ ]^T $
+		\end{center}
+		
+		where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a coherent superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously.  \newline
+		When it comes to qubits, computations are performed through operators, which are the quantum logical gates represented as invertible square matrices. \newline
+		
+		%image
+		
+		
+	\end{minipage}
+ 
+	
+	\begin{minipage}{1 \textwidth}
+		
+		Having briefly recalled the quantum setting, we shall now give the quantum version of the classical error model previously defined when talking about linear codes.
+		Similarly to what we did with repetition codes, we can define the bit-flip error (or noise) for qubits throughthe $X$ gate apllied to $|\psi \rangle$. The state psi will be flipped wuth probability $p$.\newline
+		
+		We can suppose to introduce redundancy, firstly by mapping the physical basis of qubits to their respective logical counterparts in the following way:
+		
+		\begin{center}
+			$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ $\rightarrow$ $\alpha |000 \rangle$ + $\beta$ $|111 \rangle$
+		\end{center}
+		
+		where we have encoded the basis as:
+		
+		\begin{center}
+			$|0 \rangle$ $\rightarrow$ $|0 \rangle_L$ $\equiv$ $|000 \rangle$   \\
+		    $|1 \rangle$ $\rightarrow$ $|1 \rangle_L$ $\equiv$ $|111 \rangle$
+		\end{center}
+		
+		where L stands for logical qubits, not physical. \newline
+		If we imagine to pass all of the three bits one at a time through the channel and that one or fewer qubits are flipped, we can define a simple quantum error correction through detection and analysis of error syndromes through Projector operators, as we did in the classical case:\newline
+		
+		- $P_0$ = $|000 \rangle \langle 000|$ + $|111 \rangle \langle 111|$ no errors;\newline
+		- $P_1$= $|100 \rangle \langle 100|$ + $|011 \rangle \langle 011|$ error 1st qubit;\newline
+		- $P_2$ = $|010 \rangle \langle 010|$ + $|101 \rangle \langle 101|$ error 2nd qubit;\newline
+		- $P_3$ = $|001 \rangle \langle 001|$ + $|110 \rangle \langle 110|$ error 3rd qubit;\newline
+		
+		In order tod detect the syndrome we will compute $\langle \psi| P_i | \psi \rangle $, which will be equal to 1 according to which bit i was flipped.
+		Measuring the syndrome doesn't affect the state in any way, neither befor nor after the measurement. Furthermore, the syndrome gives no infromation of the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest.\newline
+		Though, we have already mentioned that this schema works well only if errors occur on one or less of the three qubits.\newline
+		
+		While the error analysis is effective for discrete errors, it is acknowledged that not all errors and states in quantum mechanics are equal, due to the continuous nature of quantum states. To address this, the fidelity quantity is introduced. \newline
+		The fidelity, denoted as $F(|\psi \rangle, \rho)$, is a measure of the overlap or similarity between a pure state $| \psi \rangle$  and a mixed state $\rho$. \newline
+		
+		The fidelity quantifies how well a quantum state is preserved or reconstructed after undergoing a process, such as error correction. 
+		In the given scenario, where an error syndrome is measured and recovery procedures are applied, the fidelity is employed to assess how closely the corrected state aligns with the original, error-free state. 
+		The fidelity helps evaluate the quality of the quantum error correction by measuring the similarity between the corrected state and the ideal state. \newline
+		
+		
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		The fidelity is particularly valuable when dealing with errors that may perturb or alter the quantum state in various ways. By maximizing the fidelity, quantum error correction aims to ensure that the corrected state closely approximates the original state, even in the presence of errors. It provides a quantitative measure of the accuracy and effectiveness of the error-correction process. \newline
 		
 	\end{minipage}
 	
@@ -1044,20 +1126,15 @@
 		
 	\end{minipage}
 	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
 	
 	
 	\begin{minipage}{1 \textwidth}
 		
-		%10
-		\textbf{2. Quantum Error}\newline
 		
-		\textbf{2.1. Quantum Error Detection}\newline
-		
-		\textbf{2.2. Quantum Error Correction}\newline
-		
-		\textbf{2.3. Fault-Tolerant}\newline \newline 
-		
-		%5
 		\textbf{3. Gates and Computations in the Toric Code}\newline 
 		
 		%20 pagine
