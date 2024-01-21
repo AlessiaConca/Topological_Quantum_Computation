@@ -904,6 +904,11 @@
 
 
 
+
+
+
+
+
  
 	\chapter{Coding}
 	% Altre sezioni
@@ -1035,6 +1040,8 @@
 
 
 
+
+
  
 	
 	\begin{minipage}{1 \textwidth}
@@ -1117,8 +1124,135 @@
 		The fidelity is particularly valuable when dealing with errors that may perturb or alter the quantum state in various ways. By maximizing the fidelity, quantum error correction aims to ensure that the corrected state closely approximates the original state, even in the presence of errors. It provides a quantitative measure of the accuracy and effectiveness of the error-correction process. \newline
 		
 	\end{minipage}
+
+
+
+
+
+
+
+ 
+	\begin{minipage}{1 \textwidth}
+		
+		%5
+		\textbf{2. Quantum Error}\newline
+		
+		Due to the no-cloning theorem, which states that we cannot replicate quantum information in a quantum system, one might be brought to think that quantum error correction does not exists. Though we shall demonstarte that this problem can be solved, despite the three main issues that arise in quantum systems: \newline
+		
+		1. No Cloning Limitation: The attempt to implement a repetition code in the quantum realm by duplicating a quantum state multiple times violates the no-cloning theorem. This theorem unequivocally forbids the exact replication of an unknown quantum state. Even if cloning were feasible, the measurement and comparison of the three quantum states output from the channel would still be an insurmountable challenge.\newline
+		
+		2. Continuous Error Spectrum: Quantum errors manifest as a continuous spectrum, introducing a formidable challenge for error correction on a single qubit. Effectively identifying and correcting these errors seems to demand infinite precision, implying a need for infinite resources. The continuous nature of errors complicates the task of detecting and rectifying errors within a quantum system.\newline
+		
+		3. Information Loss through Measurement: In contrast to classical error-correction methods where observation aids in determining the appropriate decoding strategy, quantum mechanics presents a different issue. The act of measuring a quantum state typically results in the loss of quantum information contained in that state. As a consequence, the recovery of the original quantum information becomes impossible after measurement, introducing an additional layer of complexity to quantum error correction. \newline
+		
+		
+		We shall now discuss how it is still possible to overcome such obstacles.\newline
+		
+		
+		In the context of quantum computation, classical bits are replaced by quantum bits or qubits, which are represented using a two-state quantum system. More precisely, a qubit lives in an Hilbert space of dimension 2. We can represent the Hilbert space of a system of n qubits by means of a tensor product of Hilbert spaces referring to single qubits. A common physical realization of qubits involves spin-$\frac{1}{2}$ particles, such as electrons. The quantum state space of a qubit is spanned by two orthogonal basis states, conventionally denoted as $ |0 \rangle$ and $ |1 \rangle$, corresponding to the classical binary states 0 and 1. Mathematically, any qubit state 
+		$ |\psi \rangle$ can be expressed as a superposition of these basis states:
+		
+		
+		\begin{center}
+			$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ =  $[ \ \alpha \ \ \beta \ ]^T $
+		\end{center}
+		
+		where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a coherent superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously.  \newline
+		When it comes to qubits, computations are performed through operators, which are the quantum logical gates represented as invertible square matrices. \newline
+		
+		%image
+		
+		
+		
+		
+	\end{minipage}
 	
 	\begin{minipage}{1 \textwidth}
+		
+		Having briefly recalled the quantum setting, we shall now give the quantum version of the classical error model previously defined when talking about linear codes.
+		Similarly to what we did with repetition codes, we can define the bit-flip error (or noise) for qubits throughthe $X$ gate apllied to $|\psi \rangle$. The state psi will be flipped wuth probability $p$.\newline
+		
+		We can suppose to introduce redundancy, firstly by mapping the physical basis of qubits to their respective logical counterparts in the following way:
+		
+		\begin{center}
+			$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ $\rightarrow$ $\alpha |000 \rangle$ + $\beta$ $|111 \rangle$
+		\end{center}
+		
+		where we have encoded the basis as:
+		
+		\begin{center}
+			$|0 \rangle$ $\rightarrow$ $|0 \rangle_L$ $\equiv$ $|000 \rangle$   \\
+		    $|1 \rangle$ $\rightarrow$ $|1 \rangle_L$ $\equiv$ $|111 \rangle$
+		\end{center}
+		
+		where L stands for logical qubits, not physical. \newline
+		If we imagine to pass all of the three bits one at a time through the channel and that one or fewer qubits are flipped, we can define a simple quantum error correction through detection and analysis of error syndromes through Projector operators, as we did in the classical case:\newline
+		
+		- $P_0$ = $|000 \rangle \langle 000|$ + $|111 \rangle \langle 111|$ no errors;\newline
+		- $P_1$= $|100 \rangle \langle 100|$ + $|011 \rangle \langle 011|$ error 1st qubit;\newline
+		- $P_2$ = $|010 \rangle \langle 010|$ + $|101 \rangle \langle 101|$ error 2nd qubit;\newline
+		- $P_3$ = $|001 \rangle \langle 001|$ + $|110 \rangle \langle 110|$ error 3rd qubit;\newline
+		
+		In order tod detect the syndrome we will compute $\langle \psi| P_i | \psi \rangle $, which will be equal to 1 according to which bit i was flipped.
+		Measuring the syndrome doesn't affect the state in any way, neither befor nor after the measurement. Furthermore, the syndrome gives no infromation of the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest.\newline
+		Though, we have already mentioned that this schema works well only if errors occur on one or less of the three qubits.\newline
+		
+		While the error analysis is effective for discrete errors, it is acknowledged that not all errors and states in quantum mechanics are equal, due to the continuous nature of quantum states. To address this, the fidelity quantity is introduced. \newline
+		The fidelity, denoted as $F(|\psi \rangle, \rho)$, is a measure of the overlap or similarity between a pure state $| \psi \rangle$  and a mixed state $\rho$. \newline
+		
+		The fidelity quantifies how well a quantum state is preserved or reconstructed after undergoing a process, such as error correction. 
+		In the given scenario, where an error syndrome is measured and recovery procedures are applied, the fidelity is employed to assess how closely the corrected state aligns with the original, error-free state. 
+		The fidelity helps evaluate the quality of the quantum error correction by measuring the similarity between the corrected state and the ideal state. \newline
+		
+		
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		The fidelity is particularly valuable when dealing with errors that may perturb or alter the quantum state in various ways. By maximizing the fidelity, quantum error correction aims to ensure that the corrected state closely approximates the original state, even in the presence of errors. It provides a quantitative measure of the accuracy and effectiveness of the error-correction process. \newline
+		
+		We can formally define the Quantum Error Model as we did in Classical computing with the Binary Symmetric Channel. Take quantum information to be a $|\psi \rangle$ in an Hilbert space $\textit{H}_A$. We can introduce ancillary qubits as to introduce redundancy. Ancillary qubits are replicas of information that will be manipulated along with the data that we want to transmit.
+		Ancillary bits are part of an Hilbert space that we will call $\textit{H}_B$, they are initially in a state $|b \rangle$. When we encode information what we do is to map the tensor product of $|\psi \rangle$ and $|b \rangle$ in a new Hilbert space $\textit{H}_C$ (the code space) through the application of an encoder operator $\textbf{E}$, which should be the equivalent of the generator matrix in classic models. In the same way we can define an Hilbert space to model the noise, we will call it $\textit{H}_N$; this space more generally represents the noisy environment that introduces errors. The environment is initially in state $|n \rangle$. The interaction between information and the environment is computed as:\newline
+		
+		\begin{center}
+			$|c' \rangle$ = $|c \rangle$ $\otimes$ $|n \rangle$ = $\sum_{i} (N_i c) \otimes |n_i \rangle $
+		\end{center}
+		
+	    with $N_i$ being a noise operator acting on i.
+	    When we decode information through the decoding operator $\textbf{D}$ we want to map $|c' \rangle$ back to $|\psi \rangle$ $\otimes$ $|s_i \rangle$, identifying teh original state psi and the error syndrome. We can then use the error syndrome to correct psi and get the initial state. To actually do exactly what we did in the clasical case, the error syndrome should be homomorfic to $N_i$ to recover the respective errors, then s should be also independent from every psi, otehrwise we would not be able to retrieve the message and make adjustments. Note that all $N_i$ cane be made linearly independent to avoid confounding error. Note also that $\sum_{i} N_i^{\dagger} N_i= I$ ensures that the $Tr[\sum_{i} N_i^{\dagger} \rho N_i]= 1$ with rho a general quantum state in  $\textbf{C}$. \newline
+	    
+	    The above description of quantum error model actually contains the conditions on error correctability to protect quantum information. 
+	    This conditions are summed up into the equation given by the following theorem: \newline
+	    
+	    \textbf{Theorem 2.1.} Given a quantum code $C$ ($H_C$) and $P$ the projector onto $C$. Suppose $N$ is a quantum operation with operation elements $\{N_i\}$. A necessary and sufficient condition for the existence of an error-correction operation $R$ correcting $N$ on $C$ is that
+	   
+	    \begin{center}
+	    	$PN_i^{\dagger}N_jP = \lambda_{ij}P$
+	    \end{center}
+	    
+	    for some Hermitian matrix $\lambda$ of complex numbers. For all $N_i$. \newline
+	    
+	    The projector is a mathematical operation that projects any quantum state onto the code space $C$. It ensures that any state acted upon by the error correction process is effectively confined to the subspace defined by the error-correcting code $C$ since, when quantum states undergo errors, these errors might cause the state to deviate from the code space. 
+	    
+	    
+	    
+
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		The condition between the error correction operation R and the error operation N within the code space C essentially states that the error correction is successful when applied to the states within C, ensuring that the corrected state remains within the code space.
+		
+		We could say that it essentially ensure that a noisy quantum state is not too noisy. P forces the correction operation to act within the space where it provides reliable error-correction. In this sense P protects against (excessive) noise.
+		
+		
+		The $N$s actually represent noise operators and if such an operation exists we say that $\{N_i\}$ constitutes a correctable set of errors. This would make $C$ correctable. \newline
+		
+		 %
+		Verifying Theorem 2.1 can be difficult so we describe a theoretical formalism which uses the quantum error-correction conditions as a starting point for the construction of interesting classes of codes: the Stabilizer formalism.
+		
 		
 	\end{minipage}
 	
@@ -1132,14 +1266,32 @@
 	
 	
 	
+	
+	
+	\begin{minipage}{1 \textwidth}
+	
+	\end{minipage}
+	
 	\begin{minipage}{1 \textwidth}
 		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
 		
-		\textbf{3. Gates and Computations in the Toric Code}\newline 
+	\end{minipage}
+	
+	
+	
+	\begin{minipage}{1 \textwidth}
+ 
+		\textbf{3. Fault-tolerant compuation}\newline 
+		
+		\textbf{4. Gates and Computations in the Toric Code}\newline 
 		
 		%20 pagine
 		%https://viterbi-web.usc.edu/~tbrun/Course/
 		%https://arxiv.org/pdf/quant-ph/0602157.pdf
+		
 		
 	\end{minipage}
 	
