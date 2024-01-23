@@ -1255,36 +1255,72 @@
 		
 		
 	\end{minipage}
-	
-	\begin{minipage}{1 \textwidth}
-		
-	\end{minipage}
-	
-	\begin{minipage}{1 \textwidth}
-		
-	\end{minipage}
-	
-	
-	
-	
-	
-	\begin{minipage}{1 \textwidth}
-	
-	\end{minipage}
-	
-	\begin{minipage}{1 \textwidth}
-		
-	\end{minipage}
-	
-	\begin{minipage}{1 \textwidth}
-		
-	\end{minipage}
-	
-	
-	
-	\begin{minipage}{1 \textwidth}
+
+
+
+
+
+
  
-		\textbf{3. Fault-tolerant compuation}\newline 
+	\begin{minipage}{1 \textwidth}
+		
+		\textbf{3. Fault-tolerant computation}\newline 
+		
+		Quantum error-correction applications regard not only the protection of transmitted quantum information from noise but also the protection of quantum information during computations. 
+		We start by briefly highlighting two main issues in quantum computation. The first issue regards the fact that nearly each component of a quantum circuit is subject to noise. 
+		What is done in general to make computations fault-tolerant is to substitute qubits with encoded blocks of qubits by using a code protected from noise and substitute faulty gates with encoded gates also referred to as fault-tolerant procedures. 
+		The second issue regards the fact that when we periodically perform error-correction on encoded qubits we may introduce errors through error-correction itself. \newline
+		%Addittionally, encoded gates aren't the only fault-tolerant procedures that we want to perform. In fact, we also want measurements of encoded qubits and state preparations to be fault-tolerant.\newline
+		
+		We know by theory taht there exists a set of quantum gates through which each quantum computation can be expressed. Such set is comprised of the hadamard, phase, controlled-NOT and $\frac{\pi}{8}$ gates. 
+		
+		%image 
+		
+		We also know that each of these gates can be realized falut-tolerantly. (Maybe add an example here). Then, in the context of fault-tolerant quantum computation, it is possible to carry out a comprehensive range of logical operations on encoded quantum states. This is also done in a manner that results in the effective failure probability within the encoded states scaling according to O($p^2$), where $p$ is the failure probability associated with the underlying gates. \newline
+		
+		Note that the O($p^2$) scaling is associated with the effects of error correction. 
+		The individual gates in a quantum computation may have an inherent probability of error, denoted by $p$. These errors could affect a single qubit but quantum error-correction codes are designed to correct them. However, in the process of error-correction itself, new errors can be introduced, and these are typically correlated with the original errors. The O($p^2$) scaling arises because the probability of introducing correlated errors during the error correction process is proportional to the square of the original error probability. This means that the effective failure probability scales quadratically with the probability of errors in the underlying gates. \newline
+		
+		%As regards the process for measuring an observable on a group of encoded qubits,  it is considered fault-tolerant when the malfunction of any individual element in the process leads to an error in only one qubit within each encoded block of qubits upon the completion of the procedure. Not only, if only one element fails, we have to specify that the measurement result must have error O($p^2$), where $p$ is the max error probability that can happen in any component.Similarly, a method for encoded state preparation is deemed fault-tolerant if, when a failure occurs in any single component during the process, there exists at most one erroneous qubit within each encoded block of qubits produced by the procedure. \newline
+		
+	
+        
+	    The above considerations lead us to the main result concerning fault tolerant compuatation: the threshold theorem. Essentially, the theorem states that as long as the noise present in individual quantum gates remains below a specific constant threshold (the probability that each gates fails is $p<p_t$) it becomes feasible to execute a quantum computation of arbitrary length reliably. In fact, if we apply fault-tolerant computations on encoded states, achieving a reduction of the errors to O($p^2$) as described above, the thershold $p<p_t$ can be achieved with an increase in the circuit size by means of code concatenation to guarantee reliability.\newline
+	    
+		
+		
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		We must specify that this theorem works under some reasonable assumptions regardng the type of noise, meaning that indeed noise is not a real issue in quantum computation but we cannot correct errors from arbitrary noises.
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	
+	
+	
+	
+	\begin{minipage}{1 \textwidth}
+	
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	
+	
+	\begin{minipage}{1 \textwidth}
 		
 		\textbf{4. Gates and Computations in the Toric Code}\newline 
 		
