@@ -1302,34 +1302,96 @@
 		
 	\end{minipage}
 	
+
+
+ 
 	
 	
-	
-	
-	\begin{minipage}{1 \textwidth}
-	
-	\end{minipage}
 	
 	\begin{minipage}{1 \textwidth}
 		
-	\end{minipage}
-	
-	\begin{minipage}{1 \textwidth}
-		
-	\end{minipage}
-	
-	
-	
-	\begin{minipage}{1 \textwidth}
 		
 		\textbf{4. Gates and Computations in the Toric Code}\newline 
 		
+		Broadly speaking, errors refer to the unintentional changes or flips in the physical signals that make up information. These errors can be caused by various factors, such as external environmental influences, imperfections in the physical hardware or intrinsic noise. \newline
+		
+		In the Toric Code, or in quantum systems in general, errors can be caused by what are often referred to as local perturbations caused by quantum noise or decoherence. Local perturbations involve small changes or disturbances that primarily affect individual qubits or a small region of the quantum system, causing the corruption of the stored quantum information. Single qubit errors can result in different types of errors such as bit-flips errors, phase-flips errors or a combination of both. \newline
+		
+		Mathematically, local perturbations can be described as operators that act locally on qubits or regions of the system and can be represented using combinations of Pauli operators. For example, consider the following perturbation
+		
+		\begin{center}
+			V = $\lambda_j \sum_{j} \sigma^x_j $
+		\end{center}
+		
+		such that $\lambda << 1 $, representing a reasonable perturbation with j running over all the edges of the lattice. \newline
+		
+		The Ground State of the Toric Code Hamiltonian is protected from local perturbations. Thus, we can safely use it to store quantum information in it. In fact, given two orthogonal states $|\phi \rangle, |\psi \rangle $ of the ground state of the Hamiltonian, if we compute  \newline
+		
+		\begin{center}
+			$ \langle \psi|V^n|\phi \rangle$ = 0
+		\end{center}
+		
+		The result is equal to zero for $n < \frac{L}{2}$, where $L$ indicates the dimension of the torus. This implies that the states are maximally distinguishable from each other and have no overlap in their quantum properties, indicating that they belong to different eigenspaces of some observable or that they are in different quantum states altogether. 
+		%This means that it is impossible to transition from one orthogonal state to another, unless we wind all the way around the dimension L of torus. 
+		This result can be derived topologically since the classes of
+	    eigenstates are invariant for plaquette operators that nothing are but a combination of Pauli operators. (?)\newline
+	
+		Thus we can use the Toric Code to encode a single qubit in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. \newline
+		
+		The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the Ground State of the Hamiltonian of the system. As we will see, the Toric Code error-correction process is actually based on the detection of topological excitations caused by errors. Such excitations are actually the anyons that we have previously described. Anyons are, in fact, localized deviations from the Ground State of the system. During error-correction what we would like to do is to measure operators that commute with the Hamiltonian and use the outcome to detect the presence of errors (Error Syndrome). \newline
+		
+		In thise sense the Toric Code respects Theorem 3.1. (?) \newline
+		
+
 		
 	\end{minipage}
 	
-
-
-
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	
+	
+	\begin{minipage}{1 \textwidth}
+		
+		2. Fault-Tolerance: we can do more than just store information. \newline
+		
+		Encoded qubits.  \newline
+		
+		Encoded gates. \newline
+		
+		%images
+		
+		Error detection (syndrome measurement) \newline
+		Anyons are created when errors (excitations) occur in the physical qubits. These anyons move around the lattice of the Toric Code in a way that depends on the type of error that occurred. \newline
+		By observing the braiding and fusion of anyons, one can deduce the type and location of errors, facilitating the correction process. \newline
+		
+		Error correction. \newline
+		
+		Gates are topologically protected from noise \newline
+		
+		%local fluctuations can be ignored in the thermodynamic limit \newline
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+	\end{minipage}
+	
+	
+	
 
 
 
