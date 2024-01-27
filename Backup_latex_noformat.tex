@@ -1325,28 +1325,52 @@
 		
 		such that $\lambda << 1 $, representing a reasonable perturbation with j running over all the edges of the lattice. \newline
 		
-		The Ground State of the Toric Code Hamiltonian is protected from local perturbations. Thus, we can safely use it to store quantum information in it. In fact, given two orthogonal states $|\phi \rangle, |\psi \rangle $ of the ground state of the Hamiltonian, if we compute  \newline
+		The Ground State of the Toric Code Hamiltonian is protected from local perturbations of the form that we have described above. Thus, we can safely use it to store quantum informationa. In fact, given an initial state $ |k \rangle $ and  a different orthogonal state $ |\psi \rangle $ of the ground state of the Hamiltonian, if we want to know how much these states overlap after having applied the perturbation $V$ for $n$ times we compute the following terms\newline
 		
 		\begin{center}
-			$ \langle \psi|V^n|\phi \rangle$ = 0
+			$ \langle \psi|V^n| k \rangle$                                         (1)
+		\end{center}
+		\begin{center}
+			 $ \langle \psi|V^n| \psi \rangle$ - $ \langle k|V^n| k \rangle$ = $L$  (2)
 		\end{center}
 		
-		The result is equal to zero for $n < \frac{L}{2}$, where $L$ indicates the dimension of the torus. This implies that the states are maximally distinguishable from each other and have no overlap in their quantum properties, indicating that they belong to different eigenspaces of some observable or that they are in different quantum states altogether. 
-		%This means that it is impossible to transition from one orthogonal state to another, unless we wind all the way around the dimension L of torus. 
-		This result can be derived topologically since the classes of
-	    eigenstates are invariant for plaquette operators that nothing are but a combination of Pauli operators. (?)\newline
-	
-		Thus we can use the Toric Code to encode a single qubit in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. \newline
+		in order for the first result to be equal to zero, the order of the perturbation must be less than $ \frac{L}{2}$, where $L$ indicates the dimension of the torus. 
+		This boundary comes from the fact that, if we compute the difference between the expectations of two eigenstates as in (2) and we want the eigenstates to be maximally distinguishable (no overlap), then we expect (2) to be non-zero and equal to the dimension of the torus. 
+		This implies that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation in (1) should be of the order of $n < \frac{L}{2}$. \newline
 		
-		The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the Ground State of the Hamiltonian of the system. As we will see, the Toric Code error-correction process is actually based on the detection of topological excitations caused by errors. Such excitations are actually the anyons that we have previously described. Anyons are, in fact, localized deviations from the Ground State of the system. During error-correction what we would like to do is to measure operators that commute with the Hamiltonian and use the outcome to detect the presence of errors (Error Syndrome). \newline
+		%image
 		
-		In thise sense the Toric Code respects Theorem 3.1. (?) \newline
+				
+		To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{L}{2}$. \newline
+		The resulting interpretation in terms of quantum error-correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{L}{2}$. \newline
+		
+		This result also suggests that for $n \geq \frac{L}{2}$ Theorem 3.1. does not apply anymore as the resulting codeword would diverge from the space of the codewords and quantum information would be too corrupted by noise to be recoverable.
+		\newline
+		
+		
 		
 
 		
 	\end{minipage}
 	
 	\begin{minipage}{1 \textwidth}
+		
+		Thus, we can use the Toric Code to encode a single qubit in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. 
+		The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the Ground State of the Hamiltonian of the system. 
+	    Each qubit can be in either the state $|0 \rangle$ or the state $|1\rangle$, representing the classical binary states. Now, our goal is to encode a logical qubit, a quantum state, using this grid of physical qubits in a way that protects it from noise and errors. \newline
+
+		The method for doing this lies in the topological nature of the ground state. Instead of directly manipulating individual qubits to store quantum information, we manipulate the entire lattice collectively to encode and protect the logical qubit.
+		The encoding is realized through operations on the qubits in such a way that we create non-local, topological patterns known as anyons.\newline
+		
+		Now, these anyons follow specific rules, like braiding around each other, that encode the quantum information we want to store. By moving and braiding these anyons, we manipulate the logical qubit encoded in the ground state of the system.
+		What's fascinating is that because of the topological nature of these anyons, they're resistant to local disturbances. 
+		Even if a few qubits experience noise or errors, the anyons' collective behavior ensures that the logical qubit remains protected. \newline
+		
+		Measurement and readout of the logical qubit's state are performed by observing the anyons' configurations on the lattice. By detecting the anyons' positions and their braiding patterns, we can infer the state of the logical qubit without directly accessing the individual qubits. \newline
+		
+		
+		
+
 		
 	\end{minipage}
 	
@@ -1358,7 +1382,7 @@
 		
 		Encoded qubits.  \newline
 		
-		Encoded gates. \newline
+		Encoded gates. Gates are topologically protected from noise - non-contractible - annihilate \newline
 		
 		%images
 		
@@ -1367,10 +1391,8 @@
 		By observing the braiding and fusion of anyons, one can deduce the type and location of errors, facilitating the correction process. \newline
 		
 		Error correction. \newline
+		The Toric Code error-correction process is actually based on the detection of topological excitations caused by errors. Such excitations are actually the anyons that we have previously described. Anyons are, in fact, localized deviations from the Ground State of the system. During error-correction what we would like to do is to measure operators that commute with the Hamiltonian and use the outcome to detect the presence of errors (Error Syndrome). \newline
 		
-		Gates are topologically protected from noise \newline
-		
-		%local fluctuations can be ignored in the thermodynamic limit \newline
 		
 	\end{minipage}
 	
@@ -1390,11 +1412,6 @@
 		
 	\end{minipage}
 	
-	
-	
-
-
-
 
 
 
