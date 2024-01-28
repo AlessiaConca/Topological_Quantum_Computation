@@ -1311,6 +1311,9 @@
 	\begin{minipage}{1 \textwidth}
 		
 		
+		\begin{minipage}{1 \textwidth}
+		
+		
 		\textbf{4. Gates and Computations in the Toric Code}\newline 
 		
 		Broadly speaking, errors refer to the unintentional changes or flips in the physical signals that make up information. These errors can be caused by various factors, such as external environmental influences, imperfections in the physical hardware or intrinsic noise. \newline
@@ -1328,7 +1331,7 @@
 		The Ground State of the Toric Code Hamiltonian is protected from local perturbations of the form that we have described above. Thus, we can safely use it to store quantum informationa. In fact, given an initial state $ |k \rangle $ and  a different orthogonal state $ |\psi \rangle $ of the ground state of the Hamiltonian, if we want to know how much these states overlap after having applied the perturbation $V$ for $n$ times we compute the following terms\newline
 		
 		\begin{center}
-			$ \langle \psi|V^n| k \rangle$                                         (1)
+			$ \langle \psi|V^n| k \rangle$                                          (1)
 		\end{center}
 		\begin{center}
 			 $ \langle \psi|V^n| \psi \rangle$ - $ \langle k|V^n| k \rangle$ = $L$  (2)
@@ -1339,6 +1342,7 @@
 		This implies that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation in (1) should be of the order of $n < \frac{L}{2}$. \newline
 		
 		%image
+		%esempio, map da (1,0) a (0,0)
 		
 				
 		To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{L}{2}$. \newline
@@ -1367,10 +1371,7 @@
 		Even if a few qubits experience noise or errors, the anyons' collective behavior ensures that the logical qubit remains protected. \newline
 		
 		Measurement and readout of the logical qubit's state are performed by observing the anyons' configurations on the lattice. By detecting the anyons' positions and their braiding patterns, we can infer the state of the logical qubit without directly accessing the individual qubits. \newline
-		
-		
-		
-
+	
 		
 	\end{minipage}
 	
@@ -1383,6 +1384,7 @@
 		Encoded qubits.  \newline
 		
 		Encoded gates. Gates are topologically protected from noise - non-contractible - annihilate \newline
+		They are also anyons \newline
 		
 		%images
 		
