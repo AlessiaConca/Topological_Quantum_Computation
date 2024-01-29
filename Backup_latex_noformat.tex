@@ -1307,11 +1307,8 @@
  
 	
 	
-	
+		
 	\begin{minipage}{1 \textwidth}
-		
-		
-		\begin{minipage}{1 \textwidth}
 		
 		
 		\textbf{4. Gates and Computations in the Toric Code}\newline 
@@ -1359,7 +1356,10 @@
 	
 	\begin{minipage}{1 \textwidth}
 		
-		Thus, we can use the Toric Code to encode a single qubit in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. 
+		% There are 2L2 physical qubits in the code, L2 −1 plaquette and L2 −1 vertex
+		% operators. There are therefore 2L2−2(2L2) = 2 encoded qubits. 
+		
+		Thus, we can use the Toric Code to encode a qubit in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. 
 		The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the Ground State of the Hamiltonian of the system. 
 	    Each qubit can be in either the state $|0 \rangle$ or the state $|1\rangle$, representing the classical binary states. Now, our goal is to encode a logical qubit, a quantum state, using this grid of physical qubits in a way that protects it from noise and errors. \newline
 
@@ -1379,22 +1379,52 @@
 	
 	\begin{minipage}{1 \textwidth}
 		
-		2. Fault-Tolerance: we can do more than just store information. \newline
+		2. Fault-Tolerance: \newline
 		
-		Encoded qubits.  \newline
+		We can do more than just store information. In fact, we can perform fault-tolerant computation using the same anyonic framework that we have described above. \newline
 		
-		Encoded gates. Gates are topologically protected from noise - non-contractible - annihilate \newline
-		They are also anyons \newline
+		In the context of the Toric Code, gates are relized through braiding of pairs of anyons, which makes them topologically protected from local perturbations. \newline
+		In particular, topological gates are created thanks to the non-abelian property of anyons that allows us to braid them multiple times and in different ways.
+		As shown in the image below, we can follow the braiding of anyons in time and exchange them multiple times so that we are able to create different quantum operations. \newline
 		
-		%images
+		%image
 		
-		Error detection (syndrome measurement) \newline
+		
+		We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pairs of anyons. 
+		It is important to mention that these braiding oparations are always disecrete, menaing that they either happen or don't happen. As a consequnce gates reliability is always one-hundred per cent. 
+		Though, with braiding operations we cannot reach the entire bloch sphere of a qubit, so some quantum gates that are required for quantum universal computation will be missing from the set that we can create with braiding. Such missing operations can be supplemented through not topologically protected operations on the qubits, but which will of course have lower reliability. \newline
+		
+		In order to make the analogy explicit for logical qubits (as opposed to physical qubits) we can relabel the orthogonal ground states as $|00\rangle$, $|00\rangle$, $|01\rangle$, $|10\rangle$ and $|11\rangle$.
+		We can identify logical gates $\overline{X}_1$,$\overline{X}_2$,$\overline{Z}_1$,$\overline{Z}_2$ as anyon pairs that wind all the way around the torus in order to self annihilate. 
+		In fact, this behaviour agrees with the commutation requirements for the vertex and plaquette operators. 
+		
+		In order to build $\overline{Z}_1$, if we take a single $Z$, this cannot be our gate since it would commute with the plaquette operators but not with the vertex operators. 
+		Similarly, if we consider a pair of adjacent $Z$ operators, they will commute with vertex operators, but there will now be phase-flips at the endpoints. Indeed if we form a string of $Z$ operators, regardless of its shape, it will always anticommute with the operators at the ends of the string. The only solution is to find a string of operators which has no end, thus a loop.\newline
+		As regards $\overline{X}_1$, the reulting gate should commute with all the elements of the code while anti-commuting with the $\overline{Z}$ gates. Therefore we can construct it in the same way, though in the orthogonal direction with respect to $\overline{Z}_1$. Notice that in this case the loop is taken on the dual lattice. \newline
+		
+		%image
+		  
+		The action of $\overline{X}_1$ logical gate maps $|00\rangle$ to $|10\rangle$, while $\overline{Z}_1$ maps $|00\rangle$ to $|00\rangle$ and $|10\rangle$ to -$|10\rangle$. Similarly, the action of $\overline{X}_2$ logical gate maps $|00\rangle$ to $|01\rangle$, while $\overline{Z}_2$ maps $|11\rangle$ to $|11\rangle$ and $|01\rangle$ to -$|01\rangle$. Notice that the action of the operators doesn't depend on a specific path as they loop around the torus.\newline
+		
+		After quantum computation we will need to measure the state of the qubit, this operation is called fusion. Fusion happens when we fuse anyons; this behaviour of the anyons is described by fusion rules.
+		Quantum measurement will be useful for error detection and correction. \newline 
+
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		%In the Toric code, qubits are arranged on a two-dimensional lattice, typically in the shape of a torus. This lattice consists of rows and columns of qubits, forming a grid-like structure. Now, imagine drawing a loop that wraps around the torus in the horizontal direction and another loop that wraps around in the vertical direction, without crossing each other or intersecting themselves. These loops are what we call non-contractible loops because they cannot be continuously deformed or shrunk to a single point without leaving the surface of the torus.
+		
+		%These non-contractible loops play a crucial role in encoding quantum information in the Toric code. Specifically, the logical states of the two encoded qubits are determined by whether these loops are "traversed" an even or odd number of times. For example, if we define the logical states of the qubits as |0⟩ and |1⟩, we can associate one logical qubit with the loop along the horizontal direction and the other logical qubit with the loop along the vertical direction.
+		
+		%Errors that occur in the system, such as single-qubit errors or certain multi-qubit errors, can disrupt these non-contractible loops. However, the topological nature of the Toric code ensures that errors affecting the logical qubits can be detected and corrected by measuring the syndrome associated with these non-contractible loops. By performing appropriate error correction procedures based on the outcomes of these measurements, the encoded quantum information can be protected against errors,
+		
+		-Error detection and correction:\newline
+		
 		Anyons are created when errors (excitations) occur in the physical qubits. These anyons move around the lattice of the Toric Code in a way that depends on the type of error that occurred. \newline
-		By observing the braiding and fusion of anyons, one can deduce the type and location of errors, facilitating the correction process. \newline
-		
-		Error correction. \newline
-		The Toric Code error-correction process is actually based on the detection of topological excitations caused by errors. Such excitations are actually the anyons that we have previously described. Anyons are, in fact, localized deviations from the Ground State of the system. During error-correction what we would like to do is to measure operators that commute with the Hamiltonian and use the outcome to detect the presence of errors (Error Syndrome). \newline
-		
+		By observing the braiding and fusion of anyons, one can deduce the type and location of errors, facilitating the correction process. (syndrome measurement)  
+		During error-correction what we would like to do is to measure operators that commute with the Hamiltonian and use the outcome to detect the presence of errors (Error Syndrome). \newline
 		
 	\end{minipage}
 	
@@ -1410,14 +1440,7 @@
 		
 	\end{minipage}
 	
-	\begin{minipage}{1 \textwidth}
-		
-	\end{minipage}
 	
-
-
-
-
 
  
 	
