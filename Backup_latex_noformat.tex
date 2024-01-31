@@ -1405,43 +1405,51 @@
 		  
 		The action of $\overline{X}_1$ logical gate maps $|00\rangle$ to $|10\rangle$, while $\overline{Z}_1$ maps $|00\rangle$ to $|00\rangle$ and $|10\rangle$ to -$|10\rangle$. Similarly, the action of $\overline{X}_2$ logical gate maps $|00\rangle$ to $|01\rangle$, while $\overline{Z}_2$ maps $|11\rangle$ to $|11\rangle$ and $|01\rangle$ to -$|01\rangle$. Notice that the action of the operators doesn't depend on a specific path as they loop around the torus.\newline
 		
-		After quantum computation we will need to measure the state of the qubit, this operation is called fusion. Fusion happens when we fuse anyons; this behaviour of the anyons is described by fusion rules.
-		Quantum measurement will be useful for error detection and correction. \newline 
+		These non-contractible loops play a crucial role in encoding quantum information in the Toric code. Specifically, the logical states of the two encoded qubits are determined by whether these loops are "traversed" an even or odd number of times. For example, if we define the logical states of the qubits as $|0\rangle$ and $|1\rangle$, we can associate one logical qubit with the loop along the horizontal direction and the other logical qubit with the loop along the vertical direction. \newline
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
+		Errors that occur in the system, such as single-qubit errors or certain multi-qubit errors, can disrupt these non-contractible loops. However, the topological nature of the Toric code ensures that errors affecting the logical qubits can be detected and corrected by measuring the syndrome associated with these non-contractible loops. By performing appropriate error correction procedures based on the outcomes of these measurements, the encoded quantum information can be protected against errors. \newline
+		
+		--Error detection and correction:\newline
+		
+		We know that the Ground State of the Toric Code is defined by the states $|\psi\rangle $ respecting the following constraints: \newline
+		
+		\begin{center}
+			$A_v|\psi\rangle $ = $|\psi\rangle $ 
+		\end{center}
+		\begin{center}
+			$B_p|\psi\rangle $ = $|\psi\rangle $ 
+		\end{center}
+		
+		Since this space is four-dimensional, we can store two qubits of information in the Ground State of the Toric Code. \newline
+		
+		When errors occur on a specific given quantum state $|\psi\rangle$, the resulting state will diverge from the state space defined above, as the constraints defined above would not be respected anymore. This is because, due to errors, there would be some vertex or plauqette operators that yield a different eigenvalue other than +1.
+		The position of the operators for which this happens represents the error syndrome of the code, which will be used for error-correction. \newline
+		
+		The nature of topological codes allows us to describe deviations from the GS as the quasi-particles that we have described in the previous chapter: \newline
+		
+		-Errors Adjacent to Vertices:
+		
+		Vertex operators act locally on individual qubits, typically those located at the vertices of the lattice. These operators are designed to detect errors that occur in the vicinity of these vertices.
+		When an error affects qubits adjacent to a vertex, it can introduce correlations between the qubit states that disrupt the commuting relationship between the Pauli operators forming the vertex operator and the qubit operators affected by the error.
+		As a result, the measurement outcome of the vertex operator may deviate from its expected eigenvalue of +1. 
+		
+		\begin{center}
+			$A_v|\phi\rangle $ = -$|\phi\rangle $ 
+		\end{center}
+		
+		This deviation indicates that an error has occurred in the vicinity of the vertex and can be described through $e$ anyons type. In fact, an $e$ particle is created in the vertex $v$. \newline
 
 		
-	\end{minipage}
-	
-	\begin{minipage}{1 \textwidth}
+		-Errors in Plaquette Regions:
 		
-		%In the Toric code, qubits are arranged on a two-dimensional lattice, typically in the shape of a torus. This lattice consists of rows and columns of qubits, forming a grid-like structure. Now, imagine drawing a loop that wraps around the torus in the horizontal direction and another loop that wraps around in the vertical direction, without crossing each other or intersecting themselves. These loops are what we call non-contractible loops because they cannot be continuously deformed or shrunk to a single point without leaving the surface of the torus.
-		
-		%These non-contractible loops play a crucial role in encoding quantum information in the Toric code. Specifically, the logical states of the two encoded qubits are determined by whether these loops are "traversed" an even or odd number of times. For example, if we define the logical states of the qubits as |0⟩ and |1⟩, we can associate one logical qubit with the loop along the horizontal direction and the other logical qubit with the loop along the vertical direction.
-		
-		
-		Errors that occur in the system, such as single-qubit errors or certain multi-qubit errors, can disrupt these non-contractible loops. However, the topological nature of the Toric code ensures that errors affecting the logical qubits can be detected and corrected by measuring the syndrome associated with these non-contractible loops. By performing appropriate error correction procedures based on the outcomes of these measurements, the encoded quantum information can be protected against errors, \newline
-		
-		-Error detection and correction:\newline
-		
-		Anyons are created when errors (excitations) occur in the physical qubits. These anyons move around the lattice of the Toric Code in a way that depends on the type of error that occurred. \newline
-		By observing the braiding and fusion of anyons, one can deduce the type and location of errors, facilitating the correction process. (syndrome measurement)  
-		During error-correction what we would like to do is to measure operators that commute with the Hamiltonian and use the outcome to detect the presence of errors (Error Syndrome). \newline
-		
-		Error syndromes are detected by measuring operators associated with the vertices and plaquettes of this lattice. Vertex operators act locally on individual qubits, while plaquette operators act on sets of qubits arranged in plaquettes of the lattice. When no errors occur, measurements of both vertex and plaquette operators yield the eigenvalue +1. However, if an error, represented by a Pauli operator, affects the qubits, it may introduce changes in the eigenvalues measured by these operators. 
-		\newline
-		
-		Specifically, errors affecting qubits within a plaquette region may cause the associated plaquette operator to yield an eigenvalue other than +1, indicating the presence of an error. Similarly, errors affecting qubits adjacent to a vertex may affect the measurement outcome of the corresponding vertex operator. \newline
-		
-		%-Errors in Plaquette Regions:
-		
-		%Plaquette operators act on sets of qubits arranged in plaquette-shaped regions of the lattice. These operators are designed to detect errors that occur within these specific regions.
-		%When an error affects qubits within a plaquette region, it alters the state of those qubits. As a result, the product of Pauli operators forming the plaquette operator may no longer commute with the qubit operators affected by the error.
-		%Consequently, the measurement outcome of the plaquette operator may deviate from its expected eigenvalue of +1. This deviation indicates that an error has occurred within the plaquette region, as the observed measurement outcome is sensitive to the altered state of the qubits.\newline
-		
-		%-Errors Adjacent to Vertices:
-		
-		%Vertex operators act locally on individual qubits, typically those located at the vertices of the lattice. These operators are designed to detect errors that occur in the vicinity of these vertices.
-		%When an error affects qubits adjacent to a vertex, it can introduce correlations between the qubit states that disrupt the commuting relationship between the Pauli operators forming the vertex operator and the qubit operators affected by the error.
-		%As a result, the measurement outcome of the vertex operator may deviate from its expected eigenvalue of +1. This deviation indicates that an error has occurred in the vicinity of the vertex, as the observed measurement outcome is sensitive to the altered correlations between neighboring qubits. \newline
+		Similarly, plaquette operators act on sets of qubits arranged in plaquette-shaped regions of the lattice. These operators are designed to detect errors that occur within these specific regions.
+		When an error affects qubits within a plaquette region, it alters the state of those qubits. As a result, the product of Pauli operators forming the plaquette operator may no longer commute with the qubit operators affected by the error.
+		Consequently, the measurement outcome of the plaquette operator may deviate from its expected eigenvalue. 
+		This deviation indicates that an error has occurred within the plaquette region and is associated with the craetion of $m$ anyons in correspondance of the plaquette $p$. \newline
 		
 		
 		
@@ -1449,29 +1457,40 @@
 	
 	\begin{minipage}{1 \textwidth}
 		
-		Consider this example, take a $Z$ error on a single qubit. All the plaquette and vertex operators, which do not act on the qubit, commute with it. Therefore, the only remaining opearator that must anti-commute with it are the two the veretx operators adjacent to it. This means that the error has caused the flipped the output of these latter operators. 
-		If we now consider two $Z$ error operators, instead of one, acting on adjacent qubits, we can see that the vertex operators between these two qubits commute with the error, while the vertex operators at the endpoints of the string are flipped to -1.
-		Given any string of errors on the primal lattice, the only operators have their outcomes flipped are the vertices at the
-		end of the string. \newline
+		This means that errors cause the creation of anyons pairs that will move around the lattice. These pairs are connected through a single path. Then two things can happen: in the first case, anyons pairs self-annihilate by forming contractible closed loops, resulting in no detectable error; in the second case, if the loop is non-contactible what we obtain will be an implementation of a logical operation on the stored quantum state, of the types described above. These latter types of errors do not 'self-correct', therefore error correction will need to focus on this kind of errors. \newline
+		
+		Recall fusion rules for anyons: 
+		
+		\begin{center}
+			$e$ x $e$ = 1
+		\end{center}
+		\begin{center}
+			$m$ x $m$ = 1
+		\end{center}
+		\begin{center}
+			$e$ x $m$ = $\psi$
+		\end{center}
+		
+		we see that by braiding $e$ or $m$ particles nothing happens, while a phase is aquired if we braid an $e$ particle with an $m$ particle. Though, in the first two phases we can demostrate the creatio  of  the logical gates described above: we do return to the state space of the Hamiltonaian, though we can create non-contactible loops by winding particles all around the dimensions of the torus. Notice that such non-contactible loops indeed correspond to the $X$ and $Z$ gates as such loops do not commute. In the third case, a third type of particle $\psi$ arises for the model. \newline
+		
+		%In order to exemplify, take a $Z$ error on a single qubit. All the plaquette and vertex operators, which do not act on the qubit, commute with it. Therefore, the only remaining opearator that must anti-commute with it are the two veretx operators adjacent to it. This means that the error has caused the flipped the output of these latter operators. 
+		%If we now consider two $Z$ error operators, instead of one, acting on adjacent qubits, we can see that the vertex operators between these two qubits commute with the error, while the vertex operators at the endpoints of the string are flipped to -1.
+		%Given any string of errors on the primal lattice, the only operators have their outcomes flipped are the vertices at the
+		%end of the string. \newline
 		
 		%image
 		
-		$X$ errors happen in an analogous way, though on the dual alttice. \newline
+		%$X$ errors happen in an analogous way, though on the dual alttice. \newline
 		
-		Once errors are detected through the measurement of vertex and plaquette operators, error correction gates are applied to the qubits to rectify the errors. These gates typically involve the manipulation of anyons, which are emergent excitations in the code lattice, and may include operations like braiding anyons to correct errors while preserving the encoded quantum information. In summary, error detection in the Toric code is intricately related toe
-	    the topology of the lattice and the collective behavior of anyons, allowing for robust protection of quantum information against errors. \newline
+		Once errors are detected through the measurement of vertex and plaquette operators, error-correction gates are applied to the qubits to rectify the errors. These gates typically involve the manipulation of anyons, which will be called 're-annihilation'. Though, if we recall the error model described in the previous section, where bit-flips and phase-flips errors happen independently with same probability $p$; we have to take notice that error-correction through re-annihilation of errors is possible only when $p$ is low, this is because in this way errors (anyons) tend not to propagate far away from where they originated and can be detected and rectified in an easier way. On the other hand, when $p$ increases, ambiguity arises as to how identify anyon pairs and error-correction may not succeed.
+	     \newline
 		
-		In error-correction, particularly within the context of quantum codes like the toric code, the process of identifying and correcting errors is fundamentally reliant on the relationship between the observed syndrome and the underlying errors that occurred during quantum computation. The syndrome, obtained through measurements of vertex and plaquette operators, provides crucial information about the presence and location of errors within the quantum code. However, due to the inherent complexity of quantum systems and the non-local nature of errors, the mapping between the observed syndrome and the actual error is not always one-to-one. \newline
+		To summarize, the process of identifying and correcting errors is fundamentally reliant on the relationship between the observed syndrome and the underlying errors that occurred during quantum computation. 
+		The syndrome, obtained through measurements of vertex and plaquette operators, provides crucial information about the presence and location of errors within the quantum code. However, due to the inherent complexity of quantum systems and the nature of errors, the mapping between the observed syndrome and the actual error is not always one-to-one. \newline
 		
 		This lack of a one-to-one correspondence between syndrome and error is known as degeneracy. It arises because multiple distinct errors can lead to identical syndromes. In other words, these errors are indistinguishable based solely on their syndromes. \newline
 		
-		To better illustrate the concept of degeneracy in stabilizer codes, let's consider a simplified example within the context of the toric code.
-		Imagine a scenario where we have a toric code lattice, and we're observing the syndrome measurements obtained from the stabilizer generators. Now, suppose we have two different error scenarios: \newline
-		
-		-Scenario A: In this scenario, a single-qubit bit-flip error occurs on qubit A located within a plaquette region of the lattice. \newline
-		
-		-Scenario B: In this scenario, a single-qubit bit-flip error occurs on qubit B adjacent to a vertex of the lattice. \newline
-		
+
 		
 		
 		
@@ -1479,19 +1498,22 @@
 	
 	\begin{minipage}{1 \textwidth}
 		
-		Despite these errors occurring at different locations and involving different qubits, they both lead to the same syndrome measurement outcome. The stabilizer measurements detect changes in the parity of certain sets of qubits caused by the errors, resulting in identical syndromes for both Scenario A and Scenario B.
-		Now, the challenge arises when we try to determine which specific error caused the observed syndrome. Based solely on the syndrome measurement, we cannot uniquely identify whether Scenario A or Scenario B occurred. This ambiguity makes it difficult to precisely pinpoint and correct the error, especially in more complex scenarios where multiple errors may be present simultaneously.
-		\newline
+		%Despite these errors occurring at different locations and involving different qubits, they both lead to the same syndrome measurement outcome. The outcome measurements detect changes in the parity of certain sets of qubits caused by the errors, resulting in identical syndromes for both Scenario A and Scenario B.
+		%Now, the challenge arises when we try to determine which specific error caused the observed syndrome. Based solely on the syndrome measurement, we cannot uniquely identify whether Scenario A or Scenario B occurred. This ambiguity makes it difficult to precisely pinpoint and correct the error, especially in more complex scenarios where multiple errors may be present simultaneously.
+		
 		
 		This ambiguity in error identification poses a significant challenge in error correction, as it complicates the task of precisely pinpointing and rectifying the errors that occurred during quantum computation. Effectively addressing this challenge requires the development of sophisticated error correction procedures that can effectively handle the degeneracy inherent in the mapping between syndrome and error. These procedures may involve advanced decoding algorithms, error mitigation techniques, or even the utilization of additional redundancy in the quantum code to disambiguate between possible error scenarios. \newline
 		
-		To conclude, the understanding of the non-trivial relationship between syndrome and error, characterized by degeneracy, underscores the importance of robust error correction strategies in quantum computing. Addressing this challenge is essential for maintaining the integrity of encoded quantum information and realizing the potential of fault-tolerant quantum computation. \newline
+		To conclude, the understanding of the non-trivial relationship between syndrome and error, characterized by degeneracy, highlights the importance of robust error-correction strategies in quantum computing. Addressing this challenge is essential for maintaining the integrity of encoded quantum information and realizing the potential of fault-tolerant quantum computation. \newline
+		
+		%https://en.wikipedia.org/wiki/Toric_code#Error_correction_and_computation
 		
 	\end{minipage}
 	
 	\begin{minipage}{1 \textwidth}
 		
 	\end{minipage}
+	
 	
 	
 	
