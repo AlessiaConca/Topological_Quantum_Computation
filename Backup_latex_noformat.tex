@@ -1306,7 +1306,9 @@
 
  
 	
-	
+
+
+ 
 	\begin{minipage}{1 \textwidth}
 		
 		
@@ -1407,6 +1409,20 @@
 		
 		These non-contractible loops play a crucial role in encoding quantum information in the Toric code. Specifically, the logical states of the two encoded qubits are determined by whether these loops are "traversed" an even or odd number of times. For example, if we define the logical states of the qubits as $|0\rangle$ and $|1\rangle$, we can associate one logical qubit with the loop along the horizontal direction and the other logical qubit with the loop along the vertical direction. \newline
 		
+		%Recall fusion rules for anyons: 
+		
+		%\begin{center}
+		%	$e$ x $e$ = 1
+		%\end{center}
+		%\begin{center}
+			%$m$ x $m$ = 1
+		%\end{center}
+		%\begin{center}
+		%	$e$ x $m$ = $\psi$
+		%\end{center}
+		
+		%we see that by braiding $e$ or $m$ particles nothing happens, while a phase is aquired if we braid an $e$ particle with an $m$ particle. Though, in the first two phases we can demostrate the creatio  of  the logical gates described above: we do return to the state space of the Hamiltonaian, though we can create non-contactible loops by winding particles all around the dimensions of the torus. Notice that such non-contactible loops indeed correspond to the $X$ and $Z$ gates as such loops do not commute. In the third case, a third type of particle $\psi$ arises for the model. \newline
+		
 	\end{minipage}
 	
 	\begin{minipage}{1 \textwidth}
@@ -1457,38 +1473,34 @@
 	
 	\begin{minipage}{1 \textwidth}
 		
-		This means that errors cause the creation of anyons pairs that will move around the lattice. These pairs are connected through a single path. Then two things can happen: in the first case, anyons pairs self-annihilate by forming contractible closed loops, resulting in no detectable error; in the second case, if the loop is non-contactible what we obtain will be an implementation of a logical operation on the stored quantum state, of the types described above. These latter types of errors do not 'self-correct', therefore error correction will need to focus on this kind of errors. \newline
+		This means that errors cause the creation of anyons pairs that will move around the lattice. These pairs are connected through a single path. Then, two main scenarios can arise: in the first case, anyons pairs self-annihilate by forming contractible closed loops, resulting in no detectable error; in the second case, if the loop is non-contactible what we obtain will be an implementation of a logical operation on the stored quantum state, of the types described above. These latter types of errors do not 'self-correct'. \newline
 		
-		Recall fusion rules for anyons: 
+		In order to better clarify the above concepts, we take as example a bit-flip error thet could occur on the lattice. There are here three possible ways an error could form (see Figure): \newline
 		
-		\begin{center}
-			$e$ x $e$ = 1
-		\end{center}
-		\begin{center}
-			$m$ x $m$ = 1
-		\end{center}
-		\begin{center}
-			$e$ x $m$ = $\psi$
-		\end{center}
+		\begin{enumerate}
+			\item Isolated error link: can be detected through the measurement of the adjacent sites;
+			
+			%image
+			
+			\item Adjacent error links: these are the ones that we have named error chains, they are composed of multiple adjacent single link errors. Similary to the case above, we are only able to identify the two endpoints through measurements;
+			
+			%image
+			
+			\item Undetectable errors: these types of errors are not visible because their two endpoints overlap: they indeed have no endpoints. We can divide this latter category of errors in two : the contractible loops, which do not alter the state, and the non-contractible loops, which cause irreversible errors.
+			
+			%image
+			
+		\end{enumerate}
 		
-		we see that by braiding $e$ or $m$ particles nothing happens, while a phase is aquired if we braid an $e$ particle with an $m$ particle. Though, in the first two phases we can demostrate the creatio  of  the logical gates described above: we do return to the state space of the Hamiltonaian, though we can create non-contactible loops by winding particles all around the dimensions of the torus. Notice that such non-contactible loops indeed correspond to the $X$ and $Z$ gates as such loops do not commute. In the third case, a third type of particle $\psi$ arises for the model. \newline
 		
-		%In order to exemplify, take a $Z$ error on a single qubit. All the plaquette and vertex operators, which do not act on the qubit, commute with it. Therefore, the only remaining opearator that must anti-commute with it are the two veretx operators adjacent to it. This means that the error has caused the flipped the output of these latter operators. 
-		%If we now consider two $Z$ error operators, instead of one, acting on adjacent qubits, we can see that the vertex operators between these two qubits commute with the error, while the vertex operators at the endpoints of the string are flipped to -1.
-		%Given any string of errors on the primal lattice, the only operators have their outcomes flipped are the vertices at the
-		%end of the string. \newline
+		Such errors can be detected through  simultaneous measurement of vertex and plaquette operators of the Hamiltonian. These operators can be measured at the same time because the GS and the erroneous states are all eigenstates of these operators. Furthermore they all commute with one another; therefore they can be measured without disturbing the result of the measures of one another.
+		Such simultaneous measurements are repeated periodically, after a specified time interval; the resulting measurement outcomes is called error syndrome. The error syndrome will be stored in a classical computer in order to detect which errors have occurred by means of an appropriate algorithm. Though, the syndrome only gives information about endpoints of error chains that have occured, so we have no notion about the way these two endpoints were connected. As a consequence what we do is to use an algorithm that estimates the way errors were formed by connecting pairs of endpoints using the minimum number of links (edges). The chains that are formed by the algorithm are usually called correction chains. \newline
 		
-		%image
+		Once the above error chains are detected through the simulatenous measurement of vertex and plaquette operators, error-correction operators  are applied to the qubits to rectify the errors. These procedure can be referred to as 're-annihilation'. In general, when we have a bit-flip error we apply $Z$ operator to reverse it, on the other hand, if we have a phase-flip error we will apply a $X$ operator. \newline
 		
-		%$X$ errors happen in an analogous way, though on the dual alttice. \newline
+		Consider a bit-flip error as above; then, also error correction can yield three different scenarions depending on which correction chain has formed: \newline
+	
 		
-		Once errors are detected through the measurement of vertex and plaquette operators, error-correction gates are applied to the qubits to rectify the errors. These gates typically involve the manipulation of anyons, which will be called 're-annihilation'. Though, if we recall the error model described in the previous section, where bit-flips and phase-flips errors happen independently with same probability $p$; we have to take notice that error-correction through re-annihilation of errors is possible only when $p$ is low, this is because in this way errors (anyons) tend not to propagate far away from where they originated and can be detected and rectified in an easier way. On the other hand, when $p$ increases, ambiguity arises as to how identify anyon pairs and error-correction may not succeed.
-	     \newline
-		
-		To summarize, the process of identifying and correcting errors is fundamentally reliant on the relationship between the observed syndrome and the underlying errors that occurred during quantum computation. 
-		The syndrome, obtained through measurements of vertex and plaquette operators, provides crucial information about the presence and location of errors within the quantum code. However, due to the inherent complexity of quantum systems and the nature of errors, the mapping between the observed syndrome and the actual error is not always one-to-one. \newline
-		
-		This lack of a one-to-one correspondence between syndrome and error is known as degeneracy. It arises because multiple distinct errors can lead to identical syndromes. In other words, these errors are indistinguishable based solely on their syndromes. \newline
 		
 
 		
@@ -1498,8 +1510,43 @@
 	
 	\begin{minipage}{1 \textwidth}
 		
+		\begin{enumerate}
+			\item First scenario: the algorithm correctly identifies a complete arror chain; therefore, we only need to apply a $Z$ operator on this chain in order to erase the error;
+			
+			%image 
+			
+			\item Second scenario: the algorithm connects two open endpoints of an error chain. Since there are several paths of the same length that can connect two endpoints, it might happen that we fail to correctly select all the involved errorneous links and end up propagating the error by flipping previously correct links. 
+			Of course, there are cases in this scenario where error-correction succeeds because we have picked up the correct path; though we can still end up into two different situations: we have contractible loops, which can be corrected, or we end up having a non-contractible loop, which irremediably disrupts quantum information, since we wouldn't be able to detect the two endpoints anymore because of their overlap.
+			
+			%image
+			
+			\item Third scenario: we connect distinct open error chains into a single one. Then, the feasibility of error-reversal can by divided in the two cases discussed in the scenario above: we form a contractible closed loop or we end up wit a non-contractible loop. \newline
+			
+			%image
+			
+		\end{enumerate}
+		
+		
+		Overall, the error-correction can be said to be effective whenever, through the correction chain alone or the error chain paired with the correction chain, we end up in scenario 1 or in scenario 2 and 3 but only forming contractible loops that leave the state unaltered. \newline
+		
+		We know that there are two ways in which we can decrase the probability of irremediabily damaging quantum information. The first method involves increasing the lattice size, this is because we would need longer error chains in order to wind all the way around the dimension of the torus to form a non-contractible loop. The second method involves reducing the probability $p$ with which each link becomes erroneous in between two syndrome measurements. 
+		Error-correction through re-annihilation is possible only when $p$ is low. 
+		This is because in this way errors tend not to propagate far away from where they originated and can be detected and rectified in an easier way. On the other hand, when $p$ increases, ambiguity arises as to how identify anyon pairs and error-correction may not succeed. The reduction of $p$ can be realized by measuring error syndromes more often, thus incraesing the frequency with which we produce syndrome measurements.
+		\newline
+		
+		
+		
+	\end{minipage}
+	
+	\begin{minipage}{1 \textwidth}
+		
 		%Despite these errors occurring at different locations and involving different qubits, they both lead to the same syndrome measurement outcome. The outcome measurements detect changes in the parity of certain sets of qubits caused by the errors, resulting in identical syndromes for both Scenario A and Scenario B.
 		%Now, the challenge arises when we try to determine which specific error caused the observed syndrome. Based solely on the syndrome measurement, we cannot uniquely identify whether Scenario A or Scenario B occurred. This ambiguity makes it difficult to precisely pinpoint and correct the error, especially in more complex scenarios where multiple errors may be present simultaneously.
+		
+		To summarize, the process of identifying and correcting errors is fundamentally reliant on the relationship between the observed syndrome and the underlying errors that occurred during quantum computation. 
+		The syndrome, obtained through measurements of vertex and plaquette operators, provides crucial information about the presence and location of errors within the quantum code. However, due to the inherent complexity of quantum systems and the nature of errors, the mapping between the observed syndrome and the actual error is not always one-to-one. \newline
+		
+		This lack of a one-to-one correspondence between syndrome and error is known as degeneracy. It arises because multiple distinct errors can lead to identical syndromes. In other words, these errors are indistinguishable based solely on their syndromes. \newline
 		
 		
 		This ambiguity in error identification poses a significant challenge in error correction, as it complicates the task of precisely pinpointing and rectifying the errors that occurred during quantum computation. Effectively addressing this challenge requires the development of sophisticated error correction procedures that can effectively handle the degeneracy inherent in the mapping between syndrome and error. These procedures may involve advanced decoding algorithms, error mitigation techniques, or even the utilization of additional redundancy in the quantum code to disambiguate between possible error scenarios. \newline
