@@ -65,12 +65,31 @@
 			
 			\foreach \j in {0.8,...,0.8}
 			{
-				%\draw[black!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
-				\draw[orange, line width=1.5mm] (-1, \j) -- (0, \j);
+	
 				\draw[orange, line width=1.5mm] (0, \j) -- (1, \j);
 				
 			}
 			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[orange, line width=1.5mm] (\i,0) -- (\i, 1 );
+				
+			}
+			
+				\foreach \i in {0,...,0}
+			{
+				
+				\draw[orange, line width=1.5mm] (\i,0) -- (\i, 0.8 );
+				
+			}
+			
+				\foreach \j in {0,...,0}
+			{
+				
+				\draw[orange, line width=1.5mm] (-1,\j) -- (0,\j);
+				
+			}
 			
 			
 			
