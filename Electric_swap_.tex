@@ -45,52 +45,54 @@
 					\end{scope}
 				}
 			}
-		
+			
 			
 			
 			
 			\foreach \j in {1,...,1}
 			{
 				
-				\draw[blue!50, line width=1.5mm] (-1, \j) -- (-0.5, \j);
-				\draw node[label=north:\textbf{e2}] at (0,\j) {};
-				\draw[blue!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
+				\draw[red!50, line width=1.5mm] (-1, \j) -- (-0.5, \j);
+				\draw node[label=center:\textbf{e2}] at (0,\j) {};
+				%\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
 				
-				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$}] at (-0.5,1) {};
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,1) {};
 				
 			}
 			
 			\foreach \i in {-1,...,-1}
 			{
 				
-				\draw[blue!50, line width=1.5mm] (\i,1) -- (\i,-0.5);
+				\draw[red!50, line width=1.5mm] (\i,1) -- (\i,-1);
 				%\draw node[label=north:\textbf{e1}] at (\i,0) {};
 				%\draw[blue!50, line width=1.5mm] (\i,0) -- (\i,0);
 				
-				\node[draw, circle, fill=blue!50,,label=center:\textbf{$\sigma^z$}] at (-1,0.5) {};
-				\node[draw, circle, fill=blue!50,,label=center:\textbf{$\sigma^z$}] at (-1,-0.5) {};
+				\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (-1,0.5) {};
+				\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (-1,-0.5) {};
 				
 			}
 			
-			\foreach \j in {-0.5,...,-0.5}
+			\foreach \j in {-1,...,-1}
 			{
 				
-				\draw[blue!50, line width=1.5mm] (-0.9, \j) -- (1, \j);
+				\draw[red!50, line width=1.5mm] (-1, \j) -- (1, \j);
 				
 				
-				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$}] at (0,-0.5) {};
-				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$}] at (1,-0.5) {};
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (0.5,-1) {};
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (1,-0.5) {};
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,-1) {};
 				
 			}
 			
 			\foreach \i in {1,...,1}
 			{
 				
-				\draw[blue!50, line width=1.5mm] (\i,-0.4) -- (\i,0.5);
+				\draw[red!50, line width=1.5mm] (\i,-0.4) -- (\i,0.4);
 				\draw node[label=north:\textbf{e1}] at (\i,0.5) {};
 				%\draw[blue!50, line width=1.5mm] (\i,0) -- (\i,0);
+				\draw[red!50, line width=1.5mm] (\i,-1) -- (\i,-0.6);
 				
-				\node[draw, circle, fill=blue!50,,label=center:\textbf{$\sigma^z$}] at (1,0.5) {};
+				\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (1,0.5) {};
 				
 			}
 			
