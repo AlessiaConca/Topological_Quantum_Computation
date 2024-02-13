@@ -45,18 +45,18 @@
 					\end{scope}
 				}
 			}
-		
+			
 			
 			
 			
 			\foreach \j in {1,...,1}
 			{
 				
-				\draw[blue!50, line width=1.5mm] (-1, \j) -- (-0.5, \j);
+				\draw[red!50, line width=1.5mm] (-1, \j) -- (-0.5, \j);
 				\draw node[label=north:\textbf{e1}] at (-1,\j) {};
-				\draw[blue!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
+				\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
 				\draw node[label=north:\textbf{e2}] at (0,\j) {};
-				\node[draw, circle, fill=blue!50,,label=center:\textbf{$\sigma^z$}] at (-0.5,1) {};
+				\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (-0.5,1) {};
 				
 			}
 			
@@ -67,8 +67,6 @@
 	\end{center}
 	
 \end{document}
-
-
 
 ------dual
 
@@ -120,7 +118,7 @@
 					\end{scope}
 				}
 			}
-		
+			
 			
 			
 			
@@ -129,14 +127,14 @@
 			{
 				
 				\draw[blue!50, line width=1.5mm] (-1.2, \j) -- (-0.5, \j);
-				\draw node[label=center:\textbf{e2}] at (-0.5,0.5) {};
+				\draw node[label=center:\textbf{m2}] at (-0.5,0.5) {};
 				\draw[blue!50, line width=1.5mm] (-1.5, \j) -- (-1.2, \j);
-				\draw node[label=center:\textbf{e1}] at (-1.5,0.5) {};
+				\draw node[label=center:\textbf{m1}] at (-1.5,0.5) {};
 				
 				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$}] at (-1,0.5) {};
 			}
 			
-		
+			
 			
 			
 			
