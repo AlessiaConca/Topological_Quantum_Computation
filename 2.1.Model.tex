@@ -312,16 +312,24 @@ Since all of these spins exhibit the same characteristics they are identified wi
 The key part of the Toric Code are the so called "vertex" and "plaquette" operators that are going to be placed, respectively, on the vertices $v$ and cells $p$ of $L$. Such operators can be defined formally as in definition 1.1 and implemented by means of Pauli matrices as exemplified in figure 1.2.
 Throughout the description, the $Av$ operators are going to be shaded in blu, while the $Bp$ operators are going to be shaded in red. \newline
 
-\begin{definition} (Vertex and Plaquette operators) Given a vertex $v$ and a plaquette $p$ we can define, respectively, vertex and plaquette operators as tensor products over Pauli operators, each acting on four neighbouring spins. These quartets  are indicated by the indices $j \in star(v)$ and $j \in bdy(p)$.  
-
+\begin{definition} (Vertex and Plaquette operators) Given a vertex $v$ and a plaquette $p$ we can define, respectively, vertex and plaquette operators as tensor products over Pauli operators, each acting locally on four neighbouring spins. \newline
 	
 \begin{center}
-	Vertex operator: $ Av = \prod_{j \in star(v)} Z_j $ \newline
 	
-	Plaquette operator: $ Bp = \prod_{j \in bdy(v)} X_j $\newline
+	$ Av \equiv Z_l \otimes Z_r \otimes Z_u \otimes Z_d$ \newline
+	
+	$ Bp \equiv X_l \otimes X_r \otimes X_u \otimes X_d$ \newline 
+
 \end{center}
 \end{definition}
 
+For the sake of simplicity, the tensor product is omitted when there is no risk of ambiguity in the interpretation. As the vertex and plaquette operators act locally, here we can omit writing down the tensor product with the identities for sites that are not part of the support of the operator. Thus, we can simply rewrite the operators by means of a product on the quartets of spins by indexing them as $j \in star(v)$ and $j \in bdy(p)$. \newline
+ 
+\begin{center}
+	$ Av = \prod_{j \in star(v)} Z_j $ \newline
+	
+	$ Bp = \prod_{j \in bdy(v)} X_j $\newline
+\end{center}
 
 \begin{figure}
 \begin{center}
@@ -425,7 +433,7 @@ Throughout the description, the $Av$ operators are going to be shaded in blu, wh
 \end{figure}
 
 
-All the elements that constitute the model of the toric code are brought together in its Hamiltonian. The Hamiltonian is also known as the energy operator associated to a quantum system and, as such, it describes its energy and encodes the rules that govern its dynamics. The next expression describes the Hamiltonian of The Toric Code.\newline
+All the elements that constitute the model of the toric code are brought together in its Hamiltonian. The Hamiltonian is also known as the energy operator associated to a quantum system and, as such, it describes its energy and encodes the rules that govern its dynamics. Definition 1.2 describes the Hamiltonian of the Toric Code.\newline
 
 \begin{definition} (Toric Code Hamiltonian) Given vertex and plaquette operators each acting, respectively, on verteces and cells of the torus, we can define the following Hamiltonian for the system:
 \end{definition}
@@ -585,7 +593,7 @@ Then, again we can write
 
 \hfill $\square$
 
-Given Proposition 1.1, we can know further characterize the opeartors in terms of their eigenvalues and define their spectrum. The spectrum of an operator in quantum mechanics represents the set of possible eigenvalues that can be obtained through the measurements of that operator on a quantum state. The trivial spectrum of vertices and plaquette operators will be of fundamental importance to perform fault-tolerant quantum compuations, in particular for measuring whether any error has occurred during computation (see Chapter 3). 
+Given Proposition 1.1, we can know further characterize the opeartors in terms of their eigenvalues and define their spectrum. The spectrum of an operator in quantum mechanics represents the set of possible eigenvalues that can be obtained through the measurements of that operator on a quantum state. The trivial spectrum of vertices and plaquette operators will be of fundamental importance to perform fault-tolerant quantum compuations, in particular for measuring whether any error has occurred during computation (see Chapter 3). \newline
 
 \begin{proposition} (Eigenvalues of $Av$ and $Bp$ operators) Given Hermitian operators $Av$ and $Bp$, which satisfy the involutory property, their eigenvalues are $\pm 1$.
 \end{proposition}
@@ -626,8 +634,7 @@ Finally, since we already know that Hermitian operators have real eigenvalues we
 
 Putting together the fact that $Av$ has real eigenvalues with unitarity we obtain that the only two remaining possibilities for the eigenvalues of $Av$ are $\pm 1$. \newline
 
-
-The same reasoning can be carried out for the $Bp$ operator.
+The same reasoning can be carried out for the plaquette operators. \textit{As discussed in \cite{QC}}.
 
 \hfill $\square$ 
 
@@ -975,6 +982,11 @@ and possible future developments of your work have to be inserted in this chapte
 % ACKNOWLEDGEMENTS
 \chapter*{Acknowledgements}
 Here you might want to acknowledge someone.
+
+\cleardoublepage
+
+\end{document}
+
 
 \cleardoublepage
 
