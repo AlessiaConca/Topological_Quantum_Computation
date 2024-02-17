@@ -103,6 +103,7 @@
 %----------------------------------------------------------------------------
 \newtheorem{definition}{Definition}[chapter]
 %\newtheorem{proposition}{Definition}[section]
+\DeclareMathOperator*{\subsetminus}{\mathrel{\dot{\subset}}}
 %----------------------------------------------------------------------------
 %	BEGIN OF YOUR DOCUMENT
 %----------------------------------------------------------------------------
@@ -311,23 +312,34 @@ Since all of these spins exhibit the same characteristics they are identified wi
 
 The key part of the Toric Code are the so called "vertex" and "plaquette" operators that are going to be placed, respectively, on the vertices $v$ and cells $p$ of $L$. Such operators can be defined formally as in definition 1.1 and implemented by means of Pauli matrices as exemplified in figure 1.2. \newline
 
-\begin{definition} (Vertex and Plaquette operators) Given a vertex $v$ and a plaquette $p$ we can define, respectively, vertex and plaquette operators as tensor products over Pauli operators, each acting locally on four neighbouring spins. \newline
+\begin{definition} (Vertex and Plaquette operators) Given a vertex $v$ and a plaquette $p$ we can define, respectively, vertex and plaquette operators as tensor products over Pauli operators, each acting locally on four neighbouring spins. 
 	
 \begin{center}
 	
-	$ Av \equiv Z_l \otimes Z_r \otimes Z_u \otimes Z_d$ \newline
+	$ Av \coloneq Z_{left} \otimes Z_{right} \otimes Z_{upper} \otimes Z_{bottom}$ 
 	
-	$ Bp \equiv X_l \otimes X_r \otimes X_u \otimes X_d$ \newline 
+	$ Bp \coloneq X_{left} \otimes X_{right} \otimes X_{upper} \otimes X_{bottom}$  
 
 \end{center}
 \end{definition}
 
-Note that, for the sake of simplicity, the tensor product can be omitted when there is no risk of ambiguity in the interpretation. Here, since the vertex and plaquette operators act locally, we can omit writing down the tensor product with the identity for sites that are not part of the support of the operator. Thus, we can simply rewrite the operators by means of the product of the Pauli matrices that act on the quartets of spins indexed as $j \in star(v)$ and $j \in bdy(p)$. \newline
+where we have defined heach $Z_i$ and $X_i$ to be equal to 
+
+\begin{center}
+	
+	$Z_i = Id_{Lattice \setminus  Edge_i} \otimes \sigma^z_{Edge_i}$ 
+	
+	$X_i = Id_{Lattice \setminus  Edge_i} \otimes \sigma^x_{Edge_i} $  
+	
+\end{center}
+
+
+Note that, for the sake of simplicity, the tensor product can be omitted when there is no risk of ambiguity in the interpretation. Here, since the vertex and plaquette operators act locally, we can omit writing down the tensor product with the identity for sites that are not part of the support of the operator. Thus, we can simply rewrite the operators by means of the product of the Pauli matrices that act on the quartets of spins indexed as $j \in star(v)$ and $j \in bdy(p)$. 
  
 \begin{center}
-	$ Av = \prod_{j \in star(v)} Z_j $ \newline
+	$ Av = \prod_{j \in star(v)} Z_j $ 
 	
-	$ Bp = \prod_{j \in bdy(v)} X_j $\newline
+	$ Bp = \prod_{j \in bdy(v)} X_j $
 \end{center}
 
 \begin{figure}
@@ -432,7 +444,7 @@ Note that, for the sake of simplicity, the tensor product can be omitted when th
 \end{figure}
 
 
-All the elements that constitute the model of the toric code are brought together by its Hamiltonian. The Hamiltonian is the energy operator that characterizes a quantum system associated to it and, as such, it describes its energy and encodes the rules that govern its dynamics. Definition 1.2 describes the Hamiltonian of the Toric Code.\newline
+All the elements that constitute the model of the toric code are brought together by its Hamiltonian. The Hamiltonian is the energy operator that characterizes a quantum system associated to it and, as such, it describes its energy and encodes the rules that govern its dynamics. Definition 1.2 describes the Hamiltonian of the Toric Code.\newline \newline
 
 \begin{definition} (Toric Code Hamiltonian) Given vertex and plaquette operators each acting, respectively, on verteces and cells of the torus, we can define the following Hamiltonian for the system:
 \end{definition}
@@ -446,7 +458,7 @@ All the elements that constitute the model of the toric code are brought togethe
 
 Each one of the $Av$ and $Bp$ operators that appear in the Hamiltonian share some important properties, which are going to be covered in the following definitions and will later be used to further characterize the action of the operators. \newline
 
-Firstly, notice that $Av$ and $Bp$ operators are Hermitian and square to the identity. 
+Firstly, notice that $Av$ and $Bp$ operators are Hermitian and square to the identity. \newline
 
 \begin{definition} (Hermitian operator) Let $H$ be an Hilbert space and  $A$: $H \rightarrow H$ be a linear operator. An operator $A$ is called Hermitian if for all $\psi,\phi \in H$ we have that
 \end{definition}
@@ -457,7 +469,7 @@ Firstly, notice that $Av$ and $Bp$ operators are Hermitian and square to the ide
 
 
 where the daga symbol $\dagger$ represents the conjugate transpose and the $\langle \ \rangle$ the Hermitian inner product. A square matrix $A$ of complex numbers, representing a linear operator, is called hermitian if $A^{\dagger} = (A^*)^T = A$. One important consequence of Hermiticity is that the corresponding eigenvalues of the operator are real. Note also that for real matrices, as in the case of vertex and plaquette operators, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
-Furthermore, as mentioned above, vertex and plaquette operators satisfy the involutory property, which is derived from the unitarity of the matrices representing the vertex and plaquette operators, i.e. $X$ and $Z$ Pauli matrices. 
+Furthermore, as mentioned above, vertex and plaquette operators satisfy the involutory property, which is derived from the unitarity of the matrices representing the vertex and plaquette operators, i.e. $X$ and $Z$ Pauli matrices. \newline
 
 \begin{definition} (Unitary operator) Let $H$ be an Hilbert space and let $U$: $H \rightarrow U$ be a linear operator. We define $U$ to be complex unitary if for all $\psi,\phi \in H$ we have that
 \end{definition}
@@ -468,7 +480,7 @@ Furthermore, as mentioned above, vertex and plaquette operators satisfy the invo
 
 In terms of the conjugate transpose, we can define a complex matrix $U$ to be unitary if $ (U^*)^T=U^{-1}$. We can also define that a real matrix $U$, representing a linear operator, is unitary if $(U)^T = U^{-1}$ or, equivalently, if $(U)^T U=I$. In our case this directly translates to $U^2=1$ beacause for $X$ and $Z$ Pauli matrices we have that $U^T=U$. Note also that one important property of  unitary operators is that their eigenvalues have modulus equal to one.\newline
 
-Given the considerations made in definition 1.3 and 1.4 for real matrices, we can easily prove the first following proposition:
+Given the considerations made in definition 1.3 and 1.4 for real matrices, we can easily prove the first following proposition:\newline
 
 \begin{proposition} (Hermiticity and involutory property of $Av$ and $Bp$ operators)
 $Av$ and $Bp$ operators are Hermitian and satisfy the involutory property.\newline
@@ -582,12 +594,12 @@ It can also be proved that they satisfy the involutory property:\newline
 \]\newline
 
 
-Then, again we can write
+Then, again we can write \newline
 
 \begin{center}
-	$(Av)^{2} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{2} = \sigma_{x_1}^2 \sigma_{x_2}^2 \sigma_{x_3}^2 \sigma_{x_4}^2 = I$ \newline
+	$(Av)^{2} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{2} = \sigma_{x_1}^2 \sigma_{x_2}^2 \sigma_{x_3}^2 \sigma_{x_4}^2 = I$ 
 	
-	$(Bp)^{2} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{2} = \sigma_{z_1}^2 \sigma_{z_2}^2 \sigma_{z_3}^2 \sigma_{z_4}^2 = I$\newline
+	$(Bp)^{2} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{2} = \sigma_{z_1}^2 \sigma_{z_2}^2 \sigma_{z_3}^2 \sigma_{z_4}^2 = I$
 \end{center}
 
 \hfill $\square$
@@ -601,32 +613,32 @@ Given Proposition 1.1, we can know further characterize the opeartors in terms o
 \textit{Proof.}\newline
 Given the Hermiticity and involutory proof in 1.1, we firstly prove that Hermitian operators (and therefore our vertex and plaquette operators) have real eigenvalues: 
 
-Write the expression for the eigenvalues $Av |\xi \rangle = \lambda |\xi \rangle$ and take as hypothesis that $|\xi \rangle \neq 0$. Then, by means of the scalar product
+Write the expression for the eigenvalues $Av |\xi \rangle = \lambda |\xi \rangle$ and take as hypothesis that $|\xi \rangle \neq 0$. Then, by means of the scalar product \newline
 
 \begin{center}
-	$\langle \xi|Av|\xi \rangle = \lambda \langle \xi | \xi \rangle$\newline
+	$\langle \xi|Av|\xi \rangle = \lambda \langle \xi | \xi \rangle$
 	
-	$\lambda = \frac {\langle \xi|Av|\xi \rangle}{\langle \xi |\xi \rangle}$ = $\frac {\langle \xi|Av|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|Av^{\dagger}|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|Av|\xi\rangle^*}{||\xi||^2}$ = $\lambda^*$ \newline
+	$\lambda = \frac {\langle \xi|Av|\xi \rangle}{\langle \xi |\xi \rangle}$ = $\frac {\langle \xi|Av|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|Av^{\dagger}|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|Av|\xi\rangle^*}{||\xi||^2}$ = $\lambda^*$ 
 \end{center}
 
-Notice that we have applied antilinearity of the adjoint in the penultimate equality: 
+Notice that we have applied antilinearity of the adjoint in the penultimate equality: \newline
 
 \begin{center}
-	$(\langle \xi|Av^{\dagger}|\xi \rangle)^{\dagger}$ = $|\xi\rangle^{\dagger} (Av^{\dagger})^{\dagger} \langle\xi|^{\dagger}$ = $\langle \xi|Av|\xi \rangle^*$. \newline 
+	$(\langle \xi|Av^{\dagger}|\xi \rangle)^{\dagger}$ = $|\xi\rangle^{\dagger} (Av^{\dagger})^{\dagger} \langle\xi|^{\dagger}$ = $\langle \xi|Av|\xi \rangle^*$.  
 \end{center}
 
 Using hermiticity with the fact that $(Av)^2=I$ we can derive the unitarity of $Av$ and state that $Av Av^{\dagger} = Av^{\dagger} Av = (Av)^2 = I$, i.e. for a unitary operator $U$ we have $U^{\dagger}=U^{-1}$. \newline
 
 Given the property of unitary operators that states that their eigenvalues have modulus equal to one:\newline 
 
-By taking as hypothesis $|\xi \rangle \neq 0$, we write the expression $U |\xi \rangle = \lambda |\xi \rangle$ and its self-adjoint $\langle \xi| U^{\dagger} = \lambda^* \langle \xi|$. Then, knowing that $U^{\dagger}=U^{-1}$, by means of the scalar product we obtain 
+By taking as hypothesis $|\xi \rangle \neq 0$, we write the expression $U |\xi \rangle = \lambda |\xi \rangle$ and its self-adjoint $\langle \xi| U^{\dagger} = \lambda^* \langle \xi|$. Then, knowing that $U^{\dagger}=U^{-1}$, by means of the scalar product we obtain \newline
 
 \begin{center}
-	$\langle \xi|U U^{\dagger}|\xi\rangle = \lambda \lambda^* \langle \xi |\xi \rangle$\newline
+	$\langle \xi|U U^{\dagger}|\xi\rangle = \lambda \lambda^* \langle \xi |\xi \rangle$
 	
-	$\langle \xi|I|\xi \rangle = \lambda \lambda^* \langle \xi |\xi \rangle$\newline
+	$\langle \xi|I|\xi \rangle = \lambda \lambda^* \langle \xi |\xi \rangle$
 	
-	$\langle \xi|\xi \rangle = \lambda \lambda^* \langle \xi |\xi \rangle $\newline
+	$\langle \xi|\xi \rangle = \lambda \lambda^* \langle \xi |\xi \rangle $
 \end{center}
 
 Finally, since we already know that Hermitian operators have real eigenvalues we can write $|\lambda|^2 = 1$.\newline
@@ -637,7 +649,7 @@ The same reasoning can be carried out for the plaquette operators, \textit{as di
 
 \hfill $\square$ 
 
-Given the result of proposition 1.2, is easy to find the spectrum of the operators:
+Given the result of proposition 1.2, is easy to find the spectrum of the operators: \newline
 
 \begin{proposition} (Spectrum of $Av$ and $Bp$ operators) The spectrum of $Av$ and $Bp$ operators is equal to $ \{-1,+1\}$. 
 \end{proposition}
@@ -656,7 +668,7 @@ We now analyze the relationship between vertex and plaquette operators. Such rel
 %Av commutes with itself.\newline
 %Bp commutes with itself.\newline
 %Av commutes with Bp for an even number of edges.\newline
-Fix the origin of the coordinate system in the bottom left corner of the lattice as shown in figure 1.3.
+Fix the origin of the coordinate system in the bottom left corner of the lattice as shown in figure 1.3. \newline
 
 \begin{figure}
 \begin{center}
@@ -788,38 +800,38 @@ Fix the origin of the coordinate system in the bottom left corner of the lattice
 \end{figure}
 
 
-Then, we can define the two vectors representing the site of application of the vertex and plaquette operator, respectively over the lattice $L$ and dual lattice $L'$
+Then, we can define the two vectors representing the site of application of the vertex and plaquette operator, respectively over the lattice $L$ and dual lattice $L'$ \newline
 
 \begin{center}
-	$\vec{v}$= $n\hat{e_1} + m\hat{e_2}$, where $n,m \in \mathbb{Z}$ \newline
+	$\vec{v}$= $n\hat{e_1} + m\hat{e_2}$, where $n,m \in \mathbb{Z}$ 
 	
-	$\vec{p}$= $(n + \frac{1}{2}) \hat{e_1} + (m + \frac{1}{2}) \hat{e_2}$, where $n,m \in \mathbb{Z}$ \newline
+	$\vec{p}$= $(n + \frac{1}{2}) \hat{e_1} + (m + \frac{1}{2}) \hat{e_2}$, where $n,m \in \mathbb{Z}$ 
 \end{center}
 
-Rewrite the operators as follows:
+Rewrite the operators as follows: \newline
 
 \begin{center}
 	
-	$A_{\vec{v}} = \sigma^z_{\vec{v}+\frac{1}{2}\hat{e_1}} \sigma^z_{\vec{v}+\frac{1}{2}\hat{e_2}} \sigma^z_{\vec{v}-\frac{1}{2}\hat{e_1}} \sigma^z_{\vec{v}-\frac{1}{2}\hat{e_2}}$ \newline
+	$A_{\vec{v}} = \sigma^z_{\vec{v}+\frac{1}{2}\hat{e_1}} \sigma^z_{\vec{v}+\frac{1}{2}\hat{e_2}} \sigma^z_{\vec{v}-\frac{1}{2}\hat{e_1}} \sigma^z_{\vec{v}-\frac{1}{2}\hat{e_2}}$ 
 	
-	$B_{\vec{p}} = \sigma^x_{\vec{p}+\frac{1}{2}\hat{e_1}} \sigma^x_{\vec{p}+\frac{1}{2}\hat{e_2}} \sigma^x_{\vec{p}-\frac{1}{2}\hat{e_1}} \sigma^x_{\vec{p}-\frac{1}{2}\hat{e_2}}$ \newline
+	$B_{\vec{p}} = \sigma^x_{\vec{p}+\frac{1}{2}\hat{e_1}} \sigma^x_{\vec{p}+\frac{1}{2}\hat{e_2}} \sigma^x_{\vec{p}-\frac{1}{2}\hat{e_1}} \sigma^x_{\vec{p}-\frac{1}{2}\hat{e_2}}$ 
 	
 \end{center}
 
-In order to simplify the calculations we rewrite $Bp$ on the lattice $L$ by rewriting the indeces in terms of vector $\vec{v}$
+In order to simplify the calculations we rewrite $Bp$ on the lattice $L$ by rewriting the indeces in terms of vector $\vec{v}$ \newline
 
 \begin{center}
-	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_2}= n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})$\newline
+	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_2}= n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})$
 	
-	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_1}= (n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}$\newline
+	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_1}= (n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}$
 	
-	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_1}+\hat{e_2}= (n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}$\newline
+	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_1}+\hat{e_2}= (n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}$
 	
-	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_2}+\hat{e_1}= (n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}$ \newline
+	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_2}+\hat{e_1}= (n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}$ 
 \end{center}
 
 
-Then the $B_{\vec{p}}$ operator becomes:
+Then the $B_{\vec{p}}$ operator becomes: \newline
 
 \begin{center}
 	
@@ -827,7 +839,7 @@ Then the $B_{\vec{p}}$ operator becomes:
 	
 \end{center}
 
-and the Hamiltonian can be written by grouping the indices:
+and the Hamiltonian can be written by grouping the indices: \newline
 
 \begin{center}
 	
@@ -837,7 +849,7 @@ and the Hamiltonian can be written by grouping the indices:
 	
 \end{center}
 
-Now calcuate the commutator $[A_{\vec{v}},B_{\vec{v}}] = A_{\vec{v}}B_{\vec{v}} - B_{\vec{v}}A_{\vec{v}}$ by focusiing on the first term:
+Now calcuate the commutator $[A_{\vec{v}},B_{\vec{v}}] = A_{\vec{v}}B_{\vec{v}} - B_{\vec{v}}A_{\vec{v}}$ by focusiing on the first term: \newline
 
 \begin{center}
 	
@@ -850,6 +862,7 @@ Now calcuate the commutator $[A_{\vec{v}},B_{\vec{v}}] = A_{\vec{v}}B_{\vec{v}} 
 
 
 Matrices do not commute but for Pauli matrices we have the following commutation relationship :
+\newline
 
 \begin{center}
 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'} = \sigma^z_{\vec{v}'} \sigma^x_{\vec{v}} + 2* \sigma^x_{\vec{v}}\sigma^z_{\vec{v}'} \delta_{\vec{v} \vec{v}'}$\newline
@@ -876,7 +889,6 @@ This calculations conclude that $A_{\vec{v}},B_{\vec{p}}$ commute for an even nu
 
 \hfill $\square$\newline
 
-
 Now that we have described the toric code model and its operators, we proceed to compute its ground state, which is at the heart of its fault-tolerant behaviour. The ground state arises from the interaction of vertex and plaquette operators acting on the system's lattice. Through the characterization of these operators and the understanding of their role in enforcing some additional constraints, we gain insight into the structure of the ground state manifold. \newline
 In the following section, we derive the unique features of the ground state, including its topological order. \newline
 
@@ -886,6 +898,7 @@ In the following section, we derive the unique features of the ground state, inc
 
 \section{Ground State}
 \label{sec:GS}
+
 
 
 
