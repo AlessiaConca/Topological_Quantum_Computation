@@ -309,8 +309,7 @@ On each edge is located a spin-$\frac{1}{2}$ particle, i.e. a Fermion, represent
 For each cell on $L$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N$ represents both the total number of cells in $L$ and the dimension of the lattice. 
 Since all of these spins exhibit the same characteristics they are identified with identical particles, which will be useful to know to further study the properties of the model.
 
-The key part of the Toric Code are the so called "vertex" and "plaquette" operators that are going to be placed, respectively, on the vertices $v$ and cells $p$ of $L$. Such operators can be defined formally as in definition 1.1 and implemented by means of Pauli matrices as exemplified in figure 1.2.
-Throughout the description, the $Av$ operators are going to be shaded in blu, while the $Bp$ operators are going to be shaded in red. \newline
+The key part of the Toric Code are the so called "vertex" and "plaquette" operators that are going to be placed, respectively, on the vertices $v$ and cells $p$ of $L$. Such operators can be defined formally as in definition 1.1 and implemented by means of Pauli matrices as exemplified in figure 1.2. \newline
 
 \begin{definition} (Vertex and Plaquette operators) Given a vertex $v$ and a plaquette $p$ we can define, respectively, vertex and plaquette operators as tensor products over Pauli operators, each acting locally on four neighbouring spins. \newline
 	
@@ -323,7 +322,7 @@ Throughout the description, the $Av$ operators are going to be shaded in blu, wh
 \end{center}
 \end{definition}
 
-For the sake of simplicity, the tensor product is omitted when there is no risk of ambiguity in the interpretation. As the vertex and plaquette operators act locally, here we can omit writing down the tensor product with the identities for sites that are not part of the support of the operator. Thus, we can simply rewrite the operators by means of a product on the quartets of spins by indexing them as $j \in star(v)$ and $j \in bdy(p)$. \newline
+Note that, for the sake of simplicity, the tensor product can be omitted when there is no risk of ambiguity in the interpretation. Here, since the vertex and plaquette operators act locally, we can omit writing down the tensor product with the identity for sites that are not part of the support of the operator. Thus, we can simply rewrite the operators by means of the product of the Pauli matrices that act on the quartets of spins indexed as $j \in star(v)$ and $j \in bdy(p)$. \newline
  
 \begin{center}
 	$ Av = \prod_{j \in star(v)} Z_j $ \newline
@@ -433,7 +432,7 @@ For the sake of simplicity, the tensor product is omitted when there is no risk 
 \end{figure}
 
 
-All the elements that constitute the model of the toric code are brought together in its Hamiltonian. The Hamiltonian is also known as the energy operator associated to a quantum system and, as such, it describes its energy and encodes the rules that govern its dynamics. Definition 1.2 describes the Hamiltonian of the Toric Code.\newline
+All the elements that constitute the model of the toric code are brought together by its Hamiltonian. The Hamiltonian is the energy operator that characterizes a quantum system associated to it and, as such, it describes its energy and encodes the rules that govern its dynamics. Definition 1.2 describes the Hamiltonian of the Toric Code.\newline
 
 \begin{definition} (Toric Code Hamiltonian) Given vertex and plaquette operators each acting, respectively, on verteces and cells of the torus, we can define the following Hamiltonian for the system:
 \end{definition}
@@ -634,7 +633,7 @@ Finally, since we already know that Hermitian operators have real eigenvalues we
 
 Putting together the fact that $Av$ has real eigenvalues with unitarity we obtain that the only two remaining possibilities for the eigenvalues of $Av$ are $\pm 1$. \newline
 
-The same reasoning can be carried out for the plaquette operators. \textit{As discussed in \cite{QC}}.
+The same reasoning can be carried out for the plaquette operators, \textit{as discussed in \cite{QC}}.
 
 \hfill $\square$ 
 
@@ -643,9 +642,9 @@ Given the result of proposition 1.2, is easy to find the spectrum of the operato
 \begin{proposition} (Spectrum of $Av$ and $Bp$ operators) The spectrum of $Av$ and $Bp$ operators is equal to $ \{-1,+1\}$. 
 \end{proposition}
 
-We now analyze the relationship between vertex and plaquette operators. Such relationship is characterized by two fundamental mathematical concepts called "commutation" and "anticommutation". These relations also serve as an important result in understanding error detection and fault-tolerance of the toric code (see Chapter 3).	
+We now analyze the relationship between vertex and plaquette operators. Such relationship is characterized by two fundamental mathematical concepts called "commutation" and "anticommutation". These relations also serve as an important result in the understanding of error detection and fault-tolerance of the toric code (see Chapter 3).	%simultaneous measurement
 
-\begin{proposition} (Commutation of $Av$ and $Bp$ operators) The operator Av commutes with the operator Bp for an even number of edges.
+\begin{proposition} (Commutation of $Av$ and $Bp$ operators) The operator $Av$ commutes with the operator $Bp$ for an even number of edges.
 \end{proposition}
 
 
@@ -789,7 +788,7 @@ Fix the origin of the coordinate system in the bottom left corner of the lattice
 \end{figure}
 
 
-Then, we can define the two vectors representing the site of application of the vertex and plaquette operator, respectively over the lattice L and dual lattice L'
+Then, we can define the two vectors representing the site of application of the vertex and plaquette operator, respectively over the lattice $L$ and dual lattice $L'$
 
 \begin{center}
 	$\vec{v}$= $n\hat{e_1} + m\hat{e_2}$, where $n,m \in \mathbb{Z}$ \newline
@@ -862,7 +861,7 @@ $\begin{cases}
 	0, \hspace{1cm} if \hspace{1cm} \vec{v} \neq \vec{v}'
 \end{cases}$\newline
 
-which states that 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'}$ commutate for $\vec{v} \neq \vec{v}'$   but anticommutate for $\vec{v} = \vec{v}'$. This is known from the anticommutation relationship of Pauli matrices $\sigma^x \sigma^z = - \sigma^x \sigma^z$. Thus, for an even numer of overlapping edges, in our case 2 or 4, the commutator becomes:
+which states that 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'}$ commutate for $\vec{v} \neq \vec{v}'$   but anticommutate for $\vec{v} = \vec{v}'$. This is known from the anticommutation relationship of Pauli matrices $\sigma^x \sigma^z = - \sigma^x \sigma^z$. Thus, for an even numer of overlapping edges, in our case 2 or 4, the commutator becomes:\newline
 
 \begin{center}
 	
@@ -871,7 +870,7 @@ which states that 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'}$ commutate for $\vec{v
 	\sigma^z_{(n+\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m+\frac{1}{2})\hat{e_2}} \sigma^z_{(n-\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m-\frac{1}{2})\hat{e_2}} $ \newline
 
 \end{center}
-Instead, for an odd number of edges it becomes null $[A_{\vec{v}},B_{\vec{v}}]=0$.
+Instead, for an odd number of edges it becomes null: $[A_{\vec{v}},B_{\vec{v}}]=0$.
 
 This calculations conclude that $A_{\vec{v}},B_{\vec{p}}$ commute for an even numer of edges but anticommute for an odd number of edges.\newline
 
@@ -982,11 +981,6 @@ and possible future developments of your work have to be inserted in this chapte
 % ACKNOWLEDGEMENTS
 \chapter*{Acknowledgements}
 Here you might want to acknowledge someone.
-
-\cleardoublepage
-
-\end{document}
-
 
 \cleardoublepage
 
