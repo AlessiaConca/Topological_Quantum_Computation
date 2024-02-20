@@ -97,7 +97,7 @@
 %----------------------------------------------------------------------------
 %	ADD YOUR PACKAGES (be careful of package interaction)
 %----------------------------------------------------------------------------
-
+\usepackage{pgfplots}
 %----------------------------------------------------------------------------
 %	ADD YOUR DEFINITIONS AND COMMANDS (be careful of existing commands)
 %----------------------------------------------------------------------------
@@ -243,6 +243,17 @@ If necessary, an unnumbered chapter can be created by
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 \chapter{Toric code}
 \label{ch:chapter_one}%
 % The \label{...}% enables to remove the small indentation that is generated, always leave the % symbol.
@@ -252,8 +263,8 @@ If necessary, an unnumbered chapter can be created by
 \label{sec:Model}
 
 The toric code model is defined on a square lattice with periodic boundary conditions in both directions. These latter characteristics are typical of what is known as a torus topology or simply a torus, after which the model takes name.\newline
-A square lattice, here labelled as $L$, is a particular lattice defined in a two dimensional space. It is denoted as $\mathbb{Z}^{2}$ such that each lattice point is identified with a tuple of integers. Though, the above mentioned boundary conditions also specify that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1) \ mod \ N, j)$, $((i-1) \ mod \ N, j)$, $(i, (j+1) \ mod \ N)$ and $(i, (j-1) \ mod \ N)$, where $N$ is the dimension of the torus.  \newline
-Then, we are also going to consider a dual lattice, which will be labelled as $L'$, and that will be positioned as represented in figure 1.1, where the continuous line represents the main lattice $L$, while the dashed line represents its dual $L'$. 
+A square lattice, here labelled as $\mathcal{L}$, is a particular lattice defined in a two dimensional space. It is denoted as $\mathbb{Z}^{2}$ such that each lattice point is identified with a tuple of integers. Though, the above mentioned boundary conditions also specify that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1) \ mod \ N, j)$, $((i-1) \ mod \ N, j)$, $(i, (j+1) \ mod \ N)$ and $(i, (j-1) \ mod \ N)$, where $N$ is the dimension of the torus.  \newline
+Then, we are also going to consider a dual lattice, which will be labelled as $\mathcal{L}'$, and that will be positioned as represented in figure 1.1, where the continuous line represents the main lattice $\mathcal{L}$, while the dashed line represents its dual $\mathcal{L'}$. 
 On each edge is located a spin-$\frac{1}{2}$ particle, i.e. a Fermion, represented in the image below with an empty circle. Circles shaded in gray represent the boundary conditions. \newline
  
 
@@ -308,10 +319,10 @@ On each edge is located a spin-$\frac{1}{2}$ particle, i.e. a Fermion, represent
 \end{figure}
 
 
-For each cell on $L$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N$ represents both the total number of cells in $L$ and the dimension of the lattice. 
+For each cell on $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N$ represents both the total number of cells in $\mathcal{L}$ and the dimension of the lattice. 
 Since all of these spins exhibit the same characteristics they are identified with identical particles, which will be useful to know in the next sections in order to study the behaviour of the system.
 
-The key part of the Toric Code are the so called "vertex" and "plaquette" operators that are going to be placed, respectively, on the vertices $v$ and cells $p$ of $L$. Such operators can be defined formally as in definition 1.1 and implemented by means of Pauli matrices as exemplified in figure 1.2. \newline
+The key part of the Toric Code are the so called "vertex" and "plaquette" operators that are going to be placed, respectively, on the vertices $v$ and cells $p$ of $\mathcal{L}$. Such operators can be defined formally as in definition 1.1 and implemented by means of Pauli matrices as exemplified in figure 1.2. \newline
 
 
 \begin{figure}
@@ -421,9 +432,9 @@ The key part of the Toric Code are the so called "vertex" and "plaquette" operat
 	
 \begin{center}
 	
-	$ Av \coloneq Z_{left} \otimes Z_{right} \otimes Z_{upper} \otimes Z_{bottom}$ 
+	$ A_v \coloneq Z_{left} \otimes Z_{right} \otimes Z_{upper} \otimes Z_{bottom}$ 
 	
-	$ Bp \coloneq X_{left} \otimes X_{right} \otimes X_{upper} \otimes X_{bottom}$  
+	$ B_p \coloneq X_{left} \otimes X_{right} \otimes X_{upper} \otimes X_{bottom}$  
 
 \end{center}
 \end{definition}
@@ -432,9 +443,9 @@ where we have defined each $Z_i$ and $X_i$ to be equal to
 
 \begin{center}
 	
-	$Z_i = Id_{Lattice \setminus  Edge_i} \otimes \sigma^z_{Edge_i}$ 
+	$Z_i = \mathbb{I}_{\mathcal{L} \setminus  e_i} \otimes \sigma^z_{e_i}$ 
 	
-	$X_i = Id_{Lattice \setminus  Edge_i} \otimes \sigma^x_{Edge_i} $  
+	$X_i = \mathbb{I}_{\mathcal{L} \setminus  e_i} \otimes \sigma^x_{e_i} $  
 	
 \end{center}
 
@@ -442,9 +453,9 @@ where we have defined each $Z_i$ and $X_i$ to be equal to
 Note that, for the sake of simplicity, the tensor product can be omitted when there is no risk of ambiguity in the interpretation. Here, since the vertex and plaquette operators act locally, we can omit writing down the tensor product with the identity for sites that are not part of the support of the operator. Thus, we can simply rewrite them by means of the product of the Pauli matrices that act on the quartets of spins indexed as $j \in star(v)$ and $j \in bdy(p)$. 
  
 \begin{center}
-	$ Av = \prod_{j \in star(v)} Z_j $ 
+	$ A_v = \prod_{j \in star(v)} Z_j $ 
 	
-	$ Bp = \prod_{j \in bdy(v)} X_j $
+	$ B_p = \prod_{j \in bdy(v)} X_j $
 \end{center}
 
 
@@ -456,13 +467,13 @@ All the elements that constitute the model of the toric code are brought togethe
 \begin{center}
 	
 	$H = -\sum_{v} 
-	Av - \sum_{p} Bp $
+	A_v - \sum_{p} B_p $
 	
 \end{center}
 
-Each one of the $Av$ and $Bp$ operators that appear in the Hamiltonian share some important properties, which are going to be covered in the following definitions and will later be used to further characterize the action of the operators. \newline
+Each one of the $A_v$ and $B_p$ operators that appear in the Hamiltonian share some important properties, which are going to be covered in the following definitions and will later be used to further characterize the action of the operators. \newline
 
-Firstly, notice that $Av$ and $Bp$ operators are Hermitian and square to the identity. 
+Firstly, notice that $A_v$ and $B_p$ operators are Hermitian and square to the identity. 
 
 \begin{definition} (Hermitian operator) Let $H$ be an Hilbert space and  $A$: $H \rightarrow H$ be a linear operator. An operator $A$ is called Hermitian if for all $\psi,\phi \in H$ we have that
 \end{definition}
@@ -491,7 +502,7 @@ $Av$ and $Bp$ operators are Hermitian and satisfy the involutory property.
 \end{proposition}
 	
 \textit{Proof.}
-We know that the operator $ Av = \prod_{j \in star(v)} Z_j $ and that $ Bp = \prod_{j \in bdy(v)} X_j $ .\newline
+We know that the operator $ A_v = \prod_{j \in star(v)} Z_j $ and that $ B_p = \prod_{j \in bdy(v)} X_j $ .\newline
 Firstly, recall the form of the $\sigma_x$ and $\sigma_z$ matrices representing the Pauli gates $X$ and $Z$:
 
 
@@ -555,9 +566,9 @@ since Pauli matrices are real matrices and thus $A^{\dagger}=A^T$.
 Then, knowing that $[\sigma_i,\sigma_j]=0 \ for \ i=j$ we can write:
 
 \begin{center}
-	$(Av)^{\dagger} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{\dagger} = \sigma_{x_1}^{\dagger} \sigma_{x_2}^{\dagger} \sigma_{x_3}^{\dagger} \sigma_{x_4}^{\dagger} = \sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4} = Av$ \newline
+	$(A_v)^{\dagger} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{\dagger} = \sigma_{x_1}^{\dagger} \sigma_{x_2}^{\dagger} \sigma_{x_3}^{\dagger} \sigma_{x_4}^{\dagger} = \sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4} = Av$ \newline
 	
-	$(Bp)^{\dagger} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{\dagger} = \sigma_{z_1}^{\dagger} \sigma_{z_2}^{\dagger} \sigma_{z_3}^{\dagger} \sigma_{z_4}^{\dagger} = \sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4} = Bp$ \newline
+	$(B_p)^{\dagger} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{\dagger} = \sigma_{z_1}^{\dagger} \sigma_{z_2}^{\dagger} \sigma_{z_3}^{\dagger} \sigma_{z_4}^{\dagger} = \sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4} = Bp$ \newline
 \end{center}
 
 It can also be proved that they satisfy the involutory property:\newline
@@ -601,46 +612,46 @@ It can also be proved that they satisfy the involutory property:\newline
 Then, again we can write \newline
 
 \begin{center}
-	$(Av)^{2} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{2} = \sigma_{x_1}^2 \sigma_{x_2}^2 \sigma_{x_3}^2 \sigma_{x_4}^2 = I$ 
+	$(A_v)^{2} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{2} = \sigma_{x_1}^2 \sigma_{x_2}^2 \sigma_{x_3}^2 \sigma_{x_4}^2 = I$ 
 	
-	$(Bp)^{2} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{2} = \sigma_{z_1}^2 \sigma_{z_2}^2 \sigma_{z_3}^2 \sigma_{z_4}^2 = I$
+	$(B_p)^{2} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{2} = \sigma_{z_1}^2 \sigma_{z_2}^2 \sigma_{z_3}^2 \sigma_{z_4}^2 = I$
 \end{center}
 
 \hfill $\square$
 
-Given Proposition 1.1, we can know further characterize the opeartors in terms of their eigenvalues and define their spectrum. The spectrum of an operator in quantum mechanics represents the set of possible eigenvalues that can be obtained through the measurements of that operator on a quantum state. The trivial spectrum of vertices and plaquette operators will be of fundamental importance to perform fault-tolerant quantum compuations, in particular for measuring whether any error has occurred during computation (see Chapter 3). 
+Given Proposition 1.1, we can know further characterize the opeartors in terms of their eigenvalues and define their spectrum. The spectrum of an operator in quantum mechanics represents the set of possible values that can be obtained through the measurements of that operator on a quantum state; some of them are also eigenstates of the operator. The trivial spectrum of vertices and plaquette operators will be of fundamental importance to perform fault-tolerant quantum compuations, in particular for measuring whether any error has occurred during computation (see Chapter 3). 
 
-\begin{proposition} (Eigenvalues of $Av$ and $Bp$ operators) Given Hermitian operators $Av$ and $Bp$, which satisfy the involutory property, their associated eigenvalues are $\pm 1$.
+\begin{proposition} (Eigenvalues of $A_v$ and $B_p$ operators) Given Hermitian operators $A_v$ and $B_p$, which satisfy the involutory property, their associated eigenvalues are $\pm 1$.
 \end{proposition}
 
 
 \textit{Proof.}\newline
 Given the Hermiticity and involutory proof in 1.1, we firstly prove that vertex and plaquette operators have real eigenvalues: 
 
-write the expression for the eigenvalues $Av |\xi \rangle = \lambda |\xi \rangle$ and take as hypothesis that $|\xi \rangle \neq 0$. Then, by means of the scalar product:
+write the expression for the eigenvalues $A_v |\xi \rangle = \lambda |\xi \rangle$ and take as hypothesis that $|\xi \rangle \neq 0$. Then, by means of the scalar product:
 
 \begin{center}
-	$\langle \xi|Av|\xi \rangle = \lambda \langle \xi | \xi \rangle$
+	$\langle \xi|A_v|\xi \rangle = \lambda \langle \xi | \xi \rangle$
 	
-	$\lambda = \frac {\langle \xi|Av|\xi \rangle}{\langle \xi |\xi \rangle}$ = $\frac {\langle \xi|Av|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|Av^{\dagger}|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|Av|\xi\rangle^*}{||\xi||^2}$ = $\lambda^*$ 
+	$\lambda = \frac {\langle \xi|A_v|\xi \rangle}{\langle \xi |\xi \rangle}$ = $\frac {\langle \xi|A_v|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|A_v^{\dagger}|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|A_v|\xi\rangle^*}{||\xi||^2}$ = $\lambda^*$ 
 \end{center}
 
 Notice that we have applied antilinearity of the adjoint in the penultimate equality: 
 
 \begin{center}
-	$(\langle \xi|Av^{\dagger}|\xi \rangle)^{\dagger}$ = $|\xi\rangle^{\dagger} (Av^{\dagger})^{\dagger} \langle\xi|^{\dagger}$ = $\langle \xi|Av|\xi \rangle^*$.  
+	$(\langle \xi|A_v^{\dagger}|\xi \rangle)^{\dagger}$ = $|\xi\rangle^{\dagger} (A_v^{\dagger})^{\dagger} \langle\xi|^{\dagger}$ = $\langle \xi|A_v|\xi \rangle^*$.  
 \end{center}
 
-Therefore, we have derived that the eigenvalues of $Av$ are $\lambda = \lambda^*$, which implies that they must be real.
+Therefore, we have derived that the eigenvalues of $A_v$ are $\lambda = \lambda^*$, which implies that they must be real.
 
 %Using hermiticity with the fact that $(Av)^2=I$ we can derive the unitarity of $Av$ and state that $Av Av^{\dagger} = Av^{\dagger} Av = (Av)^2 = I$. \newline
 %Given the property of unitarity, which states that the corresponding eigenvalues of the operator have modulus equal to one,:\newline 
 
 Then we exploit unitarity while taking as hypothesis that $|\xi \rangle \neq 0$. 
-We write the expression $Av |\xi \rangle = \lambda |\xi \rangle$ and its self-adjoint $\langle \xi| Av^{\dagger} = \lambda^* \langle \xi|$. Recall that $Av^{\dagger}=Av^{-1}$, thus by means of the scalar product we obtain 
+We write the expression $A_v |\xi \rangle = \lambda |\xi \rangle$ and its self-adjoint $\langle \xi| A_v^{\dagger} = \lambda^* \langle \xi|$. Recall that $A_v^{\dagger}=A_v^{-1}$, thus by means of the scalar product we obtain 
 
 \begin{center}
-	$\langle \xi|U U^{\dagger}|\xi\rangle = \lambda \lambda^* \langle \xi |\xi \rangle$
+	$\langle \xi|A_v A_v^{\dagger}|\xi\rangle = \lambda \lambda^* \langle \xi |\xi \rangle$
 	
 	$\langle \xi|I|\xi \rangle = \lambda \lambda^* \langle \xi |\xi \rangle$
 	
@@ -651,7 +662,7 @@ We write the expression $Av |\xi \rangle = \lambda |\xi \rangle$ and its self-ad
 	$ |\lambda|^2 = 1 $
 \end{center}
 
-Which means that the eigenvalues of $Av$ have modulus equal to one, as expected. Though, this can happen for two real choices of $\lambda$ which are $+1$ and $-1$.
+Which means that the eigenvalues of $A_v$ have modulus equal to one, as expected. Though, this can happen for two real choices of $\lambda$ which are $+1$ and $-1$.
 Therefore, putting together hermiticity and unitarity, 
 
 \begin{center}
@@ -661,7 +672,7 @@ $\begin{cases}
 \end{cases}$
 \end{center}
 
-we obtain that the only two remaining possibilities for the eigenvalues of $Av$ are $\pm 1$. \newline
+we obtain that the only two remaining possibilities for the eigenvalues of $A_v$ are $\pm 1$. \newline
 
 The same reasoning can be carried out for the plaquette operators, \textit{as discussed in \cite{QC}}.
 
@@ -669,15 +680,15 @@ The same reasoning can be carried out for the plaquette operators, \textit{as di
 
 Given the result of proposition 1.2, is easy to find the spectrum of the operators: 
 
-\begin{proposition} (Spectrum of $Av$ and $Bp$ operators) The spectrum of $Av$ and $Bp$ operators is equal to $ \{-1,+1\}$. \newline \newline 
+\begin{proposition} (Spectrum of $A_v$ and $B_p$ operators) The spectrum of $A_v$ and $B_p$ operators is equal to $ \{-1,+1\}$. \newline \newline 
 \end{proposition}
 We now analyze the relationship between vertex and plaquette operators. Such relationship is characterized by two fundamental mathematical concepts called "commutation" and "anticommutation". These relations also serve as an important result in the understanding of error detection and fault-tolerance of the toric code (see Chapter 3).	%simultaneous measurement
 
-\begin{proposition} (Commutation of $Av$ and $Bp$ operators) The operator $Av$ commutes with the operator $Bp$ for an even number of edges.
+\begin{proposition} (Commutation of $A_v$ and $B_p$ operators) The operator $A_v$ commutes with the operator $B_p$ for an even number of edges.
 \end{proposition}
 
 
-\begin{proposition} (Anticommutation of $Av$ and $Bp$ operators) The operator $Av$ anticommutes with the operator $Bp$ for an odd number of edges.
+\begin{proposition} (Anticommutation of $A_v$ and $B_p$ operators) The operator $A_v$ anticommutes with the operator $_Bp$ for an odd number of edges.
 \end{proposition}
 
 
@@ -812,17 +823,17 @@ Fix the origin of the coordinate system in the bottom left corner of the lattice
 	\end{tikzpicture}
 \end{center}
 
-\caption{Veretx and plaquette operators according to the coordinate system with origin in (0,0). Here the plaquette operator is implemented on $L'$ in order to coherently define its edges from the point of view of $L$ using vector $\vec{v}$.}
+\caption{Veretx and plaquette operators according to the coordinate system with origin in (0,0). Here the plaquette operator is implemented on $\mathcal{L}'$ in order to coherently define its edges from the point of view of $\mathcal{L}$ using vector $\vec{v}$.}
 \label{fig:coordinate_system}
 \end{figure}
 
 
-Then, we can define the two vectors representing the site of application of the vertex and plaquette operator, respectively over the lattice $L$ and dual lattice $L'$ \newline
+Then, we can define the two vectors representing the site of application of the vertex and plaquette operator, respectively over the lattice $\mathcal{L}$ and dual lattice $\mathcal{L}'$ \newline
 
 \begin{center}
 	$\vec{v}$= $n\hat{e_1} + m\hat{e_2}$, where $n,m \in \mathbb{Z}$ 
 	
-	$\vec{p}$= $(n + \frac{1}{2}) \hat{e_1} + (m + \frac{1}{2}) \hat{e_2}$, where $n,m \in \mathbb{Z}$ 
+	$\vec{p}$= $(n + \frac{1}{2}) \hat{e_1} + (m + \frac{1}{2}) \hat{e_2}$, where $n,m \in \mathbb{Z}$.
 \end{center}
 
 Rewrite the operators as follows: \newline
@@ -835,7 +846,7 @@ Rewrite the operators as follows: \newline
 	
 \end{center}
 
-In order to simplify the calculations we rewrite $Bp$ on the lattice $L$ by rewriting the indeces in terms of vector $\vec{v}$ \newline
+In order to simplify the calculations we rewrite $Bp$ on the lattice $\mathcal{L}$ by rewriting the indeces in terms of vector $\vec{v}$ \newline
 
 \begin{center}
 	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_2}= n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})$
@@ -878,7 +889,7 @@ Now calcuate the commutator $[A_{\vec{v}},B_{\vec{v}}] = A_{\vec{v}}B_{\vec{v}} 
 \end{center}
 
 
-Matrices do not commute but for Pauli matrices we have the following commutation relationship :
+Matrices do not always commute but for Pauli matrices we have the following commutation relationship :
 \newline
 
 \begin{center}
@@ -907,53 +918,12 @@ This calculations conclude that $A_{\vec{v}},B_{\vec{p}}$ commute for an even nu
 \hfill $\square$\newline
 
 Now that we have described the toric code model and its operators, we proceed to compute its ground state, which is at the heart of its fault-tolerant behaviour. The ground state arises from the interaction of vertex and plaquette operators acting on the system's lattice. Through the characterization of these operators and the understanding of their role in enforcing some additional constraints, we gain insight into the structure of the ground state manifold. \newline
-In the following section, we derive the unique features of the ground state, including its topological order. \newline
+In the following section, we derive the unique features of the ground state, including its topological order. \newline \newline \newline \newline \newline \newline \newline \newline \newline
 
 %--------------
 
 
 
-\section{Ground state}
-\label{sec:GS}
-
-
-
-
-
-\section{Excited states}
-\label{sec:ES}
-
-
-
-
-\section{Anyonic excitations}
-\label{sec:AE}
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Coding on the toric code}
-\label{ch:chapter_two}
-
-\section{Classical error correction}
-\label{sec:CER}
-
-
-
-\section{Quantum error correction (QEC)}
-\label{sec:QEC}
-
-
-
-\section{QEC in the toric code}
-\label{sec:TC}
 
 
 
@@ -967,53 +937,4 @@ In the following section, we derive the unique features of the ground state, inc
 
 
 
-\chapter{Conclusions and future developments}
-\label{ch:conclusions}%
-A final chapter containing the main conclusions of your research/study
-and possible future developments of your work have to be inserted in this chapter.
 
-%-------------------------------------------------------------------------
-%	BIBLIOGRAPHY
-%-------------------------------------------------------------------------
-
-\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
-\bibliography{Thesis_bibliography} % The references information are stored in the file named "Thesis_bibliography.bib"
-
-%-------------------------------------------------------------------------
-%	APPENDICES
-%-------------------------------------------------------------------------
-
-\cleardoublepage
-\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
-
-
-
-
-
-
-
-% LIST OF FIGURES
-\listoffigures
-
-% LIST OF SYMBOLS
-% Write out the List of Symbols in this page
-\chapter*{List of Symbols} % You have to include a chapter for your list of symbols (
-\begin{table}[H]
-    \centering
-    \begin{tabular}{lll}
-        \textbf{Variable} & \textbf{Description} \\\hline\\[-9px]
-        $\bm{u}$ & solid displacement \\[2px]
-        $\bm{u}_f$ & fluid displacement \\[2px]
-    \end{tabular}
-\end{table}
-
-
-
-
-% ACKNOWLEDGEMENTS
-\chapter*{Acknowledgements}
-Here you might want to acknowledge someone.
-
-\cleardoublepage
-
-\end{document}
