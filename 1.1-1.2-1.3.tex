@@ -204,7 +204,7 @@ Qui va l'Abstract in lingua italiana della tesi seguito dalla lista di parole ch
 
 This document is intended to be both an example of the Polimi \LaTeX{} template for Master Theses,
 as well as a short introduction to its use. It is not intended to be a general introduction to \LaTeX{} itself,
-and the reader is assumed to be familiar with the basics of creating and compiling \LaTeX{} documents (see \cite{oetiker1995not, kottwitz2015latex}). 
+and the reader is assumed to be familiar with the basics of creating and compiling \LaTeX{} documents. 
 \\
 The cover page of the thesis must contain all the relevant information:
 title of the thesis, name of the Study Programme and School, name of the author,
@@ -352,7 +352,7 @@ On the otehr hand, they anticommute if
 
 \subsection{Spin-$\frac{1}{2}$ particles example}
 
-In order to exemplify the above properties of observables, we take spin-$\frac{1}{2}$ particles \textit{as discussed in \cite{Correggi}}, i.e. electrons, and define the components of the spin in three dimensions. In this case the Hilbert space is bidimensional and the observables can be written in terms of Pauli matrices in the basis $\{ | \frac{1}{2}, \pm \frac{1}{2} \rangle \}$ (spin-up and spin-down):
+In order to exemplify the above properties of observables, we take spin-$\frac{1}{2}$ particles \textit{as discussed in \cite{Cor23}}, i.e. electrons, and define the components of the spin in three dimensions. In this case the Hilbert space is bidimensional and the observables can be written in terms of Pauli matrices in the basis $\{ | \frac{1}{2}, \pm \frac{1}{2} \rangle \}$ (spin-up and spin-down):
 
 
 \[
@@ -701,7 +701,8 @@ then, for the sake of simplicity, we can omit the tensor product because there i
 \end{center}
 
 
-All the elements that constitute the model of the toric code are brought together by its Hamiltonian. Definition 1.2 describes the Hamiltonian of the Toric Code.
+All the elements that constitute the model of the toric code are brought together by its Hamiltonian. Definition 1.2 describes the Hamiltonian of the toric code 
+\textit{according to \cite{Her20}}.
 
 \begin{definition} (Toric Code Hamiltonian) Given vertex and plaquette operators each acting, respectively, on verteces and cells of the torus, we can define the following Hamiltonian for the system:
 \end{definition}
@@ -2410,7 +2411,12 @@ and possible future developments of your work have to be inserted in this chapte
 %-------------------------------------------------------------------------
 
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
-\bibliography{Thesis_bibliography} % The references information are stored in the file named "Thesis_bibliography.bib"
+%\bibliography{Thesis_bibliography} % The references information are stored in the file named "Thesis_bibliography.bib"
+\begin{thebibliography}{99} % Replace '99' with the widest label in your bibliography
+	\bibitem[Cor23]{Cor23} M. Correggi, \textit{Aspetti Matematici della Meccanica Quantistica}, 2023.
+	\bibitem[Her20]{Her20} P. Herringer, "The Toric Code", {\it RP}, {\bf 2020}.
+\end{thebibliography}
+
 
 %-------------------------------------------------------------------------
 %	APPENDICES
@@ -2420,26 +2426,8 @@ and possible future developments of your work have to be inserted in this chapte
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 
 
-
-
-
-
-
 % LIST OF FIGURES
 \listoffigures
-
-% LIST OF SYMBOLS
-% Write out the List of Symbols in this page
-\chapter*{List of Symbols} % You have to include a chapter for your list of symbols (
-\begin{table}[H]
-    \centering
-    \begin{tabular}{lll}
-        \textbf{Variable} & \textbf{Description} \\\hline\\[-9px]
-        $\bm{u}$ & solid displacement \\[2px]
-        $\bm{u}_f$ & fluid displacement \\[2px]
-    \end{tabular}
-\end{table}
-
 
 
 
