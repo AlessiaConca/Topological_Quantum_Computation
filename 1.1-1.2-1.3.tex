@@ -100,6 +100,7 @@
 \usepackage{pgfplots}
 \usepackage{mathrsfs}
 \usepackage{cancel}
+
 %----------------------------------------------------------------------------
 %	ADD YOUR DEFINITIONS AND COMMANDS (be careful of existing commands)
 %----------------------------------------------------------------------------
@@ -277,13 +278,14 @@ If necessary, an unnumbered chapter can be created by
 \section{Spin Observables in Quantum Mechanics}
 \label{sec:Observables}
 
-In the context of quantum mechanics, an observable is a quantity that can be observed in a quantum system. An observable over an Hilbert space $\mathscr{H}$ is represented by an Hermitian operator over $\mathscr{H}$.
+In the context of quantum mechanics, an observable is a quantity that can be observed in a quantum system. Some examples could be: the position, momentum or energy of a system. The latter is represented by the Hamiltonian, which not only describes the energy but also encodes the rules that govern the dynamic of the system. 
+Formally, an observable is over an Hilbert space $\mathscr{H}$ is represented by an Hermitian operator over $\mathscr{H}$.
 
 \begin{definition} (Hilbert space)
 	An Hilbert space $\mathscr{H}$ over $\mathbb{C}$ is a vector space on $\mathbb{C}$ over which is defined the scalar product $\langle \cdot \vert \cdot \rangle $: $\mathbb{C} \times \mathbb{C} \rightarrow \mathbb{C}$ .
 \end{definition}
 
-In particular, a spin observable is a physical quantity associated with the intrinsic angular momentum of elementary particles, such as electrons. The spin is a fundamental property of particles and is characterized by a quantum number typically denoted as $S$, representing the spin quantum number.
+In particular, a 'spin' observable is a physical quantity associated with the intrinsic angular momentum of elementary particles, such as electrons. The spin is a fundamental property of particles and is characterized by a quantum number typically denoted as $S$, representing the spin quantum number.
 In quantum mechanics, spin observables represent the possible measurements that can be made on the spin of a particle. Moreover, the spin is described using spin operators, which are, as anticipated above, hermitian matrices representing the components of the angular momentum of the spin along different directions. 
 
 
@@ -299,11 +301,12 @@ The hermiticity of an operator can be stated as follows:
 	$\langle A\psi|\phi \rangle = \langle \psi|A^{\dagger}\phi \rangle = \langle \phi|A\psi \rangle^{*}$.
 \end{center}
 
-The daga symbol $\dagger$ represents the conjugate transpose and the $\langle \ \rangle$ the Hermitian inner product. A square matrix $A$ of complex numbers, representing a linear operator, is called hermitian if $A^{\dagger} = (A^*)^T = A$. One important consequence of hermiticity is that the corresponding eigenvalues of the operator are real. Note also that for real matrices it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
+The daga symbol $\dagger$ represents the conjugate transpose and the $\langle \ \rangle$ the Hermitian inner product. A square matrix $A$ of complex numbers, representing a linear operator, is called hermitian if $A^{\dagger} = (A^*)^T = A$. There are two important consequences of hermiticity: firstly, it ensures that the operator possesses orthogonal eigenvectors; secondly, it ensures that the corresponding eigenvalues of the operator are real. 
+Notice also that, for real matrices, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
 %Furthermore, as mentioned above, vertex and plaquette operators satisfy the involutory property, which is derived from the unitarity of the matrices representing the vertex and plaquette operators, i.e. $X$ and $Z$ Pauli matrices. \newline 
 
 In order to understand the dynamics of observables in time we introduce anotehr important property: unitarity. 
-Observables, such as position, momentum, and energy, are represented by hermitian operators, which ensure that they possess real eigenvalues and orthogonal eigenvectors. Though, unitarity governs evolution in time of quantum states and operators. In particular, it ensures that the total probability of all possible outcomes of a measurement remains conserved over time, preserving the fundamental principles of quantum mechanics. 
+As previously said, observables such as position, momentum and energy are represented by hermitian operators, which ensure the existence of real eigenvalues and orthogonal eigenvectors. Though, unitarity governs the evolution in time of quantum states and operators. In particular, it ensures that the total probability of all possible outcomes of a measurement remains conserved over time, preserving the fundamental principles of quantum mechanics. 
 
 \begin{definition} (Unitary operator) Let $\mathscr{H}$ be an Hilbert space and let $U$: $\mathscr{H} \rightarrow U$ be a linear operator. We define $U$ to be complex unitary if for all $\psi,\phi \in \mathscr{H}$ we have that
 \end{definition}
@@ -320,7 +323,7 @@ Overall, hermiticity and unitarity provide a comprehensive framework for underst
 
 \subsection{The spectrum}
 
-In the framework of quantum mechanics, the concept of the spectrum emerges as a natural consequence of the unitarity and hermiticity of observables. The spectrum of an observable refers to the set of possible values that can be obtained when measuring the observable. 
+In the framework of quantum mechanics, the concept of the spectrum emerges as a natural consequence of the unitarity and hermiticity of observables. The spectrum of an observable refers to the set of possible values that can be obtained when measuring the physical quantity represented by the observable. 
 
 
 %The trivial spectrum of vertices and plaquette operators will be of fundamental importance to perform fault-tolerant quantum compuations, in particular for measuring whether any error has occurred during computation (see Chapter 3). 
@@ -347,10 +350,9 @@ On the otehr hand, they anticommute if
 \end{center}
 
 
-\newpage
 \subsection{Spin-$\frac{1}{2}$ particles example}
 
-In order to exemplify the above properties of observables, we take spin-$\frac{1}{2}$ particles, i.e. electrons, and define the components of the spin in three dimensions. In this case the Hilbert space is bidimensional and the observables can be written in terms of Pauli matrices in the basis $\{ | \frac{1}{2}, \pm \frac{1}{2} \rangle \}$ (spin-up and spin-down):
+In order to exemplify the above properties of observables, we take spin-$\frac{1}{2}$ particles \textit{as discussed in \cite{Correggi}}, i.e. electrons, and define the components of the spin in three dimensions. In this case the Hilbert space is bidimensional and the observables can be written in terms of Pauli matrices in the basis $\{ | \frac{1}{2}, \pm \frac{1}{2} \rangle \}$ (spin-up and spin-down):
 
 
 \[
@@ -373,7 +375,7 @@ In order to exemplify the above properties of observables, we take spin-$\frac{1
 \end{array}
 \]
 
-Pauli matrices satisfy hermiticity and unitarity, moreover they satisfy some specific commuation and anticommutation properties.
+Pauli matrices satisfy hermiticity and unitarity Moreover they satisfy some specific commuation and anticommutation properties.
 
 Commutation properties:
 
@@ -503,13 +505,14 @@ Similarly if we compute the tensor product explicitly, it becomes a simple produ
 
 The toric code model is defined on a square lattice with periodic boundary conditions in both directions. These latter characteristics are typical of what is known as a torus topology or simply a torus, after which the model takes name.\newline
 A square lattice, here labelled as $\mathcal{L}$, is a particular lattice defined in a two dimensional space. It is denoted as $\mathbb{Z}^{2}$ such that each lattice point is identified with a tuple of integers. Though, the above mentioned boundary conditions also specify that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1) \ mod \ N, j)$, $((i-1) \ mod \ N, j)$, $(i, (j+1) \ mod \ N)$ and $(i, (j-1) \ mod \ N)$, where $N$ is the dimension of the torus.  \newline
-Then, we are also going to consider a dual lattice, which will be labelled as $\mathcal{L}'$, and that will be positioned as represented in figure 1.1, where the continuous line represents the main lattice $\mathcal{L}$, while the dashed line represents its dual $\mathcal{L'}$. 
+Then, we are also going to consider a dual lattice, which will be labelled as $\mathcal{L}'$, and that will be positioned as represented in figure 1.1, where the continuous line represents the main lattice $\mathcal{L}$, while the dashed line represents its dual $\mathcal{L'}$.  	\newline
+
 On each edge is located a spin-$\frac{1}{2}$ particle, i.e. a Fermion, represented in the image below with an empty circle. Circles shaded in gray represent the boundary conditions. 
 For each cell on $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N$ represents both the total number of cells in $\mathcal{L}$ and the dimension of the lattice. 
 Since all of these spins exhibit the same characteristics they are identified with identical particles, which will be useful to know in the next sections in order to study the behaviour of the system.
 
-
-\begin{figure}
+%\afterpage{
+\begin{figure}[b]
 	\begin{center}
 		\begin{tikzpicture}
 			% Draw dashed lines
@@ -558,7 +561,7 @@ Since all of these spins exhibit the same characteristics they are identified wi
 	\caption{Square lattice with boundary conditions.}
 	\label{fig:lattice}
 \end{figure}
-
+%}
 
 \newpage
 The key part of the Toric Code are the so called "vertex" and "plaquette" operators that are going to be placed, respectively, on the vertices $v$ and cells $p$ of $\mathcal{L}$. Such operators can be defined formally as in definition 1.1 and implemented by means of Pauli matrices as exemplified in figure 1.2. 
@@ -698,7 +701,7 @@ then, for the sake of simplicity, we can omit the tensor product because there i
 \end{center}
 
 
-All the elements that constitute the model of the toric code are brought together by its Hamiltonian. The Hamiltonian is the energy operator that characterizes a quantum system associated to it and, as such, it describes its energy and encodes the rules that govern its dynamics. Definition 1.2 describes the Hamiltonian of the Toric Code.
+All the elements that constitute the model of the toric code are brought together by its Hamiltonian. Definition 1.2 describes the Hamiltonian of the Toric Code.
 
 \begin{definition} (Toric Code Hamiltonian) Given vertex and plaquette operators each acting, respectively, on verteces and cells of the torus, we can define the following Hamiltonian for the system:
 \end{definition}
@@ -710,9 +713,7 @@ All the elements that constitute the model of the toric code are brought togethe
 	
 \end{center}
 
-Each one of the $A_v$ and $B_p$ operators that appear in the Hamiltonian share some important properties, which are going to be covered in the following definitions and will later be used to further characterize the action of the operators. \newline
-
-Firstly, notice that $A_v$ and $B_p$ operators are Hermitian and square to the identity. Given the considerations made in definition 1.3 and 1.4 for real matrices, we can easily prove the first following proposition:
+Each one of the $A_v$ and $B_p$ operators that appear in the Hamiltonian share some important properties. Firstly, notice that $A_v$ and $B_p$ operators are Hermitian and square to the identity. Given the considerations made in definition 1.2 and 1.3 for real matrices, we can easily prove the first following proposition:
 
 \begin{proposition} (Hermiticity and involutory property of $Av$ and $Bp$ operators)
 $Av$ and $Bp$ operators are Hermitian and satisfy the involutory property.
@@ -836,7 +837,7 @@ Then, again we can write \newline
 
 \hfill $\square$
 
-Given Proposition 1.1, we can know further characterize the opeartors in terms of their eigenvalues and define their spectrum.
+Given proposition 1.1, we can know further characterize the opeartors in terms of their eigenvalues and define their spectrum.
 
 \begin{proposition} (Eigenvalues of $A_v$ and $B_p$ operators) Given Hermitian operators $A_v$ and $B_p$, which satisfy the involutory property, their possible eigenvalues are $\pm 1$.
 \end{proposition}
@@ -901,7 +902,7 @@ Given the result of proposition 1.2, is easy to find the spectrum of the operato
 \end{proposition}
 
 In particular, if we compute the corresponding eigenvalue of $A_v$ (or $B_p$), this can either assume value $-1$ or $+1$ according to the fact that the Pauli matrices that make up the operator anticommute, respectively, with an odd or even number of edges.
-In fact we can prove that following relationships between vertex and plaquette operators hold:
+In fact we can prove that following relationships between vertex and plaquette operators holds:
 
 \begin{proposition} (Commutation of $A_v$ and $B_p$ operators) The operator $A_v$ commutes with the operator $B_p$ for an even number of edges.
 \end{proposition}
@@ -1165,7 +1166,7 @@ In the following section, we derive the unique features of the ground state, inc
 
 The ground state of the toric code, represents the system's lowest energy configuration. What makes this ground state particularly intriguing is its highly degenerate nature, meaning that there are numerous distinct configurations that all share the same minimum energy. 
 The ground state exhibit topological order, characterized by non-local correlations between spins. This means that the model is robust  even when the system undergoes local perturbations.  In fact, quantum entanglement between spins is not confined to neighboring pairs, instead, it extends over long distances and involves collective behaviours of spins that cannot be understood by considering them individually.
-Not only, as we will see, these features are intimately related to the underlying topology of the torus. This topological protection ensures the robustness of quantum information against local perturbations, giving the toric code the potential to be feasibly applied in quantum information processing.\newline
+Not only, as we will see, these features are intimately related to the underlying topology of the torus. This topological protection ensures the robustness of quantum information against local perturbations, giving the toric code the potential to be feasibly applied in quantum information processing (see Chapter 3).\newline
 
 We start by explicitly defining the ground state by making use of the properties of the vertex and plaquette operators that we have derived in the previous section.
 
@@ -2307,9 +2308,11 @@ From Proposition 1.6 and Proposition 1.7, also naturally follows the degeneracy 
 \begin{proposition} (Degeneracy of the ground state) The degeneracy of the ground state manifold is $4$. 
 \end{proposition}
 
-Because the four classes of eigenstates are $Bp$-$invariant$, we can construct a valid ground state through the configurations belonging to one the four classes, as these configurations respect both contraint (1) and (2).\newline \newline \newline \newline \newline
+Because the four classes of eigenstates are $Bp$-$invariant$, we can construct a valid ground state through the configurations belonging to one the four classes, as these configurations respect both contraint (1) and (2).\newline 
 
-\vspace*{15cm}
+Now that we have derived the ground state configurations of the toric code, we focus on studying its excited states. These states, arise from perturbations or interactions within the system and offer valuable insights into the dynamic behavior of the toric code beyond its ground state equilibrium. While the ground state embodies the system's lowest energy configuration and serves as the foundation of its stability, the excited states provide an insight into the system's response to external influences. 
+Through the systematic study of these excitations we discover some intrinsic characteristics of the toric code that will serve us later to explain its fault-tolerant nature.
+
 
 %-------------------------
 
@@ -2327,7 +2330,7 @@ Because the four classes of eigenstates are $Bp$-$invariant$, we can construct a
 
 
 
-
+\newpage
 \section{Excited states}
 \label{sec:ES}
 
@@ -2355,7 +2358,7 @@ Because the four classes of eigenstates are $Bp$-$invariant$, we can construct a
 
 
 
-
+\newpage
 \section{Anyonic excitations}
 \label{sec:AE}
 
