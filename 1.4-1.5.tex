@@ -1,6 +1,5 @@
 
 
-
 \newpage
 \section{Excited states}
 \label{sec:ES}
@@ -10,7 +9,7 @@
 Taking into account the results yielded by the examination of the physical system in the previous chapters we will now proceed to describe, firstly, what are the excitations on the ground state and what kind of excitations we can obtain on the ground state; after this, we will examine the exchange statistics of the excitations.\newline
 In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent deviations from the system's ground state. These excitations are associated with elementary quantum particles that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties, and response to external perturbations. \newline
 
-In the particular case of the Toric Code, such low-energy excitations can be created in two ways: 
+In the particular case of the toric Code, such low-energy excitations can be created in two ways: 
 
 \begin{enumerate}
 	\item through the application of an open-ended string $S^x$ made up of $\sigma^x$ operators on the ground state;
@@ -113,16 +112,14 @@ We can prove that if a string $S^x$ of $\sigma^x$ operators is open-ended, then 
 \end{proposition}
 
 \textit{Proof.}\newline
-We want to show that $A_v S^x + S^x A_v=0$.\newline
-
-Knowing that 
+We want to show that $A_v S^x + S^x A_v=0$. Knowing that 
 
 \begin{center}
 	$A_v = \prod_{i=1}^{4} \sigma_i^z$ \\ 
 	$S^x = \prod_{j=1}^{N} \sigma_j^x$
 \end{center}
 
-by substitution we obtain the following expression: \newline
+by substitution we obtain the following expression: 
 
 \begin{center}
 	$\prod_{i=1}^{4} \prod_{j=1}^{N} \sigma_j^x + \prod_{j=1}^{N} \sigma_j^x \prod_{i=1}^{4} \sigma_i^z = 0$ $(1)$
@@ -135,19 +132,18 @@ remeber that only one $\sigma_i^z$ will overlap with the extremity of the string
 	$\sigma_v^x \sigma_{v'}^z =  \sigma_{v'}^z \sigma_v^x$ for $v \neq v'$ 
 \end{center}
 
-if for simplicity we fix $N=2$ we can easily see that :\newline
+if for simplicity we fix $N=2$ we can easily see that :
 
 \begin{center}
 	$(\sigma_1^z \sigma_2^z \sigma_3^z \sigma_4^z)(\sigma_1^x \sigma_2^x)  = - (\sigma_1^x \sigma_2^x)(\sigma_1^z \sigma_2^z \sigma_3^z \sigma_4^z) $ 
 \end{center}
 
-having supposed that, for example, the extremity $\sigma_1^x$ overlaps with the $\sigma_3^z$ edge part of the $A_v$ operator. This can then be easily generalized for $N$ Pauli operators. Finally, if we substitute such expressione in $(1)$ we obtain that the overall equation is in fact equal to zero.\newline
-
+having supposed that, for example, the extremity $\sigma_1^x$ overlaps with the $\sigma_3^z$ edge part of the $A_v$ operator. This can then be easily generalized for $N$ Pauli operators. Finally, if we substitute such expressione in $(1)$ we obtain that the overall equation is in fact equal to zero. \newline
 This procedure should be iterated also for the other extremity of the string $S^x$ to show that the operator commutes with two $A_v$ operators, one for each endpoint.\newline
 
-\hfill $\square$ \newline
+\hfill $\square$ 
 
-In the same way, we could prove that, if we take a string $S^z$ made up of $\sigma_z$ operators still open-ended, the $\sigma^z$ operators at its endpoints will anticommute with one $B_p$ each.\newline
+In the same way, we could prove that, if we take a string $S^z$ made up of $\sigma_z$ operators still open-ended, the $\sigma^z$ operators at its endpoints will anticommute with one $B_p$ each.
 
 \begin{proposition}(Anticommutation od $S^z$)
 	The string $S^z$ operators anticommute with two $B_p$ each.
@@ -190,15 +186,15 @@ Summing up term by term :
 
 Thus, if the energy of the Ground State as we have defined it in the previous chapters is $-2N$ by acting with a string operator on  it we obtain a final energy equal to $-2N+2$.
 
-\hfill $\square$ \newline
+\hfill $\square$ 
 
 %Firstly, we study the individual statistics of electric charges and magnetic votices, then we argue their mutual statistics.\newline
 
-\newpage
 Let's analyze the statistics of $e$-particles in the context of the ground state, \textit{as exemplified in \cite{Rao16}}. If we take a simple string operator $\sigma^z|GS\rangle$ , where $|GS\rangle$ denotes the ground state, it creates two $e$-particles in the vertices adjacent to the edge as shown in figure 1.11. \newline 
 We know that a string operator of the form $\prod_{j=1}^{N} \sigma_j^z$ allows the separation of these two excitations. In fact, as illustrated below, the exchange of these particles becomes possible by applying the string operator in such a way that it moves the excitations around the lattice until they reach configuration shown in figure 1.11(c). 
-However, due to the commutation of all $\sigma^x$ with each other, after the application of a closed loop of $\sigma^x$ (last passage in figure 1.11), there is no overall acquired phase. Consequently, the $e$-excitations exhibit bosonic statistics. A similar argument can be made for the $m$-excitations, establishing them as bosons as well.\newline
+However, due to the commutation of all $\sigma^x$ with each other, after the application of a closed loop of $\sigma^x$ (last passage in figure 1.11), there is no overall acquired phase. Consequently, the $e$-excitations exhibit bosonic statistics. A similar argument can be made for the $m$-excitations, establishing them as bosons as well.
 
+\newpage
 %picture
 \begin{figure}
 \begin{center}
@@ -533,22 +529,6 @@ However, due to the commutation of all $\sigma^x$ with each other, after the app
 \end{figure}
 
 %--------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
