@@ -2991,7 +2991,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 \section{Anyonic excitations}
 \label{sec:AE}
 
-Let's examine the mutual statistics between $e$ and $m$ particles. Initially, we generate pairs of excitations at distinct chosen sites by applying the operator $\sigma^z\sigma^x|GS\rangle$. Afterward, we separate the excitations using string operators and we move an $m$-particle around an $e$-particle, as depicted in figure 1.14. Notably, there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. 
+Let's examine the mutual statistics between $e$ and $m$ particles. Initially, we generate pairs of excitations at distinct chosen sites by applying the operator $\sigma^z\sigma^x|GS\rangle$ as shown in figure 1.14. Afterward, we separate the excitations using string operators and we move an $m$-particle around an $e$-particle, as depicted in figure 1.15. Notably, there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. 
 The closed loop can be eliminated, leading to the following transformation:
 
 \begin{center}
@@ -3010,10 +3010,91 @@ since we are going all the way around the particle, we assume to have two exchan
 	$R^2 = - 1 \rightarrow ( e^{-\frac{i\pi}{2}})^2 = - 1  \rightarrow R = e^{-\frac{i\pi}{2}} = \pm i $
 \end{center}
 
-this results falls out of the usual bosonic/fermionic statistics, thus we can say that the low-energy excitations of the ground state exhibit anyonic statistics.\newline
+this results falls out of the usual bosonic/fermionic statistics, thus we can say that the low-energy excitations of the ground state exhibit anyonic statistics (\textit{any} statistics).\newline
 
 
 %picture
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (\i,-3) -- (\i,3);
+			}
+			\foreach \j in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (-3,\j) -- (3,\j);
+			}
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[red!50, line width=1.5mm] (-2, \j) -- (1, \j);
+				%\draw node[] at (0,\j) {};
+				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=right:\textbf{\large $e$}] at (0.5,\j) {};
+				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,\j) {};
+				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{\large $e$}] at (-1.5,\j) {};
+				
+			}
+			
+			
+			\foreach \j in {-0.5,...,-0.5}
+			{
+				
+				\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (0.5, \j);
+				
+				
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large $m$}] at (-2,\j) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large $m$}] at (0,\j) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$}] at (-1,\j) {};
+				
+			}
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	
+	\caption{Creation of the $e$-excitations and $m$-excitations.}
+	\label{fig:anyons1}
+\end{figure}
+
 \begin{figure}
 \begin{center}
 	\begin{tikzpicture}
@@ -3122,6 +3203,8 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 		
 	\end{tikzpicture}
 \end{center}
+
+
 \caption{Creation of an anyonic excitation by braiding of $e$ and $m$ pairs of particles. Here we loop the $e$-excitation around an $m$-excitation. The red loop of $\sigma^x$ can be removed with the result that the GS acquires a phase of $-1$.}
 \label{fig:anyons}
 \end{figure}
