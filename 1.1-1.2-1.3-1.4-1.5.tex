@@ -2650,17 +2650,17 @@ Let us first consider the exchange statistics of two particles in three dimensio
 	$S = \int_{t_1}^{t_2}dt \textit{$\mathcal{L}$} [ r_1(t),r_2(t) ] $.
 \end{center}
 
-\textit{In quantum mechanics, the path integral formulation involves considering all possible paths between the initial and final states and assigning a phase factor $e^{iS}$ to each.} Then, the probability amplitude for a system to evolve from one point to another is given by the sum over all paths of these phase factors. \textit{\cite{Wil91}}. Since we are talking about a system of indistinguishable particles, we will only have two classes of paths in three dimensions: the direct paths and paths with exchanges. This is because the final configuration at time $t_2$ will always be the same due to indistinguishability. Though, notice that even though two paths may lead to the same final configuration they can exhibit different behaviours. To visualize this, consider the case where particles move in space but their paths do not intersect. In such a scenario, paths are constrained to move on a sphere. Therefore, closed paths on the sphere emerge when particles return to their original positions (no exchange) or reach the antipodal point (exchange). In fact, we will have three distinct paths (figure 1.12): 
+\textit{In quantum mechanics, the path integral formulation involves considering all possible paths between the initial and final states and assigning a phase factor $e^{iS}$ to each.} Then, the probability amplitude for a system to evolve from one point to another is given by the sum over all paths of these phase factors. \textit{\cite{Wil91}}. Since we are talking about a system of indistinguishable particles, we will only have two classes of paths in three dimensions: the direct paths and paths with exchanges. This is because the final configuration at time $t_2$ will always be the same due to indistinguishability. Though, notice that even though two paths may lead to the same final configuration they can exhibit different behaviours. To visualize this, consider the case where particles move in space but their paths do not intersect. In such a scenario, paths are constrained to move on a sphere. Therefore, closed paths on the sphere emerge when particles return to their original positions (no exchange) or reach the antipodal point (exchange). In fact, we will have three distinct types of paths (figure 1.12): 
 
 %picture
 
 
 \begin{enumerate}
-	\item[Path a]: being a closed loop without exchange; it can disappear if reduced to a point, implying that the wave-function cannot acquire any phase; 
+	\item[(a)]: closed loops without exchange; they can disappear if reduced to a point, implying that the wave-function cannot acquire any phase; 
 	
-	\item[Path b] : involving a single exchange; it connects two fixed points on the sphere, making it impossible to erase it. Consequently, this exchange introduces a phase in the wave-function;
+	\item[(b)] : involve a single exchange; tehy connect two fixed points on the sphere, making it impossible to erase them. Consequently, this types of exchanges introduce a phase in the wave-function;
 	
-	\item[Path c] : forming a closed loop with two exchanges, as in case 1; as a result, also in this case the wavefunction does not acquire any additional phase.
+	\item[(c)] : closed loops with two exchanges, as in case 1; as a result, also in this case the wavefunction does not acquire any additional phase.
 \end{enumerate}
 
 \begin{figure}
@@ -2672,7 +2672,7 @@ Let us first consider the exchange statistics of two particles in three dimensio
 
 Overall, we only have two classes of paths: those that do not involve any exchange as in class a and c, and those that are characterized by an exchange as in class b. {\it If we let $\eta$ represent the phase acquired by the wave function under a single exchange, then since two exchanges are equivalent to no exchange $\eta^2=1$ and it follows that $\eta = \pm 1 $. We can conclude that the only possible statistics in three dimensions are indeed the fermionic and bosonic ones.  \cite{Rao16}}.\newline
 
-In terms of the path integral formulation that we have provided above, what we will get is that the overall amplitude will correspond to:
+In terms of the path integral formulation that we have provided above, what we will get is an overall amplitude equal to:
 
 \begin{center}
 	$\sum_{direct \ paths} e^{iS}$ + $e^{i \phi} \sum_{exchange \ paths} e^{iS}$.
@@ -2681,19 +2681,19 @@ In terms of the path integral formulation that we have provided above, what we w
 Since exchanging the particles twice leads again to a direct path, we will have $e^{2i \phi} = 1$. This means that $\phi$ can either be 0 or $\pi$ giving rise, respectively, to bosonic and fermionic statistics. 
 
 \begin{enumerate}
-	\item $\phi = 0$: This case leads to the constructive interference of the exchange paths. The resulting particles are known as bosons, and their behavior is characterized by this specific phase condition;
+	\item $\phi = 0$: this case leads to the constructive interference of the exchange paths. The resulting particles are known as bosons, and their behavior is characterized by this specific phase condition;
 	
-	\item $\phi = \pi$: This case results in destructive interference between the exchange paths. The particles corresponding to this scenario are referred to as fermions, and their behavior is governed by this particular phase condition.
+	\item $\phi = \pi$: this case results in destructive interference between the exchange paths. The particles corresponding to this scenario are referred to as fermions, and their behavior is governed by this particular phase condition.
 \end{enumerate}
 
-In contrast to what stated above, in the two dimensional case, the topology of the space configuartion changes. In fact, in this case we end up moving on a circle. Though, in this case several possible paths are possible, in particular closed paths. In fact, if we look again at the three classes of paths we see that we now have (figure 1.13):
+In contrast to what stated above, in the two dimensional case the topology of the space configuartion changes. In fact, in this case we end up moving on a circle. Though, in this case several possible paths are possible, in particular closed paths. In fact, if we look again at the three classes of paths we obtain these three types(figure 1.13):
 
 \begin{enumerate}
-	\item[Path a] : those that can be shrunk into a point;
+	\item[(a)] : those that can be shrunk into a point;
 
-	\item[Path b] : those that cannot be contracted into a point as the endpoints remain fixed;
+	\item[(b)] : those that cannot be contracted into a point as the endpoints remain fixed;
 
-	\item[Path c] : also this kind of paths cannot be shrunk into a point since they wind all  the way around the circle. In three dimensions, the path that forms under two exchanges can be erased, but this is not possible if the exchange happens in two dimensions.
+	\item[(c)] : also this kind of paths cannot be shrunk into a point since they wind all  the way around the circle. Notice that in three dimensions the path that forms under two exchanges can be erased but this is not possible if the exchange happens in two dimensions. This will be useful to define a third type of quasiparticles that exists only in 2D (section 1.5).
 \end{enumerate}
 
 \begin{figure}[H]
@@ -2715,11 +2715,19 @@ where for $ \phi = 0, \pi$ we would obtain the usual bosons and fermions statist
 Such diverse statistics in two dimensions are called \textit{anyonic} (see section 1.5).\newline
 
 We should also briefly mention that, in a formal mathematical context, the analysis presented in this section categorizes fermions and bosons within the permutation group $\mathbb{P}_N$. \textit{\cite{Cor23}}. Conversely, the subsequent analysis of anyonic excitations classifies them according to the braid group $\mathbb{B}_N$. \textit{\cite{Rao16}}. \newline
-
 The permutation group $\mathbb{P}_N$ is defined as the set of all possible permutations involving $N$ objects. Within this group, the operation of group multiplication (exchange) corresponds to the sequential application of permutations, and the group inverse involves the inverse of the permutation. Here, executing a permutation twice on two objects results in the initial configuration of the system. Consequently, particles exhibiting transformations according to the representations of the permutation group can exclusively fall into the categories of either bosons or fermions. \newline
+On the other hand, when it comes to objects that are part of the braid group $\mathbb{B}_N$, we can visualise the process of moving (or exchanging) particles as paths in spacetime with time being the vertical axis and space being the horizontal axis. The particles can circle around each other and form closed paths by coming back to their original positions. \textit{\cite{Wil91}}. \newline
 
-On the other hand, when it comes to objects that are part of the braid group $\mathbb{B}_N$, we can visualise the process of moving (or exchanging) particles as paths in spacetime with time being the vertical axis and space being the horizontal axis. The particles can circle around each other and form closed paths by coming back to their original positions. \textit{\cite{Wil91}}. In a formal sense, we define the braid group $\mathbb{B}_N$ as the collection of diverse trajectories that arise during the transport of $N$ particles. \newline
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{"../Thesis/Immagine 2024-02-23 134521"}
+	\caption{\textit{ Identical particles exchange position twice as
+			they travel in three dimensions (no exchange). Particle a and b move along a closed path in two dimesions (non contractible). From:\cite{Wil91}}.}
+	\label{fig:immagine-2024-02-23-134521}
+\end{figure}
 %----
+
 
 We can now analyze the statistics of $e$-particles in the context of the ground state of the toric code. If we take a simple string operator $\sigma^z|GS\rangle$ , where $|GS\rangle$ denotes the ground state, it creates two $e$-particles in the vertices adjacent to the edge, as shown in figure 1.14. We know that a string operator of the form $\prod_{j=1}^{N} \sigma_j^z$ allows the separation of these two excitations. In fact, as illustrated in figure 1.14, the exchange of these particles becomes possible by applying the string operator in such a way that it moves the excitations around the lattice until they reach configuration shown in figure 1.14(c). However, due to the commutation of all $\sigma^x$ with each other, after the application of a closed loop of $\sigma^x$ (last passage in figure 1.14), there is no overall acquired phase. Consequently, the $e$-excitations exhibit bosonic statistics. \textit{\cite{Rao16, Her20}}. A similar argument can be carried out for the $m$-excitations, establishing them as bosons as well. 
 
@@ -3094,7 +3102,7 @@ The closed loop can be eliminated, leading to the following transformation:
 	$\sigma_i^z\sigma_j^x|GS\rangle = - \sigma_i^x\sigma^z|GS\rangle$
 \end{center}
 
-if we denote the exchange operator as { \it the braiding operator} $R$ then the wave function relation should be the following:
+if we denote the exchange operator as {\it the braiding operator} $R$ then, according to what we said in section 1.4.1, the wave function relation should be the following:
 
 \begin{center}
 	$R^2\psi(e,m) = - \psi(e,m)$
