@@ -1215,7 +1215,7 @@ $\begin{cases}
 	0, \hspace{1cm} if \hspace{1cm} \vec{v} \neq \vec{v}'
 \end{cases}$\newline
 
-which states that 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'}$ commutate for $\vec{v} \neq \vec{v}'$   but anticommutate for $\vec{v} = \vec{v}'$. This is known from the anticommutation relationship of Pauli matrices $\sigma^x \sigma^z = - \sigma^x \sigma^z$. Thus, for an even numer of overlapping edges, in our case 2 or 4, the commutator becomes:\newline
+which states that 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'}$ commutes for $\vec{v} \neq \vec{v}'$   but anticommutes for $\vec{v} = \vec{v}'$. This is known from the anticommutation relationship of Pauli matrices $\sigma^x \sigma^z = - \sigma^x \sigma^z$. Thus, for an even numer of overlapping edges, in our case 2 or 4, the commutator becomes:\newline
 
 \begin{center}
 	
@@ -1229,6 +1229,8 @@ Instead, for an odd number of edges the commutator vanishes: $[A_{v},B_{p}]=0$.
 These calculations conclude that $A_{v},B_{p}$ commute for an even numer of edges but anticommute for an odd number of edges.\newline
 
 \hfill $\square$\newline
+
+In the same way, we notice that two vertex/plaquette operators applied on different sites always commute; this is because they either do not share any edge or they share only one.\newline
 
 Now that we have described the toric code model and its operators, we proceed to compute its ground state, which is at the heart of its fault-tolerant behaviour. The ground state arises from the interaction of vertex and plaquette operators acting on the system's lattice. Through the characterization of these operators and the understanding of their role in enforcing some additional constraints, we gain insight into the structure of the ground state manifold. \newline
 In the following section, we derive the unique features of the ground state, including its topological order. \newline 
@@ -2441,21 +2443,33 @@ Through the systematic study of these excitations we discover some intrinsic cha
 
 %We shall now examine the case of a square lattice with boundary conditions, i.e. the toric code. \newline
 
-Taking into account the results yielded by the examination of the physical system in the previous chapters we will now proceed to describe, firstly, what are the excitations on the ground state and what kind of excitations we can obtain on it; after this, we will examine the exchange statistics of the excitations.\newline
-In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent deviations from the system's ground state. These excitations are associated with elementary quantum particles that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties, and response to external perturbations. \newline
+Taking into account the results yielded by the examination of the physical system in the previous chapters we will now proceed to describe, firstly, what are the excitations on the ground state and what kind of excitations we can obtain on it; secondly, we will study their exchange statistics. In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent deviations from the system's ground state. These excitations are associated with elementary quantum particles that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties and response to external perturbations. \newline
 
-In the particular case of the toric code, such low-energy excitations can be created in two ways: 
+In the particular case of the toric code, such low-energy excitations can be created through the application of a $S^x$ or $S^z$ operator (figure 1.10).
 
-\begin{enumerate}
-	\item through the application of an open-ended string $S^x$ made up of $\sigma^x$ operators on the ground state;
-	
-	\item through the application of an open-ended string $S^z$ made up of $\sigma^z$ operators on the ground state.
-\end{enumerate}
+\begin{definition}($S^x$ operator)
+	A $S^x$ operator corresponds to an open-ended string on the GS made up of $\sigma^x$ applied on $\mathcal{L}$.
+\end{definition}
 
-At the extremities of the above mentioned strings, particles are created. We will call the pairs of particles obtained through the application of operator $S^x$ \textit{electric charges}, while the ones obatained by applying an $S^z$ operator to the ground states \textit{magnetic vortices}.\newline
+\begin{definition}($S^z$ operator)
+	A $S^z$ operator corresponds to an open-ended string on the GS made up of $\sigma^z$ applied on $\mathcal{L'}$.
+\end{definition}
+
+At the extremities of the above mentioned operators particles are created. In particular we can get (figure 1.10):
+
+\begin{definition}(Electric charges)
+	The pairs of particles obtained through the application of operator $S^x$ are called electric charges $e$.
+\end{definition}
+
+\begin{definition}(Magnetic vorteces)
+	The pairs of particles obtained through the application of operator $S^z$ are called magnetic vorteces $m$.
+\end{definition}
+
+These excitations can be transported on the GS by means of Pauli operators and interact with each other and with each component of the system in several ways, influencing at the same time the low energy of ground state.\newline
+In order to understand how the string operators influence the ground state, we need to study the relationships between string operators and vertex/plaquette operators as we have defined them in section 1.2.\newline
 
 %picture
-\begin{figure}[b]
+\begin{figure}
 	
 	\begin{center}
 		
@@ -2540,9 +2554,9 @@ At the extremities of the above mentioned strings, particles are created. We wil
 
 
 \newpage
-We can prove that if a string $S^x$ of $\sigma^x$ operators is open-ended, then the $\sigma^x$ operators at the two extremes of the string will anticommute with one $A_v$ each. 
+We can prove that a $S^x$ operator anticommutes with one $A_v$ for each one of its endpoints. 
 
-\begin{proposition}(Anticommutation od $S^x$)
+\begin{proposition}(Anticommutation of $S^x$)
 	The $S^x$ operators anticommute with two $A_v$ each.
 \end{proposition}
 
@@ -2681,16 +2695,16 @@ This procedure should be iterated also for the other extremity of the string $S^
 \end{figure}
 
 
-In the same way, we could prove that, if we take a string $S^z$ made up of $\sigma_z$ operators still open-ended, the $\sigma^z$ operators at its endpoints will anticommute with one $B_p$ each.
+In the same way, we could prove that, if we take a string $S^z$ it anticommutes with one $B_p$ for each one of its endpoints.
 
-\begin{proposition}(Anticommutation od $S^z$)
+\begin{proposition}(Anticommutation of $S^z$)
 	The $S^z$ operators anticommute with two $B_p$ each.
 \end{proposition}
 
-The effect of putting such strings on the ground states correspond to raising the associated energy of the GS by 2. In fact, coherently with what said in \textit{\cite{Her20}}, it is impossible to create unitary excitations on the ground states.
+The effect of putting such strings on the ground states correspond to raising the associated energy of the GS by 2. In fact, coherently with what said in {\cite{Her20}}, it is impossible to create unitary excitations on the ground states.
 
 \begin{proposition}(Magnitude of the excitations)
-	Placing string operators on the ground states correspond to raising the associated energy of the GS by 2.
+	Placing a string operator on the ground states corresponds to raising the associated energy of the GS by 2.
 \end{proposition}
 
 \textit{Proof.} \newline
@@ -2722,7 +2736,7 @@ Summing up term by term :
 	\end{cases}$ 
 \end{center}
 
-Thus, if the energy of the Ground State as we have defined it in the previous chapters is $-2N$ by acting with a string operator on  it we obtain a final energy equal to $-2N+2$.
+Thus, if the energy of the GS, as we have defined it in the previous sections, is $-2N$ by acting with a string operator on  it we obtain a final energy equal to $-2N+2$.
 
 \hfill $\square$ 
 
@@ -2735,20 +2749,20 @@ Thus, if the energy of the Ground State as we have defined it in the previous ch
 
 \subsection{Fermionic and bosonic exchange statistics in 3D and 2D}
 We shall give a brief description of the statistics of fermions and bosons in both cases of three and two dimensions.
-Let us first consider the exchange statistics of two particles in three dimensions.  \textit{ We can describe a system of two particles moving from point $A$ at $t_1$ to point $B$ at $t_2$ by means of the following path integral formulation discussed by \cite{Rao16}}:
+Let us first consider the exchange statistics of two particles in three dimensions. We can describe a system of two particles moving from point $A$ at $t_1$ to point $B$ at $t_2$ by means of the following path integral formulation discussed by \cite{Rao16}:
 
 \begin{center}
 	$A$ = $\sum_{paths} e^{iS}$
 \end{center}
 
-\textit{where $S$ represents the integral of the lagrangian $\mathcal{L}$ over time}.
+where $S$ represents the integral of the lagrangian $\mathcal{L}$ over time.
 % which provides a measure of the total \textit{action} along a particular trajectory or path taken by the system. 
 
 \begin{center}
 	$S = \int_{t_1}^{t_2}dt \textit{$\mathcal{L}$} [ r_1(t),r_2(t) ] $.
 \end{center}
 
-\textit{In quantum mechanics, the path integral formulation involves considering all possible paths between the initial and final states and assigning a phase factor $e^{iS}$ to each.} Then, the probability amplitude for a system to evolve from one point to another is given by the sum over all paths of these phase factors. \textit{\cite{Wil91}}. Since we are talking about a system of indistinguishable particles, we will only have two classes of paths in three dimensions: the direct paths and paths with exchanges. This is because the final configuration at time $t_2$ will always be the same due to indistinguishability. Though, notice that even though two paths may lead to the same final configuration they can exhibit different behaviours. To visualize this, consider the case where particles move in space but their paths do not intersect. In such a scenario, paths are constrained to move on a sphere. Therefore, closed paths on the sphere emerge when particles return to their original positions (no exchange) or reach the antipodal point (exchange). In fact, we will have three distinct types of paths (figure 1.12): 
+In quantum mechanics, the path integral formulation involves considering all possible paths between the initial and final states and assigning a phase factor $e^{iS}$ to each. Then, the probability amplitude for a system to evolve from one point to another is given by the sum over all paths of these phase factors \cite{Wil91}. Since we are talking about a system of indistinguishable particles, we will only have two classes of paths in three dimensions: the direct paths and paths with exchanges. This is because the final configuration at time $t_2$ will always be the same due to indistinguishability. Though, notice that even though two paths may lead to the same final configuration they can exhibit different behaviours. To visualize this, consider the case where particles move in space but their paths do not intersect. In such a scenario, paths are constrained to move on a sphere. Therefore, closed paths emerge when particles return to their original positions (no exchange) or reach the antipodal point (exchange). In fact, we will have three distinct types of paths (figure 1.12): 
 
 %picture
 
@@ -2756,7 +2770,7 @@ Let us first consider the exchange statistics of two particles in three dimensio
 \begin{enumerate}
 	\item[(a)]: closed loops without exchange; they can disappear if reduced to a point, implying that the wave-function cannot acquire any phase; 
 	
-	\item[(b)] : involve a single exchange; tehy connect two fixed points on the sphere, making it impossible to erase them. Consequently, this types of exchanges introduce a phase in the wave-function;
+	\item[(b)] : involve a single exchange; they connect two fixed points on the sphere, making it impossible to erase them. Consequently, this types of exchanges introduce a phase in the wave-function;
 	
 	\item[(c)] : closed loops with two exchanges, as in case 1; as a result, also in this case the wavefunction does not acquire any additional phase.
 \end{enumerate}
@@ -2768,7 +2782,7 @@ Let us first consider the exchange statistics of two particles in three dimensio
 	\label{fig:immagine-2024-02-22-113658}
 \end{figure}
 
-Overall, we only have two classes of paths: those that do not involve any exchange as in class a and c, and those that are characterized by an exchange as in class b. {\it If we let $\eta$ represent the phase acquired by the wave function under a single exchange, then since two exchanges are equivalent to no exchange $\eta^2=1$ and it follows that $\eta = \pm 1 $. We can conclude that the only possible statistics in three dimensions are indeed the fermionic and bosonic ones.  \cite{Rao16}}.\newline
+Overall, we only have two classes of paths: those that do not involve any exchange as in class a and c, and those that are characterized by an exchange as in class b. { If we let $\eta$ represent the phase acquired by the wave function under a single exchange then, since two exchanges are equivalent to no exchange $\eta^2=1$, it follows that $\eta = \pm 1 $. We can conclude that the only possible statistics in three dimensions are indeed the fermionic and bosonic ones.  \cite{Rao16}}.\newline
 
 In terms of the path integral formulation that we have provided above, what we will get is an overall amplitude equal to:
 
@@ -2784,7 +2798,7 @@ Since exchanging the particles twice leads again to a direct path, we will have 
 	\item $\phi = \pi$: this case results in destructive interference between the exchange paths. The particles corresponding to this scenario are referred to as fermions, and their behavior is governed by this particular phase condition.
 \end{enumerate}
 
-In contrast to what stated above, in the two dimensional case the topology of the space configuartion changes. In fact, in this case we end up moving on a circle. Though, in this case several possible paths are possible, in particular closed paths. In fact, if we look again at the three classes of paths we obtain these three types(figure 1.13):
+In contrast to what stated above, in the two dimensional case the topology of the space configuartion changes. In fact, in this case we end up moving on a circle. Though, this time several possible paths are possible, in particular closed paths. In fact, if we classify again the obtainable paths as we did above, this time we obtain these three categories (figure 1.13):
 
 \begin{enumerate}
 	\item[(a)] : those that can be shrunk into a point;
@@ -2801,7 +2815,7 @@ In contrast to what stated above, in the two dimensional case the topology of th
 	\label{fig:immagine-2024-02-22-112906}
 \end{figure}
 
-Bacause of the third class of paths, \textit{ if we let $\eta$ represent the phase associated with a single exchange, $\eta^2$ will denote the phase under two exchanges and $\eta^3$ the phase under three exchanges and so forth. The crucial observation is that, given that the wavefunction's modulus remains constant during exchanges, we can express $\eta$ as a phase factor $e^{i\theta}$. \cite{Rao16}}. \newline
+Bacause of the third class of paths, { if we let $\eta$ represent the phase associated with a single exchange, $\eta^2$ will denote the phase under two exchanges and $\eta^3$ the phase under three exchanges and so forth. The crucial observation is that, given that the wavefunction's modulus remains constant during exchanges, we can express $\eta$ as a phase factor $e^{i\theta}$. \cite{Rao16}}. \newline
 
 Again, in terms of path integral formulation, what we get as probability amplitude is:
 
@@ -2812,22 +2826,21 @@ Again, in terms of path integral formulation, what we get as probability amplitu
 where for $ \phi = 0, \pi$ we would obtain the usual bosons and fermions statistics, but since in general, $e^{in\phi} \neq 1$ for any $n$ (n exchanges never yield the identity), $\phi$ can be anything so any statistic is possible in two dimensions.
 Such diverse statistics in two dimensions are called \textit{anyonic} (see section 1.5).\newline
 
-We should also briefly mention that, in a formal mathematical context, the analysis presented in this section categorizes fermions and bosons within the permutation group $\mathbb{P}_N$. \textit{\cite{Cor23}}. Conversely, the subsequent analysis of anyonic excitations classifies them according to the braid group $\mathbb{B}_N$. \textit{\cite{Rao16}}. \newline
-The permutation group $\mathbb{P}_N$ is defined as the set of all possible permutations involving $N$ objects. Within this group, the operation of group multiplication (exchange) corresponds to the sequential application of permutations, and the group inverse involves the inverse of the permutation. Here, executing a permutation twice on two objects results in the initial configuration of the system. Consequently, particles exhibiting transformations according to the representations of the permutation group can exclusively fall into the categories of either bosons or fermions. \newline
-On the other hand, when it comes to objects that are part of the braid group $\mathbb{B}_N$, we can visualise the process of moving (or exchanging) particles as paths in spacetime with time being the vertical axis and space being the horizontal axis (figure 1.14). The particles can circle around each other and form closed paths by coming back to their original positions. \textit{\cite{Wil91}}. \newline
+We should also briefly mention that, in a formal mathematical context, the analysis presented in this section categorizes fermions and bosons within the permutation group $\mathbb{P}_N$. {\cite{Cor23}}. Conversely, the subsequent analysis of anyonic excitations classifies them according to the braid group $\mathbb{B}_N$. {\cite{Rao16}}. \newline
+The permutation group $\mathbb{P}_N$ is defined as the set of all possible permutations involving $N$ objects. Within this group, the operation of group multiplication (exchange) corresponds to the sequential application of permutations, and the group inverse involves the inverse of the permutation. Here, executing a permutation twice on two objects results in the initial configuration of the system. Consequently, particles exhibiting transformations according to the representations of the permutation group can exclusively fall into the categories of either bosons or fermions. On the other hand, when it comes to objects that are part of the braid group $\mathbb{B}_N$, we can visualise the process of moving (or exchanging) particles as paths in spacetime with time being the vertical axis and space being the horizontal axis (figure 1.14). The particles can circle around each other and form closed paths by coming back to their original positions {\cite{Wil91}}. \newline
 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.6\linewidth]{"../Thesis/Immagine 2024-02-23 134521"}
+	\includegraphics[width=0.5\linewidth]{"../Thesis/Immagine 2024-02-23 134521"}
 	\caption{\textit{ Identical particles exchange position twice as
 			they travel in three dimensions (no exchange). Particle a and b move along a closed path in two dimesions (non contractible). From:\cite{Wil91}}.}
 	\label{fig:immagine-2024-02-23-134521}
 \end{figure}
 %----
 
-
-We can now analyze the statistics of $e$-particles in the context of the ground state of the toric code. If we take a simple string operator $\sigma^z|GS\rangle$ , where $|GS\rangle$ denotes the ground state, it creates two $e$-particles in the vertices adjacent to the edge, as shown in figure 1.15. We know that a string operator of the form $\prod_{j=1}^{N} \sigma_j^z$ allows the separation of these two excitations. In fact, as illustrated in figure 1.15, the exchange of these particles becomes possible by applying the string operator in such a way that it moves the excitations around the lattice until they reach configuration shown in figure 1.15(c). However, due to the commutation of all $\sigma^x$ with each other, after the application of a closed loop of $\sigma^x$ (last passage in figure 1.15), there is no overall acquired phase. Consequently, the $e$-excitations exhibit bosonic statistics. \textit{\cite{Rao16, Her20}}. A similar argument can be carried out for the $m$-excitations, establishing them as bosons as well. 
+\newpage
+We can now analyze the statistics of $e$-particles in the context of the ground state of the toric code. If we take a simple string operator $\sigma^z|GS\rangle$ , where $|GS\rangle$ denotes the ground state, it creates two $e$-particles in the vertices adjacent to the edge, as shown in figure 1.15. We know that a string operator of the form $\prod_{j=1}^{N} \sigma_j^z$ allows the separation of these two excitations. In fact, as illustrated in figure 1.15, the exchange of these particles becomes possible by applying the string operator in such a way that it moves the excitations around the lattice until they reach configuration shown in figure 1.15(c). However, due to the commutation of all $\sigma^x$ with each other, after the application of a closed loop of $\sigma^x$ (last passage in figure 1.15), there is no overall acquired phase. Consequently, the $e$-excitations exhibit bosonic statistics. {\cite{Rao16, Her20}}. A similar argument can be carried out for the $m$-excitations, establishing them as bosons as well. 
 
 
 %picture
@@ -3193,7 +3206,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 \section{Anyonic excitations}
 \label{sec:AE}
 
-Let's examine the mutual statistics between $e$ and $m$ particles by means of an example. Initially, we generate pairs of excitations at distinct chosen sites by applying the operator $\sigma^z\sigma^x|GS\rangle$ as shown in figure 1.16. Afterward, we separate the excitations using string operators and we move an $m$-particle around an $e$-particle, as depicted in figure 1.17. Notably, there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. \textit{\cite{Kit02}}.
+Let's examine the mutual statistics between $e$ and $m$ particles by means of an example. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x$ and $S?z$ operators as shown in figure 1.16. Afterward, we separate the excitations using string operators and we move an $m$-particle around an $e$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. {\cite{Kit02}}.
 The closed loop can be eliminated, leading to the following transformation:
 
 \begin{center}
@@ -3212,7 +3225,7 @@ since we are going all the way around the particle, we assume to have two exchan
 	$R^2 = - 1 \rightarrow ( e^{-\frac{i\pi}{2}})^2 = - 1  \rightarrow R = e^{-\frac{i\pi}{2}} = \pm i $
 \end{center}
 
-this results falls out of the usual bosonic/fermionic statistics, thus we can say that the low-energy excitations of the ground state exhibit anyonic statistics (recalling the fact that we can obtain \textit{any} statistics). \textit{\cite{Rao16, Kit02, Pre04}}.\newline
+this results falls out of the usual bosonic/fermionic statistics, thus we can say that the low-energy excitations of the ground state exhibit anyonic statistics (recalling the fact that we can obtain \textit{any} statistics). {\cite{Rao16, Kit02, Pre04}}.\newline
 
 
 %picture
