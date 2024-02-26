@@ -3527,13 +3527,19 @@ Assuming the existence of distinct codewords $c_m$ and $c_n$ within the code, an
 	$\textbf{N}$ is correctable if and only if for all $c_m \neq c_n$ in the code and for all i, j, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$. 
 \end{theorem} 
 
-In the context of linear codes, we gain insights into the two essential steps of error recovery: error detection and error correction, which serve us to assess the goodness of the code in its entirety. For further details see \cite{Kas19}.
+Thanks to linear codes, we gain insights into the two essential steps of error recovery: error detection and error correction, which also serve us to assess the goodness of the code in its entirety. For further details see \cite{Kas19}. Though, in order to evaluate the robustness of a given code we define the {\it Distance of a code} by means of the {\it Hamming distance} of that code:
+
+
+\begin{definition}(Hamming distance)
+	Given two codewords, $c_m$ and $c_n$, the Hamming distance $d(c_m; c_n)$ is the minimum number of bits that must be flipped in order to transform $c_m$ into $c_n$.
+\end{definition}
+
 
 \begin{definition}(Distance of a code)
 	The distance of a code {\bf C } is the minimal Hamming distance between to distinct codewords $c_m$ and $c_n$ having $m \neq n$.
 \end{definition}
 	
-When it comes to code design, linear codes' representation plays a crucial role in studying encoding/decoding procedures, offering an effective framework also to be used in the quantum setting.
+To conclude, linear codes' representation plays a crucial role in studying encoding/decoding procedures along with their performance, offering an effective framework also to be used in the quantum world.
 
 %-------------------------------------------
 
