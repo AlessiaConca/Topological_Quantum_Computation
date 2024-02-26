@@ -3507,7 +3507,7 @@ which is the error syndrome. As anticipated, the error syndrome serves as an ind
 Because of the ambiguity that can arise in error correction it is essential to discuss formally the detectability and correctability of errors according to linear codes formalism given in \cite{Cha06}.
 We have mentioned how a codeword can be rejected if corrupted and how a receiver can ask to resend information. The efficacy of the encoding/decoding scheme is evaluated based on its ability to either maintain the integrity of information or detect errors caused by each noise operator. Therefore, we can state that a code successfully detects a noise operator $\textbf{N}$ if, for every codeword c within the code, the outcome is either $\textbf{N}$c = c or if $\textbf{N}$c is not a member of the code $\textbf{C}$.
 
-\begin{theorem}
+\begin{theorem}(Error detection)
 	$\textbf{N}$ is detectable by a code if and only if for each $c_m \neq c_n$ in the code, $\textbf{N}c_n \neq c_m $.
 \end{theorem} 
 
@@ -3515,7 +3515,7 @@ Error correction involves an active process where the decoder not only identifie
 In the context of a code $\textbf{C}$ and a set of error operators $\textbf{N}$, the primary goal is to establish the presence of a decoding procedure capable of correcting errors introduced by $\textbf{N}$. 
 Assuming the existence of distinct codewords $c_m$ and $c_n$ within the code, and for specific set of noise operators $\textbf{N}$, there could be situations such that if we apply $\textbf{N}_i$ to the codeword $c_m$ and the error operator $\textbf{N}_j$ to the codeword $c_n$ we end up in the same final state $c_q$. In such cases the challenge lies in determining whether the original codeword was $c_m$ or $c_n$. Thus, the error is unidentified meaning that it occurs in the set of error operators $\textbf{N}$ but we don't know which specific error operator caused it. In simpler terms, given the state $c_q$, we cannot say which codeword was initially sent due to the ambiguity in identifying the specific error that occurred.
 
-\begin{theorem}
+\begin{theorem}(Error correction)
 	$\textbf{N}$ is correctable if and only if for all $c_m \neq c_n$ in the code and for all i, j, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$. 
 \end{theorem} 
 
