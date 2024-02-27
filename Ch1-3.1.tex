@@ -482,7 +482,7 @@ This is because the operators acts locally, so we can ignore the identity. \newl
 Similarly if we compute the tensor product explicitly, it becomes a simple product of the scalar products between the components of the basis:
 
 \begin{center}
-	$(u_1 \otimes w_1) \dot (u_2 \otimes w_2) = \langle u_1 | w_1 \rangle \langle u_2 | w_2 \rangle$
+	$(u_1 \otimes w_1) \cdot (u_2 \otimes w_2) = \langle u_1 | w_1 \rangle \langle u_2 | w_2 \rangle$
 \end{center}
 
 
@@ -1121,7 +1121,7 @@ Fix the origin of the coordinate system in the bottom left corner of the lattice
 		\coordinate (B) at (-3,-2);
 		
 		% Draw vector
-		\draw[->, line width=1.1pt] (A) -- (B) node[midway, left] {$\vec{e2}$};
+		\draw[->, line width=1.1pt] (A) -- (B) node[midway, left] {\large $\vec{e_2}$};
 		
 		
 		% Define vertices
@@ -1129,7 +1129,7 @@ Fix the origin of the coordinate system in the bottom left corner of the lattice
 		\coordinate (B) at (-2,-3);
 		
 		% Draw vector
-		\draw[->, line width=1.1pt] (A) -- (B)  node[midway, below] {$\vec{e1}$};
+		\draw[->, line width=1.1pt] (A) -- (B)  node[midway, below] {\large $\vec{e_1}$};
 		
 		
 		
@@ -1269,12 +1269,12 @@ We start by explicitly defining the ground state by making use of the properties
 \end{proposition}
 
 \textit{Proof.}\newline 
-Recall the form of the Hamiltonianin, having $N^2$ lattice sites, in the following way 
+Recall the form of the Hamiltonian, having $N^2$ edges, in the following way 
 
 \begin{center}
 	
-	$H = -\sum_{i=1}^{N}
-	Av_i - \sum_{j=1}^{N} Bp_j $
+	$H = -\sum_{i=1}
+	A_{v_i} - \sum_{j=1} B_{p_j} $
 	
 \end{center}
 
@@ -1285,13 +1285,13 @@ To determine the ground state of the Hamiltonian we have to determine the minimu
 \begin{center}
 	$\sigma( H) =$
 	$\begin{cases}
-		2N, \hspace{1cm} if \ all\ Av,Bp \ have \ \lambda_{H}= -1\\
+		2N, \hspace{1cm} if \ all\ A_v,B_p \ have \ \lambda_{H}= -1\\
 		2N-1,\\
 		.\\
 		intermediate \ energies,\\
 		.\\
 		-2N+1\\
-		-2N, \hspace{1cm} if \ all \ Av,Bp \ have \ \lambda_{H}= +1
+		-2N, \hspace{1cm} if \ all \ A_v,B_p \ have \ \lambda_{H}= +1
 	\end{cases}$
 	
 \end{center}
@@ -1302,27 +1302,28 @@ Those are the ones that will form a basis for the ground state manifold of the s
 \hfill $\square$
 
 
-In order to determine which are the admissible configurations of eigenstates that we can use to form the ground state, we treat the $Av$ and $Bp$ operators as constraint equations over the torus, i.e. the lattice and dual lattice.
+In order to determine which are the admissible configurations of eigenstates that we can use to form the ground state, we treat the $A_v$ and $B_p$ operators as constraint equations over the torus, i.e. the lattice and dual lattice.
 As a consequence, all of our configurations will need to respect the two following equations:
 
 \begin{center}
-	(1)	$Av|\psi\rangle$ = $+1|\psi\rangle$
+	(1)	$A_v|\psi\rangle$ = $+1|\psi\rangle$
 \end{center}
 
 \begin{center}
-	(2)	$Bp|\psi\rangle$ = $+1|\psi\rangle$
+	(2)	$B_p|\psi\rangle$ = $+1|\psi\rangle$
 \end{center}
 
 This means that configuration $|\psi\rangle$ needs to be be an eigenvector for all the veretces and plaquette operators. \newline
 In order to satisfy equation (1), we look for loop configurations such that if we apply $Av$ to that state, the result would still yield an overall positive value.\newline
-Graphically, we identify the loop configurations through strings of 'occupied' edges (shaded in black in figure 1.4 and 1.5), each identified as a qubit in configuration $|1\rangle$.
+Graphically, we identify the loop configurations through strings of 'occupied' edges (shaded in black in figure 1.4 and 1.5).
+%each identified as a qubit in configuration $|1\rangle$.
 
 \begin{definition}(Occupied edges)
-	We define as occupied an edge on $mathcal{L}$ whose spin-$\frac{1}{2}$ particle is in superstate $|1\rangle$.
+	Given a state $|\psi\rangle $, we say that in the state $|\psi\rangle $ the edge $i$ of the lattice is occupied if $Z_i |\psi\rangle  = - |\psi\rangle $.
 \end{definition}
 
 Then, if we apply $Av$ at one of the open ends of such strings, we have two possibilities: leaving the string of occupied edges open (figure 1.4) or closing the string over the $Av$ operator (figure 1.5).
-In the first case, what we do is computing $\sigma^{z} |1\rangle$ for one endpoint of the string, which implies obtaining $-1|1\rangle$ eigenvalue for that endpoint; as a result we violate constraint (1). In the second case, instead, we end up with positive eigenvalues for each edge, this is becuse the negative signs obtained at the endpoints cancel themselves out. Overall, in order to respect contraint (1) we are interested only in closed loops on $Av$. Notice that such loops will always have an even length and will always involve a maximum of two extremities of the $Av$ operator.\textit{\cite{Her20}}
+In the first case, what we do is computing $\sigma^{z} |\psi\rangle$ for one endpoint of the string, which implies obtaining $-1|\psi\rangle$ eigenvalue for that endpoint; as a result we violate constraint (1). In the second case, instead, we end up with positive eigenvalues for each edge, this is becuse the negative signs obtained at the endpoints cancel themselves out. Overall, in order to respect contraint (1) we are interested only in closed loops on $Av$. Notice that such loops will always have an even length and will always involve a maximum of two extremities of the $A_v$ operator.{\cite{Her20}}
 
 %drawings closed/open loop with Av
 \begin{figure}
@@ -1402,7 +1403,7 @@ In the first case, what we do is computing $\sigma^{z} |1\rangle$ for one endpoi
 		\end{tikzpicture}
 	\end{center}
 	
-	\caption{Operator $Av$ applied on an open string of occupied edges.}
+	\caption{Operator $A_v$ applied on an open string of occupied edges.}
 	\label{fig:Aveigen2}
 \end{figure}
 
@@ -1507,7 +1508,7 @@ In the first case, what we do is computing $\sigma^{z} |1\rangle$ for one endpoi
 \end{tikzpicture}
 \end{center}
 
-\caption{String of occupied edges closed on an operator $Av$.}
+\caption{String of occupied edges closed on an operator $A_v$.}
 \label{fig:Aveigen}
 \end{figure}
 		
@@ -1518,7 +1519,7 @@ In a more formal notation what we are stating is that:
 \end{center}
 
 If we consider only closed loops, we can identify different configurations having such characteristic. The illustrations in figure 1.6 show some examples of them.
-Each of these loops, having such characteristics, is an eigenstate for $Av$ since, no matter how I locally apply $Av$, I will always preserve the sign of the state. 
+Each of these loops, having such characteristics, is an eigenstate for $A_v$ since, no matter how I locally apply $A_v$, I will always preserve the sign of the state. 
 
 %drawings 4 types of loops
 
@@ -1794,13 +1795,13 @@ Each of these loops, having such characteristics, is an eigenstate for $Av$ sinc
 		\end{tikzpicture}		
 	\end{center}
 	
-	\caption{Examples of closed loops yielding $+1$ eigenvalue for $Av$}
+	\caption{Examples of closed loops yielding $+1$ eigenvalue for $A_v$}
 	\label{fig:Loops}
 \end{figure}
 
 
-Now we focus on constraint (2). We want to apply the plaquette operator $Bp$ only to eigenstates of $Av$, which we have determined above. The illustration in figure 1.7 shows an example of how to do it in practice with one of the eigenstates of $Av$.
-Notice that, after the transformation, we do always end up in a valid eigenstate of $Av$ but the new state $|\psi'\rangle$ is not an eigenstate of $Bp$ by itself.
+Now we focus on constraint (2). We want to apply the plaquette operator $B_p$ only to eigenstates of $A_v$, which we have determined above. The illustration in figure 1.7 shows an example of how to do it in practice with one of the eigenstates of $A_v$.
+Notice that, after the transformation, we do always end up in a valid eigenstate of $A_v$ but the new state $|\psi'\rangle$ is not an eigenstate of $B_p$ by itself.
 
 %drawings Bp applied to loops
 \begin{figure}
@@ -1973,14 +1974,14 @@ Notice that, after the transformation, we do always end up in a valid eigenstate
 
 	\end{center}
 
-\caption{Examples of $Bp$ to a closed loop.}
+\caption{Examples of $B_p$ to a closed loop.}
 \label{fig:applyBp}
 \end{figure}
 
 
-Furthermore, any new configuration that we obtain through the application of the plaquette operator to an eigenstate of $Av$ simply yields one of the possible permutations of the edges of the initial state, provided that the topological characteristics of the loop are preserved.
+Furthermore, any new configuration that we obtain through the application of the plaquette operator to an eigenstate of $A_v$ simply yields one of the possible permutations of the edges of the initial state, provided that the topological characteristics of the loop are preserved.
 
-This means that if we firstly partition the eigenstates of $Av$ in the following fours classes: 
+This means that if we firstly partition the eigenstates of $A_v$ in the following fours classes: 
 
 \begin{enumerate}
 	\item class 0 : contains all closed loops and thus the null state,
@@ -1994,9 +1995,9 @@ This means that if we firstly partition the eigenstates of $Av$ in the following
 	
 \end{enumerate}
 
-Then, applying a plaquette operator to any of the eigenstates belonging to one of the classes above must yield an eigenstate that lies in the same class. This is formally expressed by stating that the class is invariant under the action of the operator $Bp$. 
+Then, applying a plaquette operator to any of the eigenstates belonging to one of the classes above must yield an eigenstate that lies in the same class. This is formally expressed by stating that the class is invariant under the action of the operator $B_p$. 
 
-\begin{proposition} (Invariance under $Bp$) The four classes of eigenstates of $Av$ are invariant under the action of the $Bp$ operator. 
+\begin{proposition} (Invariance under $B_p$) The four classes of eigenstates of $A_v$ are invariant under the action of the $B_p$ operator. 
 \end{proposition}
 
 We can prove that the above definition holds by means of counterexamples. \newline
@@ -2284,11 +2285,11 @@ We can prove that the above definition holds by means of counterexamples. \newli
 
 	\end{center}
 
-\caption{Apply $Bp$ to a closed loop.}
+\caption{Apply $B_p$ to a closed loop.}
 \label{fig:Bpstrano}
 \end{figure}
 
-If we take the loop illustrated in figure 1.8 and close it by means of a plaquette operator as illustrated, we would be brought to believe that there indeed exist a way to apply the operator $Bp$ such that we exit class 0 and land in class 1. Though, this is not possible. \newline
+If we take the loop illustrated in figure 1.8 and close it by means of a plaquette operator as illustrated, we would be brought to believe that there indeed exist a way to apply the operator $B_p$ such that we exit class 0 and land in class 1. Though, this is not possible. \newline
 In fact, we can show the impossibility of the above action by defining two topological indeces to label the four categories of eigenstates. These indeces can assume values in $\mathbb{Z}_2=\{\overline{0},\overline{1} \}$, whose elements respectively represent the 'sets' of even and odd numbers. In our context such numerosities identify the number of vertical and horizontal loops of a configuration intersecting the vertical and horizontal dimensions of the torus (figure 1.9).
 
 The above indeces can be expressed more clearly as follows: 
@@ -2391,17 +2392,17 @@ For example, if we take again the configuration in figure 1.9, we have 1 vertica
 \end{figure}
 
 
-Similarly, if we go back to the configuration in figure 1.8, this would mean that, after having applied $Bp$ we do not land in class 1, as thought, but in class 0; this is because we have an even number of horizontal intersections and an even number of vertical intersections, i.e.   $(\overline{0}, \overline{0})$.
+Similarly, if we go back to the configuration in figure 1.8, this would mean that, after having applied $B_p$ we do not land in class 1, as thought, but in class 0; this is because we have an even number of horizontal intersections and an even number of vertical intersections, i.e.   $(\overline{0}, \overline{0})$.
 
 What follows naturally is that all the classes are $Bp$-$invariant$ due to the topological characteristics of the torus. More formally we can write that, given a set of eigenstates of $Av$ named $|\psi_1\rangle,...,|\psi_i\rangle,...,|\psi_n\rangle$ all belonging to the same class and forming state $|\psi\rangle$. Given that we know that $Bp|\psi_i\rangle=+|\psi_j\rangle$, then if we apply $Bp$ to the normalized state $|\psi\rangle$ we get:
 
 \begin{center}
-	$|\Xi\rangle= Bp \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_i\rangle = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} Bp |\psi_i\rangle = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_J\rangle =|\Xi\rangle$
+	$|\Xi\rangle= B_p \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_i\rangle = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} B_p |\psi_i\rangle = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_J\rangle =|\Xi\rangle$
 \end{center}
 
-because, as anticipated in the previous pages, what $Bp$ does is only permuting the $|\psi_i\rangle$, thus we get back our initial state. This result leads to the following proposition:
+because, as anticipated in the previous pages, what $B_p$ does is only permuting the $|\psi_i\rangle$, thus we get back our initial state. This result leads to the following proposition:
 
-\begin{proposition}(Eigenstates of $Bp$) A completely symmetric superposition of a set of eigenstates of $Av$ is an eigenstate of $Bp$.
+\begin{proposition}(Eigenstates of $B_p$) A completely symmetric superposition of a set of eigenstates of $A_v$ is an eigenstate of $B_p$.
 \end{proposition}
 
 From Proposition 1.6 and Proposition 1.7, also naturally follows the degeneracy (and dimension) of the ground state: \newline
@@ -2409,7 +2410,7 @@ From Proposition 1.6 and Proposition 1.7, also naturally follows the degeneracy 
 \begin{proposition} (Degeneracy of the ground state) The degeneracy of the ground state manifold is $4$. 
 \end{proposition}
 
-Because the four classes of eigenstates are $Bp$-$invariant$, we can construct a valid ground state through the configurations belonging to one the four classes, as these configurations respect both contraint (1) and (2).\newline 
+Because the four classes of eigenstates are $B_p$-$invariant$, we can construct a valid ground state through the configurations belonging to one the four classes, as these configurations respect both constraint (1) and (2).\newline 
 
 Now that we have derived the ground state configurations of the toric code, we focus on studying its excited states. These states arise from perturbations or interactions within the system and offer valuable insights into the dynamic behavior of the toric code beyond its ground state equilibrium. While the ground state embodies the system's lowest energy configuration and serves as the foundation of its stability, the excited states provide an insight into the system's response to external influences. 
 Through the systematic study of these excitations we discover some intrinsic characteristics of the toric code that will serve us later to explain its fault-tolerant nature.
@@ -2752,17 +2753,17 @@ We shall give a brief description of the statistics of fermions and bosons in bo
 Let us first consider the exchange statistics of two particles in three dimensions. We can describe a system of two particles moving from point $A$ at $t_1$ to point $B$ at $t_2$ by means of the following path integral formulation discussed by \cite{Rao16}:
 
 \begin{center}
-	$A$ = $\sum_{paths} e^{iS}$
+	$A$ = $\sum_{paths} e^{i\mathscr{S}}$
 \end{center}
 
-where $S$ represents the integral of the lagrangian $\mathcal{L}$ over time.
+where $S$ represents the integral of the Lagrangian $\mathscr{L}$ over time.
 % which provides a measure of the total \textit{action} along a particular trajectory or path taken by the system. 
 
 \begin{center}
-	$S = \int_{t_1}^{t_2}dt \textit{$\mathcal{L}$} [ r_1(t),r_2(t) ] $.
+	$S = \int_{t_1}^{t_2}dt \textit{$\mathscr{L}$} [ r_1(t),r_2(t) ] $.
 \end{center}
 
-In quantum mechanics, the path integral formulation involves considering all possible paths between the initial and final states and assigning a phase factor $e^{iS}$ to each. Then, the probability amplitude for a system to evolve from one point to another is given by the sum over all paths of these phase factors \cite{Wil91}. Since we are talking about a system of indistinguishable particles, we will only have two classes of paths in three dimensions: the direct paths and paths with exchanges. This is because the final configuration at time $t_2$ will always be the same due to indistinguishability. Though, notice that even though two paths may lead to the same final configuration they can exhibit different behaviours. To visualize this, consider the case where particles move in space but their paths do not intersect. In such a scenario, paths are constrained to move on a sphere. Therefore, closed paths emerge when particles return to their original positions (no exchange) or reach the antipodal point (exchange). In fact, we will have three distinct types of paths (figure 1.12): 
+In quantum mechanics, the path integral formulation involves considering all possible paths between the initial and final states and assigning a phase factor $e^{i\mathscr{S}}$ to each. Then, the probability amplitude for a system to evolve from one point to another is given by the sum over all paths of these phase factors \cite{Wil91}. Since we are talking about a system of indistinguishable particles, we will only have two classes of paths in three dimensions: the direct paths and paths with exchanges. This is because the final configuration at time $t_2$ will always be the same due to indistinguishability. Though, notice that even though two paths may lead to the same final configuration they can exhibit different behaviours. To visualize this, consider the case where particles move in space but their paths do not intersect. In such a scenario, paths are constrained to move on a sphere. Therefore, closed paths emerge when particles return to their original positions (no exchange) or reach the antipodal point (exchange). In fact, we will have three distinct types of paths (figure 1.12): 
 
 %picture
 
@@ -2778,19 +2779,19 @@ In quantum mechanics, the path integral formulation involves considering all pos
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\linewidth]{"../Thesis/Immagine 2024-02-22 113658"}
-	\caption{\textit{ Possible exchanges of two particles in 3D. From: \cite{Rao16}.}}
+	\caption{{ Possible exchanges of two particles in 3D. From: \cite{Rao16}.}}
 	\label{fig:immagine-2024-02-22-113658}
 \end{figure}
 
-Overall, we only have two classes of paths: those that do not involve any exchange as in class a and c, and those that are characterized by an exchange as in class b. { If we let $\eta$ represent the phase acquired by the wave function under a single exchange then, since two exchanges are equivalent to no exchange $\eta^2=1$, it follows that $\eta = \pm 1 $. We can conclude that the only possible statistics in three dimensions are indeed the fermionic and bosonic ones.  \cite{Rao16}}.\newline
+Overall, we only have two classes of paths: those that do not involve any exchange as in class (a) and (c), and those that are characterized by an exchange as in class (b). { If we let $\eta$ represent the phase acquired by the wave function under a single exchange then, since two exchanges are equivalent to no exchange $\eta^2=1$, it follows that $\eta = \pm 1 $. We can conclude that the only possible statistics in three dimensions are indeed the fermionic and bosonic ones.  \cite{Rao16}}.\newline
 
 In terms of the path integral formulation that we have provided above, what we will get is an overall amplitude equal to:
 
 \begin{center}
-	$\sum_{direct \ paths} e^{iS}$ + $e^{i \phi} \sum_{exchange \ paths} e^{iS}$.
+	$\sum_{direct \ paths} e^{i\mathscr{S}}$ + $e^{i \phi} \sum_{exchange \ paths} e^{i\mathscr{S}}$.
 \end{center}
 
-Since exchanging the particles twice leads again to a direct path, we will have $e^{2i \phi} = 1$. This means that $\phi$ can either be 0 or $\pi$ giving rise, respectively, to bosonic and fermionic statistics. 
+Since exchanging the particles twice leads again to a direct path, we will have $e^{2i \phi} = 1$. This means that $\phi$ can either be 0 or $\pi$ giving rise, respectively, to bosonic and fermionic statistics: 
 
 \begin{enumerate}
 	\item $\phi = 0$: this case leads to the constructive interference of the exchange paths. The resulting particles are known as bosons, and their behavior is characterized by this specific phase condition;
@@ -2798,7 +2799,7 @@ Since exchanging the particles twice leads again to a direct path, we will have 
 	\item $\phi = \pi$: this case results in destructive interference between the exchange paths. The particles corresponding to this scenario are referred to as fermions, and their behavior is governed by this particular phase condition.
 \end{enumerate}
 
-In contrast to what stated above, in the two dimensional case the topology of the space configuartion changes. In fact, in this case we end up moving on a circle. Though, this time several possible paths are possible, in particular closed paths. In fact, if we classify again the obtainable paths as we did above, this time we obtain these three categories (figure 1.13):
+In contrast to what stated above, in the two dimensional case the topology of the space configuartion changes. In fact, in this case we end up moving on a circle. Though, this time several possible paths are possible, in particular closed paths. In fact, if we classify again the possible paths as we did above, this time we obtain these three categories (figure 1.13):
 
 \begin{enumerate}
 	\item[(a)] : those that can be shrunk into a point;
@@ -2811,7 +2812,7 @@ In contrast to what stated above, in the two dimensional case the topology of th
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{"../Thesis/Immagine 2024-02-22 112906"}
-	\caption{ \textit{ Possible exchanges of two particles in 2D. From: \cite{Rao16}.}}
+	\caption{ { Possible exchanges of two particles in 2D. From: \cite{Rao16}.}}
 	\label{fig:immagine-2024-02-22-112906}
 \end{figure}
 
@@ -2820,7 +2821,7 @@ Bacause of the third class of paths, { if we let $\eta$ represent the phase asso
 Again, in terms of path integral formulation, what we get as probability amplitude is:
 
 \begin{center}
-	$\sum_{direct \ paths} e^{iS}$ + $e^{i \phi} \sum_{ one \ exchange} e^{iS}$  + $e^{2i \phi} \sum_{ two \ exchanges} e^{iS}$  + ...
+	$\sum_{direct \ paths} e^{i\mathscr{S}}$ + $e^{i \phi} \sum_{ one \ exchange} e^{i\mathscr{S}}$  + $e^{2i \phi} \sum_{ two \ exchanges} e^{i\mathscr{S}}$  + ...
 \end{center}
 
 where for $ \phi = 0, \pi$ we would obtain the usual bosons and fermions statistics, but since in general, $e^{in\phi} \neq 1$ for any $n$ (n exchanges never yield the identity), $\phi$ can be anything so any statistic is possible in two dimensions.
@@ -2833,7 +2834,7 @@ The permutation group $\mathbb{P}_N$ is defined as the set of all possible permu
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{"../Thesis/Immagine 2024-02-23 134521"}
-	\caption{\textit{ Identical particles exchange position twice as
+	\caption{{ Identical particles exchange position twice as
 			they travel in three dimensions (no exchange). Particle a and b move along a closed path in two dimesions (non contractible). From:\cite{Wil91}}.}
 	\label{fig:immagine-2024-02-23-134521}
 \end{figure}
@@ -3172,7 +3173,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 \end{center}
 
 
-\caption{In the first picture we show the creation of a pair of $e$-excitations on the ground state by means of $\sigma^x$ operator. In the following pictures we move around the excitations using a string operator until we reach the configuration in the third picture. In the last passage we apply a closed loop of $\sigma^x$ in order to go back to the first kind of configuartion. \textit{\cite{Rao16}}. }
+\caption{In the first picture we show the creation of a pair of $e$-excitations on the ground state by means of $\sigma^x$ operator. In the following pictures we move around the excitations using a string operator until we reach the configuration in the third picture. In the last passage we apply a closed loop of $\sigma^x$ in order to go back to the first kind of configuration. {\cite{Rao16}}. }
 \label{fig:base}
 \end{figure}
 
@@ -3206,11 +3207,11 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 \section{Anyonic excitations}
 \label{sec:AE}
 
-Let's examine the mutual statistics between $e$ and $m$ particles by means of an example. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x$ and $S?z$ operators as shown in figure 1.16. Afterward, we separate the excitations using string operators and we move an $m$-particle around an $e$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. {\cite{Kit02}}.
+Let's examine the mutual statistics between $e$ and $m$ particles by means of an example. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x$ and $S^z$ operators as shown in figure 1.16. Afterward, we separate the excitations using string operators and we move an $e$-particle around an $m$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. {\cite{Kit02}}.
 The closed loop can be eliminated, leading to the following transformation:
 
 \begin{center}
-	$\sigma_i^z\sigma_j^x|GS\rangle = - \sigma_i^x\sigma^z|GS\rangle$
+	$\sigma_i^z\sigma_i^x|GS\rangle = - \sigma_i^x\sigma_i^z|GS\rangle$
 \end{center}
 
 if we denote the exchange operator as {\it the braiding operator} $R$ then, according to what we said in section 1.4.1, the wave function relation should be the following:
