@@ -3586,10 +3586,114 @@ To conclude, linear codes' representation plays a crucial role in studying encod
 \section{Quantum error correction (QEC)}
 \label{sec:QEC}
 
+Due to the no-cloning theorem, which states that we cannot replicate quantum information in a quantum system, one might be brought to think that error correction cannot be performed in the quantum setting. Though we shall demonstrate that this problem can be solved despite the two main issues that arise in quantum systems: 
+
+\begin{enumerate}
+	\item No cloning limitation: the attempt to implement a repetition code in the quantum setting by duplicating a quantum state multiple times violates the no-cloning theorem. This theorem does not allow the exact replication of a quantum state.
+	
+	\item Information loss through measurement: in contrast to classical error-correction, the act of measuring a quantum state typically results in the loss of quantum information contained in that state. As a consequence, the recovery of the original quantum information becomes impossible after measurement.
+\end{enumerate}
+
+We shall now discuss how it is still possible to overcome such obstacles. \cite{Cha06}.\newline
+In the context of quantum computation, classical bits are replaced by quantum bits or qubits, which are represented using a two-state quantum system. More precisely, a qubit lives in an Hilbert space of dimension 2. We can represent the Hilbert space of a system of n qubits by means of a tensor product of Hilbert spaces referring to single qubits as we did in definition 1.5. A common physical realization of qubits involves spin-$\frac{1}{2}$ particles, such as electrons. The quantum state space of a qubit is spanned by two orthogonal basis states, conventionally denoted as $ |0 \rangle$ and $ |1 \rangle$, corresponding to the classical binary states 0 and 1. Mathematically, any qubit state 
+$ |\psi \rangle$ can be expressed as a superposition of these basis states:
+
+
+\begin{center}
+	$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ =  $[ \ \alpha \ \ \beta \ ]^T $
+\end{center}
+
+where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously.  \newline
+When it comes to qubits, computations are performed through operators, which are the quantum logical gates represented as invertible square matrices. \newline
+Having briefly recalled the quantum setting, we shall now give the quantum version of the classical error model previously defined when talking about linear codes and as presented by \cite{Cha06}.
+Similarly to what we did with repetition codes, we can define the bit-flip error (or noise) for qubits through the $X$ gate apllied to $|\psi \rangle$ and define the probability $p$ with which the state psi will be flipped.
+
+We can suppose to introduce redundancy, firstly by mapping the physical basis of qubits to their respective logical counterparts in the following way:
+
+\begin{center}
+	$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ $\rightarrow$ $\alpha |000 \rangle$ + $\beta$ $|111 \rangle$
+\end{center}
+
+where we have encoded the basis as:
+
+\begin{center}
+	$|0 \rangle$ $\rightarrow$ $|0 \rangle_L$ $\equiv$ $|000 \rangle$   \\
+	$|1 \rangle$ $\rightarrow$ $|1 \rangle_L$ $\equiv$ $|111 \rangle$
+\end{center}
+
+where L stands for logical qubits, not physical. \newline
+If we imagine to pass all of the three bits one at a time through a channel and that one or fewer qubits are flipped, we can define a simple quantum error correction through detection and analysis of error syndromes through projector operators as in the classical case, \cite{Nie06}:
+
+\begin{enumerate}
+	\item  $P_0$ = $|000 \rangle \langle 000|$ + $|111 \rangle \langle 111|$ no errors;
+	\item $P_1$= $|100 \rangle \langle 100|$ + $|011 \rangle \langle 011|$ error 1st qubit;
+	\item $P_2$ = $|010 \rangle \langle 010|$ + $|101 \rangle \langle 101|$ error 2nd qubit;
+	\item $P_3$ = $|001 \rangle \langle 001|$ + $|110 \rangle \langle 110|$ error 3rd qubit.
+\end{enumerate}
+
+In order to detect the syndrome we will compute $\langle \psi| P_i | \psi \rangle $, which will be equal to 1 according to which bit $i$ was flipped.
+Measuring the syndrome doesn't affect the state in any way, neither before nor after the measurement. Furthermore, the syndrome gives no infromation of the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest. Though, we have already mentioned that this schema works well only if errors occur on one or less of the three qubits.\newline
+%While the error analysis is effective for discrete errors, it is acknowledged that not all errors and states in quantum mechanics are equal, due to the continuous nature of quantum states. 
+To address this, fidelity is introduced. The fidelity, denoted as $F(|\psi \rangle, \rho)$, is a measure of the overlap or similarity between a pure state $| \psi \rangle$  and a mixed state $\rho$. \newline
+The fidelity quantifies how well a quantum state is preserved or reconstructed after error correction. 
+In the given scenario, where an error syndrome is measured and recovery procedures are applied, the fidelity is employed to assess how closely the corrected state aligns with the original, error-free state. The fidelity helps evaluate the quality of the quantum error correction by measuring the similarity between the corrected state and the ideal state. Moreover, the fidelity is particularly valuable when dealing with errors that may perturb or alter the quantum state in various ways. By maximizing the fidelity, quantum error correction aims to ensure that the corrected state closely approximates the original state, even in the presence of errors. It provides a quantitative measure of the accuracy and effectiveness of the error-correction process. \newline
+
+We can now formally define the Quantum Error Model as we did in the classical case according to \cite{Cha06}. Take quantum information to be a $|\psi \rangle$ in an Hilbert space $\mathscr{H}_A$. We can introduce ancillary qubits as to introduce redundancy. Ancillary qubits are replicas of information that will be manipulated along with the data that we want to transmit.
+Ancillary bits are part of an Hilbert space that we will call $\textit{H}_B$, they are initially in a state $|b \rangle$. When we encode information what we do is mapping the tensor product of $|\psi \rangle$ and $|b \rangle$ in a new Hilbert space $\mathscr{H}_C$ (the code space) through the application of an encoder operator $\textbf{E}$, which should be the equivalent of the generator matrix in classic models. In the same way we can define an Hilbert space to model the noise, we will call it $\mathscr{H}_N$; this space more generally represents the noisy environment that introduces errors. The environment is initially in state $|n \rangle$. The interaction between information and the environment is computed as:
+
+\begin{center}
+	$|c' \rangle$ = $|c \rangle$ $\otimes$ $|n \rangle$ = $\sum_{i} (N_i c) \otimes |n_i \rangle $
+\end{center}
+
+with $N_i$ being a noise operator acting on $i$.
+When we decode information through the decoding operator $\textbf{D}$ we want to map $|c' \rangle$ back to $|\psi \rangle$ $\otimes$ $|s_i \rangle$, identifying the original state psi and the error syndrome. We can then use the error syndrome to correct psi and get the initial state. To actually do exactly what we did in the classical case, the error syndrome should be homomorfic to $N_i$ to recover the respective errors, then $|s_i \rangle$ should be also independent from every psi, otehrwise we would not be able to retrieve the message and make adjustments. Note that all $N_i$ cane be made linearly independent to avoid confounding different errors. Note also that $\sum_{i} N_i^{\dagger} N_i= I$ ensures that the $Tr[\sum_{i} N_i^{\dagger} \rho N_i]= 1$ with $\rho$ a general quantum state in  $\textbf{C}$. \newline
+
+The above description of quantum error model actually contains the conditions on error correctability to protect quantum information. 
+This conditions are summed up into the equation given by the following theorem, \cite{Nie06}: 
+
+\begin{theorem}
+	 Given a quantum code $C$ ($H_C$) and $P$ the projector onto $C$. Suppose $N$ is a quantum operation with operation elements $\{N_i\}$. A necessary and sufficient condition for the existence of an error-correction operation $R$ correcting $N$ on $C$ is that
+	
+	\begin{center}
+		$PN_i^{\dagger}N_jP = \lambda_{ij}P$
+	\end{center}
+	
+	for some Hermitian matrix $\lambda$ of complex numbers and for all $N_i$. 
+\end{theorem}
+
+The projector is a mathematical operation that projects any quantum state onto the code space $C$. It ensures that any state acted upon by the error correction process is effectively confined to the subspace defined by the error-correcting code $C$ since, when quantum states undergo errors, these errors might cause the state to deviate from the code space. \newline
+The condition between the error correction operation $R$ and the error operation $N$ within the code space essentially states that the error correction is successful when applied to the states within $C$, ensuring that the corrected state remains within the code space. \newline
+We could generally say that it essentially ensure that a noisy quantum state is not {\it too} noisy. The projector $P$ forces the correction operation to act within the space where it provides reliable error-correction. In this sense $P$ protects against excessive noise.\newline
+The $N$s actually represent noise operators and if such an operation exists we say that $\{N_i\}$ forms a correctable set of errors. This would make $C$ correctable. \newline
+
+
+
+\subsection{Fault-tolerant computation}
+
+Quantum error-correction applications regard not only the protection of transmitted quantum information from noise but also the protection of quantum information during computations. 
+We start by briefly highlighting two main issues in quantum computation. The first issue regards the fact that nearly each component of a quantum circuit is subject to noise. 
+What is done in general to make computations fault-tolerant is to substitute qubits with encoded blocks of qubits by using a code protected from noise and substitute faulty gates with encoded gates also referred to as fault-tolerant procedures. 
+The second issue regards the fact that when we periodically perform error-correction on encoded qubits we may introduce errors through error-correction itself. \newline
+%Addittionally, encoded gates aren't the only fault-tolerant procedures that we want to perform. In fact, we also want measurements of encoded qubits and state preparations to be fault-tolerant.\newline
+We know by theory taht there exists a set of quantum gates through which each quantum computation can be expressed. Such set is comprised of the hadamard, phase, controlled-NOT and $\frac{\pi}{8}$ gates. 
+We also know that each of these gates can be realized falut-tolerantly. (Maybe add an example here). Then, in the context of fault-tolerant quantum computation, it is possible to carry out a comprehensive range of logical operations on encoded quantum states. This is also done in a manner that results in the effective failure probability within the encoded states scaling according to O($p^2$), where $p$ is the failure probability associated with the underlying gates. \newline
+Note that the O($p^2$) scaling is associated with the effects of error correction. 
+The individual gates in a quantum computation may have an inherent probability of error, denoted by $p$. These errors could affect a single qubit but quantum error-correction codes are designed to correct them. However, in the process of error-correction itself, new errors can be introduced, and these are typically correlated with the original errors. The O($p^2$) scaling arises because the probability of introducing correlated errors during the error correction process is proportional to the square of the original error probability. This means that the effective failure probability scales quadratically with the probability of errors in the underlying gates. \newline
+The above considerations lead us to the main result concerning fault tolerant compuatation: the threshold theorem. Essentially, the theorem states that as long as the noise present in individual quantum gates remains below a specific constant threshold (the probability that each gates fails is $p<p_t$) it becomes feasible to execute a quantum computation of arbitrary length reliably. In fact, if we apply fault-tolerant computations on encoded states, achieving a reduction of the errors to O($p^2$) as described above, the desired error thershold achieved can be made as low as desired with an increase in the circuit size by means of code concatenation. For further details see \cite{Nie06}.\newline
+%We must specify that this theorem works under some reasonable assumptions reguarding the type of noise, meaning that indeed noise is not a real issue in quantum computation but we cannot correct errors from arbitrary noises.
 
 
 
 %--------------------------------------------
+
+
+
+
+
+
+
+
+
 
 
 \newpage
