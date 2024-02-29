@@ -3741,44 +3741,153 @@ The ground states of the toric code Hamiltonian are protected from local perturb
 
 in order for the first result to be equal to zero, the order of the perturbation must be less than $ \frac{N}{2}$, where $N$ indicates the dimension of the torus. 
 This boundary comes from the fact that, if we compute the difference between the expectations of two eigenstates as in (2) and we want the eigenstates to be maximally distinguishable (no overlap), then we expect (2) to be non-zero and equal to the dimension of the torus. 
-This implies that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation in (1) should be of the order of $n < \frac{N}{2}$. \newline
-To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{N}{2}$. \newline
-The interpretation in terms of quantum error-correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$. \newline
+This implies that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation in (1) should be of the order of $n < \frac{N}{2}$. To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{N}{2}$. The interpretation in terms of quantum error-correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$. \newline
 This result also suggests that for $n \geq \frac{N}{2}$ theorem 2.5 does not apply anymore as the resulting codeword would diverge from the space of the codewords and quantum information would be too corrupted by noise to be recoverable.
 \newline
-% There are 2L2 physical qubits in the code, L2 −1 plaquette and L2 −1 vertex
-% operators. There are therefore 2L2−2(2L2) = 2 encoded qubits. 
-Thus, we can use the toric code to encode 2 logical qubits of information in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the ground state of the Hamiltonian of the system. 
-%Each qubit can be in either the state $|0 \rangle$ or the state $|1\rangle$, representing the classical binary states. Now, our goal is to encode a logical qubit, a quantum state, using this grid of physical qubits in a way that protects it from noise and thus errors. \newline
-The method for encoding information in the TC lies in the topological nature of the ground states. In fact, instead of directly manipulating individual qubits to store quantum information, we manipulate the entire lattice to encode and protect the logical qubit. The encoding is realized through operations on the qubits in such a way that we create the anyonic excitations presented in section 1.5.\newline
-As already discussed, anyons follow specific rules, like braiding around each other, that encode the quantum information we want to store. By moving and braiding these anyons, we manipulate the logical qubit encoded in the ground state of the system. What's interesting is that because of the topological nature of these anyons, they are resistant to local disturbances: even if a few qubits experience noise or errors, the anyons' collective behavior ensures that the logical qubit remains protected. \newline
+% There are 2L2 physical qubits in the code, N^2−1 plaquette and N^2−1 vertex
+% operators. There are therefore 2N^2−2(2N^2) = 2 encoded qubits. 
+Thus, for $n < \frac{N}{2}$ we can use the toric code to encode two encoded qubits of information in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the ground state of the Hamiltonian of the system. 
+The method for encoding information in the TC lies in the topological nature of the ground states. In fact, instead of directly manipulating individual qubits to store quantum information, we manipulate the entire lattice to encode and protect the logical qubit. The encoding is realized through operations on the qubits in such a way that we create the anyonic excitations presented in section 1.5. As already discussed, anyons follow specific rules, like braiding around each other, that encode the quantum information we want to store. What's interesting is that because of their topological nature, these anyons are resistant to local perturbations; so even if a few qubits experience noise or errors, the anyons' collective behaviour ensures that the logical qubit remains protected. \newline
 
 We can do more than just store information. In fact, we can perform fault-tolerant computation using the same anyonic framework that we have described above. \newline
-In the context of the toric code, gates are relized through braiding of pairs of anyons, which makes them topologically protected from local perturbations. \newline
-As shown in figure 2.3, we can follow the braiding of anyons in time and exchange them multiple times so that we are able to create different quantum operations. \newline
+In the context of the toric code, gates are relized through braiding of pairs of anyons. As shown in figure 2.3, we can follow the braiding of anyons in time and exchange them multiple times so that we are able to create different quantum operations. \newline
 We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pairs of anyons. It is important to mention that with braiding operations we cannot reach the entire bloch sphere of a qubit, so some quantum gates that are required for quantum universal computation will be missing from the set that we can create with braiding. Such missing operations can be supplemented through not topologically protected operations on the qubits, but which will of course have lower reliability. \newline
 
 %image
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Thesis/Immagine 2024-02-29 114346"}
-	\caption{Gate operators by means of braiding of anyons on the toric code.}
+	\caption{Gate operators by means of braiding pairs of anyons on the toric code.}
 	\label{fig:immagine-2024-02-29-114346}
 \end{figure}
 
 
-In order to make the analogy explicit for logical qubits (as opposed to physical qubits) we can relabel the orthogonal ground states as: $|00\rangle$, $|01\rangle$, $|10\rangle$ and $|11\rangle$.
-We can also identify logical gates $\overline{X}_1$,$\overline{X}_2$,$\overline{Z}_1$,$\overline{Z}_2$ as anyon pairs that wind all the way around the torus in order to self annihilate at the endpoints. 
-%In fact, this behaviour agrees with the commutation requirements for the vertex and plaquette operators. 
-
-How do we realize such gates? We briefly exemplify the construction of the logical gate $\overline{Z}_1$ on the GS; if we take a single $Z$, this cannot be our gate since it would commute with the plaquette operators but not with the vertex operators. 
+Next step is to relabel the orthogonal ground states as logical sates: $|00\rangle$, $|01\rangle$, $|10\rangle$ and $|11\rangle$ and identify logical gates as non-contractible loops as those represented in figure 2.4: $\overline{X}_1$,$\overline{X}_2$,$\overline{Z}_1$,$\overline{Z}_2$ as anyon pairs that wind all the way around the torus in order to self annihilate at the endpoints. 
+These non-contractible loops play a crucial role in encoding quantum information in the toric code. Specifically, the logical states of the two encoded qubits are determined by whether these loops are traversed an even or odd number of times. \newline
+How do we realize such gates? We briefly exemplify the construction of the logical gate $\overline{Z}_1$ on the GS as given by \cite{Bro14}; if we take a single $Z$, this cannot be our gate since it would commute with the plaquette operators but not with the vertex operators. 
 Similarly, if we consider a pair of adjacent $Z$ operators, they will commute with vertex operators, but there will now be phase-flips at the endpoints. Indeed if we form a string of $Z$ operators, regardless of its shape, it will always anticommute with the operators at the ends of the string. The only solution is to find a string of operators which has no end, thus a loop.\newline
 As regards $\overline{X}_1$, the reulting gate should commute with all the elements of the code while anti-commuting with the $\overline{Z}$ gates. Therefore we can construct it in the same way, though in the orthogonal direction with respect to $\overline{Z}_1$. Notice that in this case the loop is taken on the dual lattice. \newline
-The action of $\overline{X}_1$ logical gate maps $|00\rangle$ to $|10\rangle$, while $\overline{Z}_1$ maps $|00\rangle$ to $|00\rangle$ and $|10\rangle$ to -$|10\rangle$. Similarly, the action of $\overline{X}_2$ logical gate maps $|00\rangle$ to $|01\rangle$, while $\overline{Z}_2$ maps $|11\rangle$ to $|11\rangle$ and $|01\rangle$ to -$|01\rangle$. Notice that the action of the operators doesn't depend on a specific path as they loop around the torus.\newline
+The action of $\overline{X}_1$ logical gate maps $|00\rangle$ to $|10\rangle$, while $\overline{Z}_1$ maps $|00\rangle$ to $|00\rangle$ and $|10\rangle$ to -$|10\rangle$. Similarly, the action of $\overline{X}_2$ logical gate maps $|00\rangle$ to $|01\rangle$, while $\overline{Z}_2$ maps $|11\rangle$ to $|11\rangle$ and $|01\rangle$ to -$|01\rangle$. For further details see \cite{Her20}.\newline
 
-These non-contractible loops play a crucial role in encoding quantum information in the toric code. Specifically, the logical states of the two encoded qubits are determined by whether these loops are traversed an even or odd number of times. For example, if we define the logical states of the qubits as $|0\rangle$ and $|1\rangle$, we can associate one logical qubit with the loop along the horizontal direction and the other logical qubit with the loop along the vertical direction. \newline
+\begin{figure}
+\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (\i,-3) -- (\i,3);
+		}
+		\foreach \j in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (-3,\j) -- (3,\j);
+		}
+		
+		
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-3,-3) grid (3,3);
+		\foreach \i in {-2.5,...,2.5}
+		{
+			\foreach \j in {-2.5,...,2.5}
+			{
+				
+				
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=2
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=2
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		\foreach \i in {-1.5,...,-1.5} %column
+		{
+			
+			\draw[blue!50, line width=1.5mm] (\i,-3) -- (\i,3);
+			%\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,3) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,2) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,0) {};
+			\node[draw, circle, fill=purple!50,label=center:\textbf{$\pm$}] at (\i,-1) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,-2) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,-3) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{Z}_1$}}] at (\i,-3.5) {};
+		}
+		\foreach \j in {1.5,...,1.5}
+		{
+			
+			\draw[blue!50, line width=1.5mm] (-3, \j) -- (3, \j);
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (2,\j) {};
+			\draw node[draw,circle,fill=purple!50,label=center:\textbf{$\pm$}] at (1,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (0,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-1,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-2,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-3,\j) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{Z}_2$}}] at (-3.5,\j) {};
+			
+		}
+		
+		
+		
+		\foreach \j in {-1,...,-1}
+		{
+			
+			\draw[red!80, line width=1.5mm] (-3, \j) -- (3, \j);
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (2.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (1.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (0.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (-0.5,\j) {};
+			\draw node[draw,circle,fill=purple!80,label=center:\textbf{$\pm$}] at (-1.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (-2.5,\j) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{X}_1$}}] at (-3.5,\j) {};
+			
+			
+		}
+		\foreach \i in {1,...,1}
+		{
+			
+			\draw[red!80, line width=1.5mm] (\i,-3) -- (\i,3);
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,2.5) {};
+			\node[draw, circle, fill=purple!80,label=center:\textbf{$\pm$}] at (\i,1.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,0.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-0.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-1.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-2.5) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{X}_2$}}] at (\i,-3.5) {};
+			
+			%
+			
+		}
+		
+		
+	\end{tikzpicture}
+\end{center}
+\caption{Logical gates on the toric code.}
+\label{fig:gates}
+\end{figure}
 
-Errors that occur in the system, such as single-qubit errors or certain multi-qubit errors, can disrupt these non-contractible loops. However, the topological nature of the Toric code ensures that errors affecting the logical qubits can be detected and corrected by measuring the syndrome associated with these non-contractible loops. By performing appropriate error correction procedures based on the outcomes of these measurements, the encoded quantum information can be protected against errors. \newline
+Errors that occur in the system, such as single-qubit errors or certain multi-qubit errors, can disrupt these non-contractible loops. However, the topological nature of the toric code ensures that errors affecting the logical qubits can be detected and corrected by measuring the syndrome associated with these non-contractible loops. By performing appropriate error correction procedures based on the outcomes of these measurements, the encoded quantum information can be protected against errors. 
 
 
 
@@ -3800,7 +3909,7 @@ The position of the operators for which this happens represents the error syndro
 
 The nature of topological codes allows us to describe deviations from the GS as the quasi-particles that we have described in the previous chapter: \newline
 
--Errors Adjacent to Vertices:
+1.Errors Adjacent to Vertices:
 
 Vertex operators act locally on individual qubits, typically those located at the vertices of the lattice. These operators are designed to detect errors that occur in the vicinity of these vertices.
 When an error affects qubits adjacent to a vertex, it can introduce correlations between the qubit states that disrupt the commuting relationship between the Pauli operators forming the vertex operator and the qubit operators affected by the error.
@@ -3813,7 +3922,7 @@ As a result, the measurement outcome of the vertex operator may deviate from its
 This deviation indicates that an error has occurred in the vicinity of the vertex and can be described through $e$ anyons type. In fact, an $e$ particle is created in the vertex $v$. \newline
 
 
--Errors in Plaquette Regions:
+2.Errors in Plaquette Regions:
 
 Similarly, plaquette operators act on sets of qubits arranged in plaquette-shaped regions of the lattice. These operators are designed to detect errors that occur within these specific regions.
 When an error affects qubits within a plaquette region, it alters the state of those qubits. As a result, the product of Pauli operators forming the plaquette operator may no longer commute with the qubit operators affected by the error.
