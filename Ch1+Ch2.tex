@@ -501,10 +501,16 @@ Similarly if we compute the tensor product explicitly, it becomes a simple produ
 
 The toric code model is defined on a square lattice with periodic boundary conditions in both directions. These latter characteristics are typical of what is known as a torus topology or simply a torus, after which the model takes name.\newline
 A square lattice, here labelled as $\mathcal{L}$, is a particular lattice defined in a two dimensional space. Such lattice is denoted as $\mathbb{Z}^{2}$ such that each lattice point is identified with a pair of integers. Though, the above mentioned boundary conditions also specify that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1)\mathrm{mod}N, j)$, $((i-1)\mathrm{mod} N, j)$, $(i, (j+1)\mathrm{mod}N)$ and $(i, (j-1)\mathrm{mod}N)$, where $N$ is the dimension of the torus. We are also going to consider a dual lattice, which will be labelled as $\mathcal{L}'$, and that will be positioned as represented in figure 1.1, where the continuous line represents the main lattice $\mathcal{L}$, while the dashed line represents its dual $\mathcal{L'}$.  \newline	
-Each unitary step on the lattice is identified with an edge; given the vertices $\vec{v}=(i,j) \in V$ and the cells $\vec{p}=(i+\frac{1}{2},j+\frac{1}{2})\in P$ of the lattice as shown in figure 1.1, we can define the set of all edges for the lattice:
+Each unitary step on the lattice is identified with an edge; given the vertices or lattice points $\vec{v}=(i,j) \in V$ where $V$ coincides with $\mathcal{L}$ and the cells $\vec{p}=(i+\frac{1}{2},j+\frac{1}{2})\in P$ where $P$ coincides with $ \mathcal{L'}$ of the lattice as shown in figure 1.1, we can define the set of all edges for the lattice:
 
 \begin{definition}(Edges of $\mathcal{L}$)
-	We define the set of all edges of the lattice as: $E = \{(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L}$.
+	We define the set of all edges of the lattice as: $E = \{e=(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L}$. 
+\end{definition}
+
+Notice that we can identify each edge $e=((i,j),(i',j')) \in E$ with the vector that points at the middle point of the edge, namely with the vector of coordinates $\vec{e}=(i + (i'-i)/2, j + (j'-j)/2)$. In the rest of the thesis we will make use of this identification without explicit mention. We can also define the set of edges of the dual lattice as:
+
+\begin{definition}(Edges of $\mathcal{L'}$)
+	We define the set of all edges of the dual lattice as: $E' = \{e=(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L'}$. 
 \end{definition}
 
 On each edge is located a spin-$\frac{1}{2}$ particle each belonging to a bidimensional Hilbert space $\mathbb{C}^2$. As a consequence we need to define a global Hilbert space for the lattice that takes into account every edge:
@@ -513,8 +519,8 @@ On each edge is located a spin-$\frac{1}{2}$ particle each belonging to a bidime
 	The overall Hilbert space of the lattice is: $\mathscr{H}= \bigotimes_{e \in E} \mathbb{C}^2$.
 \end{definition}
 
-For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N^2$ represents the total number of cells in $\mathcal{L}$ and $N$ the dimension of the lattice. \newline
-notice that, since all of these spins exhibit the same characteristics, they are identified with identical particles, which will be useful to know in the next sections in order to study the behaviour of the system.
+For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N^2$ represents the total number of cells and vertices in $\mathcal{L}$ and $N$ the dimension of the lattice. \newline
+Notice that, since all of these spins exhibit the same characteristics, they are identified with identical particles, which will be useful to know in the next sections in order to study the behaviour of the system.
 
 %\afterpage{
 \begin{figure}
@@ -571,7 +577,7 @@ notice that, since all of these spins exhibit the same characteristics, they are
 			
 			% Define vertices
 			\coordinate (A) at (-3,-3);
-			\coordinate (B) at (-0.5,-0.5);
+			\coordinate (B) at (-1.5,0.5);
 			
 			% Draw vector
 			\draw[->, line width=1.1pt] (A) -- (B) node[right] {\large $\vec{p}$};
@@ -811,9 +817,9 @@ Then we can define vertex and plaquette operators as:
 \begin{definition} (Vertex and Plaquette operators) Given a vertex $\vec{v}$ and a plaquette $\vec{p}$ we can define, respectively, vertex and plaquette operators as products over Pauli operators, each acting locally on four neighbouring spins of $\mathcal{L}$
 	
 \begin{center}
-	$ A_{\vec{v}} = \prod_{(i,j) \in star(\vec{v})} Z_e $ 
+	$ A_{\vec{v}} = \prod_{e \in star(\vec{v})} Z_e $ 
 	
-	$ B_{\vec{p}} = \prod_{(i,j) \in bdy(\vec{p})} X_e $.
+	$ B_{\vec{p}} = \prod_{e \in bdy(\vec{p})} X_e $.
 \end{center}
 %e \ s.t.\ \vec{v}_1 \in star(\vec{v})
 \end{definition}
@@ -843,15 +849,15 @@ All the elements that constitute the model of the toric code are brought togethe
 
 \begin{center}
 	
-	$H = -\sum_{\vec{v} \in P}
+	$H = -\sum_{\vec{v} \in V}
 	A_{\vec{v}} - \sum_{\vec{p} \in P} B_{\vec{p}} $
 	
 \end{center}
 
-Each one of the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators that appear in the Hamiltonian share some important properties. Firstly, notice that $A_{\vec{v}}$ and $B_{\vec{p}}$ operators are Hermitian and square to the identity. Given the considerations made in definition 1.2 and 1.3 for real matrices, we can easily prove the first following proposition:
+Each one of the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators that appear in the Hamiltonian share some important properties. Firstly, notice that $A_{\vec{v}}$ and $B_{\vec{p}}$ operators are Hermitian and square to the identity. Given the considerations made in definition 1.2 and 1.3 for bounded operators, we can easily prove the first following proposition:
 
 \begin{proposition} (Self-adjointness and involutory property of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators)
-$A_{\vec{v}}$ and $B_{\vec{p}}$ operators are self-adjoint and satisfy the involution.
+$A_{\vec{v}}$ and $B_{\vec{p}}$ operators are self-adjoint and satisfy the involution property.
 \end{proposition}
 	
 \textit{Proof.}
@@ -1039,11 +1045,11 @@ Given the result of proposition 1.2, is easy to find the spectrum of the operato
 In particular, if we compute the corresponding eigenvalue of $A_{\vec{v}}$ (or $B_{\vec{p}}$), this can either assume value $-1$ or $+1$ according to the fact that the Pauli matrices that make up the operator anticommute, respectively, with an odd or even number of edges.
 In fact we can prove that following relationships between vertex and plaquette operators holds:
 
-\begin{proposition} (Commutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ commutes with the operator $B_{\vec{p}}$ for an even number of overlapping edges.
+\begin{proposition} (Commutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ commutes with the operator $B_{\vec{p}}$ whenever the intersection between $star(\vec{v})$ and $bdy(\vec{p})$ contains an even number of edges.
 \end{proposition}
 
 
-\begin{proposition} (Anticommutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ anticommutes with the operator $B_{\vec{p}}$ for an odd number of overlapping edges.
+\begin{proposition} (Anticommutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ anticommutes with the operator $B_{\vec{p}}$ whenever the intersection between $star(\vec{v})$ and $bdy(\vec{p})$ contains an odd number of edges. 
 \end{proposition}
 
 
@@ -1268,9 +1274,9 @@ which states that 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'}$ commutes for $\vec{v}
 \end{center}
 Instead, for an odd number of edges the commutator vanishes: $[A_{v},B_{p}]=0$.
 
-These calculations conclude that $A_{v},B_{p}$ commute for an even numer of edges but anticommute for an odd number of edges.\newline
+These calculations conclude that $A_{v},B_{p}$ commute for an even numer of edges but anticommute for an odd number of edges.
 
-\hfill $\square$\newline
+\hfill $\square$
 
 In the same way, we notice that two vertex/plaquette operators applied on different sites always commute; this is because they either do not share any edge or they share only one.\newline
 
@@ -1315,7 +1321,7 @@ Recall the form of the Hamiltonian as given in section 1.2:
 
 \begin{center}
 	
-	$H = -\sum_{\vec{v} \in P}
+	$H = -\sum_{\vec{v} \in V}
 	A_{\vec{v}} - \sum_{\vec{p} \in P} B_{\vec{p}} $
 	
 \end{center}
@@ -1327,13 +1333,13 @@ To determine the ground state of the Hamiltonian we have to determine the minimu
 \begin{center}
 	$\sigma( H) =$
 	$\begin{cases}
-		2N, \hspace{1cm} if \ all\ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= -1\\
-		2N-1,\\
-		.\\
+		2N^2, \hspace{1cm} if \ all\ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= -1\\
+		2N^2-1,\\
+		\dots\\
 		intermediate \ energies,\\
-		.\\
-		-2N+1\\
-		-2N, \hspace{1cm} if \ all \ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= +1
+		\dots\\
+		-2N^2+1\\
+		-2N^2, \hspace{1cm} if \ all \ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= +1
 	\end{cases}$
 	
 \end{center}
@@ -1361,7 +1367,7 @@ Graphically, we identify the loop configurations through strings of 'occupied' e
 %each identified as a qubit in configuration $|1\rangle$.
 
 \begin{definition}(Occupied edges)
-	Given a state $|\psi\rangle $, we say that in the state $|\psi\rangle $ the edge $i$ of the lattice is occupied if $\sigma^z |\psi\rangle  = - |\psi\rangle $.
+	Given a state $|\psi\rangle $, we say that in the state $|\psi\rangle $ the edge $e$ of the lattice is occupied if $\sigma^z_e |\psi\rangle  = - |\psi\rangle $.
 \end{definition}
 
 Then, if we apply $A_{\vec{v}} $ at one of the open ends of such strings, we have two possibilities: leaving the string of occupied edges open (figure 1.4) or closing the string over the $A_{\vec{v}} $ operator (figure 1.5).
@@ -2337,16 +2343,16 @@ In fact, we can show the impossibility of the above action by defining two topol
 The above indeces can be expressed more clearly as follows: 
 
 \begin{center}
-	$n_x= (number \ of \ vertical \ intersections)mod2 = 
+	$n_x= (number \ of \ vertical \ intersections) \ \mathrm{mod} \ 2 = 
 	\begin{cases} 
-		0mod2 \\
-		1mod2  
+		0 \ \mathrm{mod} \ 2 \\
+		1 \ \mathrm{mod} \ 2  
 	\end{cases}$ 
 \end{center}
 \begin{center}
-	$n_y= (number \ of \ horizontal \ intersections)mod2 =\begin{cases} 
-		0mod2 \\
-		1mod2  
+	$n_y= (number \ of \ horizontal \ intersections) \ \mathrm{mod} \ 2 =\begin{cases} 
+		0 \ \mathrm{mod} \ 2 \\
+		1 \ \mathrm{mod} \ 2  
 	\end{cases}$ 
 \end{center}
 
@@ -2490,25 +2496,33 @@ Taking into account the results yielded by the examination of the physical syste
 In the particular case of the toric code, such low-energy excitations can be created through the application of a $S^x$ or $S^z$ string operator on the ground state (figure 1.10).
 
 \begin{definition}(Adjacent edges)
-	We say that  $e_1$ and $e_2$ $\in E$ are adjacent if $e_1\neq e_2$ and $\{ \vec{v}_1, \vec{v'}_1\}$ $\cap $ $\{ \vec{v}_2, \vec{v'}_2\}$ $\neq$ $\emptyset$
+	We say that the edges  $e_1, e_2$ $\in E$ are adjacent if $e_1\neq e_2$ and $\{ \vec{v}_1, \vec{v'}_1\}$ $\cap $ $\{ \vec{v}_2, \vec{v'}_2\}$ $\neq$ $\emptyset$.
 \end{definition}
 
-\begin{definition}($S^x$ operator)
-	A $S^x$ operator is made up of $\sigma^x$ operators applied on a collection of adjacent edges on the main lattice such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
+\begin{definition}(String $\ell$)
+	A string $\ell$ consists of a set of adjacent edges.
 \end{definition}
 
-\begin{definition}($S^z$ operator)
-	A $S^z$ operator is made up of $\sigma^z$  operators applied on a collection of adjacent edges on the dual lattice such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
+\begin{definition}(Loop)
+	A loop consists of a set of adjacent edges such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} \ge N$.
+\end{definition}
+
+\begin{definition}($S^x_\ell$ operator)
+	A $S^x_\ell$ operator consists of $\sigma^x$ operators applied on a collection of adjacent edges on the main lattice such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
+\end{definition}
+
+\begin{definition}($S^z_\ell$ operator)
+	A $S^z_\ell$ operator consists of $\sigma^z$  operators applied on a collection of adjacent edges on the dual lattice such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
 \end{definition}
 
 At the extremities of the above mentioned operators particles are created. In particular we can get (figure 1.10):
 
 \begin{definition}(Electric charges)
-	The pairs of particles obtained through the application of operator $S^x$ are called electric charges $e$.
+	The pairs of particles obtained through the application of operator $S^x_\ell$ are called electric charges $e$.
 \end{definition}
 
 \begin{definition}(Magnetic vortices)
-	The pairs of particles obtained through the application of operator $S^z$ are called magnetic vorteces $m$.
+	The pairs of particles obtained through the application of operator $S^z_\ell$ are called magnetic vorteces $m$.
 \end{definition}
 
 These excitations can be transported on the GS by means of Pauli operators and interact with each other and with each component of the system in several ways, influencing at the same time the low energy of ground state.\newline
@@ -2600,18 +2614,18 @@ In order to understand how the string operators influence the ground state, we n
 
 
 %\newpage
-We can prove that a $S^x$ operator anticommutes with one $A_{\vec{v}} $ for each one of its endpoints. 
+We can prove that a $S^x_\ell$ operator anticommutes with one $A_{\vec{v}} $ for each one of its endpoints. 
 
-\begin{proposition}(Anticommutation of $S^x$)
-	The $S^x$ operators anticommute with two $A_{\vec{v}} $ each.
+\begin{proposition}(Anticommutation of $S^x_\ell$)
+	The $S^x_\ell$ operators anticommute with two $A_{\vec{v}} $ each.
 \end{proposition}
 
 \textit{Proof.}\newline
-We want to show that $A_{\vec{v}} S^x + S^x A_{\vec{v}}=0$. Knowing that 
+We want to show that $A_{\vec{v}} S^x_\ell + S^x_\ell A_{\vec{v}}=0$. Knowing that 
 
 \begin{center}
 	$A_{\vec{v}} = \prod_{i=1}^{4} \sigma_i^z$ \\ 
-	$S^x = \prod_{j=1}^{N} \sigma_j^x$
+	$S^x_\ell = \prod_{j=1}^{N} \sigma_j^x$
 \end{center}
 
 by substitution we obtain the following expression: 
@@ -2634,7 +2648,7 @@ if for simplicity we fix $N=2$ we can easily see that :
 \end{center}
 
 having supposed that, for example, the extremity $\sigma_1^x$ overlaps with the $\sigma_3^z$ edge part of the $A_{\vec{v}} $ operator (figure 1.11). This can then be easily generalized for $N$ Pauli operators. Finally, if we substitute such expression in $(1)$ we obtain that the overall equation is in fact equal to zero. \newline
-This procedure should be iterated also for the other extremity of the string $S^x$ to show that the operator commutes with two $A_{\vec{v}} $ operators, one for each endpoint.\newline
+This procedure should be iterated also for the other extremity of the string $S^x_\ell$ to show that the operator commutes with two $A_{\vec{v}} $ operators, one for each endpoint.
 
 \hfill $\square$ 
 
@@ -2743,8 +2757,8 @@ This procedure should be iterated also for the other extremity of the string $S^
 
 In the same way, we could prove that, if we take a string $S^z$ it anticommutes with one $B_{\vec{p}} $ for each one of its endpoints.
 
-\begin{proposition}(Anticommutation of $S^z$)
-	The $S^z$ operators anticommute with two $B_{\vec{p}} $ each.
+\begin{proposition}(Anticommutation of $S^z_\ell$)
+	The $S^z_\ell$ operators anticommute with two $B_{\vec{p}} $ each.
 \end{proposition}
 
 The effect of putting such strings on the ground states correspond to raising the associated energy of the GS by 2. In fact, coherently with what said in {\cite{Her20}}, it is impossible to create unitary excitations on the ground states.
@@ -2758,8 +2772,8 @@ Recall that for a string operator, here we will choose $S^x$, both equations hol
 
 \begin{center}
 	$\begin{cases} 
-		A_{\vec{v}_1}S^x + S^x A_{\vec{v}_1}  =0 \\
-		A_{\vec{v}_2} S^x + S^x A_{\vec{v}_2} =0
+		A_{\vec{v}_1}S^x_\ell + S^x_\ell A_{\vec{v}_1}  =0 \\
+		A_{\vec{v}_2} S^x_\ell + S^x_\ell A_{\vec{v}_2} =0
 	\end{cases}$ 
 \end{center}
 
@@ -2767,9 +2781,9 @@ If we apply the string operator to the Ground State, taking into account anticom
 
 \begin{center}
 	$\begin{cases}
-		A_{\vec{v}_1} S^x |GS\rangle = - S^x A_{\vec{v}_1} |GS\rangle = - S^x |GS\rangle \\
+		A_{\vec{v}_1} S^x_\ell |GS\rangle = - S^x A_{\vec{v}_1} |GS\rangle = - S^x_\ell |GS\rangle \\
 		
-		A_{\vec{v}_2} S^x |GS\rangle = - S^x A_{\vec{v}_2} |GS\rangle = - S^x |GS\rangle
+		A_{\vec{v}_2} S^x_\ell |GS\rangle = - S^x A_{\vec{v}_2} |GS\rangle = - S^x_\ell |GS\rangle
 	\end{cases}$ 
 \end{center}
 
@@ -2778,7 +2792,7 @@ Summing up term by term :
 
 \begin{center}
 	$\begin{cases}
-		A_{\vec{v}_1} S^x |GS\rangle + A_{\vec{v}_2} S^x |GS\rangle = - 2 S^x A_{\vec{v}_1} |GS\rangle
+		A_{\vec{v}_1} S^x_\ell |GS\rangle + A_{\vec{v}_2} S^x_\ell |GS\rangle = - 2 S^x_\ell A_{\vec{v}_1} |GS\rangle
 	\end{cases}$ 
 \end{center}
 
@@ -3477,7 +3491,7 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 \section{Classical error correction}
 \label{sec:CER}
 
-In classical computing the most elementary unit of information is the {\it bit}. A bit stores binary information, which can either assume value 1 or 0. When we transmit information in the classical world, we immagine to make strings of bits travel through a channel similar to the one depicted below in figure 2.1. During the transmission a bit can change its value either going from 1 to 0 or viceversa, this event is called {\it bit-flip} and it tells us that an error has occured in the transmission. A bit-flip can occur independently on each bit (iid) with a certain probability that we will denote in general as $p$.\newline
+In classical computing the most elementary unit of information is the {\it bit}. A bit stores binary information, which can either assume value 1 or 0. When we transmit information in the classical world, we immagine to make strings of bits travel through a channel similar to the one depicted below in figure 2.1. During the transmission a bit can change its value either going from 1 to 0 or viceversa, this event is called {\it bit-flip} and it tells us that an error has occured in the transmission. A bit-flip can occur independently on each bit with a certain probability that we will denote in general as $p$: mathematically, this translates to the assumption that errors, i.e. bit-flips,  are assumed to be independently identically distributed on all the bits with the same probability $p$. In such a case we say that errors are i.i.d. with probability $p$.\newline
 The noisy channel described in picture 2.1 is one of the easiest error models also known as the $\textit{Binary Symmetric Channel}$. An error model, in the context of information theory and communication, is a mathematical or conceptual representation of how errors can occur during the transmission of information. It describes the types of errors that can happen, the probabilities associated with each type of error and the conditions under which these errors occur. \newline
 
 %image
@@ -3490,7 +3504,8 @@ The noisy channel described in picture 2.1 is one of the easiest error models al
 
 
 \newpage
-In order to protect information what we do is introduce redundancy, which helps us detect errors and correct them. Redundacy means duplicating bits of information before sending them through a channel. We say that we encode logical bits into {\it strings of bits} (physical bits). For example: 0 is encoded into 00 and 1 into 11. This is useful to detect errors because in this way, whenever a bit changes we know that an error has occured since 10 and 01 pairs should never occur. Formally speaking we have introduced a {\it parity}: the strings 00 and 11 have {\it even} parity while 10 and 01 have an {\it odd} parity. Whenever we catch a string we do {\it parity-check} and signal an error whenever we get odd parity. We will call the obtained values {\it error syndromes}.
+In order to protect information what we do is introduce redundancy, which helps us detect errors and correct them. Redundacy means duplicating bits of information before sending them through a channel. We say that we encode logical bits into {\it strings of bits} (physical bits). For example: 0 can be encoded into 00 and 1 into 11. This is useful to detect errors because in this way, whenever a bit changes we know that a single error has occured since 10 and 01 pairs should never occur. Formally speaking we have introduced a {\it parity}: the strings 00 and 11 have {\it even} parity while 10 and 01 have an {\it odd} parity. Whenever we receive a string we do {\it parity-check} and signal an error whenever we get odd parity. We will call the values obtained through the parity-check procedure {\it error syndromes}.\newline
+
 In order to also be able to correct errors, the redundancy above is not enough since we wouldn't be able to define a criterion to correct the corrupted information. Thus, we introduce a third redundant bit and obtain the {\it three repetition code}; in this way, when we decode information at the destination, we can apply what is called {\it majority voting}. Majority voting decodes into 1 those triplets that have most bits set to 1 and decodes as 0 the ones that have most bits set to 0. Though, as soon as two bit-flips happen, majiority voting stops working. In fact, state 000 with two errors (110) would be associated with to 111 and vice-versa. Therefore we will need other tools to decode information correctly. In fact, in the case of the three repetition code in order to perform parity-check we look at two 'error bits' for each parity in the error syndrome, which could still yield the same error syndrome for two different bit-flip errors scenarios (figure 2.2), though if we decide to assign a fixed iid error probability of $p<\frac{1}{2}$ for each bit, we will always end up choosing to decode the codeword with less errors. This method does not erase the possibility of getting decoding mistakes but significantly decreases them. \cite{Kas19}.\newline
 
 
@@ -3523,14 +3538,14 @@ We can in fact reframe all of the above in terms of linear algebra. To do so we 
 The { generator matrix} is used to encode information before sending it through a channel but we have also said that a realistic channel is noisy so it can modify the codewords we send. Thus, we also need to define an operator to specify how an error occurs and how to detect it. 
 
 \begin{definition}(Noise operator)
-	We denote a noise operator as $\textbf{N}_j$ $\in \textbf{N}$ where $j$ denotes the element that will be modified by $\textbf{N}_j$ in the original codeword and $\in \textbf{N}$  represents the set of all possible error operators that could happen on the codeword. 
+	We denote a noise operator as $\textbf{N}_j \in \textbf{N}$ where $j$ denotes the element that will be modified by $\textbf{N}_j$ in the original codeword and $\in \textbf{N}$  represents the set of all possible error operators that could happen on the codeword. 
 \end{definition} 
 
 Overall, the codeword is changed by the noise operator into the correspondig codeword $c' =c + n_j$ where $\textbf{n}_j$ is an m $\times$ 1 vector having a 1 at the j-th row and zeros elsewhere; notice that, since we work with bits, addition is always performed modulo 2.\newline
 Having defined all of the above we can come to parity-check performed after transmission.
 
 \begin{definition}(Parity-check matrix)
-	Given an m-bit codespace and a k-bit encoding, we define a parity check matrix as a matrix denoted by $\textbf{H}$ having size $m$ - $k$ $\times$ m.
+	Given an m-bit codespace and a k-bit encoding, we define a parity check matrix as a matrix denoted by $\textbf{H}$ having size $(m - k)\times m $.
 \end{definition}
 
 To check parity we can simply perform multiplication of {\bf H} by the received codeword, the result will be: 
@@ -3554,12 +3569,12 @@ We have mentioned how a codeword can be rejected if corrupted and how a receiver
 	$\textbf{N}$ is detectable by a code if and only if for each $c_m \neq c_n$ in the code, $\textbf{N}c_n \neq c_m $.
 \end{theorem} 
 
-On the otehr hand, error correction involves an active process where the decoder not only identifies errors but also rectifies them. 
+On the otehr hand, error correction involves an active process where the decoder not only identifies errors but also corrects them. 
 In the context of a code $\textbf{C}$ and a set of error operators $\textbf{N}$, the primary goal is to establish the presence of a decoding procedure capable of correcting errors introduced by $\textbf{N}$. 
 Assuming the existence of distinct codewords $c_m$ and $c_n$ within the code, and for specific set of noise operators $\textbf{N}$, there could be situations such that if we apply $\textbf{N}_i$ to the codeword $c_m$ and the error operator $\textbf{N}_j$ to the codeword $c_n$ we end up in the same final state $c_q$. In such cases the challenge lies in determining whether the original codeword was $c_m$ or $c_n$. Thus, the error is unidentified meaning that it occurs in the set of error operators $\textbf{N}$ but we don't know which specific error operator caused it. In simpler terms, given the state $c_q$, we cannot say which codeword was initially sent due to the ambiguity in identifying the specific error that occurred.
 
 \begin{theorem}(Error correction)
-	$\textbf{N}$ is correctable if and only if for all $c_m \neq c_n$ in the code and for all i, j, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$. 
+	The set $\textbf{N}$ of errors is correctable if and only if for all $c_m \neq c_n$ in the code and for all $i, j \in \textbf{N}$, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$. 
 \end{theorem} 
 
 Thanks to linear codes, we gain insights into the two essential steps of error recovery: error detection and error correction, which also serve us to assess the goodness of the code in its entirety. For further details see \cite{Kas19}. Though, in order to evaluate the robustness of a given code we define the {\it Distance of a code} by means of the {\it Hamming distance} of that code:
@@ -3593,7 +3608,7 @@ To conclude, linear codes' representation plays a crucial role in studying encod
 Due to the no-cloning theorem, which states that  it's impossible to clone an arbitrary quantum state perfectly using quantum operations, one might be brought to think that error correction cannot be performed in the quantum setting.
 
 \begin{theorem}(No cloning theorem)
-	For any unknown quantum state $|\psi\rangle$ in a Hilbert space $\mathscr{H}$, there is no unitary operator $U$ acting on the composite Hilbert space $\mathscr{H} \otimes \mathscr{H}$ such that:
+	For any unknown quantum state $|\psi\rangle$ in a Hilbert space $\mathscr{H}$, there is no unitary operator $U$ acting on the composite Hilbert space $\mathscr{H} \otimes \mathscr{H}$ such that for any $|\psi\rangle \in \mathscr{H}$:
 	
 	\begin{center}
 		$U(|\psi\rangle\otimes|0\rangle) = |\psi\rangle \otimes |\psi\rangle$
@@ -3618,7 +3633,7 @@ $ |\psi \rangle$ can be expressed as a superposition of these basis states:
 	$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ =  $[ \ \alpha \ \ \beta \ ]^T $
 \end{center}
 
-where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously.  \newline
+where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously, which is not possible for classical bits.  \newline
 When it comes to qubits, computations are performed through operators, which are the quantum logical gates. Each quantum gate corresponds to a unitary operator, which is a linear transformation that preserves the norm of vectors (in this case, quantum states) and is represented by a square matrix that is both unitary and Hermitian. These gates can perform various operations such as changing the phase of a qubit, performing logical operations like NOT, AND, or OR and more.\newline
 Having briefly recalled the quantum setting, we shall now give the quantum version of the classical error model previously defined when talking about linear codes and discussed by \cite{Cha06}. \newline
 Similarly to what we did with repetition codes, we can define the bit-flip error (generally called noise) for qubits through the $X$ gate apllied to $|\psi \rangle$ and define the probability $p$ with which the state will be flipped.\newline
@@ -3636,7 +3651,7 @@ where we have encoded the basis as:
 \end{center}
 
 where L stands for logical qubits, not physical. \newline
-If we imagine to pass all of the three bits one at a time through a channel and suppose that one or fewer qubits are flipped; we can define a simple quantum error correction scheme by means of detection and analysis of error syndromes, given by projector operators in \cite{Nie06}:
+If we imagine to send all of the three bits one at a time through a channel and suppose that one or fewer qubits are flipped; we can define a simple quantum error correction scheme by means of detection and analysis of error syndromes, given by projector operators in \cite{Nie06}:
 
 \begin{enumerate}
 	\item  $P_0$ = $|000 \rangle \langle 000|$ + $|111 \rangle \langle 111|$ no errors;
@@ -3646,11 +3661,11 @@ If we imagine to pass all of the three bits one at a time through a channel and 
 \end{enumerate}
 
 In order to detect the syndrome we will compute $\langle \psi| P_i | \psi \rangle $ in the decode phase, which will be equal to 1 according to which bit $i$ was flipped.
-Measuring the syndrome doesn't affect the state in any way, neither before nor after the measurement. Furthermore, the syndrome gives no infromation of the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest. Though, we have already mentioned that this schema works well only if errors occur on one or less of the three qubits.\newline
-%While the error analysis is effective for discrete errors, it is acknowledged that not all errors and states in quantum mechanics are equal, due to the continuous nature of quantum states. 
-To address this, fidelity is introduced. The fidelity, denoted as $F(|\psi \rangle, \rho)$, is a measure of the overlap or similarity between a pure state $| \psi \rangle$  and a mixed state $\rho$. \newline
-The fidelity quantifies how well a quantum state is preserved or reconstructed after error correction. 
-In the given scenario, where an error syndrome is measured and recovery procedures are applied, the fidelity is employed to assess how closely the corrected state aligns with the original, error-free state. Moreover, the fidelity is particularly valuable when dealing with errors that may perturb or alter the quantum state in various ways. By maximizing the fidelity, quantum error correction aims to ensure that the corrected state closely approximates the original state, even in the presence of errors. It provides a quantitative measure of the accuracy and effectiveness of the error-correction process. \newline
+Measuring the syndrome doesn't affect the state in any way, neither before nor after the measurement. Furthermore, the syndrome gives no information of the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest. Though, we have already mentioned that this schema works well only if errors occur on one or less of the three qubits.\newline
+ 
+%To address this, fidelity is introduced. The fidelity, denoted as $F(|\psi \rangle, \rho)$, is a measure of the overlap or similarity between a pure state $| \psi \rangle$  and a mixed state $\rho$. \newline
+%The fidelity quantifies how well a quantum state is preserved or reconstructed after error correction. 
+%In the given scenario, where an error syndrome is measured and recovery procedures are applied, the fidelity is employed to assess how closely the corrected state aligns with the original, error-free state. Moreover, the fidelity is particularly valuable when dealing with errors that may perturb or alter the quantum state in various ways. By maximizing the fidelity, quantum error correction aims to ensure that the corrected state closely approximates the original state, even in the presence of errors. It provides a quantitative measure of the accuracy and effectiveness of the error-correction process. \newline
 
 In this paragraph, we more formally define the Quantum Error Model as we did in the classical case according to \cite{Cha06}. Take quantum information to be a $|\psi \rangle$ in an Hilbert space $\mathscr{H}_A$. We can introduce ancillary qubits as to introduce redundancy. Ancillary qubits are replicas of information that will be manipulated along with the data that we want to transmit.
 Ancillary bits are part of an Hilbert space that we will call $\mathscr{H}_B$ and are initially in a state $|b \rangle$. When we encode information what we do is mapping the tensor product of $|\psi \rangle$ and $|b \rangle$ in a new Hilbert space $\mathscr{H}_C$ (the code space) through the application of an encoder operator $\textbf{E}$, which should be the equivalent of the generator matrix in classic models. In the same way we can define an Hilbert space to model the noise, we will call it $\mathscr{H}_N$; this space more generally represents the noisy environment that introduces errors and is initially in state $|n \rangle$. The interaction between information and the environment is computed as the tensor product:
