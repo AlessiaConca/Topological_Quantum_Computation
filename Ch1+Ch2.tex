@@ -2500,29 +2500,33 @@ In the particular case of the toric code, such low-energy excitations can be cre
 \end{definition}
 
 \begin{definition}(String $\ell$)
-	A string $\ell$ consists of a set of adjacent edges.
+	A string $\ell$ consists of a set of numbered edges $\{e_1, \dots, e_i, \dots e_n\}$ where $e_i$ is adjacent to $e_{i+1}$ and such that the overall length of the string is equal to $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
+\end{definition}
+
+\begin{definition}(Endpoints of a string)
+	Given a string $\ell$ we identify its endpoints with the initial edge $e_1$ and its final edge $e_n$.
 \end{definition}
 
 \begin{definition}(Loop)
-	A loop consists of a set of adjacent edges such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} \ge N$.
+	A loop consists of a set of numbered edges $\{e_1, \dots, e_i, \dots e_n\}$ where $e_i$ is adjacent to $e_{i+1}$ and such that the overall length of the loop is $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} \ge N$.
 \end{definition}
 
 \begin{definition}($S^x_\ell$ operator)
-	A $S^x_\ell$ operator consists of $\sigma^x$ operators applied on a collection of adjacent edges on the main lattice such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
+	A $S^x_\ell$ operator consists of $\sigma^x$ operators applied on a string $\ell$ of $\mathcal{L}$.
 \end{definition}
 
 \begin{definition}($S^z_\ell$ operator)
-	A $S^z_\ell$ operator consists of $\sigma^z$  operators applied on a collection of adjacent edges on the dual lattice such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
+	A $S^z_\ell$ operator consists of $\sigma^z$ operators applied on a string $\ell$ of $\mathcal{L'}$.
 \end{definition}
 
-At the extremities of the above mentioned operators particles are created. In particular we can get (figure 1.10):
+After the application of string operators on strings of edges, particles are created at their endpoints. In particular we can get two distinct types of excitations (figure 1.10):
 
 \begin{definition}(Electric charges)
-	The pairs of particles obtained through the application of operator $S^x_\ell$ are called electric charges $e$.
+	The pairs of particles obtained at the endpoints of $S^x_\ell$ are called electric charges $e$.
 \end{definition}
 
 \begin{definition}(Magnetic vortices)
-	The pairs of particles obtained through the application of operator $S^z_\ell$ are called magnetic vorteces $m$.
+	The pairs of particles obtained through at the endpoints of $S^z_\ell$ are called magnetic vorteces $m$.
 \end{definition}
 
 These excitations can be transported on the GS by means of Pauli operators and interact with each other and with each component of the system in several ways, influencing at the same time the low energy of ground state.\newline
@@ -3497,7 +3501,7 @@ The noisy channel described in picture 2.1 is one of the easiest error models al
 %image
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{../Thesis/324193_2_En_1_Fig3_HTML}
+	\includegraphics[width=0.5\linewidth]{../Thesis/324193_2_En_1_Fig3_HTML}
 	\caption{{\it Binary symmetric channel. From: \cite{Cha06}}}
 	\label{fig:3241932en1fig3html}
 \end{figure}
@@ -3650,7 +3654,13 @@ where we have encoded the basis as:
 	$|1 \rangle$ $\rightarrow$ $|1 \rangle_L$ $\equiv$ $|111 \rangle$
 \end{center}
 
-where L stands for logical qubits, not physical. \newline
+where L stands for {\it logical qubit} and where we have encoded a quantum bit by means of the tensor product of three spins each being an eigenstate of the Pauli matrix $\sigma^z$ local: 
+
+\begin{center}
+	$|0\rangle_L = |0\rangle \otimes |0\rangle \otimes |0\rangle = |000\rangle$ \\
+	$|1\rangle_L = |1\rangle \otimes |1\rangle \otimes |1\rangle = |111\rangle$
+\end{center}
+
 If we imagine to send all of the three bits one at a time through a channel and suppose that one or fewer qubits are flipped; we can define a simple quantum error correction scheme by means of detection and analysis of error syndromes, given by projector operators in \cite{Nie06}:
 
 \begin{enumerate}
@@ -3928,6 +3938,9 @@ Similarly, the action of $\overline{X}_2$ logical gate maps $|00\rangle$ to $|01
 \end{figure}
 
 Errors that occur in the system can disrupt these non-contractible loops. However, the topological nature of the toric code ensures that errors affecting the logical qubits can be detected and corrected by measuring the syndrome associated with these non-contractible loops. By performing appropriate error correction procedures based on the outcomes of these measurements, the encoded quantum information can be protected against errors. 
+
+
+
 
 
 
