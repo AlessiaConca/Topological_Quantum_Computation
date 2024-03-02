@@ -3946,7 +3946,7 @@ Errors that occur in the system can disrupt these non-contractible loops. Howeve
 
 \subsection{Error detection and correction}
 
-We know that the Hilbert space of the ground states of the toric code is composed by the states $|\psi\rangle $ respecting the following constraints: 
+We know that the Hilbert space of the ground states of the toric code is composed by the states $|\psi\rangle $ satisfying the following constraints: 
 
 \begin{center}
 	$A_{\vec{v}}|\psi\rangle $ = $|\psi\rangle $ 
@@ -3956,24 +3956,21 @@ We know that the Hilbert space of the ground states of the toric code is compose
 \end{center}
 
 When errors occur on a given quantum state $|\psi\rangle$, the resulting state will diverge from such state space, as the constraints defined above would not be respected anymore. This is because, due to errors, there would be some vertex or plauqette operators that yield a different eigenvalue other than +1. \newline
-Coupling simultaneous measurements of vertex and plaquette operators with the anyonic nature of the excitations we can find methods to identify and correct errors, when possible. In the following paragraphs we briefly discuss how errors can be described as anyon pairs and consequently we will identify several error scenarios and study the relative error syndromes and corrective actions that can be applied. \newline
+By coupling simultaneous measurements of vertex and plaquette operators with the anyonic nature of the excitations we can find methods to identify and correct errors whenever it is possible. In the following paragraphs we briefly discuss how errors can be described as anyon pairs and consequently we will identify several error scenarios and study the relative error syndromes and corrective actions that can be applied. \newline
 
 %1. Errors Adjacent to Vertices:
-Vertex operators are designed to detect an odd number (see anticommutation properties of vertex and plaquette operators in section 1.2) of bit-flips errors that occur in the neighbourhood of the vertex on which they are applied. When an error affects a qubit adjacent to such vertex, it can disrupt the commuting relationship between the Pauli operators making up the operator.
-As a result, the measurement outcome of the vertex operator may deviate from its expected +1 eigenvalue in such way: 
+Due to the commutation and anticommutation properties of string operators that we have discussed in the previous sections, we can say that vertex operators are designed to detect an odd number of bit-flips errors that occur in the neighbourhood of the vertex on which they are applied. When an error affects a qubit adjacent to such vertex, it can disrupt the commuting relationship between the Pauli operators making up the vertex operator. As a result, the measurement outcome of the vertex operator may deviate from its expected +1 eigenvalue: 
 
 \begin{center}
 	$A_{\vec{v}}|\phi\rangle $ = -$|\phi\rangle $.
 \end{center}
 
-This deviation indicates that an error has occurred adjacent to the vertex and that it can be described as an $e$-anyon type. In fact, an $e$-excitation is created in the vertex $v$. Of course, we always assume another excitation of the same kind is present at the other endpoint of the error string in order to make up a pair of excitations. \newline
-
+This deviation indicates that an error has occurred adjacently to the vertex. Moreover, an $e$-excitation is created in the vertex $v$, represented by the minus sign that is yielded by the vertex operator. Since excitations are alwas created in pairs, we can assume another excitation of the same kind is present at the other endpoint of the error string. \newline
 %2. Errors in Plaquette Regions:
 Similarly, plaquette operators are designed to detect an odd number of phase-shift errors that occur within plaquette regions. When an error affects a qubit within such region, it alters the state of those qubits. As a result, the product of Pauli operators making up the plaquette operator may no longer commute with the qubit affected by the error. Consequently, the measurement outcome of the plaquette operator will not output its expected eigenvalue. This deviation indicates that an error has occurred within the plaquette region. This error is associated with the creation of an $m$-excitation in the application site $p$ of the plaquette operator. \newline
 
-Errors cause the creation of anyons pairs that will move around the lattice. These pairs are connected through a path of adjacent edges. Then, two main scenarios can arise: in the first case, anyons pairs may self-annihilate by forming contractible closed loops, resulting in no error; in the second case, if the loop is non-contactible, what we obtain will be an implementation of a logical operation on the stored quantum state. These latter types of errors do not 'self-correct'. \newline
-
-In order to better clarify the above concepts, we take as example a bit-flip error that could occur on the lattice and always assume an odd number of errors involved in each vertex operator. There are here three possible ways an error could occur, as depicted in figure 2.6: 
+Overall we have seen that errors cause the creation of anyons pairs that will move around the lattice. These pairs are connected through paths that we have named {\it error strings}. We are now going to discuss three main error scenarios that can arise: in the first case, isolated error strings are created, resulting in anyon pairs on the lattice; in the second case, anyons pairs may self-annihilate by forming contractible closed loops, resulting in no error; in the third case, we can get a non-contactible loop and thus an implementation of a logical operation on the stored quantum information. \newline
+In order to better clarify the above concepts, we take as example a bit-flip error that could occur on the lattice and always assume an odd number of errors involved in each vertex operator. There are three possible ways an error could occur, as depicted in figure 2.6: 
 
 \begin{enumerate}
 	\item Isolated error link: isolated bit-flip that can be detected through the measurement of the adjacent vertices;
@@ -4199,18 +4196,17 @@ In order to better clarify the above concepts, we take as example a bit-flip err
 	\label{fig:errors}
 \end{figure}
 
-Such errors can be detected through  simultaneous measurement of vertex and plaquette operators of the Hamiltonian. These operators can be measured at the same time because the GS and the erroneous states are all eigenstates of these operators. Furthermore they all commute with one another; therefore they can be measured without disturbing the result of the measurements of each another. The resulting measurements are called {\it error syndrome}. Though, the syndrome only gives information about the endpoints of the strings of errors, so we have no information about the way two endpoints were connected. As a consequence what we do is using an algorithm that estimates the way errors formed by connecting pairs of endpoints using the minimum number of edges. \newline
+Such errors can be detected through  simultaneous measurement of vertex (and plaquette) operators of the Hamiltonian. These operators can be measured at the same time because the GS and the erroneous states are all eigenstates of these operators. Furthermore they all commute with one another. Therefore they can be measured without disturbing each others' measurements. The resulting measurements are called {\it error syndrome}, which only gives information about the endpoints of the strings of the errors giving no information about the way two endpoints were connected. As a consequence what we do is using algorithms that estimate the way errors formed by connecting pairs of endpoints using the minimum number of edges. \newline
 %The chains that are formed by the algorithm are usually called {\it correction chains}. \newline
-
 %Once the above error chains are detected through the simulatenous measurement of vertex and plaquette operators, error-correction operators  are applied to the qubits to rectify the errors. These procedure can be referred to as 're-annihilation'. In general, when we have a bit-flip error we apply $Z$ operator to reverse it, on the other hand, if we have a phase-flip error we will apply a $X$ operator. \newline
 
-Consider a bit-flip error as above; then, also error correction can yield three different scenarions depending on which correction chain has formed as depicted in figure 2.7: 
+If we consider a bit-flip error as above, we also determine three different error scenarions for error-correction, as depicted in figure 2.7: 
 
 \begin{enumerate}
-	\item First scenario: the algorithm correctly identifies an error string; therefore, we only need to apply the appropriate Pauli operator on it in order to erase it.
+	\item First scenario: the algorithm correctly identifies an error string and erases it by applying the inverse of the Pauli operator that caused it;
 	
-	\item Second scenario: the algorithm connects two endpoints of an error string. Since there are several paths of the same length that can connect two endpoints, it might happen that we fail to correctly select all the involved links and end up propagating the error by flipping previously correct edges. 
-	Of course, there are cases in this scenario where error-correction succeeds because we have picked up the correct path; though we can still end up into two different situations: we have contractible loops, which can be corrected, or we end up having a non-contractible loop, which irremediably damages quantum information since we wouldn't be able to detect the two endpoints anymore because of their overlap.
+	\item Second scenario: the algorithm connects two endpoints of an error string. Since there are several paths of the same length that can connect two endpoints, it might happen that we fail to correctly select all the edges involved and end up flipping previously correct ones. This would mean propagating the error on the lattice. \newline 
+	Moreover, we can also end up into two situations: we could obtain contractible loops, which can be corrected, or we end up having a non-contractible loop, which irremediably damages quantum information since we wouldn't be able to detect the two endpoints anymore due to their overlap.
 	
 	\item Third scenario: we connect separate open error strings into a single one. Then, the feasibility of erasing the error can be divided in the two cases discussed in the scenario above: we form a contractible closed loop or we end up with a non-contractible loop. 
 	
@@ -4219,10 +4215,8 @@ Consider a bit-flip error as above; then, also error correction can yield three 
 
 Overall, the error-correction can be said to be effective whenever we end up in scenario 1 or in scenario 2 and 3 but only by forming contractible loops that leave the state unaltered. \newline
 
-We know that there are two ways with which we can decrase the probability of uncorrectable errors. 
-The first method involves increasing the size of the torus, this is because we would need a bigger number of erroneous edges in order to make a full revolution of the dimension of the torus to form a non-contractible loop. 
-The second method involves reducing the probability $p$ with which each edge is flipped between simultaneous measurements. Error-correction through re-annihilation is possible only when $p$ is low. This is because in this way errors tend not to propagate far away from where they originated and can thus be detected and corrected in an easier way. \newline
-On the other hand, when $p$ increases, ambiguity arises as to how identify anyon pairs and error-correction may not succeed. \newline
+As a consequence, what we would like to do is decreasing the probability of uncorrectable errors. There exist two known methods to achieve this goal. The first method involves increasing the size of the torus; by doing so, we would require a bigger number of erroneous edges in order to make a full revolution of the dimension of the torus to form a non-contractible loop. \newline 
+The second method involves reducing the probability $p$ with which each edge is flipped in between distinct simulatneous measuremets. In this way the errors would tend not to propagate far away from where they originated and could thus be detected and corrected in an easier way. When $p$ increases, ambiguity arises due to the fact that it would become more and more challenging to correclty identify paths connecting anyon pairs with acceptable accuracy; thus, error-correction may not succeed. \newline
 % The reduction of $p$ can be realized by measuring subsequent error syndromes more often, thus incraesing the frequency with which we produce syndrome measurements.
 \newline
 
@@ -4258,7 +4252,7 @@ On the other hand, when $p$ increases, ambiguity arises as to how identify anyon
 						
 						\ifnum\intj=1
 						\ifnum\inti=0
-						\draw node[label=north:\textbf{-1}] at (-0.5,-0.5) {};
+						\draw node[label=north:\textbf{+1}] at (-0.5,-0.5) {};
 						\else
 						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
 						\fi
@@ -4600,12 +4594,6 @@ This lack of a bijective correspondence between syndromes and errors arises beca
 This ambiguity in error identification represents a significant challenge to error-correction techniques, as it complicates the task of precisely correcting the errors that occurred during the computation. Effectively addressing this challenge requires the development of sophisticated error correction procedures that can effectively handle the degeneracy related to the mapping between syndromes and error. These procedures may involve advanced decoding algorithms, error mitigation techniques. \newline
 
 In conclusion, the understanding of the non-trivial relationship between syndromes and errors highlights the importance of robust error-correction strategies in quantum computing. Addressing this challenge is essential for maintaining the integrity of encoded quantum information and to realize the potential of fault-tolerant quantum computation in the future. \newline
-
-%https://en.wikipedia.org/wiki/Toric_code#Error_correction_and_computation
-
-
-
-
 
 
 
