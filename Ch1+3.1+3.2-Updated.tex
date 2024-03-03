@@ -4265,9 +4265,9 @@ Such errors can be detected through  simultaneous measurement of vertex (and pla
 				\draw[blue!80, line width=1.5mm] (0.5, \j) -- (1.5, \j);
 				\draw[blue!80, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
 				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (1.5,\j) {};
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}, label=right:\textbf{\large $-1$}] at (0.5,\j) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (0.5,\j) {};
 				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (-0.5,\j) {};
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}, label=right:\textbf{\large $-1$}] at (-1.5,\j) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (-1.5,\j) {};
 				
 			}
 			
@@ -4289,7 +4289,11 @@ Such errors can be detected through  simultaneous measurement of vertex (and pla
 				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,1.5) {};
 				
 			}
-			
+		
+	
+			% Posiziona la label "-1" nel punto (i,j)
+			\node at (1,1) {\bf \large -1};
+			\node at (-1,1) {\bf \large -1};
 			
 			
 		\end{tikzpicture}
