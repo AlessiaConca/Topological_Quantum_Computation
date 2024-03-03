@@ -501,10 +501,16 @@ Similarly if we compute the tensor product explicitly, it becomes a simple produ
 
 The toric code model is defined on a square lattice with periodic boundary conditions in both directions. These latter characteristics are typical of what is known as a torus topology or simply a torus, after which the model takes name.\newline
 A square lattice, here labelled as $\mathcal{L}$, is a particular lattice defined in a two dimensional space. Such lattice is denoted as $\mathbb{Z}^{2}$ such that each lattice point is identified with a pair of integers. Though, the above mentioned boundary conditions also specify that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1)\mathrm{mod}N, j)$, $((i-1)\mathrm{mod} N, j)$, $(i, (j+1)\mathrm{mod}N)$ and $(i, (j-1)\mathrm{mod}N)$, where $N$ is the dimension of the torus. We are also going to consider a dual lattice, which will be labelled as $\mathcal{L}'$, and that will be positioned as represented in figure 1.1, where the continuous line represents the main lattice $\mathcal{L}$, while the dashed line represents its dual $\mathcal{L'}$.  \newline	
-Each unitary step on the lattice is identified with an edge; given the vertices $\vec{v}=(i,j) \in V$ and the cells $\vec{p}=(i+\frac{1}{2},j+\frac{1}{2})\in P$ of the lattice as shown in figure 1.1, we can define the set of all edges for the lattice:
+Each unitary step on the lattice is identified with an edge; given the vertices or lattice points $\vec{v}=(i,j) \in V$ where $V$ coincides with $\mathcal{L}$ and the cells $\vec{p}=(i+\frac{1}{2},j+\frac{1}{2})\in P$ where $P$ coincides with $ \mathcal{L'}$ of the lattice as shown in figure 1.1, we can define the set of all edges for the lattice:
 
 \begin{definition}(Edges of $\mathcal{L}$)
-	We define the set of all edges of the lattice as: $E = \{(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L}$.
+	We define the set of all edges of the lattice as: $E = \{e=(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L}$. 
+\end{definition}
+
+Notice that we can identify each edge $e=((i,j),(i',j')) \in E$ with the vector that points at the middle point of the edge, namely with the vector of coordinates $\vec{e}=(i + (i'-i)/2, j + (j'-j)/2)$. In the rest of the thesis we will make use of this identification without explicit mention. We can also define the set of edges of the dual lattice as:
+
+\begin{definition}(Edges of $\mathcal{L'}$)
+	We define the set of all edges of the dual lattice as: $E' = \{e=(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L'}$. 
 \end{definition}
 
 On each edge is located a spin-$\frac{1}{2}$ particle each belonging to a bidimensional Hilbert space $\mathbb{C}^2$. As a consequence we need to define a global Hilbert space for the lattice that takes into account every edge:
@@ -513,8 +519,8 @@ On each edge is located a spin-$\frac{1}{2}$ particle each belonging to a bidime
 	The overall Hilbert space of the lattice is: $\mathscr{H}= \bigotimes_{e \in E} \mathbb{C}^2$.
 \end{definition}
 
-For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N^2$ represents the total number of cells in $\mathcal{L}$ and $N$ the dimension of the lattice. \newline
-notice that, since all of these spins exhibit the same characteristics, they are identified with identical particles, which will be useful to know in the next sections in order to study the behaviour of the system.
+For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N^2$ represents the total number of cells and vertices in $\mathcal{L}$ and $N$ the dimension of the lattice. \newline
+Notice that, since all of these spins exhibit the same characteristics, they are identified with identical particles, which will be useful to know in the next sections in order to study the behaviour of the system.
 
 %\afterpage{
 \begin{figure}
@@ -571,7 +577,7 @@ notice that, since all of these spins exhibit the same characteristics, they are
 			
 			% Define vertices
 			\coordinate (A) at (-3,-3);
-			\coordinate (B) at (-0.5,-0.5);
+			\coordinate (B) at (-1.5,0.5);
 			
 			% Draw vector
 			\draw[->, line width=1.1pt] (A) -- (B) node[right] {\large $\vec{p}$};
@@ -811,9 +817,9 @@ Then we can define vertex and plaquette operators as:
 \begin{definition} (Vertex and Plaquette operators) Given a vertex $\vec{v}$ and a plaquette $\vec{p}$ we can define, respectively, vertex and plaquette operators as products over Pauli operators, each acting locally on four neighbouring spins of $\mathcal{L}$
 	
 \begin{center}
-	$ A_{\vec{v}} = \prod_{(i,j) \in star(\vec{v})} Z_e $ 
+	$ A_{\vec{v}} = \prod_{e \in star(\vec{v})} Z_e $ 
 	
-	$ B_{\vec{p}} = \prod_{(i,j) \in bdy(\vec{p})} X_e $.
+	$ B_{\vec{p}} = \prod_{e \in bdy(\vec{p})} X_e $.
 \end{center}
 %e \ s.t.\ \vec{v}_1 \in star(\vec{v})
 \end{definition}
@@ -843,15 +849,15 @@ All the elements that constitute the model of the toric code are brought togethe
 
 \begin{center}
 	
-	$H = -\sum_{\vec{v} \in P}
+	$H = -\sum_{\vec{v} \in V}
 	A_{\vec{v}} - \sum_{\vec{p} \in P} B_{\vec{p}} $
 	
 \end{center}
 
-Each one of the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators that appear in the Hamiltonian share some important properties. Firstly, notice that $A_{\vec{v}}$ and $B_{\vec{p}}$ operators are Hermitian and square to the identity. Given the considerations made in definition 1.2 and 1.3 for real matrices, we can easily prove the first following proposition:
+Each one of the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators that appear in the Hamiltonian share some important properties. Firstly, notice that $A_{\vec{v}}$ and $B_{\vec{p}}$ operators are Hermitian and square to the identity. Given the considerations made in definition 1.2 and 1.3 for bounded operators, we can easily prove the first following proposition:
 
 \begin{proposition} (Self-adjointness and involutory property of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators)
-$A_{\vec{v}}$ and $B_{\vec{p}}$ operators are self-adjoint and satisfy the involution.
+$A_{\vec{v}}$ and $B_{\vec{p}}$ operators are self-adjoint and satisfy the involution property.
 \end{proposition}
 	
 \textit{Proof.}
@@ -1039,11 +1045,11 @@ Given the result of proposition 1.2, is easy to find the spectrum of the operato
 In particular, if we compute the corresponding eigenvalue of $A_{\vec{v}}$ (or $B_{\vec{p}}$), this can either assume value $-1$ or $+1$ according to the fact that the Pauli matrices that make up the operator anticommute, respectively, with an odd or even number of edges.
 In fact we can prove that following relationships between vertex and plaquette operators holds:
 
-\begin{proposition} (Commutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ commutes with the operator $B_{\vec{p}}$ for an even number of overlapping edges.
+\begin{proposition} (Commutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ commutes with the operator $B_{\vec{p}}$ whenever the intersection between $star(\vec{v})$ and $bdy(\vec{p})$ contains an even number of edges.
 \end{proposition}
 
 
-\begin{proposition} (Anticommutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ anticommutes with the operator $B_{\vec{p}}$ for an odd number of overlapping edges.
+\begin{proposition} (Anticommutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ anticommutes with the operator $B_{\vec{p}}$ whenever the intersection between $star(\vec{v})$ and $bdy(\vec{p})$ contains an odd number of edges. 
 \end{proposition}
 
 
@@ -1268,9 +1274,9 @@ which states that 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'}$ commutes for $\vec{v}
 \end{center}
 Instead, for an odd number of edges the commutator vanishes: $[A_{v},B_{p}]=0$.
 
-These calculations conclude that $A_{v},B_{p}$ commute for an even numer of edges but anticommute for an odd number of edges.\newline
+These calculations conclude that $A_{v},B_{p}$ commute for an even numer of edges but anticommute for an odd number of edges.
 
-\hfill $\square$\newline
+\hfill $\square$
 
 In the same way, we notice that two vertex/plaquette operators applied on different sites always commute; this is because they either do not share any edge or they share only one.\newline
 
@@ -1315,7 +1321,7 @@ Recall the form of the Hamiltonian as given in section 1.2:
 
 \begin{center}
 	
-	$H = -\sum_{\vec{v} \in P}
+	$H = -\sum_{\vec{v} \in V}
 	A_{\vec{v}} - \sum_{\vec{p} \in P} B_{\vec{p}} $
 	
 \end{center}
@@ -1327,13 +1333,13 @@ To determine the ground state of the Hamiltonian we have to determine the minimu
 \begin{center}
 	$\sigma( H) =$
 	$\begin{cases}
-		2N, \hspace{1cm} if \ all\ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= -1\\
-		2N-1,\\
-		.\\
+		2N^2, \hspace{1cm} if \ all\ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= -1\\
+		2N^2-1,\\
+		\dots\\
 		intermediate \ energies,\\
-		.\\
-		-2N+1\\
-		-2N, \hspace{1cm} if \ all \ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= +1
+		\dots\\
+		-2N^2+1\\
+		-2N^2, \hspace{1cm} if \ all \ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= +1
 	\end{cases}$
 	
 \end{center}
@@ -1361,7 +1367,7 @@ Graphically, we identify the loop configurations through strings of 'occupied' e
 %each identified as a qubit in configuration $|1\rangle$.
 
 \begin{definition}(Occupied edges)
-	Given a state $|\psi\rangle $, we say that in the state $|\psi\rangle $ the edge $i$ of the lattice is occupied if $\sigma^z |\psi\rangle  = - |\psi\rangle $.
+	Given a state $|\psi\rangle $, we say that in the state $|\psi\rangle $ the edge $e$ of the lattice is occupied if $\sigma^z_e |\psi\rangle  = - |\psi\rangle $.
 \end{definition}
 
 Then, if we apply $A_{\vec{v}} $ at one of the open ends of such strings, we have two possibilities: leaving the string of occupied edges open (figure 1.4) or closing the string over the $A_{\vec{v}} $ operator (figure 1.5).
@@ -2337,16 +2343,16 @@ In fact, we can show the impossibility of the above action by defining two topol
 The above indeces can be expressed more clearly as follows: 
 
 \begin{center}
-	$n_x= (number \ of \ vertical \ intersections)mod2 = 
+	$n_x= (number \ of \ vertical \ intersections) \ \mathrm{mod} \ 2 = 
 	\begin{cases} 
-		0mod2 \\
-		1mod2  
+		0 \ \mathrm{mod} \ 2 \\
+		1 \ \mathrm{mod} \ 2  
 	\end{cases}$ 
 \end{center}
 \begin{center}
-	$n_y= (number \ of \ horizontal \ intersections)mod2 =\begin{cases} 
-		0mod2 \\
-		1mod2  
+	$n_y= (number \ of \ horizontal \ intersections) \ \mathrm{mod} \ 2 =\begin{cases} 
+		0 \ \mathrm{mod} \ 2 \\
+		1 \ \mathrm{mod} \ 2  
 	\end{cases}$ 
 \end{center}
 
@@ -2490,25 +2496,37 @@ Taking into account the results yielded by the examination of the physical syste
 In the particular case of the toric code, such low-energy excitations can be created through the application of a $S^x$ or $S^z$ string operator on the ground state (figure 1.10).
 
 \begin{definition}(Adjacent edges)
-	We say that  $e_1$ and $e_2$ $\in E$ are adjacent if $e_1\neq e_2$ and $\{ \vec{v}_1, \vec{v'}_1\}$ $\cap $ $\{ \vec{v}_2, \vec{v'}_2\}$ $\neq$ $\emptyset$
+	We say that the edges  $e_1, e_2$ $\in E$ are adjacent if $e_1\neq e_2$ and $\{ \vec{v}_1, \vec{v'}_1\}$ $\cap $ $\{ \vec{v}_2, \vec{v'}_2\}$ $\neq$ $\emptyset$.
 \end{definition}
 
-\begin{definition}($S^x$ operator)
-	A $S^x$ operator is made up of $\sigma^x$ operators applied on a collection of adjacent edges on the main lattice such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
+\begin{definition}(String $\ell$)
+	A string $\ell$ consists of a set of numbered edges $\{e_1, \dots, e_i, \dots e_n\}$ where $e_i$ is adjacent to $e_{i+1}$ and such that the overall length of the string is equal to $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
 \end{definition}
 
-\begin{definition}($S^z$ operator)
-	A $S^z$ operator is made up of $\sigma^z$  operators applied on a collection of adjacent edges on the dual lattice such that $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
+\begin{definition}(Endpoints of a string)
+	Given a string $\ell$ we identify its endpoints with the initial edge $e_1$ and its final edge $e_n$.
 \end{definition}
 
-At the extremities of the above mentioned operators particles are created. In particular we can get (figure 1.10):
+\begin{definition}(Loop)
+	A loop consists of a set of numbered edges $\{e_1, \dots, e_i, \dots e_n\}$ where $e_i$ is adjacent to $e_{i+1}$ and such that the overall length of the loop is $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} \ge N$.
+\end{definition}
+
+\begin{definition}($S^x_\ell$ operator)
+	A $S^x_\ell$ operator consists of $\sigma^x$ operators applied on a string $\ell$ of $\mathcal{L}$.
+\end{definition}
+
+\begin{definition}($S^z_\ell$ operator)
+	A $S^z_\ell$ operator consists of $\sigma^z$ operators applied on a string $\ell$ of $\mathcal{L'}$.
+\end{definition}
+
+After the application of string operators on strings of edges, particles are created at their endpoints. In particular we can get two distinct types of excitations (figure 1.10):
 
 \begin{definition}(Electric charges)
-	The pairs of particles obtained through the application of operator $S^x$ are called electric charges $e$.
+	The pairs of particles obtained at the endpoints of $S^x_\ell$ are called electric charges $e$.
 \end{definition}
 
 \begin{definition}(Magnetic vortices)
-	The pairs of particles obtained through the application of operator $S^z$ are called magnetic vorteces $m$.
+	The pairs of particles obtained through at the endpoints of $S^z_\ell$ are called magnetic vorteces $m$.
 \end{definition}
 
 These excitations can be transported on the GS by means of Pauli operators and interact with each other and with each component of the system in several ways, influencing at the same time the low energy of ground state.\newline
@@ -2600,18 +2618,18 @@ In order to understand how the string operators influence the ground state, we n
 
 
 %\newpage
-We can prove that a $S^x$ operator anticommutes with one $A_{\vec{v}} $ for each one of its endpoints. 
+We can prove that a $S^x_\ell$ operator anticommutes with one $A_{\vec{v}} $ for each one of its endpoints. 
 
-\begin{proposition}(Anticommutation of $S^x$)
-	The $S^x$ operators anticommute with two $A_{\vec{v}} $ each.
+\begin{proposition}(Anticommutation of $S^x_\ell$)
+	The $S^x_\ell$ operators anticommute with two $A_{\vec{v}} $ each.
 \end{proposition}
 
 \textit{Proof.}\newline
-We want to show that $A_{\vec{v}} S^x + S^x A_{\vec{v}}=0$. Knowing that 
+We want to show that $A_{\vec{v}} S^x_\ell + S^x_\ell A_{\vec{v}}=0$. Knowing that 
 
 \begin{center}
 	$A_{\vec{v}} = \prod_{i=1}^{4} \sigma_i^z$ \\ 
-	$S^x = \prod_{j=1}^{N} \sigma_j^x$
+	$S^x_\ell = \prod_{j=1}^{N} \sigma_j^x$
 \end{center}
 
 by substitution we obtain the following expression: 
@@ -2634,7 +2652,7 @@ if for simplicity we fix $N=2$ we can easily see that :
 \end{center}
 
 having supposed that, for example, the extremity $\sigma_1^x$ overlaps with the $\sigma_3^z$ edge part of the $A_{\vec{v}} $ operator (figure 1.11). This can then be easily generalized for $N$ Pauli operators. Finally, if we substitute such expression in $(1)$ we obtain that the overall equation is in fact equal to zero. \newline
-This procedure should be iterated also for the other extremity of the string $S^x$ to show that the operator commutes with two $A_{\vec{v}} $ operators, one for each endpoint.\newline
+This procedure should be iterated also for the other extremity of the string $S^x_\ell$ to show that the operator commutes with two $A_{\vec{v}} $ operators, one for each endpoint.
 
 \hfill $\square$ 
 
@@ -2743,8 +2761,8 @@ This procedure should be iterated also for the other extremity of the string $S^
 
 In the same way, we could prove that, if we take a string $S^z$ it anticommutes with one $B_{\vec{p}} $ for each one of its endpoints.
 
-\begin{proposition}(Anticommutation of $S^z$)
-	The $S^z$ operators anticommute with two $B_{\vec{p}} $ each.
+\begin{proposition}(Anticommutation of $S^z_\ell$)
+	The $S^z_\ell$ operators anticommute with two $B_{\vec{p}} $ each.
 \end{proposition}
 
 The effect of putting such strings on the ground states correspond to raising the associated energy of the GS by 2. In fact, coherently with what said in {\cite{Her20}}, it is impossible to create unitary excitations on the ground states.
@@ -2758,8 +2776,8 @@ Recall that for a string operator, here we will choose $S^x$, both equations hol
 
 \begin{center}
 	$\begin{cases} 
-		A_{\vec{v}_1}S^x + S^x A_{\vec{v}_1}  =0 \\
-		A_{\vec{v}_2} S^x + S^x A_{\vec{v}_2} =0
+		A_{\vec{v}_1}S^x_\ell + S^x_\ell A_{\vec{v}_1}  =0 \\
+		A_{\vec{v}_2} S^x_\ell + S^x_\ell A_{\vec{v}_2} =0
 	\end{cases}$ 
 \end{center}
 
@@ -2767,9 +2785,9 @@ If we apply the string operator to the Ground State, taking into account anticom
 
 \begin{center}
 	$\begin{cases}
-		A_{\vec{v}_1} S^x |GS\rangle = - S^x A_{\vec{v}_1} |GS\rangle = - S^x |GS\rangle \\
+		A_{\vec{v}_1} S^x_\ell |GS\rangle = - S^x A_{\vec{v}_1} |GS\rangle = - S^x_\ell |GS\rangle \\
 		
-		A_{\vec{v}_2} S^x |GS\rangle = - S^x A_{\vec{v}_2} |GS\rangle = - S^x |GS\rangle
+		A_{\vec{v}_2} S^x_\ell |GS\rangle = - S^x A_{\vec{v}_2} |GS\rangle = - S^x_\ell |GS\rangle
 	\end{cases}$ 
 \end{center}
 
@@ -2778,7 +2796,7 @@ Summing up term by term :
 
 \begin{center}
 	$\begin{cases}
-		A_{\vec{v}_1} S^x |GS\rangle + A_{\vec{v}_2} S^x |GS\rangle = - 2 S^x A_{\vec{v}_1} |GS\rangle
+		A_{\vec{v}_1} S^x_\ell |GS\rangle + A_{\vec{v}_2} S^x_\ell |GS\rangle = - 2 S^x_\ell A_{\vec{v}_1} |GS\rangle
 	\end{cases}$ 
 \end{center}
 
@@ -3477,20 +3495,21 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 \section{Classical error correction}
 \label{sec:CER}
 
-In classical computing the most elementary unit of information is the {\it bit}. A bit stores binary information, which can either assume value 1 or 0. When we transmit information in the classical world, we immagine to make strings of bits travel through a channel similar to the one depicted below in figure 2.1. During the transmission a bit can change its value either going from 1 to 0 or viceversa, this event is called {\it bit-flip} and it tells us that an error has occured in the transmission. A bit-flip can occur independently on each bit (iid) with a certain probability that we will denote in general as $p$.\newline
+In classical computing the most elementary unit of information is the {\it bit}. A bit stores binary information, which can either assume value 1 or 0. When we transmit information in the classical world, we immagine to make strings of bits travel through a channel similar to the one depicted below in figure 2.1. During the transmission a bit can change its value either going from 1 to 0 or viceversa, this event is called {\it bit-flip} and it tells us that an error has occured in the transmission. A bit-flip can occur independently on each bit with a certain probability that we will denote in general as $p$: mathematically, this translates to the assumption that errors, i.e. bit-flips,  are assumed to be independently identically distributed on all the bits with the same probability $p$. In such a case we say that errors are i.i.d. with probability $p$.\newline
 The noisy channel described in picture 2.1 is one of the easiest error models also known as the $\textit{Binary Symmetric Channel}$. An error model, in the context of information theory and communication, is a mathematical or conceptual representation of how errors can occur during the transmission of information. It describes the types of errors that can happen, the probabilities associated with each type of error and the conditions under which these errors occur. \newline
 
 %image
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{../Thesis/324193_2_En_1_Fig3_HTML}
+	\includegraphics[width=0.5\linewidth]{../Thesis/324193_2_En_1_Fig3_HTML}
 	\caption{{\it Binary symmetric channel. From: \cite{Cha06}}}
 	\label{fig:3241932en1fig3html}
 \end{figure}
 
 
 \newpage
-In order to protect information what we do is introduce redundancy, which helps us detect errors and correct them. Redundacy means duplicating bits of information before sending them through a channel. We say that we encode logical bits into {\it strings of bits} (physical bits). For example: 0 is encoded into 00 and 1 into 11. This is useful to detect errors because in this way, whenever a bit changes we know that an error has occured since 10 and 01 pairs should never occur. Formally speaking we have introduced a {\it parity}: the strings 00 and 11 have {\it even} parity while 10 and 01 have an {\it odd} parity. Whenever we catch a string we do {\it parity-check} and signal an error whenever we get odd parity. We will call the obtained values {\it error syndromes}.
+In order to protect information what we do is introduce redundancy, which helps us detect errors and correct them. Redundacy means duplicating bits of information before sending them through a channel. We say that we encode logical bits into {\it strings of bits} (physical bits). For example: 0 can be encoded into 00 and 1 into 11. This is useful to detect errors because in this way, whenever a bit changes we know that a single error has occured since 10 and 01 pairs should never occur. Formally speaking we have introduced a {\it parity}: the strings 00 and 11 have {\it even} parity while 10 and 01 have an {\it odd} parity. Whenever we receive a string we do {\it parity-check} and signal an error whenever we get odd parity. We will call the values obtained through the parity-check procedure {\it error syndromes}.\newline
+
 In order to also be able to correct errors, the redundancy above is not enough since we wouldn't be able to define a criterion to correct the corrupted information. Thus, we introduce a third redundant bit and obtain the {\it three repetition code}; in this way, when we decode information at the destination, we can apply what is called {\it majority voting}. Majority voting decodes into 1 those triplets that have most bits set to 1 and decodes as 0 the ones that have most bits set to 0. Though, as soon as two bit-flips happen, majiority voting stops working. In fact, state 000 with two errors (110) would be associated with to 111 and vice-versa. Therefore we will need other tools to decode information correctly. In fact, in the case of the three repetition code in order to perform parity-check we look at two 'error bits' for each parity in the error syndrome, which could still yield the same error syndrome for two different bit-flip errors scenarios (figure 2.2), though if we decide to assign a fixed iid error probability of $p<\frac{1}{2}$ for each bit, we will always end up choosing to decode the codeword with less errors. This method does not erase the possibility of getting decoding mistakes but significantly decreases them. \cite{Kas19}.\newline
 
 
@@ -3523,14 +3542,14 @@ We can in fact reframe all of the above in terms of linear algebra. To do so we 
 The { generator matrix} is used to encode information before sending it through a channel but we have also said that a realistic channel is noisy so it can modify the codewords we send. Thus, we also need to define an operator to specify how an error occurs and how to detect it. 
 
 \begin{definition}(Noise operator)
-	We denote a noise operator as $\textbf{N}_j$ $\in \textbf{N}$ where $j$ denotes the element that will be modified by $\textbf{N}_j$ in the original codeword and $\in \textbf{N}$  represents the set of all possible error operators that could happen on the codeword. 
+	We denote a noise operator as $\textbf{N}_j \in \textbf{N}$ where $j$ denotes the element that will be modified by $\textbf{N}_j$ in the original codeword and $\in \textbf{N}$  represents the set of all possible error operators that could happen on the codeword. 
 \end{definition} 
 
 Overall, the codeword is changed by the noise operator into the correspondig codeword $c' =c + n_j$ where $\textbf{n}_j$ is an m $\times$ 1 vector having a 1 at the j-th row and zeros elsewhere; notice that, since we work with bits, addition is always performed modulo 2.\newline
 Having defined all of the above we can come to parity-check performed after transmission.
 
 \begin{definition}(Parity-check matrix)
-	Given an m-bit codespace and a k-bit encoding, we define a parity check matrix as a matrix denoted by $\textbf{H}$ having size $m$ - $k$ $\times$ m.
+	Given an m-bit codespace and a k-bit encoding, we define a parity check matrix as a matrix denoted by $\textbf{H}$ having size $(m - k)\times m $.
 \end{definition}
 
 To check parity we can simply perform multiplication of {\bf H} by the received codeword, the result will be: 
@@ -3554,12 +3573,12 @@ We have mentioned how a codeword can be rejected if corrupted and how a receiver
 	$\textbf{N}$ is detectable by a code if and only if for each $c_m \neq c_n$ in the code, $\textbf{N}c_n \neq c_m $.
 \end{theorem} 
 
-On the otehr hand, error correction involves an active process where the decoder not only identifies errors but also rectifies them. 
+On the otehr hand, error correction involves an active process where the decoder not only identifies errors but also corrects them. 
 In the context of a code $\textbf{C}$ and a set of error operators $\textbf{N}$, the primary goal is to establish the presence of a decoding procedure capable of correcting errors introduced by $\textbf{N}$. 
 Assuming the existence of distinct codewords $c_m$ and $c_n$ within the code, and for specific set of noise operators $\textbf{N}$, there could be situations such that if we apply $\textbf{N}_i$ to the codeword $c_m$ and the error operator $\textbf{N}_j$ to the codeword $c_n$ we end up in the same final state $c_q$. In such cases the challenge lies in determining whether the original codeword was $c_m$ or $c_n$. Thus, the error is unidentified meaning that it occurs in the set of error operators $\textbf{N}$ but we don't know which specific error operator caused it. In simpler terms, given the state $c_q$, we cannot say which codeword was initially sent due to the ambiguity in identifying the specific error that occurred.
 
 \begin{theorem}(Error correction)
-	$\textbf{N}$ is correctable if and only if for all $c_m \neq c_n$ in the code and for all i, j, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$. 
+	The set $\textbf{N}$ of errors is correctable if and only if for all $c_m \neq c_n$ in the code and for all $i, j \in \textbf{N}$, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$. 
 \end{theorem} 
 
 Thanks to linear codes, we gain insights into the two essential steps of error recovery: error detection and error correction, which also serve us to assess the goodness of the code in its entirety. For further details see \cite{Kas19}. Though, in order to evaluate the robustness of a given code we define the {\it Distance of a code} by means of the {\it Hamming distance} of that code:
@@ -3593,7 +3612,7 @@ To conclude, linear codes' representation plays a crucial role in studying encod
 Due to the no-cloning theorem, which states that  it's impossible to clone an arbitrary quantum state perfectly using quantum operations, one might be brought to think that error correction cannot be performed in the quantum setting.
 
 \begin{theorem}(No cloning theorem)
-	For any unknown quantum state $|\psi\rangle$ in a Hilbert space $\mathscr{H}$, there is no unitary operator $U$ acting on the composite Hilbert space $\mathscr{H} \otimes \mathscr{H}$ such that:
+	For any unknown quantum state $|\psi\rangle$ in a Hilbert space $\mathscr{H}$, there is no unitary operator $U$ acting on the composite Hilbert space $\mathscr{H} \otimes \mathscr{H}$ such that for any $|\psi\rangle \in \mathscr{H}$:
 	
 	\begin{center}
 		$U(|\psi\rangle\otimes|0\rangle) = |\psi\rangle \otimes |\psi\rangle$
@@ -3618,7 +3637,7 @@ $ |\psi \rangle$ can be expressed as a superposition of these basis states:
 	$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ =  $[ \ \alpha \ \ \beta \ ]^T $
 \end{center}
 
-where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously.  \newline
+where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously, which is not possible for classical bits.  \newline
 When it comes to qubits, computations are performed through operators, which are the quantum logical gates. Each quantum gate corresponds to a unitary operator, which is a linear transformation that preserves the norm of vectors (in this case, quantum states) and is represented by a square matrix that is both unitary and Hermitian. These gates can perform various operations such as changing the phase of a qubit, performing logical operations like NOT, AND, or OR and more.\newline
 Having briefly recalled the quantum setting, we shall now give the quantum version of the classical error model previously defined when talking about linear codes and discussed by \cite{Cha06}. \newline
 Similarly to what we did with repetition codes, we can define the bit-flip error (generally called noise) for qubits through the $X$ gate apllied to $|\psi \rangle$ and define the probability $p$ with which the state will be flipped.\newline
@@ -3635,8 +3654,14 @@ where we have encoded the basis as:
 	$|1 \rangle$ $\rightarrow$ $|1 \rangle_L$ $\equiv$ $|111 \rangle$
 \end{center}
 
-where L stands for logical qubits, not physical. \newline
-If we imagine to pass all of the three bits one at a time through a channel and suppose that one or fewer qubits are flipped; we can define a simple quantum error correction scheme by means of detection and analysis of error syndromes, given by projector operators in \cite{Nie06}:
+where L stands for {\it logical qubit} and where we have encoded a quantum bit by means of the tensor product of three spins each being an eigenstate of the Pauli matrix $\sigma^z$ local: 
+
+\begin{center}
+	$|0\rangle_L = |0\rangle \otimes |0\rangle \otimes |0\rangle = |000\rangle$ \\
+	$|1\rangle_L = |1\rangle \otimes |1\rangle \otimes |1\rangle = |111\rangle$
+\end{center}
+
+If we imagine to send all of the three bits one at a time through a channel and suppose that one or fewer qubits are flipped; we can define a simple quantum error correction scheme by means of detection and analysis of error syndromes, given by projector operators in \cite{Nie06}:
 
 \begin{enumerate}
 	\item  $P_0$ = $|000 \rangle \langle 000|$ + $|111 \rangle \langle 111|$ no errors;
@@ -3646,11 +3671,11 @@ If we imagine to pass all of the three bits one at a time through a channel and 
 \end{enumerate}
 
 In order to detect the syndrome we will compute $\langle \psi| P_i | \psi \rangle $ in the decode phase, which will be equal to 1 according to which bit $i$ was flipped.
-Measuring the syndrome doesn't affect the state in any way, neither before nor after the measurement. Furthermore, the syndrome gives no infromation of the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest. Though, we have already mentioned that this schema works well only if errors occur on one or less of the three qubits.\newline
-%While the error analysis is effective for discrete errors, it is acknowledged that not all errors and states in quantum mechanics are equal, due to the continuous nature of quantum states. 
-To address this, fidelity is introduced. The fidelity, denoted as $F(|\psi \rangle, \rho)$, is a measure of the overlap or similarity between a pure state $| \psi \rangle$  and a mixed state $\rho$. \newline
-The fidelity quantifies how well a quantum state is preserved or reconstructed after error correction. 
-In the given scenario, where an error syndrome is measured and recovery procedures are applied, the fidelity is employed to assess how closely the corrected state aligns with the original, error-free state. Moreover, the fidelity is particularly valuable when dealing with errors that may perturb or alter the quantum state in various ways. By maximizing the fidelity, quantum error correction aims to ensure that the corrected state closely approximates the original state, even in the presence of errors. It provides a quantitative measure of the accuracy and effectiveness of the error-correction process. \newline
+Measuring the syndrome doesn't affect the state in any way, neither before nor after the measurement. Furthermore, the syndrome gives no information of the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest. Though, we have already mentioned that this schema works well only if errors occur on one or less of the three qubits.\newline
+ 
+%To address this, fidelity is introduced. The fidelity, denoted as $F(|\psi \rangle, \rho)$, is a measure of the overlap or similarity between a pure state $| \psi \rangle$  and a mixed state $\rho$. \newline
+%The fidelity quantifies how well a quantum state is preserved or reconstructed after error correction. 
+%In the given scenario, where an error syndrome is measured and recovery procedures are applied, the fidelity is employed to assess how closely the corrected state aligns with the original, error-free state. Moreover, the fidelity is particularly valuable when dealing with errors that may perturb or alter the quantum state in various ways. By maximizing the fidelity, quantum error correction aims to ensure that the corrected state closely approximates the original state, even in the presence of errors. It provides a quantitative measure of the accuracy and effectiveness of the error-correction process. \newline
 
 In this paragraph, we more formally define the Quantum Error Model as we did in the classical case according to \cite{Cha06}. Take quantum information to be a $|\psi \rangle$ in an Hilbert space $\mathscr{H}_A$. We can introduce ancillary qubits as to introduce redundancy. Ancillary qubits are replicas of information that will be manipulated along with the data that we want to transmit.
 Ancillary bits are part of an Hilbert space that we will call $\mathscr{H}_B$ and are initially in a state $|b \rangle$. When we encode information what we do is mapping the tensor product of $|\psi \rangle$ and $|b \rangle$ in a new Hilbert space $\mathscr{H}_C$ (the code space) through the application of an encoder operator $\textbf{E}$, which should be the equivalent of the generator matrix in classic models. In the same way we can define an Hilbert space to model the noise, we will call it $\mathscr{H}_N$; this space more generally represents the noisy environment that introduces errors and is initially in state $|n \rangle$. The interaction between information and the environment is computed as the tensor product:
@@ -3721,12 +3746,954 @@ Essentially, the theorem states that as long as the noise present in individual 
 \section{QEC in the toric code}
 \label{sec:TC}
 
+Broadly speaking, errors refer to the unintentional changes or flips in the physical signals that make up information. These errors can be caused by various factors, such as external environmental noise. 
+In the toric code, or in quantum systems in general, errors can be caused by what are often referred to as local perturbations. Local perturbations involve small disturbances that primarily affect individual qubits or a small region of the quantum system, causing the corruption of the stored quantum information. Single qubit errors can result in different types of errors such as bit-flips errors, phase-flips errors or a combination of them. \newline
+Mathematically, local perturbations can be described as operators that act on qubits of the system and can be represented using combinations of Pauli operators. For example, consider the following perturbation:
+
+\begin{center}
+	V = $\lambda_j \sum_{j} \sigma^x_j $
+\end{center}
+
+such that $\lambda << 1 $, representing a reasonable perturbation with $j$ running over all the edges of the lattice. The ground states of the toric code Hamiltonian are protected from local perturbations of the form that we have described above. Thus, we can safely use it to store quantum informationa. In fact, given an initial state $ |k \rangle $ and  a different orthogonal state $ |\psi \rangle $ of the ground state of the Hamiltonian, if we want to know how much these states overlap, after having applied the perturbation $V$ for $n$ times, we compute the following terms:
+
+\begin{center}
+	 (1) $ \langle \psi|V^n| k \rangle=0$                                         
+\end{center}
+\begin{center}
+     (2) $ \langle \psi|V^n| \psi \rangle$ - $ \langle k|V^n| k \rangle$ = $N$  
+\end{center}
+
+in order for (1) to be equal to zero, the order of the perturbation must be less than $ \frac{N}{2}$, where $N$ is the dimension of the lattice. 
+This boundary comes from the fact that, if we compute the difference between the expectations of two eigenstates, i.e. their distance, as in (2) and we want the eigenstates to be maximally distinguishable (no overlap), then we expect (2) to be non-zero and equal to the dimension of the torus (see figure 2.3,2.4). 
+
+%image
+\begin{figure}
+	\begin{center}
+		
+		\begin{tikzpicture}
+			% Cerchio 1
+			\draw (-3,0) circle (3cm);
+			\filldraw (-3,0) circle (1pt) node[anchor=north] {$|\psi\rangle$};
+			\filldraw (-3,0.3) circle (1pt) ;
+			
+			% Cerchio 2
+			\draw (3,0) circle (3cm);
+			\filldraw (3,0) circle (1pt) node[anchor=north] {$|k\rangle$};
+			\filldraw (3,0.3) circle (1pt) ;
+			
+			\draw[] (-3,0) -- node[above] {${\bf N}$} (3,0);
+			\draw[] (-3,0.3) -- node[above] {${\bf \frac{N}{2}}$} (0,0.3);
+			\draw[] (3,0.3) -- node[above] {${\bf \frac{N}{2}}$} (0,0.3);
+		\end{tikzpicture}
+		
+	\end{center}
+	\caption{Consider the two big circles a visual representation of the state spaces of which $|\psi\rangle$ and $|k\rangle$ are part of. The distance between the eigenstates is N representing the lenght of a non-contactible loop that we need to transition between the two states. In order to safeguard the integrity of the two states (no overlap of the circles) we have a margin equal to $\frac{N}{2}$ for each state, which corresponds to the entity of the perturbation that the system can bear. }
+	\label{fig:QEC}
+\end{figure}
+
+
+This implies that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation in (1) should be of the order of $n < \frac{N}{2}$. To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{N}{2}$. The interpretation in terms of quantum error-correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$. \newline
+This result also suggests that for $n \geq \frac{N}{2}$ theorem 2.5 does not apply anymore as the resulting codeword would diverge from the space of the codewords and quantum information would be too corrupted by noise to be recoverable. \newline
+\newline
+% There are 2L2 physical qubits in the code, N^2−1 plaquette and N^2−1 vertex
+% operators. There are therefore 2N^2−2(2N^2) = 2 encoded qubits. 
+Thus, for $n < \frac{N}{2}$ we can use the toric code to encode two qubits of information in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the ground states of the Hamiltonian of the system. 
+The method for encoding information in the TC lies in the topological nature of the ground states. In fact, instead of directly manipulate individual qubits to store quantum information, we manipulate the entire lattice to encode and protect the logical qubit. The encoding is realized through operations on the qubits in such a way that we create the anyonic excitations presented in section 1.5. As already discussed, anyons follow specific rules, like braiding around each other, that allow us to encode the quantum information we want to store.\newline 
+
+We can do more than just store information. In fact, we can perform fault-tolerant computation using the same anyonic framework that we have described above. \newline
+In the context of the toric code, gates are relized through braiding of pairs of anyons. As shown in figure 2.3, we can follow the braiding of anyons in time and exchange them multiple times so that we are able to create different quantum operations. \newline
+We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pairs of anyons. It is important to mention that with braiding operations we cannot reach the entire bloch sphere of a qubit, so some quantum gates that are required for quantum universal computation will be missing from the set that we can create with braiding. Such missing operations can be supplemented through not topologically protected operations on the qubits, but which will of course have lower reliability. \newline
+
+%image
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{"../Thesis/Immagine 2024-02-29 114346"}
+	\caption{Gate operators by means of braiding pairs of anyons on the toric code.}
+	\label{fig:immagine-2024-02-29-114346}
+\end{figure}
+
+
+We can reframe all of the above physical information into the usual logical framework by relabelling the orthogonal ground states as logical sates: $|00\rangle$, $|01\rangle$, $|10\rangle$ and $|11\rangle$, in such a way that we are able to identify logical gates into those represented in figure 2.4 labelled as: $\overline{X}_1$,$\overline{X}_2$,$\overline{Z}_1$,$\overline{Z}_2$. \newline 
+Such gates can be seen as string operators that create pairs of excitations that self-annihilate at the endpoints by winding all the way around the torus. 
+These non-contractible loops play a crucial role in encoding quantum information in the toric code. In fact, the logical states of the two encoded qubits are determined by whether these loops are traversed an even or odd number of times. \newline
+Overall we can determine the action of $\overline{X}_1$ as the logical gate maps $|00\rangle$ to $|10\rangle$, while $\overline{Z}_1$ as the logical gate that maps $|00\rangle$ to $|00\rangle$ and $|10\rangle$ to -$|10\rangle$. \newline
+Similarly, the action of $\overline{X}_2$ logical gate maps $|00\rangle$ to $|01\rangle$, while $\overline{Z}_2$ maps $|11\rangle$ to $|11\rangle$ and $|01\rangle$ to -$|01\rangle$. For further details see \cite{Her20}.\newline
+
+\begin{figure}
+\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (\i,-3) -- (\i,3);
+		}
+		\foreach \j in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (-3,\j) -- (3,\j);
+		}
+		
+		
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-3,-3) grid (3,3);
+		\foreach \i in {-2.5,...,2.5}
+		{
+			\foreach \j in {-2.5,...,2.5}
+			{
+				
+				
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=2
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=2
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		\foreach \i in {-1.5,...,-1.5} %column
+		{
+			
+			\draw[blue!50, line width=1.5mm] (\i,-3) -- (\i,3);
+			%\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,3) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,2) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,0) {};
+			\node[draw, circle, fill=purple!50,label=center:\textbf{$\pm$}] at (\i,-1) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,-2) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,-3) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{Z}_1$}}] at (\i,-3.5) {};
+		}
+		\foreach \j in {1.5,...,1.5}
+		{
+			
+			\draw[blue!50, line width=1.5mm] (-3, \j) -- (3, \j);
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (2,\j) {};
+			\draw node[draw,circle,fill=purple!50,label=center:\textbf{$\pm$}] at (1,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (0,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-1,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-2,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-3,\j) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{Z}_2$}}] at (-3.5,\j) {};
+			
+		}
+		
+		
+		
+		\foreach \j in {-1,...,-1}
+		{
+			
+			\draw[red!80, line width=1.5mm] (-3, \j) -- (3, \j);
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (2.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (1.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (0.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (-0.5,\j) {};
+			\draw node[draw,circle,fill=purple!80,label=center:\textbf{$\pm$}] at (-1.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (-2.5,\j) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{X}_1$}}] at (-3.5,\j) {};
+			
+			
+		}
+		\foreach \i in {1,...,1}
+		{
+			
+			\draw[red!80, line width=1.5mm] (\i,-3) -- (\i,3);
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,2.5) {};
+			\node[draw, circle, fill=purple!80,label=center:\textbf{$\pm$}] at (\i,1.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,0.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-0.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-1.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-2.5) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{X}_2$}}] at (\i,-3.5) {};
+			
+			%
+			
+		}
+		
+		
+	\end{tikzpicture}
+\end{center}
+\caption{Logical gates on the toric code.}
+\label{fig:gates}
+\end{figure}
+
+Errors that occur in the system can disrupt these non-contractible loops. However, the topological nature of the toric code ensures that errors affecting the logical qubits can be detected and corrected by measuring the syndrome associated with these non-contractible loops. By performing appropriate error correction procedures based on the outcomes of these measurements, the encoded quantum information can be protected against errors. 
 
 
 
+\subsection{Error detection and correction}
+
+We know that the Hilbert space of the ground states of the toric code is composed by the states $|\psi\rangle $ satisfying the following constraints: 
+
+\begin{center}
+	$A_{\vec{v}}|\psi\rangle $ = $|\psi\rangle $ 
+\end{center}
+\begin{center}
+	$B_{\vec{p}}|\psi\rangle $ = $|\psi\rangle $ 
+\end{center}
+
+When errors occur on a given quantum state $|\psi\rangle$, the resulting state will diverge from such state space, as the constraints defined above would not be respected anymore. This is because, due to errors, there would be some vertex or plauqette operators that yield a different eigenvalue other than +1. \newline
+By coupling simultaneous measurements of vertex and plaquette operators with the anyonic nature of the excitations we can find methods to identify and correct errors whenever it is possible. In the following paragraphs we briefly discuss how errors can be described as anyon pairs and consequently we will identify several error scenarios and study the relative error syndromes and corrective actions that can be applied. \newline
+
+%1. Errors Adjacent to Vertices:
+Due to the commutation and anticommutation properties of string operators that we have discussed in the previous sections, we can say that vertex operators are designed to detect an odd number of bit-flips errors that occur in the neighbourhood of the vertex on which they are applied. When an error affects a qubit adjacent to such vertex, it can disrupt the commuting relationship between the Pauli operators making up the vertex operator. As a result, the measurement outcome of the vertex operator may deviate from its expected +1 eigenvalue: 
+
+\begin{center}
+	$A_{\vec{v}}|\phi\rangle $ = -$|\phi\rangle $.
+\end{center}
+
+This deviation indicates that an error has occurred adjacently to the vertex. Moreover, an $e$-excitation is created in the vertex $v$, represented by the minus sign that is yielded by the vertex operator. Since excitations are alwas created in pairs, we can assume another excitation of the same kind is present at the other endpoint of the error string. \newline
+%2. Errors in Plaquette Regions:
+Similarly, plaquette operators are designed to detect an odd number of phase-shift errors that occur within plaquette regions. When an error affects a qubit within such region, it alters the state of those qubits. As a result, the product of Pauli operators making up the plaquette operator may no longer commute with the qubit affected by the error. Consequently, the measurement outcome of the plaquette operator will not output its expected eigenvalue. This deviation indicates that an error has occurred within the plaquette region. This error is associated with the creation of an $m$-excitation in the application site $p$ of the plaquette operator. \newline
+
+Overall we have seen that errors cause the creation of anyons pairs that will move around the lattice. These pairs are connected through paths that we have named {\it error strings}. We are now going to discuss three main error scenarios that can arise: in the first case, isolated error strings are created, resulting in anyon pairs on the lattice; in the second case, anyons pairs may self-annihilate by forming contractible closed loops, resulting in no error; in the third case, we can get a non-contactible loop and thus an implementation of a logical operation on the stored quantum information. \newline
+In order to better clarify the above concepts, we take as example a bit-flip error that could occur on the lattice and always assume an odd number of errors involved in each vertex operator. There are three possible ways an error could occur, as depicted in figure 2.6: 
+
+\begin{enumerate}
+	\item Isolated error link: isolated bit-flip that can be detected through the measurement of the adjacent vertices;
+	
+	\item Adjacent error links: they are composed of multiple adjacent single erroneous edges. Similary to the case above, we are only able to identify the two endpoints through simultaneous measurements (see figure 2.7);
+	
+	\item Undetectable errors: these types of errors are not visible because their two endpoints overlap: they indeed have no endpoints. We can divide this latter category of errors in two : the contractible loops, which do not alter the state, and the non-contractible loops, which cause irreversible errors.
+	
+\end{enumerate}
+
+
+\begin{figure}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						\ifnum\intj=1
+						\ifnum\inti=0
+						\draw node[label=north:\textbf{-1}] at (-0.5,-0.5) {};
+						\else
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						\fi
+						\else
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (-1, \j) -- (-0, \j);
+				
+			}
+			
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace*{1cm}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						
+						
+						\ifnum\intj=1
+						\ifnum \inti=0
+						\draw node[label=center:\textbf{}] at (-0.5,0) {};
+						\draw node[label=center:\textbf{}] at (0.5,0) {};
+						\else
+						\ifnum \inti>1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\ifnum \inti<1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\fi
+						\else
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				%\draw[black!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				\draw[dashed,red!50, line width=1.5mm] (-1, \j) -- (0, \j);
+				\draw node[label=north:\textbf{-1}] at (-1,\j) {};
+				\draw[dashed, red!50, line width=1.5mm] (0, \j) -- (1, \j);
+				\draw node[label=north:\textbf{-1}] at (1,\j) {};
+				
+			}
+			
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace*{1cm}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {-2,...,-2}
+			{
+				\draw[dashed,red!50, line width=1.5mm] (\i,-1) -- (\i,1.5);
+				
+				
+				\draw[dashed,red!50, line width=1.5mm] (\i,1) -- (\i,2);
+				
+				
+				
+			}
+			
+			\foreach \j in {2,...,2}
+			{
+				
+				\draw[dashed,red!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				
+				
+				\draw[dashed,red!50, line width=1.5mm] (-1.5, \j) -- (1, \j);
+				
+				
+			}
+			
+			
+			\foreach \i in {1,...,1}
+			{
+				\draw[dashed,red!50, line width=1.5mm] (\i,-1) -- (\i,2);
+				
+				
+			}
+			
+			\foreach \j in {-1,...,-1}
+			{
+				\draw[dashed, red!50, line width=1.5mm] (-2, \j) -- (1, \j);
+				
+				
+			}
+			
+			
+			\foreach \i in {2,...,2}
+			{
+				\draw[dashed,red!50, line width=1.5mm] (\i,-3) -- (\i,3);
+				
+				
+			}
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\caption{Bit-flip error scenarios on the toric code. Error strings made up by $\sigma^x$ Pauli operators (local bit-flips) are represented in red. To each vertex is assigned a +1 eigenvalue of the associated vertex operator. Whenever an odd numer of erroneous qubits is involved in a vertex operator we assign a -1 to that vertex (see figure 2.7). }
+	\label{fig:errors}
+\end{figure}
+
+Such errors can be detected through  simultaneous measurement of vertex (and plaquette) operators of the Hamiltonian (figure 2.7). These operators can be measured at the same time because the GS and the erroneous states are all eigenstates of these operators. Furthermore they all commute with one another. Therefore they can be measured without disturbing each others' measurements. The resulting measurements are called {\it error syndrome}, which only gives information about the endpoints of the strings of the errors giving no information about the way two endpoints were connected. As a consequence what we do is using algorithms that estimate the way errors formed by connecting pairs of endpoints using the minimum number of edges. \newline
+%The chains that are formed by the algorithm are usually called {\it correction chains}. \newline
+%Once the above error chains are detected through the simulatenous measurement of vertex and plaquette operators, error-correction operators  are applied to the qubits to rectify the errors. These procedure can be referred to as 're-annihilation'. In general, when we have a bit-flip error we apply $Z$ operator to reverse it, on the other hand, if we have a phase-flip error we will apply a $X$ operator. \newline
+
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						
+						
+						\ifnum\intj=1
+						\ifnum \inti=0
+						\draw node[label=center:\textbf{}] at (-0.5,0) {};
+						\draw node[label=center:\textbf{}] at (0.5,0) {};
+						\else
+						\ifnum \inti>1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\ifnum \inti<1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\fi
+						\else
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				%\draw[black!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				\draw[dashed,red!50, line width=1.5mm] (-1, \j) -- (0, \j);
+				\draw node[label=north:\textbf{}] at (-1,\j) {};
+				\draw[dashed, red!50, line width=1.5mm] (0, \j) -- (1, \j);
+				\draw node[label=north:\textbf{}] at (1,\j) {};
+				
+			}
+			
+			\foreach \j in {1,...,1}
+			{
+				\draw[blue!80, line width=1.5mm] (0.5, \j) -- (1.5, \j);
+				\draw[blue!80, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (1.5,\j) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}, label=right:\textbf{\large $-1$}] at (0.5,\j) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (-0.5,\j) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}, label=right:\textbf{\large $-1$}] at (-1.5,\j) {};
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[blue!80, line width=1.5mm] (\i, 0.5) -- (\i, 1.5);
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,0.5) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,1.5) {};
+				
+				
+				
+			}
+			
+			\foreach \i in {1,...,1}
+			{
+				\draw[blue!80, line width=1.5mm] (\i, 0.5) -- (\i, 1.5);
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,0.5) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,1.5) {};
+				
+			}
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	\caption{Example of error syndrome yielded by the simultaneous measurement of vertex operators after an error string as occurred (red). For the sake of clarity, the dual lattice and the spins over the edges are omitted, as they are not involved in the current matter. The boundary conditions are highlighted in gray. We represent the vertex operators involved in the error string along with their respective -1 eigenvalue, resulting from the anticommutation of $\sigma^z\sigma^x$ for an odd number of erroneous edges.}
+	\label{fig:simmes}
+\end{figure}
 
 
 
+If we consider a bit-flip error as above, we also determine three different error scenarions for error-correction, as depicted in figure 2.8: 
+
+\begin{enumerate}
+	\item First scenario: the algorithm correctly identifies an error string and erases it by applying the inverse of the Pauli operator that caused it;
+	
+	\item Second scenario: the algorithm connects two endpoints of an error string. Since there are several paths of the same length that can connect two endpoints, it might happen that we fail to correctly select all the edges involved and end up flipping previously correct ones. This would mean propagating the error on the lattice. \newline 
+	Moreover, we can also end up into two situations: we could obtain contractible loops, which can be corrected, or we end up having a non-contractible loop, which irremediably damages quantum information since we wouldn't be able to detect the two endpoints anymore due to their overlap.
+	
+	\item Third scenario: we connect separate open error strings into a single one. Then, the feasibility of erasing the error can be divided in the two cases discussed in the scenario above: we form a contractible closed loop or we end up with a non-contractible loop. 
+	
+\end{enumerate}
+
+
+Overall, the error-correction can be said to be effective whenever we end up in scenario 1 or in scenario 2 and 3 but only by forming contractible loops that leave the state unaltered. \newline
+
+As a consequence, what we would like to do is decreasing the probability of uncorrectable errors. There exist two known methods to achieve this goal. The first method involves increasing the size of the torus; by doing so, we would require a bigger number of erroneous edges in order to make a full revolution of the dimension of the torus to form a non-contractible loop. \newline 
+The second method involves reducing the probability $p$ with which each edge is flipped in between distinct simulatneous measuremets. In this way the errors would tend not to propagate far away from where they originated and could thus be detected and corrected in an easier way. When $p$ increases, ambiguity arises due to the fact that it would become more and more challenging to correclty identify paths connecting anyon pairs with acceptable accuracy; thus, error-correction may not succeed. \newline
+% The reduction of $p$ can be realized by measuring subsequent error syndromes more often, thus incraesing the frequency with which we produce syndrome measurements.
+\newline
+
+
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						\ifnum\intj=1
+						\ifnum\inti=0
+						\draw node[label=north:\textbf{+1}] at (-0.5,-0.5) {};
+						\else
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						\fi
+						\else
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (-1, \j) -- (-0, \j);
+				
+				
+			}
+			
+			\foreach \j in {0.8,...,0.8}
+			{
+				
+				\draw[black, line width=1.5mm] (-1, \j) -- (-0, \j);
+				
+			}
+			
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace*{1cm}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						
+						
+						\ifnum\intj=1
+						\ifnum \inti=0
+						\draw node[label=center:\textbf{}] at (-0.5,0) {};
+						\draw node[label=center:\textbf{}] at (0.5,0) {};
+						\else
+						\ifnum \inti>1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\ifnum \inti<1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\fi
+						\else
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				%\draw[black!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				\draw[dashed,red!50, line width=1.5mm] (-1, \j) -- (0, \j);
+				\draw node[label=north:\textbf{+1}] at (-1,\j) {};
+				\draw[dashed, red!50, line width=1.5mm] (0, \j) -- (1, \j);
+				\draw node[label=north:\textbf{+1}] at (1,\j) {};
+				
+			}
+			
+			\foreach \j in {0.8,...,0.8}
+			{
+				
+				\draw[black, line width=1.5mm] (0, \j) -- (1, \j);
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,0) -- (\i, 1 );
+				
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,0) -- (\i, 0.8 );
+				
+			}
+			
+			\foreach \j in {0,...,0}
+			{
+				
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				
+			}
+			
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[dashed,red!50, line width=1.5mm] (-3,\j) -- (-1,\j);
+				
+			}
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[dashed,red!50, line width=1.5mm] (\i,-2) -- (\i, -1 );
+				
+			}
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				
+			}
+			
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[dashed,red!50, line width=1.5mm] (1,\j) -- (3,\j);
+				
+			}
+			\foreach \i in {1,...,1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i, -1 );
+				
+			}
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (0, \j) -- (1, \j);
+				
+			}
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace*{1cm}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						
+						
+						\ifnum\intj=1
+						\ifnum \inti=1
+						\draw node[label=center:\textbf{}] at (-0.5,0) {};
+						\draw node[label=center:\textbf{}] at (0.5,0) {};
+						\else
+						\ifnum \inti>1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\ifnum \inti<1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\fi
+						\else
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			
+			\foreach \j in {2,...,2}
+			{
+				%\draw[black!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				\draw[black, line width=1.5mm] (-1, \j) -- (0, \j);
+				\draw[dashed, red!50, line width=1.5mm] (0, \j) -- (1, \j);
+				
+				
+			}
+			
+			\foreach \j in {1.2,...,1.2}
+			{
+				
+				\draw[black, line width=1.5mm] (0, \j) -- (2, \j);
+				
+			}
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (1, \j) -- (2, \j);
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (\i,0) -- (\i, 1 );
+				
+			}
+			\foreach \i in {1,...,1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (\i,1) -- (\i, 2 );
+				
+			}
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (\i,1) -- (\i, 2 );
+				
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,0) -- (\i, 1.2 );
+				
+			}
+			\foreach \j in {0,...,0}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (-1,\j) -- (0,\j);
+				
+			}
+			
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (-3,\j) -- (-2,\j);
+				
+			}
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[black, line width=1.5mm] (-2,\j) -- (-1,\j);
+				
+			}
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (\i,-2) -- (\i, -1 );
+				
+			}
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				
+			}
+			
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (1,\j) -- (3,\j);
+				
+			}
+			
+			\foreach \i in {1,...,1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i, -1 );
+				
+			}
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (0, \j) -- (1, \j);
+				
+			}
+			\foreach \j in {-2.2,...,-2.2}
+			{
+				
+				\draw[black, line width=1.5mm] (1, \j) -- (1, \j);
+				
+			}
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\caption{Bit-flip error correction scenarios on the toric code. The correction is shown through black strings connecting anyon pairs in several ways. The correction still consists of Pauli operators of the same type of the error string, i.e. $\sigma^x$, which represent the inverse of the bit-flip errors.}
+	\label{fig:errorscorr}
+\end{figure}
+
+To summarize, the process of identifying and correcting errors relies on the relationship between the observed syndrome and the underlying errors that occurred during quantum computation. 
+The syndrome, obtained through simultaneous measurements of vertex and plaquette operators, provides crucial information about the presence and location of errors within the quantum code. However, due to the complexity of quantum systems and the nature of errors, the mapping between the observed syndrome and the actual error is not always one-to-one. 
+This lack of a bijective correspondence between syndromes and errors arises because multiple distinct errors can lead to identical syndromes. In other words, these errors are indistinguishable based solely on their syndromes. 
+This ambiguity in error identification represents a significant challenge to error-correction techniques, as it complicates the task of precisely correcting the errors that occurred during the computation. Effectively addressing this challenge requires the development of sophisticated error correction procedures that can effectively handle the degeneracy related to the mapping between syndromes and error. These procedures may involve advanced decoding algorithms, error mitigation techniques. \newline
+
+In conclusion, the understanding of the non-trivial relationship between syndromes and errors highlights the importance of robust error-correction strategies in quantum computing. Addressing this challenge is essential for maintaining the integrity of encoded quantum information and to realize the potential of fault-tolerant quantum computation in the future. \newline
 
 
 
