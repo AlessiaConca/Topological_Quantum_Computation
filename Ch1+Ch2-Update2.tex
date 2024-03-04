@@ -3640,9 +3640,10 @@ $ |\psi \rangle$ can be expressed as a superposition of these basis states:
 \end{center}
 
 where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously, which is not possible for classical bits.  \newline
-When it comes to qubits, computations are performed through operators, which are the quantum logical gates. Each quantum gate corresponds to a unitary operator, which is a linear transformation that preserves the norm of vectors (in this case, quantum states) and is represented by a square matrix that is both unitary and Hermitian. These gates can perform various operations such as changing the phase of a qubit, performing logical operations like NOT, AND, or OR and more.\newline
+When it comes to qubits, computations are performed through operators, which are the quantum logical gates. Each quantum gate corresponds to a unitary operator, which is a linear transformation that preserves the norm of vectors (in this case, quantum states) and is represented by a square matrix that is both unitary and Hermitian. These gates can perform various operations such as changing the phase of a qubit (phase-shift), performing logical operations like NOT(bit-flip), AND, or OR and more.\newline
+In particular, a phase-shift error on a qubit alters the phase factor in the qubit's superposition state. \newline
 Having briefly recalled the quantum setting, we shall now give the quantum version of the classical error model previously defined when talking about linear codes and discussed by \cite{Cha06}. \newline
-Similarly to what we did with repetition codes, we can define the bit-flip error (generally called noise) for qubits through the $X$ gate apllied to $|\psi \rangle$ and define the probability $p$ with which the state will be flipped.\newline
+Similarly to what we did with repetition codes, we can take the bit-flip error (generally called {\it noise}) for qubits through the $X$ gate apllied to $|\psi \rangle$ and define the probability $p$ with which the state will be flipped.\newline
 Then, we can suppose to introduce redundancy, firstly by mapping the physical basis of qubits to their respective logical counterparts in the following way as done in \cite{Nie06}:
 
 \begin{center}
@@ -3747,24 +3748,22 @@ Essentially, the theorem states that as long as the noise present in individual 
 \section{QEC in the toric code}
 \label{sec:TC}
 
-Broadly speaking, errors refer to the unintentional changes or flips in the physical signals that make up information. These errors can be caused by various factors, such as external environmental noise. 
-In the toric code, or in quantum systems in general, errors can be caused by what are often referred to as local perturbations. Local perturbations involve small disturbances that primarily affect individual qubits or a small region of the quantum system, causing the corruption of the stored quantum information. Single qubit errors can result in different types of errors such as bit-flips errors, phase-flips errors or a combination of them. \newline
-Mathematically, local perturbations can be described as operators that act on qubits of the system and can be represented using combinations of Pauli operators. For example, consider the following perturbation:
+Broadly speaking, errors refer to the unintentional changes or flips in the physical signals that encode the information. These errors can be caused by various factors, such as external environmental noise. In the toric code, or in quantum systems in general, errors can be caused by what are often referred to as local perturbations. Local perturbations involve small disturbances that primarily affect individual qubits or a small region of the quantum system, causing the corruption of the stored quantum information. Single qubit errors can result in different types of errors such as bit-flips errors, phase-flips errors or a combination of them. Mathematically, local perturbations can be described as operators that act on qubits of the system and can be represented using combinations of Pauli operators. For example, consider the following perturbation:
 
 \begin{center}
-	V = $\lambda_j \sum_{j} \sigma^x_j $
+	V = $\lambda \sum_{j} \sigma^x_j $
 \end{center}
 
-such that $\lambda << 1 $, representing a reasonable perturbation with $j$ running over all the edges of the lattice. The ground states of the toric code Hamiltonian are protected from local perturbations of the form that we have described above. Thus, we can safely use it to store quantum informationa. In fact, given an initial state $ |k \rangle $ and  a different orthogonal state $ |\psi \rangle $ of the ground state of the Hamiltonian, if we want to know how much these states overlap, after having applied the perturbation $V$ for $n$ times, we compute the following terms:
+such that $\lambda << 1 $, representing a reasonable perturbation with $j$ running over all the edges of the lattice. \cite{Kit02}. The ground states of the toric code Hamiltonian are protected from local perturbations of the form that we have described above.Though, we should be aware of the entity of the noise to which the system is subject to. In order to establish such entity, we focus on determining the two quantities given below, the second of which is strictly related with the concept of distance of a code. Given an initial state $ |k \rangle $ and  a different orthogonal state $ |\psi \rangle $ both part of the ground state of the Hamiltonian, if we want to know how much these states overlap, after having applied the perturbation $V$ for $n$ times, we compute the following terms:
 
 \begin{center}
-	 (1) $ \langle \psi|V^n| k \rangle=0$                                         
+	 {(1)} $ \langle \psi|V^n| k \rangle=0$                                         
 \end{center}
 \begin{center}
-     (2) $ \langle \psi|V^n| \psi \rangle$ - $ \langle k|V^n| k \rangle$ = $N$  
+    {(2)} $ \langle \psi|V^n| \psi \rangle$ - $ \langle k|V^n| k \rangle$ = $N$  
 \end{center}
 
-in order for (1) to be equal to zero, the order of the perturbation must be less than $ \frac{N}{2}$, where $N$ is the dimension of the lattice. 
+in order for {(1)} to be equal to zero, the order of the perturbation must be less than $ \frac{N}{2}$, where $N$ is the dimension of the lattice. 
 This boundary comes from the fact that, if we compute the difference between the expectations of two eigenstates, i.e. their distance, as in (2) and we want the eigenstates to be maximally distinguishable (no overlap), then we expect (2) to be non-zero and equal to the dimension of the torus (see figure 2.3,2.4). 
 
 %image
@@ -3794,14 +3793,14 @@ This boundary comes from the fact that, if we compute the difference between the
 
 
 This implies that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation in (1) should be of the order of $n < \frac{N}{2}$. To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{N}{2}$. The interpretation in terms of quantum error-correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$. \newline
-This result also suggests that for $n \geq \frac{N}{2}$ theorem 2.5 does not apply anymore as the resulting codeword would diverge from the space of the codewords and quantum information would be too corrupted by noise to be recoverable. \newline
-\newline
+%This result also suggests that for $n \geq \frac{N}{2}$ theorem 2.5 does not apply anymore as the resulting codeword would diverge from the space of the codewords and quantum information would be too corrupted by noise to be recoverable. \newline
+%\newline
 % There are 2L2 physical qubits in the code, N^2−1 plaquette and N^2−1 vertex
 % operators. There are therefore 2N^2−2(2N^2) = 2 encoded qubits. 
 Thus, for $n < \frac{N}{2}$ we can use the toric code to encode two qubits of information in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the ground states of the Hamiltonian of the system. 
 The method for encoding information in the TC lies in the topological nature of the ground states. In fact, instead of directly manipulate individual qubits to store quantum information, we manipulate the entire lattice to encode and protect the logical qubit. The encoding is realized through operations on the qubits in such a way that we create the anyonic excitations presented in section 1.5. As already discussed, anyons follow specific rules, like braiding around each other, that allow us to encode the quantum information we want to store.\newline 
 
-We can do more than just store information. In fact, we can perform fault-tolerant computation using the same anyonic framework that we have described above. \newline
+%We can do more than just store information. In fact, we can perform fault-tolerant computation using the same anyonic framework that we have described above. \newline
 In the context of the toric code, gates are relized through braiding of pairs of anyons. As shown in figure 2.3, we can follow the braiding of anyons in time and exchange them multiple times so that we are able to create different quantum operations. \newline
 We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pairs of anyons. It is important to mention that with braiding operations we cannot reach the entire bloch sphere of a qubit, so some quantum gates that are required for quantum universal computation will be missing from the set that we can create with braiding. Such missing operations can be supplemented through not topologically protected operations on the qubits, but which will of course have lower reliability. \newline
 
@@ -3809,7 +3808,7 @@ We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pa
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{"../Thesis/Immagine 2024-02-29 114346"}
-	\caption{Gate operators by means of braiding pairs of anyons on the toric code.}
+	\caption{Example of gate operators by means of braiding pairs of anyons on the toric code.}
 	\label{fig:immagine-2024-02-29-114346}
 \end{figure}
 
@@ -3953,7 +3952,7 @@ We know that the Hilbert space of the ground states of the toric code is compose
 	$B_{\vec{p}}|\psi\rangle $ = $|\psi\rangle $ 
 \end{center}
 
-When errors occur on a given quantum state $|\psi\rangle$, the resulting state will diverge from such state space, as the constraints defined above would not be respected anymore. This is because, due to errors, there would be some vertex or plauqette operators that yield a different eigenvalue other than +1. \newline
+When errors occur on a given quantum state $|\psi\rangle$, the resulting state will diverge from such state space, as the constraints defined above would not be respected anymore. This is because, due to errors, there would be some vertex or plauqette operators that yield eigenvalue equal to -1. \newline
 By coupling simultaneous measurements of vertex and plaquette operators with the anyonic nature of the excitations we can find methods to identify and correct errors whenever it is possible. In the following paragraphs we briefly discuss how errors can be described as anyon pairs and consequently we will identify several error scenarios and study the relative error syndromes and corrective actions that can be applied. \newline
 
 %1. Errors Adjacent to Vertices:
@@ -3963,11 +3962,11 @@ Due to the commutation and anticommutation properties of string operators that w
 	$A_{\vec{v}}|\phi\rangle $ = -$|\phi\rangle $.
 \end{center}
 
-This deviation indicates that an error has occurred adjacently to the vertex. Moreover, an $e$-excitation is created in the vertex $v$, represented by the minus sign that is yielded by the vertex operator. Since excitations are alwas created in pairs, we can assume another excitation of the same kind is present at the other endpoint of the error string. \newline
+This deviation indicates that an error has occurred adjacently to the vertex $\vec{v}$. Moreover, an $e$-excitation is created in the vertex $v$, represented by the minus sign that is yielded by the vertex operator. Since excitations are alwas created in pairs, we can assume another excitation of the same kind is present at the other endpoint of the error string. \newline
 %2. Errors in Plaquette Regions:
-Similarly, plaquette operators are designed to detect an odd number of phase-shift errors that occur within plaquette regions. When an error affects a qubit within such region, it alters the state of those qubits. As a result, the product of Pauli operators making up the plaquette operator may no longer commute with the qubit affected by the error. Consequently, the measurement outcome of the plaquette operator will not output its expected eigenvalue. This deviation indicates that an error has occurred within the plaquette region. This error is associated with the creation of an $m$-excitation in the application site $p$ of the plaquette operator. \newline
+In view of the duality between vertex and plaquette operators, plaquette operators are designed to detect an odd number of phase-shift errors that occur within plaquette regions. When an error affects a qubit within such region, it alters the state of those qubits. As a result, the product of Pauli operators making up the plaquette operator may no longer commute with the qubit affected by the error. Consequently, the measurement outcome of the plaquette operator will not output its expected eigenvalue. This deviation indicates that an error has occurred within the plaquette region. This error is associated with the creation of an $m$-excitation in the application site $p$ of the plaquette operator. \newline
 
-Overall we have seen that errors cause the creation of anyons pairs that will move around the lattice. These pairs are connected through paths that we have named {\it error strings}. We are now going to discuss three main error scenarios that can arise: in the first case, isolated error strings are created, resulting in anyon pairs on the lattice; in the second case, anyons pairs may self-annihilate by forming contractible closed loops, resulting in no error; in the third case, we can get a non-contactible loop and thus an implementation of a logical operation on the stored quantum information. \newline
+Overall, errors on the TC can be more complex than the simple creation of anyon pairs; though, as mentioned in \cite{Kas19,Bro14}, in order to be able to correct them we only need to know how to correct errors given through $\sigma^x$ and $\sigma^z$ oepartors in order to be able to erase all of the other combinations. Anyon pairs are connected through paths that we have named {\it error strings}. We are now going to discuss three main error scenarios that can arise: in the first case, isolated error strings are created, resulting in anyon pairs on the lattice; in the second case, anyons pairs may self-annihilate by forming contractible closed loops, resulting in no error; in the third case, we can get a non-contactible loop and thus creates a logical operation on the quantum state. \newline
 In order to better clarify the above concepts, we take as example a bit-flip error that could occur on the lattice and always assume an odd number of errors involved in each vertex operator. There are three possible ways an error could occur, as depicted in figure 2.6: 
 
 \begin{enumerate}
@@ -4304,7 +4303,7 @@ Such errors can be detected through  simultaneous measurement of vertex (and pla
 
 
 
-If we consider a bit-flip error as above, we also determine three different error scenarions for error-correction, as depicted in figure 2.8: 
+If we consider a bit-flip error as above and we assume to start from a state $|00\rangle$ where we have no loop, we also determine three different error scenarions for error-correction, as depicted in figure 2.8: 
 
 \begin{enumerate}
 	\item First scenario: the algorithm correctly identifies an error string and erases it by applying the inverse of the Pauli operator that caused it;
@@ -4319,7 +4318,7 @@ If we consider a bit-flip error as above, we also determine three different erro
 
 Overall, the error-correction can be said to be effective whenever we end up in scenario 1 or in scenario 2 and 3 but only by forming contractible loops that leave the state unaltered. \newline
 
-As a consequence, what we would like to do is decreasing the probability of uncorrectable errors. There exist two known methods to achieve this goal. The first method involves increasing the size of the torus; by doing so, we would require a bigger number of erroneous edges in order to make a full revolution of the dimension of the torus to form a non-contractible loop. \newline 
+As a consequence, what we would like to do is decreasing the probability of uncorrectable errors. There exist two known methods to achieve this goal. The first method involves increasing the size of the torus; by doing so, we would require a bigger number of erroneous edges in order to make a full revolution of the dimension of the torus to form a non-contractible loop. Notice that this would mean to increase the Hamming distance of the code.\newline 
 The second method involves reducing the probability $p$ with which each edge is flipped in between distinct simulatneous measuremets. In this way the errors would tend not to propagate far away from where they originated and could thus be detected and corrected in an easier way. When $p$ increases, ambiguity arises due to the fact that it would become more and more challenging to correclty identify paths connecting anyon pairs with acceptable accuracy; thus, error-correction may not succeed. \newline
 % The reduction of $p$ can be realized by measuring subsequent error syndromes more often, thus incraesing the frequency with which we produce syndrome measurements.
 \newline
@@ -4695,7 +4694,7 @@ The second method involves reducing the probability $p$ with which each edge is 
 To summarize, the process of identifying and correcting errors relies on the relationship between the observed syndrome and the underlying errors that occurred during quantum computation. 
 The syndrome, obtained through simultaneous measurements of vertex and plaquette operators, provides crucial information about the presence and location of errors within the quantum code. However, due to the complexity of quantum systems and the nature of errors, the mapping between the observed syndrome and the actual error is not always one-to-one. 
 This lack of a bijective correspondence between syndromes and errors arises because multiple distinct errors can lead to identical syndromes. In other words, these errors are indistinguishable based solely on their syndromes. 
-This ambiguity in error identification represents a significant challenge to error-correction techniques, as it complicates the task of precisely correcting the errors that occurred during the computation. Effectively addressing this challenge requires the development of sophisticated error correction procedures that can effectively handle the degeneracy related to the mapping between syndromes and error. These procedures may involve advanced decoding algorithms, error mitigation techniques. \newline
+This ambiguity in error identification represents a significant challenge to error-correction techniques, as it complicates the task of precisely correcting the errors that occurred during the computation. Effectively addressing this challenge requires the development of sophisticated error correction procedures that can effectively handle the degeneracy related to the mapping between syndromes and error. These procedures may involve advanced decoding algorithms and error mitigation techniques. \newline
 
 In conclusion, the understanding of the non-trivial relationship between syndromes and errors highlights the importance of robust error-correction strategies in quantum computing. Addressing this challenge is essential for maintaining the integrity of encoded quantum information and to realize the potential of fault-tolerant quantum computation in the future. \newline
 
