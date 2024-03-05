@@ -1,0 +1,4799 @@
+% A LaTeX template for MSc Thesis submissions to 
+% Politecnico di Milano (PoliMi) - School of Industrial and Information Engineering
+%
+% S. Bonetti, A. Gruttadauria, G. Mescolini, A. Zingaro
+% e-mail: template-tesi-ingind@polimi.it
+%
+% Last Revision: October 2021
+%
+% Copyright 2021 Politecnico di Milano, Italy. NC-BY
+
+\documentclass{Configuration_Files/PoliMi3i_thesis}
+
+%------------------------------------------------------------------------------
+%	REQUIRED PACKAGES AND  CONFIGURATIONS
+%------------------------------------------------------------------------------
+
+% CONFIGURATIONS
+\usepackage{parskip} % For paragraph layout
+\usepackage{setspace} % For using single or double spacing
+\usepackage{emptypage} % To insert empty pages
+\usepackage{multicol} % To write in multiple columns (executive summary)
+\setlength\columnsep{15pt} % Column separation in executive summary
+\setlength\parindent{0pt} % Indentation
+\raggedbottom  
+
+% PACKAGES FOR TITLES
+\usepackage{titlesec}
+% \titlespacing{\section}{left spacing}{before spacing}{after spacing}
+\titlespacing{\section}{0pt}{3.3ex}{2ex}
+\titlespacing{\subsection}{0pt}{3.3ex}{1.65ex}
+\titlespacing{\subsubsection}{0pt}{3.3ex}{1ex}
+\usepackage{color}
+
+% PACKAGES FOR LANGUAGE AND FONT
+\usepackage[english]{babel} % The document is in English  
+\usepackage[utf8]{inputenc} % UTF8 encoding
+\usepackage[T1]{fontenc} % Font encoding
+\usepackage[10pt]{moresize} % Big fonts
+
+% PACKAGES FOR IMAGES
+\usepackage{graphicx}
+\usepackage{transparent} % Enables transparent images
+\usepackage{eso-pic} % For the background picture on the title page
+\usepackage{subfig} % Numbered and caption subfigures using \subfloat.
+\usepackage{tikz} % A package for high-quality hand-made figures.
+\usetikzlibrary{}
+\graphicspath{{./Images/}} % Directory of the images
+\usepackage{caption} % Coloured captions
+\usepackage{xcolor} % Coloured captions
+\usepackage{amsthm,thmtools,xcolor} % Coloured "Theorem"
+\usepackage{float}
+\usepackage{tkz-euclide}
+
+% STANDARD MATH PACKAGES
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{bm}
+\usepackage[overload]{empheq} % For braced-style systems of equations.
+\usepackage{fix-cm} % To override original LaTeX restrictions on sizes
+
+% PACKAGES FOR TABLES
+\usepackage{tabularx}
+\usepackage{longtable} % Tables that can span several pages
+\usepackage{colortbl}
+
+% PACKAGES FOR ALGORITHMS (PSEUDO-CODE)
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% PACKAGES FOR REFERENCES & BIBLIOGRAPHY
+\usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=black,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref} % Adds clickable links at references
+\usepackage{cleveref}
+\usepackage[square, numbers, sort&compress]{natbib} % Square brackets, citing references with numbers, citations sorted by appearance in the text and compressed
+\bibliographystyle{abbrvnat} % You may use a different style adapted to your field
+
+% OTHER PACKAGES
+\usepackage{pdfpages} % To include a pdf file
+\usepackage{afterpage}
+\usepackage{lipsum} % DUMMY PACKAGE
+\usepackage{fancyhdr} % For the headers
+\fancyhf{}
+
+% Input of configuration file. Do not change config.tex file unless you really know what you are doing. 
+\input{Configuration_Files/config}
+
+%----------------------------------------------------------------------------
+%	NEW COMMANDS DEFINED
+%----------------------------------------------------------------------------
+
+% EXAMPLES OF NEW COMMANDS
+\newcommand{\bea}{\begin{eqnarray}} % Shortcut for equation arrays
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\e}[1]{\times 10^{#1}}  % Powers of 10 notation
+
+%----------------------------------------------------------------------------
+%	ADD YOUR PACKAGES (be careful of package interaction)
+%----------------------------------------------------------------------------
+\usepackage{pgfplots}
+\usepackage{mathrsfs}
+\usepackage{cancel}
+
+%----------------------------------------------------------------------------
+%	ADD YOUR DEFINITIONS AND COMMANDS (be careful of existing commands)
+%----------------------------------------------------------------------------
+\newtheorem{definition}{Definition}[chapter]
+%\newtheorem{proposition}{Definition}[section]
+\DeclareMathOperator*{\subsetminus}{\mathrel{\dot{\subset}}}
+%\newcommand{}{}
+
+%----------------------------------------------------------------------------
+%	BEGIN OF YOUR DOCUMENT
+%----------------------------------------------------------------------------
+
+\begin{document}
+
+\fancypagestyle{plain}{%
+\fancyhf{} % Clear all header and footer fields
+\fancyhead[RO,RE]{\thepage} %RO=right odd, RE=right even
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+%----------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------
+
+\pagestyle{empty} % No page numbers
+\frontmatter % Use roman page numbering style (i, ii, iii, iv...) for the preamble pages
+
+\puttitle{
+	title=QUANTUM COMPUTATION ON THE TORIC CODE, % Title of the thesis
+	name=Alessia Conca Roncari, % Author Name and Surname
+	course=Computer Science and Engineering - Ingegneria Informatica, % Study Programme (in Italian)
+	ID  = 996809,  % Student ID number (numero di matricola)
+	advisor= Prof. Michele Correggi, % Supervisor name
+	coadvisor={Massimo Moscolari}, % Co-Supervisor name, remove this line if there is none
+	academicyear={2023-24},  % Academic Year
+} % These info will be put into your Title page 
+
+%----------------------------------------------------------------------------
+%	PREAMBLE PAGES: ABSTRACT (inglese e italiano), EXECUTIVE SUMMARY
+%----------------------------------------------------------------------------
+\startpreamble
+\setcounter{page}{1} % Set page counter to 1
+
+% ABSTRACT IN ENGLISH
+\chapter*{Abstract} 
+This thesis provides an thorough description of the model of the toric code, a fundamental 
+model in the fields of quantum error-correction and topological quantum computation. \newline
+The study begins by going through the matehmatical properties of spin observables in quantum mechanics, such as self-adjointness, unitarity, commutation and anticommutation. \newline
+The study moves on to the description of the model of the toric code Hamiltonian followed by the computation of its ground states and excited states, which are later characterized by giving an overview of fermionic and bosonic exchange statistics, with a particular focus on the creation of mutual anyonic excitations in two dimensional systems.\newline
+The second part of the thesis focuses on practical applications, giving an overview of both classical and quantum error correction techniques. Consequently, it exploits the theoretical background of the first part and focuses on the potential realization of quantum error-correction 
+within the toric code, going through the examination of strategies for error detection and correction also explaining their feasibility mathematically.\newline
+Through this comprehensive analysis, the aim is to offer a valid motivation for
+the study of anyonic excitations through topologically relevant features of topological
+codes as the toric code. \newline
+\\
+\textbf{Keywords:} Quantum computing, Topological codes, Ground state degeneracy, Anyons, Quantum error correction. % Keywords
+
+% ABSTRACT IN ITALIAN
+\chapter*{Abstract in lingua italiana}
+Questo elaborato fornisce una descrizione completa del modello del toic code, un modello fondamentale di codice quantistico nell'ambito della correzione degli errori quantistica e della computazione quantistica per codici topologici.\newline
+Lo studio comincia passando in rassegna le proprietà matematiche degli osservabili di Spin in Meccanica Quantistica, come ad esempio l'autoaggiunzione, l'unitarietà, la commutazione e l'anticommutazione.\newline
+In seguito, lo studio si focalizza sulla descrizione del modello del toric code con la sua Hamiltoniana. Segue la derivazione dei suoi stati fondamentali ed eccitati, i quali saranno in seguito caratterizzati dando una breve overview delle diverse statistiche di bosoni e fermioni, con particolare attenzione alla creazione di statistiche anioniche.\newline
+La seconda parte dell'elaborato si concentra sulle applicazioni pratiche, dando una breve panoramica dei modelli di errore usati in ambito classico e quantistico per studiare la correzione degli errori di codici. In seguito, si fa uso degli strumenti teorici studiati nella prima parte per esporre la potenziale realizzazione della correzione quantistica di errori nel toric code, esaminando stretegie di rilevamento e  correzione di errori, spiegandone l'effettiva realizzabilità da un punto di vista matematico.\newline
+Attraverso questa analisi approfondita, lo scopo è di offrire una valida motivazione allo studio di eccitazioni anioniche mediante peculiarità topologiche rilevanti proprie dei codici topologici come il toric code. 
+\\
+\\
+\textbf{Parole chiave:} Computazione quantistica, Codici topologici, Degenerazione del ground state, Correzione degli errori quantistica % Keywords (italian)
+
+%----------------------------------------------------------------------------
+%	LIST OF CONTENTS/FIGURES/TABLES/SYMBOLS
+%----------------------------------------------------------------------------
+
+% TABLE OF CONTENTS
+\thispagestyle{empty}
+\tableofcontents % Table of contents 
+\thispagestyle{empty}
+\cleardoublepage
+
+%-------------------------------------------------------------------------
+%	THESIS MAIN TEXT
+%-------------------------------------------------------------------------
+% In the main text of your thesis you can write the chapters in two different ways:
+%
+%(1) As presented in this template you can write:
+%    \chapter{Title of the chapter}
+%    *body of the chapter*
+%
+%(2) You can write your chapter in a separated .tex file and then include it in the main file with the following command:
+%    \chapter{Title of the chapter}
+%    \input{chapter_file.tex}
+%
+% Especially for long thesis, we recommend you the second option.
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+\mainmatter % Begin numeric (1,2,3...) page numbering
+
+
+
+
+
+
+
+% --------------------------------------------------------------------------
+% NUMBERED CHAPTERS % Regular chapters following
+% --------------------------------------------------------------------------
+
+\chapter*{Introduction}
+
+Being able to leverage quantum phenomena for computation has brought significant 
+advancements in the field of quantum computing.
+Quantum systems possess unique properties promising exponential speedup over 
+classical algorithms for specific tasks. However, realizing such potential 
+needs reserachers to overcome significant challenges, such as the exposure to
+noise of a physical system. 
+As a consequence, quantum error correction has emerged as an important area of research. 
+Indeed, several quantum computing models are being studied theoretically
+in order to give access to their practical realizations. 
+In particular, one calss of quantum codes called topological codes 
+has raised interest in recent years. Such codes leverage topological features of 
+physical systems to create quasiparticles that are able to perform error detection 
+and correction techniques. 
+The toric code, the focus of this thesis, exemplifies one of such systems. \newline
+
+
+In the first part, we initially give a brief mathematical characterization
+of Spin observables in Quantum Mechanics and study their mathematical properties.
+These properties are later to be used to give a precise description of the toric code model 
+along with the peculiar properties of its Hamiltonian. After the model description
+we focus on computing the ground states of the Hamiltonian and study how excited states
+can be obtained. Ultimately, we characterize the obtained excitations in terms of
+quasiparticles by giving a brief overview of bosonic and fermionic statistics in 
+order to explain how mutual anyonic statistics of quasiparticles arise in two 
+dimensional systems. \newline
+
+
+In the second part, the first sections are dedicated to give a complete overview of 
+classical and quantum error models. In doing so, we focus on error detection and correction
+techniques in the way that they are typically performed both in the classical and quantum setting. 
+Having
+such methodologies in mind, we ultimately aim to build an analogy with QEC on the toric code.
+In fact, the last section focuses solely on explaining why the anyonic excitations derived in the 
+previous section are so important to be able to encode quantum states in the ground states 
+of the Hamiltonian and why this is mathematically possible. Lastly, this section gives
+a complete overview of possible error scenarios on the toric code in order to explain 
+how error detection and correction are brought out in this context. \newline
+
+
+In conclusion, this thesis aims to provide a comprehensive characterization of the 
+toric code along with its implications to quantum error correction in topological 
+quantum computation. 
+Through the careful study of its theoretical background, this work covers the
+practical applications to quantum information processing and error 
+correction methodologies. Through this investigation, we gain 
+understanding of the model and its potential to effectively perform fault-tolerant 
+quantum computation. \newline
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%------------------------------------------------------------
+
+
+\chapter{Toric code}
+\label{ch:chapter_one}%
+% The \label{...}% enables to remove the small indentation that is generated, always leave the % symbol.
+
+
+\section{Spin Observables in Quantum Mechanics}
+\label{sec:Observables}
+
+In the context of quantum mechanics, an observable is a quantity that can be observed in a quantum system. Some examples could be: position, momentum or energy of a system. The latter is represented by the Hamiltonian, which not only describes the energy but also encodes the rules that govern the dynamic of the system. 
+Formally, an observable is over an Hilbert space $\mathscr{H}$ is represented by an Hermitian operator over $\mathscr{H}$.
+
+\begin{definition} (Hilbert space)
+	An Hilbert space $\mathscr{H}$ over $\mathbb{C}$ is a vector space on $\mathbb{C}$:  
+	\begin{enumerate}
+		\item over which is defined the scalar product $\langle \cdot \vert \cdot \rangle $: $\mathbb{C} \times \mathbb{C} \rightarrow \mathbb{C}$;
+		\item which is complete with respect to the norm induced by the scalar product.
+	\end{enumerate}
+\end{definition}
+
+In particular, a 'spin' observable is a physical quantity associated with the intrinsic angular momentum of elementary particles, such as electrons. The spin is a fundamental property of particles and is characterized by a quantum number typically denoted as $S$, representing the spin quantum number.
+In quantum mechanics, spin observables represent the possible measurements that can be made on the spin of a particle. Moreover, the spin is described using spin operators, which are, as anticipated above, hermitian matrices representing the components of the angular momentum of the spin along different directions. 
+
+
+
+\subsection{Self-adjointness and unitarity}
+
+The hermiticity of an operator can be stated as follows:
+
+\begin{definition} (Hermitian operator) Let $\mathscr{H}$ be an Hilbert space and  $A$: $\mathscr{H} \rightarrow \mathscr{H}$ be a bounded linear operator. An operator $A$ is called Hermitian if for all $\psi,\phi \in \mathscr{H}$ we have that
+\end{definition}
+
+\begin{center}
+	$\langle A\psi|\phi \rangle = \langle \psi|A^{\dagger}\phi \rangle = \langle \phi|A\psi \rangle^{*}$.
+\end{center}
+
+The daga symbol $\dagger$ represents the conjugate transpose and the $\langle \ \rangle$ the Hermitian inner product. A square matrix $A$ of complex numbers, representing a linear operator, is called hermitian if $A^{\dagger} = (A^*)^T = A$. One important consequences of hermiticity is that it ensures that the spectrum of the operator is real. Notice also that, for real matrices, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
+%Furthermore, as mentioned above, vertex and plaquette operators satisfy the involutory property, which is derived from the unitarity of the matrices representing the vertex and plaquette operators, i.e. $X$ and $Z$ Pauli matrices. \newline 
+
+In order to understand the dynamics of observables in time we introduce anotehr important property: unitarity. 
+As previously said, observables such as position, momentum and energy are represented by hermitian operators, which ensure the existence of real eigenvalues and orthogonal eigenvectors. Though, unitarity governs the evolution in time of quantum states and operators. In particular, it ensures that the total probability of all possible outcomes of a measurement remains conserved over time, preserving the fundamental principles of quantum mechanics. 
+
+\begin{definition} (Unitary operator) Let $\mathscr{H}$ be an Hilbert space and let $U$: $\mathscr{H} \rightarrow U$ be a bounded linear operator. We define $U$ to be complex unitary if for all $\psi,\phi \in \mathscr{H}$ we have that
+\end{definition}
+
+\begin{center}
+	$\langle U\psi|U\phi \rangle = \langle \psi|\phi \rangle$.
+\end{center}
+
+In terms of the conjugate transpose, we can define a complex matrix $U$ to be unitary if $ (U^*)^T=U^{-1}$. We can also define that a real matrix $U$, representing a linear operator, is unitary if $(U)^T = U^{-1}$ or, equivalently, if $(U)^T U=I$. 
+%In our case this directly translates to $U^2=1$ beacause for $X$ and $Z$ Pauli matrices we have that $U^T=U$. Note also that one important property of  unitary operators is that their eigenvalues have modulus equal to one.\newline
+
+Overall, hermiticity and unitarity provide a comprehensive framework for understanding the behavior of observables in quantum mechanics.
+
+
+\subsection{The spectrum}
+
+In the framework of quantum mechanics, the concept of the spectrum emerges as a natural consequence of the unitarity and hermiticity of observables. The spectrum of an observable refers to the set of possible values that can be obtained when measuring the physical quantity represented by the observable. 
+
+
+%The trivial spectrum of vertices and plaquette operators will be of fundamental importance to perform fault-tolerant quantum compuations, in particular for measuring whether any error has occurred during computation (see Chapter 3). 
+
+
+\subsection{Commutation and anticommutation}
+
+Given two observables defined as bounded linear and hermitian operators $A$ and $B$, we define the commutator as follows
+
+\begin{center}
+	$[A, B] = AB - BA$.
+\end{center}
+
+The two observables commute if
+
+\begin{center}
+	$AB = BA$.
+\end{center}
+
+On the otehr hand, they anticommute if 
+
+\begin{center}
+	$AB = - BA$. 
+\end{center}
+
+
+\subsection{Spin-$\frac{1}{2}$ particles example}
+
+In order to exemplify the above properties of observables, we take spin-$\frac{1}{2}$ particles {as discussed in \cite{Cor23}}, i.e. electrons, and define the components of the spin in three dimensions. In this case the Hilbert space is bidimensional and the observables can be written in terms of Pauli matrices in the basis $\{ | \frac{1}{2}, \pm \frac{1}{2} \rangle \}$ (spin-up and spin-down) for $\hbar=1$:
+
+
+\[
+\begin{array}{ccc}
+	\text{$S_3$} = 
+	\begin{pmatrix}
+		1 & 0 \\
+		0 & -1
+	\end{pmatrix} &
+	\text{$S_1$} = 
+	\begin{pmatrix}
+		0 & 1 \\
+		1 & 0
+	\end{pmatrix} &
+	\text{$S_2$} = 
+	\begin{pmatrix}
+		0 & -i \\
+		i & 0
+	\end{pmatrix}
+\end{array}
+\]
+
+Pauli matrices satisfy hermiticity and unitarity Moreover they satisfy some specific commuation and anticommutation properties.
+
+Commutation properties:
+
+\begin{center}
+	$[\sigma_i, \sigma_j] = \sigma_i \sigma_j - \sigma_j \sigma_i 
+	= 2i\epsilon_{ijk} \sigma_k$
+\end{center}
+
+where $\epsilon_{ijk}$ is the Levi-Civita symbol. \newline
+
+Anticommutation properties:
+
+\begin{center}
+	$\{\sigma_i, \sigma_j\} = \sigma_i \sigma_j + \sigma_j \sigma_i 
+	= 2 \delta_{ij}\mathbb{I}$
+\end{center}
+
+where $ \delta_{ij} $ is the Kronecker delta and $\mathbb{I}$ is the identity matrix.
+
+
+\subsection{Tensor product of Hilbert spaces}
+
+Given two observables $A$ and $B$ that belong to a bidimensional Hilbert space we compute their tensor product $A \otimes B$ over $\mathbb{C}^2 \otimes \mathbb{C}^2$ given their respective basis.
+
+
+\[
+\begin{array}{ccc}
+	\begin{pmatrix}
+		u_1  \\
+		u_2  
+	\end{pmatrix} 
+	\otimes
+	\begin{pmatrix}
+		w_1  \\
+		w_2 
+	\end{pmatrix} &
+\end{array}
+\]
+
+Overall, we would obtain four combinations:
+
+\[
+\begin{array}{ccc}
+	\begin{pmatrix}
+		1 \\
+		0  
+	\end{pmatrix} 
+	\otimes
+	\begin{pmatrix}
+		1  \\
+		0 
+	\end{pmatrix} ,
+	
+	\begin{pmatrix}
+		1 \\
+		0  
+	\end{pmatrix} 
+	\otimes
+	\begin{pmatrix}
+		0  \\
+		1 
+	\end{pmatrix} ,
+	
+	\begin{pmatrix}
+		0 \\
+		1  
+	\end{pmatrix} 
+	\otimes
+	\begin{pmatrix}
+		0  \\
+		1 
+	\end{pmatrix} ,
+	
+	\begin{pmatrix}
+		0 \\
+		1  
+	\end{pmatrix} 
+	\otimes
+	\begin{pmatrix}
+		1  \\
+		0 
+	\end{pmatrix} &
+\end{array}
+\]
+
+
+Though, considering that $A$ acts only an the first Hilbert space $A \otimes \mathbb{I}$ and that $B$ acts only on the second $\mathbb{I} \otimes B$, we can rename:
+
+\begin{center}
+	$A \otimes \mathbb{I}$=$A_1$ \\
+	$\mathbb{I} \otimes B$=$B_2$
+\end{center}
+
+and write the tensor product as a simple product of $A_1$ and $B_2$:
+
+\begin{center}
+	$A \otimes B$=$A_1$$B_2$.
+\end{center}
+
+This is because the operators acts locally, so we can ignore the identity. \newline
+Similarly if we compute the tensor product explicitly, it becomes a simple product of the scalar products between the components of the basis:
+
+\begin{center}
+	$(u_1 \otimes w_1) \cdot (u_2 \otimes w_2) = \langle u_1 | w_1 \rangle \langle u_2 | w_2 \rangle$
+\end{center}
+
+
+
+
+
+
+
+%------------------------------------
+
+\newpage
+\section{Description of the model}
+\label{sec:Model}
+
+The toric code model is defined on a square lattice with periodic boundary conditions in both directions. These latter characteristics are typical of what is known as a torus topology or simply a torus, after which the model takes name.\newline
+A square lattice, here labelled as $\mathcal{L}$, is a particular lattice defined in a two dimensional space. Such lattice is denoted as $\mathbb{Z}^{2}$ such that each lattice point is identified with a pair of integers. Though, the above mentioned boundary conditions also specify that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1)\mathrm{mod}N, j)$, $((i-1)\mathrm{mod} N, j)$, $(i, (j+1)\mathrm{mod}N)$ and $(i, (j-1)\mathrm{mod}N)$, where $N$ is the dimension of the torus. We are also going to consider a dual lattice, which will be labelled as $\mathcal{L}'$, and that will be positioned as represented in figure 1.1, where the continuous line represents the main lattice $\mathcal{L}$, while the dashed line represents its dual $\mathcal{L'}$.  \newline	
+Each unitary step on the lattice is identified with an edge; given the vertices or lattice points $\vec{v}=(i,j) \in V$ where $V$ coincides with $\mathcal{L}$ and the cells $\vec{p}=(i+\frac{1}{2},j+\frac{1}{2})\in P$ where $P$ coincides with $ \mathcal{L'}$ of the lattice as shown in figure 1.1, we can define the set of all edges for the lattice:
+
+\begin{definition}(Edges of $\mathcal{L}$)
+	We define the set of all edges of the lattice as: $E = \{e=(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L}$. 
+\end{definition}
+
+Notice that we can identify each edge $e=((i,j),(i',j')) \in E$ with the vector that points at the middle point of the edge, namely with the vector of coordinates $\vec{e}=(i + (i'-i)/2, j + (j'-j)/2)$. In the rest of the thesis we will make use of this identification without explicit mention. We can also define the set of edges of the dual lattice as:
+
+\begin{definition}(Edges of $\mathcal{L'}$)
+	We define the set of all edges of the dual lattice as: $E' = \{e=(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L'}$. 
+\end{definition}
+
+On each edge is located a spin-$\frac{1}{2}$ particle each belonging to a bidimensional Hilbert space $\mathbb{C}^2$. As a consequence we need to define a global Hilbert space for the lattice that takes into account every edge:
+
+\begin{definition}(Hilbert space of the lattice)
+	The overall Hilbert space of the lattice is: $\mathscr{H}= \bigotimes_{e \in E} \mathbb{C}^2$.
+\end{definition}
+
+For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N^2$ represents the total number of cells and vertices in $\mathcal{L}$ and $N$ the dimension of the lattice. \newline
+Notice that, since all of these spins exhibit the same characteristics, they are identified with identical particles, which will be useful to know in the next sections in order to study the behaviour of the system.
+
+%\afterpage{
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (\i,-3) -- (\i,3);
+			}
+			\foreach \j in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (-3,\j) -- (3,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			% Define vertices
+			\coordinate (A) at (-3,-3);
+			\coordinate (B) at (-1,-1);
+			
+			% Draw vector
+			\draw[->, line width=1.1pt] (A) -- (B) node[left] {\large $\vec{v}$};
+			
+			
+			% Define vertices
+			\coordinate (A) at (-3,-3);
+			\coordinate (B) at (-1.5,0.5);
+			
+			% Draw vector
+			\draw[->, line width=1.1pt] (A) -- (B) node[right] {\large $\vec{p}$};
+			
+			% Define vertices
+			\coordinate (A) at (-3,-3);
+			\coordinate (B) at (-3,-2);
+			
+			% Draw vector
+			\draw[->, line width=1.1pt] (A) -- (B) node[midway, left] {\large $\vec{e_2}$};
+			
+			
+			% Define vertices
+			\coordinate (A) at (-3,-3);
+			\coordinate (B) at (-2,-3);
+			
+			% Draw vector
+			\draw[->, line width=1.1pt] (A) -- (B)  node[midway, below] {\large $\vec{e_1}$};
+			
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\caption{Square lattice with boundary conditions. The spins are represented with an empty circle while circles shaded in gray represent the boundary conditions. $\hat{e}_1$ and $\hat{e}_2$ are unitary vectors identifying the coordinate system used to identify the sites of the lattice through vectors $\vec{v}$ and $\vec{p}$ with application point in the origin of the coordinate system.}
+	\label{fig:lattice}
+\end{figure}
+%}
+
+\newpage
+The key part of the Toric Code are the so called \textit{vertex} and \textit{plaquette} operators that are going to be placed, respectively, on the vertices and cells of $\mathcal{L}$. Such operators can be defined formally as in definition 1.7 and implemented by means of Pauli matrices as exemplified in figure 1.2. In order to give definition 1.7 we define the following:
+
+
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (\i,-3) -- (\i,3);
+			}
+			\foreach \j in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (-3,\j) -- (3,\j);
+			}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {-1,...,-1} %column
+			{
+				
+				\draw[blue!50, line width=1.5mm] (\i,0.5) -- (\i,1.5);
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,0.5) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1.5) {};
+				
+			}
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[blue!50, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},,label=\textbf{Av}] at (-1.5,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-0.5,\j) {};
+				
+			}
+			
+			
+			\foreach \i in {2,...,2}
+			{
+				
+				\draw[red!70, line width=1.5mm] (\i,-1) -- (\i,0);
+				\node[draw, circle, fill=red!70,label=center:\textbf{X}] at (\i,-0.5) {};
+				
+			}
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[red!70, line width=1.5mm] (2, \j) -- (1, \j);
+				\draw node[draw,circle,fill=red!70,label=center:\textbf{X}] at (1.5,\j) {};
+				
+			}
+			\foreach \i in {1,...,1}
+			{
+				
+				\draw[red!70, line width=1.5mm] (\i,-1) -- (\i,0);
+				\node[draw, circle, fill=red!70,label=center:\textbf{X},label=left:\textbf{Bp}] at (\i,-0.5) {};
+				
+			}
+			\foreach \j in {0,...,0}
+			{
+				
+				\draw[red!70, line width=1.5mm] (2, \j) -- (1, \j);
+				\draw node[draw,circle,fill=red!70,label=center:\textbf{X}] at (1.5,\j) {};
+				
+			}
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace*{1cm}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (\i,-3) -- (\i,3);
+			}
+			\foreach \j in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (-3,\j) -- (3,\j);
+			}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {-1,...,-1} %column
+			{
+				
+				\draw[blue!50, line width=1.5mm] (\i,0.5) -- (\i,1.5);
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,0.5) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1.5) {};
+				
+			}
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[blue!50, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=\textbf{Av}] at (-1.5,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z} ] at (-0.5,\j) {};
+				
+			}
+			
+			
+			
+			
+			\foreach \i in {1.5,...,1.5}
+			{
+				
+				\draw[red!70, line width=1.5mm] (\i,-1) -- (\i,0);
+				\node[draw, circle, fill=red!70,label=center:\textbf{X},label=left:\textbf{Bp}] at (\i,0) {};
+				\node[draw, circle,fill=red!70,label=center:\textbf{X}] at (\i,-1) {};
+				
+			}
+			\foreach \j in {-0.5,...,-0.5}
+			{
+				
+				\draw[red!70, line width=1.5mm] (2, \j) -- (1, \j);
+				\draw node[draw,circle,fill=red!70,label=center:\textbf{X}] at (1,\j) {};
+				\draw node[draw,circle,fill=red!70,label=center:\textbf{X} ] at (2,\j) {};
+				
+			}
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\caption{In the first picture: vertex (blue) and plaquette (red) operators applied, respectively, on a vertex and cell of $\mathcal{L}$. In the second picture: vertex (blue) and plaquette (red) operators applied, respectively, on a vertex of $\mathcal{L}$ and a vertex of $\mathcal{L'}$.}
+	\label{fig:operators}
+\end{figure}
+
+\begin{definition} (Edge operator) 
+	We define a generic operator $A$ acting on an edge $e$ of $\mathcal{L}$ as: $A_e$=$A_{(i+\frac{i'-i}{2}, j+\frac{j'-j}{2})}$ where the tuples $(i,j),(i',j')$ uniquely identify an edge $e\in E$.
+\end{definition}
+
+\begin{definition} (Groups of neighbouring spins of $\mathcal{L}$) We define the quartets of spins sorrounding a vertex $\vec{v}$ and a plaquette $\vec{p}$ of $\mathcal{L}$, respectively, as the following groups of spins: $\mathrm{star(\vec{v})}=\{ \vec{v} \pm \frac{1}{2}\hat{e}_1, \vec{v} \pm \frac{1}{2}\hat{e}_2\}$ and $\mathrm{bdy(\vec{p})} =\{ \vec{p} \pm \frac{1}{2}\hat{e}_1, \vec{p} \pm \frac{1}{2}\hat{e}_2 \} $.
+\end{definition}
+
+Then we can define vertex and plaquette operators as:
+
+\begin{definition} (Vertex and Plaquette operators) Given a vertex $\vec{v}$ and a plaquette $\vec{p}$ we can define, respectively, vertex and plaquette operators as products over Pauli operators, each acting locally on four neighbouring spins of $\mathcal{L}$
+	
+\begin{center}
+	$ A_{\vec{v}} = \prod_{e \in star(\vec{v})} Z_e $ 
+	
+	$ B_{\vec{p}} = \prod_{e \in bdy(\vec{p})} X_e $.
+\end{center}
+%e \ s.t.\ \vec{v}_1 \in star(\vec{v})
+\end{definition}
+
+Where we have defined each edge operator $Z_e$ and $X_e$ to be equal to the following tensor proucts:
+
+\begin{center}
+	
+	$Z_e = \mathbb{I}_{\mathcal{L} \setminus  e} \otimes \sigma^z_{e}$ 
+	
+	$X_e = \mathbb{I}_{\mathcal{L} \setminus  e} \otimes \sigma^x_{e} $ .
+	
+\end{center}
+
+
+For the sake of simplicity, we can omit the tensor product because there is no risk of ambiguity in the interpretation. In fact, since the vertex and plaquette operators act locally, we can omit writing down the tensor product with the identity for sites that are not part of the support of the operator. 
+%Thus, we can simply rewrite them by means of the product of the Pauli matrices that act on the quartets of spins indexed as $j \in \mathrm{star(v)}$ and $j \in \mathrm{bdy(p)}$. 
+ 
+
+
+
+All the elements that constitute the model of the toric code are brought together by its Hamiltonian. Definition 1.2 describes the Hamiltonian of the toric code 
+{according to \cite{Kit02}}. For recent reviews on the subject see \cite{Her20}.
+
+\begin{definition} (Toric Code Hamiltonian) Given vertex and plaquette operators each acting, respectively, on verteces and cells of the torus, we can define the following Hamiltonian for the system:
+\end{definition}
+
+\begin{center}
+	
+	$H = -\sum_{\vec{v} \in V}
+	A_{\vec{v}} - \sum_{\vec{p} \in P} B_{\vec{p}} $
+	
+\end{center}
+
+Each one of the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators that appear in the Hamiltonian share some important properties. Firstly, notice that $A_{\vec{v}}$ and $B_{\vec{p}}$ operators are Hermitian and square to the identity. Given the considerations made in definition 1.2 and 1.3 for bounded operators, we can easily prove the first following proposition:
+
+\begin{proposition} (Self-adjointness and involutory property of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators)
+$A_{\vec{v}}$ and $B_{\vec{p}}$ operators are self-adjoint and satisfy the involution property.
+\end{proposition}
+	
+\textit{Proof.}
+We know that the operator $A_{\vec{v}} = \prod_{star(\vec{v})} Z_e$ and that $ B_{\vec{p}} = \prod_{bdy(\vec{p})} X_e  $ .\newline
+Firstly, recall the form of the $\sigma_x$ and $\sigma_z$ matrices representing the Pauli gates $X$ and $Z$:
+
+
+
+\[
+\text{Z = $\sigma_z$} =
+\begin{pmatrix}
+	1 & 0 \\
+	0 & -1
+\end{pmatrix}
+\]
+
+
+\[
+\text{X = $\sigma_x$} =
+\begin{pmatrix}
+	0 & 1 \\
+	1 & 0
+\end{pmatrix}
+\]
+
+
+It can be proved that they are Hermitian:\newline
+
+\[
+\text{$( \sigma_z )^{\dagger}$} = 
+\begin{pmatrix}
+	1 & 0 \\
+	0 & -1
+\end{pmatrix} ^\dagger =
+\begin{pmatrix}
+	1 & 0 \\
+	0 & -1
+\end{pmatrix}^T =
+\begin{pmatrix}
+	1 & 0 \\
+	0 & -1
+\end{pmatrix}
+= \text{$ \sigma_z $}
+\]
+
+
+\[
+\text{$( \sigma_x )^{\dagger}$} = 
+\begin{pmatrix}
+	0 & 1 \\
+	1 & 0
+\end{pmatrix} ^\dagger =
+\begin{pmatrix}
+	0 & 1 \\
+	1 & 0
+\end{pmatrix}^T =
+\begin{pmatrix}
+	0 & 1 \\
+	1 & 0
+\end{pmatrix}
+= \text{$ \sigma_x $}
+\]\newline
+
+since Pauli matrices are real matrices and thus $A^{\dagger}=A^T$.
+%Then, knowing that $[\sigma_i,\sigma_j]=0 \ for \ i=j$ we can write:
+
+\begin{center}
+	$(A_{\vec{v}})^{\dagger} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{\dagger} = \sigma_{x_1}^{\dagger} \sigma_{x_2}^{\dagger} \sigma_{x_3}^{\dagger} \sigma_{x_4}^{\dagger} = \sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4} = A_{\vec{v}}$ \newline
+	
+	$(B_{\vec{p}})^{\dagger} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{\dagger} = \sigma_{z_1}^{\dagger} \sigma_{z_2}^{\dagger} \sigma_{z_3}^{\dagger} \sigma_{z_4}^{\dagger} = \sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4} = B_{\vec{p}}$ \newline
+\end{center}
+
+It can also be proved that they satisfy the involutory property:\newline
+
+\[
+\text{$( \sigma_z )^{2}$} = 
+\begin{pmatrix}
+	1 & 0 \\
+	0 & -1
+\end{pmatrix} \cdot
+\begin{pmatrix}
+	1 & 0 \\
+	0 & -1
+\end{pmatrix} =
+\begin{pmatrix}
+	1 & 0 \\
+	0 & 1
+\end{pmatrix}
+= \text{$I$}
+\]
+
+
+\[
+\text{$( \sigma_x )^{2}$} = 
+\begin{pmatrix}
+	0 & 1 \\
+	1 & 0
+\end{pmatrix} \cdot
+\begin{pmatrix}
+	0 & 1 \\
+	1 & 0
+\end{pmatrix} =
+\begin{pmatrix}
+	1 & 0 \\
+	0 & 1
+\end{pmatrix}
+= \text{$I$}
+\]\newline
+
+
+Then, again we can write \newline
+
+\begin{center}
+	$(A_{\vec{v}})^{2} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{2} = \sigma_{x_1}^2 \sigma_{x_2}^2 \sigma_{x_3}^2 \sigma_{x_4}^2 = I$ 
+	
+	$(B_{\vec{p}})^{2} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{2} = \sigma_{z_1}^2 \sigma_{z_2}^2 \sigma_{z_3}^2 \sigma_{z_4}^2 = I$
+\end{center}
+
+\hfill $\square$
+
+Given proposition 1.1, we can know further characterize the opeartors in terms of their eigenvalues and define their spectrum.
+
+\begin{proposition} (Eigenvalues of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) Given Hermitian operators $A_{\vec{v}}$ and $B_{\vec{p}}$, which satisfy the involutory property, their possible eigenvalues are $\pm 1$.
+\end{proposition}
+
+
+\textit{Proof.}\newline
+Given the Self-adjointness and involutory proof in 1.1, we firstly prove that vertex and plaquette operators have real eigenvalues: 
+
+write the expression for the eigenvalues $A_{\vec{v}} |\xi \rangle = \lambda |\xi \rangle$ and take as hypothesis that $|\xi \rangle \neq 0$. Then, by means of the scalar product:
+
+\begin{center}
+	$\langle \xi|A_{\vec{v}}|\xi \rangle = \lambda \langle \xi | \xi \rangle$
+	
+	$\lambda = \frac {\langle \xi|A_{\vec{v}}|\xi \rangle}{\langle \xi |\xi \rangle}$ = $\frac {\langle \xi|A_{\vec{v}}|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|A_{\vec{v}}^{\dagger}|\xi \rangle}{||\xi||^2}$ = $\frac {\langle \xi|A_{\vec{v}}|\xi\rangle^*}{||\xi||^2}$ = $\lambda^*$ 
+\end{center}
+
+Notice that we have applied antilinearity of the adjoint in the penultimate equality: 
+
+\begin{center}
+	$(\langle \xi|A_{\vec{v}}^{\dagger}|\xi \rangle)^{\dagger}$ = $|\xi\rangle^{\dagger} (A_{\vec{v}}^{\dagger})^{\dagger} \langle\xi|^{\dagger}$ = $\langle \xi|A_{\vec{v}}|\xi \rangle^*$.  
+\end{center}
+
+Therefore, we have derived that the eigenvalues of $A_{\vec{v}}$ are $\lambda = \lambda^*$, which implies that they must be real.
+
+%Using hermiticity with the fact that $(Av)^2=I$ we can derive the unitarity of $Av$ and state that $Av Av^{\dagger} = Av^{\dagger} Av = (Av)^2 = I$. \newline
+%Given the property of unitarity, which states that the corresponding eigenvalues of the operator have modulus equal to one,:\newline 
+
+Then we exploit unitarity while taking as hypothesis that $|\xi \rangle \neq 0$. 
+We write the expression $A_{\vec{v}} |\xi \rangle = \lambda |\xi \rangle$ and its self-adjoint $\langle \xi| A_{\vec{v}}^{\dagger} = \lambda^* \langle \xi|$. Recall that $A_{\vec{v}}^{\dagger}=A_{\vec{v}}^{-1}$, thus by means of the scalar product we obtain 
+
+\begin{center}
+	$\langle \xi|A_{\vec{v}} A_{\vec{v}}^{\dagger}|\xi\rangle = \lambda \lambda^* \langle \xi |\xi \rangle$
+	
+	$\langle \xi|I|\xi \rangle = \lambda \lambda^* \langle \xi |\xi \rangle$
+	
+	$\langle \xi|\xi \rangle = \lambda \lambda^* \langle \xi |\xi \rangle $
+	
+	$ \lambda \lambda^* = 1 $
+	
+	$ |\lambda|^2 = 1 $
+\end{center}
+
+Which means that the eigenvalues of $A_{\vec{v}}$ have modulus equal to one, as expected. Though, this can happen for two real choices of $\lambda$ which are $+1$ and $-1$.
+Therefore, putting together hermiticity and unitarity, 
+
+\begin{center}
+$\begin{cases}
+	 \lambda = \lambda^* \\
+	 |\lambda|^2 = 1 
+\end{cases}$
+\end{center}
+
+we obtain that the only two remaining possibilities for the eigenvalues of $A_{\vec{v}}$ are $\pm 1$. \newline
+
+The same reasoning can be carried out for the plaquette operators.
+
+\hfill $\square$ 
+
+Given the result of proposition 1.2, is easy to find the spectrum of the operators: 
+
+\begin{proposition} (Spectrum of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The spectrum of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators is equal to $\{-1,+1\}$. 
+\end{proposition}
+
+In particular, if we compute the corresponding eigenvalue of $A_{\vec{v}}$ (or $B_{\vec{p}}$), this can either assume value $-1$ or $+1$ according to the fact that the Pauli matrices that make up the operator anticommute, respectively, with an odd or even number of edges.
+In fact we can prove that following relationships between vertex and plaquette operators holds:
+
+\begin{proposition} (Commutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ commutes with the operator $B_{\vec{p}}$ whenever the intersection between $star(\vec{v})$ and $bdy(\vec{p})$ contains an even number of edges.
+\end{proposition}
+
+
+\begin{proposition} (Anticommutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ anticommutes with the operator $B_{\vec{p}}$ whenever the intersection between $star(\vec{v})$ and $bdy(\vec{p})$ contains an odd number of edges. 
+\end{proposition}
+
+
+\textit{Proof.}\newline 
+%Av commutes with itself.\newline
+%Bp commutes with itself.\newline
+%Av commutes with Bp for an even number of edges.\newline
+Fix the origin of the coordinate system in the bottom left corner of the lattice as shown in figure 1.3. 
+
+\begin{figure}
+\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (\i,-3) -- (\i,3);
+		}
+		\foreach \j in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (-3,\j) -- (3,\j);
+		}
+		
+		
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-3,-3) grid (3,3);
+		\foreach \i in {-2.5,...,2.5}
+		{
+			\foreach \j in {-2.5,...,2.5}
+			{
+				
+				
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=2
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=2
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		\foreach \i in {-1,...,-1} %column
+		{
+			
+			\draw[blue!50, line width=1.5mm] (\i,0.5) -- (\i,1.5);
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,0.5) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1.5) {};
+			
+		}
+		\foreach \j in {1,...,1}
+		{
+			
+			\draw[blue!50, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=\textbf{Av}] at (-1.5,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z} ] at (-0.5,\j) {};
+			
+		}
+		
+		
+		
+		
+		\foreach \i in {1.5,...,1.5}
+		{
+			
+			\draw[red!70, line width=1.5mm] (\i,-1) -- (\i,0);
+			\node[draw, circle, fill=red!70,label=center:\textbf{X},label=left:\textbf{Bp}] at (\i,0) {};
+			\node[draw, circle,fill=red!70,label=center:\textbf{X}] at (\i,-1) {};
+			
+		}
+		\foreach \j in {-0.5,...,-0.5}
+		{
+			
+			\draw[red!70, line width=1.5mm] (2, \j) -- (1, \j);
+			\draw node[draw,circle,fill=red!70,label=center:\textbf{X}] at (1,\j) {};
+			\draw node[draw,circle,fill=red!70,label=center:\textbf{X} ] at (2,\j) {};
+			
+		}
+		
+		% Define vertices
+		\coordinate (A) at (-3,-3);
+		\coordinate (B) at (-1,1);
+		
+		% Draw vector
+		\draw[->, line width=1.1pt] (A) -- (B) node[right] {$\vec{v}$};
+		
+		
+		% Define vertices
+		\coordinate (A) at (-3,-3);
+		\coordinate (B) at (1.5,-0.5);
+		
+		% Draw vector
+		\draw[->, line width=1.1pt] (A) -- (B) node[right] {$\vec{p}$};
+		
+		
+		
+		
+		
+		
+		% Define vertices
+		\coordinate (A) at (-3,-3);
+		\coordinate (B) at (-3,-2);
+		
+		% Draw vector
+		\draw[->, line width=1.1pt] (A) -- (B) node[midway, left] {\large $\vec{e_2}$};
+		
+		
+		% Define vertices
+		\coordinate (A) at (-3,-3);
+		\coordinate (B) at (-2,-3);
+		
+		% Draw vector
+		\draw[->, line width=1.1pt] (A) -- (B)  node[midway, below] {\large $\vec{e_1}$};
+		
+		
+		
+	\end{tikzpicture}
+\end{center}
+
+\caption{Vertex and plaquette operators according to the coordinate system with origin in (0,0). Here the plaquette operator is implemented on $\mathcal{L}'$ in order to coherently define its edges from the point of view of $\mathcal{L}$ using vector $\vec{v}$.}
+\label{fig:coordinate_system}
+\end{figure}
+
+
+Then, we can define the two vectors representing the site of application of the vertex and plaquette operator, respectively over the lattice $\mathcal{L}$ and dual lattice $\mathcal{L}'$ \newline
+
+\begin{center}
+	$\vec{v}$= $n\hat{e_1} + m\hat{e_2}$, where $n,m \in \mathbb{Z}$ 
+	
+	$\vec{p}$= $(n + \frac{1}{2}) \hat{e_1} + (m + \frac{1}{2}) \hat{e_2}$, where $n,m \in \mathbb{Z}$.
+\end{center}
+
+Rewrite the operators as follows: \newline
+
+\begin{center}
+	
+	$A_{\vec{v}} = \sigma^z_{\vec{v}+\frac{1}{2}\hat{e_1}} \sigma^z_{\vec{v}+\frac{1}{2}\hat{e_2}} \sigma^z_{\vec{v}-\frac{1}{2}\hat{e_1}} \sigma^z_{\vec{v}-\frac{1}{2}\hat{e_2}}$ 
+	
+	$B_{\vec{p}} = \sigma^x_{\vec{p}+\frac{1}{2}\hat{e_1}} \sigma^x_{\vec{p}+\frac{1}{2}\hat{e_2}} \sigma^x_{\vec{p}-\frac{1}{2}\hat{e_1}} \sigma^x_{\vec{p}-\frac{1}{2}\hat{e_2}}$.
+	
+\end{center}
+
+In order to simplify the calculations we rewrite $B_{\vec{p}}$ on the lattice $\mathcal{L}$ by rewriting the indeces in terms of vector $\vec{v}$ \newline
+
+\begin{center}
+	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_2}= n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})$
+	
+	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_1}= (n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}$
+	
+	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_1}+\hat{e_2}= (n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}$
+	
+	$(n\hat{e_1} + m\hat{e_2}) + \frac{1}{2}\hat{e_2}+\hat{e_1}= (n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}$.
+\end{center}
+
+
+Then the $B_{\vec{p}}$ operator becomes: \newline
+
+\begin{center}
+	
+	$B_{\vec{p}} = \sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}}$ \newline
+	
+\end{center}
+
+and the Hamiltonian can be written by grouping the indices: \newline
+
+\begin{center}
+	
+	$H = - \sum_{m,n \in \mathbb{Z}} \{ 
+	\sigma^z_{(n+\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m+\frac{1}{2})\hat{e_2}} \sigma^z_{(n-\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m-\frac{1}{2})\hat{e_2}} +
+	\sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}} \} $.\newline
+	
+\end{center}
+
+Now calcuate the commutator $[A_{\vec{v}},B_{\vec{v}}] = A_{\vec{v}}B_{\vec{v}} - B_{p}A_{v}$ by focusing on the first term: \newline
+
+\begin{center}
+	
+	$ A_{v}B_{p} =
+	\sigma^z_{(n+\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m+\frac{1}{2})\hat{e_2}} \sigma^z_{(n-\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m-\frac{1}{2})\hat{e_2}} $ $\cdot$
+	
+	$\sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}}$. \newline
+	
+\end{center}
+
+
+Matrices do not always commute but for Pauli matrices we have the following commutation relationship :
+\newline
+
+\begin{center}
+	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'} = \sigma^z_{\vec{v}'} \sigma^x_{\vec{v}} + 2 \sigma^x_{\vec{v}}\sigma^z_{\vec{v}'} \delta_{\vec{v} \vec{v}'}$\newline
+\end{center}
+
+where $\hspace{1cm} \delta_{\vec{v} \vec{v}'} =$
+$\begin{cases}
+	1, \hspace{1cm} if \hspace{1cm}  \vec{v} = \vec{v}'\\
+	0, \hspace{1cm} if \hspace{1cm} \vec{v} \neq \vec{v}'
+\end{cases}$\newline
+
+which states that 	$\sigma^x_{\vec{v}}\sigma^z_{\vec{v}'}$ commutes for $\vec{v} \neq \vec{v}'$   but anticommutes for $\vec{v} = \vec{v}'$. This is known from the anticommutation relationship of Pauli matrices $\sigma^x \sigma^z = - \sigma^x \sigma^z$. Thus, for an even numer of overlapping edges, in our case 2 or 4, the commutator becomes:\newline
+
+\begin{center}
+	
+	$[A_{v},B_{p}] = 2
+	\sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}} \cdot
+	\sigma^z_{(n+\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m+\frac{1}{2})\hat{e_2}} \sigma^z_{(n-\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m-\frac{1}{2})\hat{e_2}} $. \newline
+
+\end{center}
+Instead, for an odd number of edges the commutator vanishes: $[A_{v},B_{p}]=0$.
+
+These calculations conclude that $A_{v},B_{p}$ commute for an even numer of edges but anticommute for an odd number of edges.
+
+\hfill $\square$
+
+In the same way, we notice that two vertex/plaquette operators applied on different sites always commute; this is because they either do not share any edge or they share only one.\newline
+
+Now that we have described the toric code model and its operators, we proceed to compute its ground state, which is at the heart of its fault-tolerant behaviour. The ground state arises from the interaction of vertex and plaquette operators acting on the system's lattice. Through the characterization of these operators and the understanding of their role in enforcing some additional constraints, we gain insight into the structure of the ground state manifold. \newline
+In the following section, we derive the unique features of the ground state, including its topological order. \newline 
+
+%--------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Ground states}
+\label{sec:GS}
+
+The ground state of the toric code represents the system's lowest energy configuration. What makes this ground state particularly intriguing is its highly degenerate nature, meaning that there are numerous distinct configurations that all share the same minimum energy. 
+The ground state exhibit topological order, characterized by non-local correlations between spins. This means that the model is robust  even when the system undergoes local perturbations.  In fact, quantum entanglement between spins is not confined to neighboring pairs, instead, it extends over long distances and involves collective behaviours of spins that cannot be understood by considering them individually.
+Not only, as we will see, these features are intimately related to the underlying topology of the torus. This topological protection ensures the robustness of quantum information against local perturbations, giving the toric code the potential to be feasibly applied in quantum information processing (see Chapter 3).\newline
+
+We start by explicitly defining the ground state by making use of the properties of the vertex and plaquette operators that we have derived in the previous section.
+
+\begin{proposition} (Ground state of the toric code Hamiltonian) The ground states of the toric code Hamiltonian are the simultaneous $+1$ eigenstates of all the $A_v$ and $B_p$ operators. 
+\end{proposition}
+
+\textit{Proof.}\newline 
+Recall the form of the Hamiltonian as given in section 1.2:
+
+\begin{center}
+	
+	$H = -\sum_{\vec{v} \in V}
+	A_{\vec{v}} - \sum_{\vec{p} \in P} B_{\vec{p}} $
+	
+\end{center}
+
+we already know that commuting hermitian matrices are simultaneously diagonalizable, moreover $A_{\vec{v}} $ and $B_{\vec{p}} $ operators commute for an even number of edges, thus there exists a common base of eigenvectors with their respective eigenvalues. We also know from proposition 1.2 that such eigenvalues can assume two values $\{-1,+1\}$ due to the specific properties of our operators.
+
+To determine the ground state of the Hamiltonian we have to determine the minimum energy of the system. Therefore we compute all the possible combinations of the eigenvalues associated to the vertex and palquette operators to obtain the following range of values:
+
+\begin{center}
+	$\sigma( H) =$
+	$\begin{cases}
+		2N^2, \hspace{1cm} if \ all\ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= -1\\
+		2N^2-1,\\
+		\dots\\
+		intermediate \ energies,\\
+		\dots\\
+		-2N^2+1\\
+		-2N^2, \hspace{1cm} if \ all \ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= +1
+	\end{cases}$
+	
+\end{center}
+
+Taking the minimum of this spectrum means considering $\sigma(H)=-2N$, thus considering only eigenstates for the Hamiltonian associated to $+1$ eigenvalues.
+Those are the ones that will form a basis for the ground state manifold of the system.\newline
+
+\hfill $\square$
+
+
+In order to determine which are the admissible configurations of eigenstates that we can use to form the ground state, we treat the $A_{\vec{v}} $ and $B_{\vec{p}} $ operators as constraint equations over the torus, i.e. the lattice and dual lattice.
+As a consequence, all of our configurations will need to respect the two following equations:
+
+\begin{center}
+	(1)	$A_{\vec{v}} |\psi\rangle$ = $+1|\psi\rangle$
+\end{center}
+
+\begin{center}
+	(2)	$B_{\vec{p}} |\psi\rangle$ = $+1|\psi\rangle$
+\end{center}
+
+This means that configuration $|\psi\rangle$ needs to be be an eigenvector for all the veretces and plaquette operators. \newline
+In order to satisfy equation (1), we look for loop configurations such that if we apply $A-{\vec{v}} $ to that state, the result would still yield an overall positive value.\newline
+Graphically, we identify the loop configurations through strings of 'occupied' edges (shaded in black in figure 1.4 and 1.5).
+%each identified as a qubit in configuration $|1\rangle$.
+
+\begin{definition}(Occupied edges)
+	Given a state $|\psi\rangle $, we say that in the state $|\psi\rangle $ the edge $e$ of the lattice is occupied if $\sigma^z_e |\psi\rangle  = - |\psi\rangle $.
+\end{definition}
+
+Then, if we apply $A_{\vec{v}} $ at one of the open ends of such strings, we have two possibilities: leaving the string of occupied edges open (figure 1.4) or closing the string over the $A_{\vec{v}} $ operator (figure 1.5).
+In the first case, what we do is computing $\sigma^{z} |\psi\rangle$ for one endpoint of the string, which implies obtaining $-1|\psi\rangle$ eigenvalue for that endpoint; as a result we violate constraint (1). In the second case, instead, we end up with positive eigenvalues for each edge, this is because the negative signs obtained at the endpoints cancel themselves out. Overall, in order to respect contraint (1) we are interested only in closed loops on $A_{\vec{v}} $. Notice that such loops will always have an even length and will always involve a maximum of two extremities of the $A_{\vec{v}} $ operator.{\cite{Her20}}
+
+%drawings closed/open loop with Av
+\begin{figure}
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (\i,-3) -- (\i,3);
+			}
+			\foreach \j in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (-3,\j) -- (3,\j);
+			}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {-2,...,-2}
+			{
+				\draw[black, line width=1.5mm] (\i,-0.5) -- (\i,1.5);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				\node[draw, circle, fill=black] at (\i,0.5) {};
+				
+				\draw[blue!50, line width=1.5mm] (\i,1.5) -- (\i,2.5);
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1.5) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,2.5) {};
+				
+				
+			}
+			
+			\foreach \j in {2,...,2}
+			{
+				
+				\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (-1.5, \j);
+				
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=north:\textbf{Av}] at (-2.5,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-1.5,\j) {};
+				
+			}
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\caption{Operator $A_v$ applied on an open string of occupied edges.}
+	\label{fig:Aveigen2}
+\end{figure}
+
+
+
+
+\begin{figure}
+	
+\begin{center}
+\begin{tikzpicture}
+	% Draw dashed lines
+	\foreach \i in {-3,-2.5,...,3}
+	{
+		\draw[dashed] (\i,-3) -- (\i,3);
+	}
+	\foreach \j in {-3,-2.5,...,3}
+	{
+		\draw[dashed] (-3,\j) -- (3,\j);
+	}
+	
+	
+	
+	% Draw solid grid and nodes with circles in the middle of each side
+	\draw[step=1cm] (-3,-3) grid (3,3);
+	\foreach \i in {-2.5,...,2.5}
+	{
+		\foreach \j in {-2.5,...,2.5}
+		{
+			
+			
+			\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+				\node[right,xshift=0.2cm,yshift=0.4cm] {};
+				% Convert \j and \i to integers
+				\pgfmathtruncatemacro{\intj}{\j}
+				\pgfmathtruncatemacro{\inti}{\i}
+				
+				% Draw circles at the midpoints of each side
+				\ifnum\intj=2
+				\draw node[draw,circle,fill=gray] at (0,0.5) {};
+				\else
+				\draw node[draw,circle,fill=white] at (0,0.5) {};
+				\fi
+				
+				\ifnum\inti=2
+				\draw node[draw,circle,fill=gray] at (0.5,0) {};
+				\else
+				\draw node[draw,circle,fill=white] at (0.5,0) {};
+				\fi
+				
+				\draw node[draw,circle,fill=white] at (0,-0.5) {};
+				\draw node[draw,circle,fill=white] at (-0.5,0) {};
+			\end{scope}
+		}
+	}
+	
+	\foreach \i in {-2,...,-2}
+	{
+		\draw[black, line width=1.5mm] (\i,-1) -- (\i,1.5);
+		\node[draw, circle, fill=black] at (\i,-0.5) {};
+		\node[draw, circle, fill=black] at (\i,0.5) {};
+		
+		\draw[blue!50, line width=1.5mm] (\i,1.5) -- (\i,2.5);
+		\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1.5) {};
+		\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,2.5) {};
+		
+		
+	}
+	
+	\foreach \j in {2,...,2}
+	{
+		
+		\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (-1.5, \j);
+		
+		
+		\draw[black, line width=1.5mm] (-1.5, \j) -- (1, \j);
+		\draw node[draw,circle,fill=black] at (-0.5,\j) {};
+		\draw node[draw,circle,fill=black] at (0.5,\j) {};
+		\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=north:\textbf{Av}] at (-2.5,\j) {};
+		\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-1.5,\j) {};
+		
+	}
+	
+	
+	\foreach \i in {1,...,1}
+	{
+		\draw[black, line width=1.5mm] (\i,-1) -- (\i,2);
+		\node[draw, circle, fill=black] at (\i,-0.5) {};
+		\node[draw, circle, fill=black] at (\i,0.5) {};
+		\draw node[draw,circle,fill=black] at (\i,1.5) {};
+		
+	}
+	
+	\foreach \j in {-1,...,-1}
+	{
+		\draw[black, line width=1.5mm] (-2, \j) -- (1, \j);
+		\draw node[draw,circle,fill=black] at (0.5,\j) {};
+		\draw node[draw,circle,fill=black] at (-0.5,\j) {};
+		\draw node[draw,circle,fill=black] at (-1.5,\j) {};
+	}
+	
+	
+\end{tikzpicture}
+\end{center}
+
+\caption{String of occupied edges closed on an operator $A_{\vec{v}} $.}
+\label{fig:Aveigen}
+\end{figure}
+		
+%In a more formal notation what we are stating is that:
+
+%\begin{center}
+%	$A_{\vec{v}} |\psi\rangle = +1 |\psi\rangle$. 
+%\end{center}
+
+If we consider only closed loops, we can identify different configurations having such characteristic. The illustrations in figure 1.6 show some examples of them.
+Each of these loops, having such characteristics, is an eigenstate for $A_{\vec{v}} $ since, no matter how I locally apply $A_{\vec{v}} $, I will always preserve the sign of the state. 
+
+%drawings 4 types of loops
+
+
+\begin{figure}
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (\i,-2) -- (\i,2);
+			}
+			\foreach \j in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (-2,\j) -- (2,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-2,-2) grid (2,2);
+			\foreach \i in {-1.5,...,1.5}
+			{
+				\foreach \j in {-1.5,...,1.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=1
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=1
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				\draw[black, line width=1.5mm] (\i,-1) -- (\i,1);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				\node[draw, circle, fill=black] at (\i,0.5) {};	
+				
+			}
+			
+			\foreach \i in {1,...,1}
+			{
+				\draw[black, line width=1.5mm] (\i,-1) -- (\i,1);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				\node[draw, circle, fill=black] at (\i,0.5) {};	
+				
+			}
+			
+			\foreach \j in {1,...,1}
+			{
+				\draw[black, line width=1.5mm] (-1,\j) -- (1,\j);
+				\node[draw, circle, fill=black] at (-0.5,\j) {};
+				\node[draw, circle, fill=black] at (0.5,\j) {};		
+				
+			}
+			
+			\foreach \j in {-1,...,-1}
+			{
+				\draw[black, line width=1.5mm] (-1,\j) -- (1,\j);
+				\node[draw, circle, fill=black] at (-0.5,\j) {};
+				\node[draw, circle, fill=black] at (0.5,\j) {};		
+				
+			}
+			
+			
+		\end{tikzpicture}
+		
+	\end{center}
+	
+	\vspace{1cm} 
+	
+	\begin{center}
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (\i,-2) -- (\i,2);
+			}
+			\foreach \j in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (-2,\j) -- (2,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-2,-2) grid (2,2);
+			\foreach \i in {-1.5,...,1.5}
+			{
+				\foreach \j in {-1.5,...,1.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=1
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=1
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				\node[draw, circle, fill=black] at (\i,0.5) {};		
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+			}
+			
+			
+		\end{tikzpicture}		
+	\end{center}
+	
+	\vspace{1cm} 
+	
+	\begin{center}
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (\i,-2) -- (\i,2);
+			}
+			\foreach \j in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (-2,\j) -- (2,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-2,-2) grid (2,2);
+			\foreach \i in {-1.5,...,1.5}
+			{
+				\foreach \j in {-1.5,...,1.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=1
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=1
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \j in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (-2,\j) -- (2,\j);
+				\node[draw, circle, fill=black] at (-0.5,\j) {};
+				\node[draw, circle, fill=black] at (0.5,\j) {};		
+				\node[draw, circle, fill=black] at (-1.5,\j) {};
+				\node[draw, circle, fill=black] at (1.5,\j) {};		
+				
+			}
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace{1cm} 
+	
+	\begin{center}
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (\i,-2) -- (\i,2);
+			}
+			\foreach \j in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (-2,\j) -- (2,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-2,-2) grid (2,2);
+			\foreach \i in {-1.5,...,1.5}
+			{
+				\foreach \j in {-1.5,...,1.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=1
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=1
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \i in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				\node[draw, circle, fill=black] at (\i,0.5) {};		
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+			}
+			
+			\foreach \j in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (-2,\j) -- (2,\j);
+				\node[draw, circle, fill=black] at (-0.5,\j) {};
+				\node[draw, circle, fill=black] at (0.5,\j) {};		
+				\node[draw, circle, fill=black] at (-1.5,\j) {};
+				\node[draw, circle, fill=black] at (1.5,\j) {};		
+				
+			}
+			
+			
+		\end{tikzpicture}		
+	\end{center}
+	
+	\caption{Examples of closed loops yielding $+1$ eigenvalue for $A_{\vec{v}} $}
+	\label{fig:Loops}
+\end{figure}
+
+
+Now we focus on constraint (2). We want to apply the plaquette operator $B_{\vec{p}} $ only to eigenstates of $A_{\vec{v}} $, which we have determined above. The illustration in figure 1.7 shows an example of how to do it in practice with one of the eigenstates of $A_{\vec{v}} $.
+Notice that, after the transformation, we do always end up in a valid eigenstate of $A_{\vec{v}} $ but the new state $|\psi'\rangle$ is not an eigenstate of $B_{\vec{p}} $ by itself.
+
+%drawings Bp applied to loops
+\begin{figure}
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (\i,-2) -- (\i,2);
+			}
+			\foreach \j in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (-2,\j) -- (2,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-2,-2) grid (2,2);
+			\foreach \i in {-1.5,...,1.5}
+			{
+				\foreach \j in {-1.5,...,1.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=1
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=1
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,0);
+				\draw[red!80, line width=1.5mm] (\i,0) -- (\i,1);
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				\node[draw, circle, fill=red!80,label = center:\textbf{X}] at (\i,0.5) {};
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[red!80, line width=1.5mm] (\i,0) -- (\i,1);
+				\node[draw, circle, fill=red!80,label = center:\textbf{X}] at (\i,0.5) {};
+				
+			}
+			
+			\foreach \j in {0,...,0}
+			{
+				\draw[red!80, line width=1.5mm] (-1,\j) -- (0,\j);
+				\node[draw, circle, fill=red!80,label = center:\textbf{X}] at (-0.5,\j) {};		
+				
+			}
+			
+			\foreach \j in {1,...,1}
+			{
+				\draw[red!80, line width=1.5mm] (-1,\j) -- (0,\j);
+				\node[draw, circle, fill=red!80,label = center:\textbf{X}] at (-0.5,\j) {};	
+				
+			}
+			
+			
+		\end{tikzpicture}
+		
+		
+		
+		\vspace{1cm} 
+		
+		
+		
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (\i,-2) -- (\i,2);
+			}
+			\foreach \j in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (-2,\j) -- (2,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-2,-2) grid (2,2);
+			\foreach \i in {-1.5,...,1.5}
+			{
+				\foreach \j in {-1.5,...,1.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=1
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=1
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,0);
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,0) -- (\i,1);
+				\node[draw, circle, fill=black] at (\i,0.5) {};
+				
+			}
+			
+			\foreach \j in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				\node[draw, circle, fill=black] at (-0.5,\j) {};		
+				
+			}
+			
+			\foreach \j in {1,...,1}
+			{
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				\node[draw, circle, fill=black] at (-0.5,\j) {};
+				\node[draw, circle, black] at (-0.5,\j) {};	
+				
+			}
+			
+			
+		\end{tikzpicture}	
+
+	\end{center}
+
+\caption{Examples of $B_{\vec{p}} $ to a closed loop.}
+\label{fig:applyBp}
+\end{figure}
+
+
+Furthermore, any new configuration that we obtain through the application of the plaquette operator to an eigenstate of $A_{\vec{v}} $ simply yields one of the possible permutations of the edges of the initial state, provided that the topological characteristics of the loop are preserved.
+
+This means that if we firstly partition the eigenstates of $A_{\vec{v}} $ in the following fours classes: 
+
+\begin{enumerate}
+	\item class 0 : contains all closed loops and thus the null state,
+	this is because all of the closed loops can be continuously deformed into a null state;
+	
+	\item class 1 : contains loops that wind all the way around the horizontal dimension of the torus and their permutations;
+	
+	\item class 2 : contains loops that wind all the way around the vertical dimension of the torus and their permutations;
+	
+	\item class 3 : contains loops that wind all the way around both dimension of the torus and their permutations. Notice that the vertical loop must be taken on the dual lattice to yield a valid configuration.
+	
+\end{enumerate}
+
+Then, applying a plaquette operator to any of the eigenstates belonging to one of the classes above must yield an eigenstate that lies in the same class. This is formally expressed by stating that the class is invariant under the action of the operator $B_{\vec{p}} $. 
+
+\begin{proposition} (Invariance under $B_{\vec{p}} $) The four classes of eigenstates of $A_{\vec{v}} $ are invariant under the action of the $B_{\vec{p}} $ operator. 
+\end{proposition}
+
+We can prove that the above definition holds by means of counterexamples. 
+
+
+
+%drawing loop chiuso ma unito da Bp
+\begin{figure}
+	
+	\begin{center}	
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (\i,-2) -- (\i,2);
+			}
+			\foreach \j in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (-2,\j) -- (2,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-2,-2) grid (2,2);
+			\foreach \i in {-1.5,...,1.5}
+			{
+				\foreach \j in {-1.5,...,1.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=1
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=1
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,0);
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,0);
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,1.5) {};
+				
+			}
+			
+			\foreach \j in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				\node[draw, circle, fill=black] at (-0.5,\j) {};		
+				
+			}
+			
+			\foreach \j in {1,...,1}
+			{
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				\node[draw, circle, fill=black] at (-0.5,\j) {};
+				\node[draw, circle, black] at (-0.5,\j) {};	
+				
+			}
+			
+			
+		\end{tikzpicture}	
+		
+		\vspace{1cm} 
+		
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (\i,-2) -- (\i,2);
+			}
+			\foreach \j in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (-2,\j) -- (2,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-2,-2) grid (2,2);
+			\foreach \i in {-1.5,...,1.5}
+			{
+				\foreach \j in {-1.5,...,1.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=1
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=1
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,0);
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+				\draw[red!80, line width=1.5mm] (\i,0) -- (\i,1);
+				\node[draw, circle, fill=red!80, label = center:\textbf{X}] at (\i,0.5) {};		
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,0);
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+				
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\draw[red!80, line width=1.5mm] (\i,0) -- (\i,1);
+				\node[draw, circle, fill=black] at (\i,1.5) {};
+				\node[draw, circle, fill=red!80,label = center:\textbf{X}] at (\i,0.5) {};
+				
+			}
+			
+			\foreach \j in {0,...,0}
+			{
+				\draw[red!80, line width=1.5mm] (-1,\j) -- (0,\j);
+				\node[draw, circle, fill=red!80,label = center:\textbf{X}] at (-0.5,\j) {};		
+				
+			}
+			
+			\foreach \j in {1,...,1}
+			{
+				\draw[red!80, line width=1.5mm] (-1,\j) -- (0,\j);
+				\node[draw, circle, fill=red!80,label = center:\textbf{X}] at (-0.5,\j) {};
+				
+				
+			}
+			
+			
+		\end{tikzpicture}	
+		
+		\vspace{1cm} 
+		
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (\i,-2) -- (\i,2);
+			}
+			\foreach \j in {-2,-1.5,...,2}
+			{
+				\draw[dashed] (-2,\j) -- (2,\j);
+			}
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-2,-2) grid (2,2);
+			\foreach \i in {-1.5,...,1.5}
+			{
+				\foreach \j in {-1.5,...,1.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=1
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=1
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,0);
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+				\draw[black, line width=1.5mm] (\i,0) -- (\i,1);
+				\node[draw, circle, fill=black] at (\i,0.5) {};		
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i,0);
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\node[draw, circle, fill=black] at (\i,-0.5) {};
+				
+				\node[draw, circle, fill=black] at (\i,-1.5) {};
+				\node[draw, circle, fill=black] at (\i,1.5) {};		
+				
+				
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,1) -- (\i,2);
+				\draw[black, line width=1.5mm] (\i,0) -- (\i,1);
+				\node[draw, circle, fill=black] at (\i,1.5) {};
+				\node[draw, circle, fill=black] at (\i,0.5) {};
+				
+			}
+			
+			
+			
+		\end{tikzpicture}	
+		
+
+	\end{center}
+
+\caption{Apply $B_{\vec{p}} $ to a closed loop.}
+\label{fig:Bpstrano}
+\end{figure}
+
+If we take the loop illustrated in figure 1.8 and close it by means of a plaquette operator as illustrated, we would be brought to believe that there indeed exist a way to apply the operator $B_{\vec{p}} $ such that we exit class 0 and land in class 1. Though, this is not possible. \newline
+In fact, we can show the impossibility of the above action by defining two topological indeces to label the four categories of eigenstates. These indeces can assume values in $\mathbb{Z}_2=\{\overline{0},\overline{1} \}$, whose elements respectively represent the 'sets' of even and odd numbers. In our context such numerosities identify the number of vertical and horizontal loops of a configuration intersecting the vertical and horizontal dimensions of the torus (figure 1.9).
+
+The above indeces can be expressed more clearly as follows: 
+
+\begin{center}
+	$n_x= (number \ of \ vertical \ intersections) \ \mathrm{mod} \ 2 = 
+	\begin{cases} 
+		0 \ \mathrm{mod} \ 2 \\
+		1 \ \mathrm{mod} \ 2  
+	\end{cases}$ 
+\end{center}
+\begin{center}
+	$n_y= (number \ of \ horizontal \ intersections) \ \mathrm{mod} \ 2 =\begin{cases} 
+		0 \ \mathrm{mod} \ 2 \\
+		1 \ \mathrm{mod} \ 2  
+	\end{cases}$ 
+\end{center}
+
+
+in order to create a correspondence with the actual definition of the torus over $(\mathbb{Z}$ $\times$ $\mathbb{Z})$. 
+%We only change the representatives of the elements $\{\overline{0},\overline{1} \}$ in the intermediate step. \newline
+
+In total our classes are going to be wider than expected; we can label them as : $(\overline{0},\overline{0} )$, $(\overline{0},\overline{1} )$, $(\overline{1},\overline{0})$, $(\overline{1},\overline{1})$.\newline
+
+For example, if we take again the configuration in figure 1.9, we have 1 vertical intersection and 1 horizontal intersection, therefore we are in the class three indexed by $n_x=1mod2$ and $n_y=1mod2$, which is labelled as $(\overline{1},\overline{1})$. This would have been true for any odd number of vertical and horizintal intersections, since they all fall in the set of numbers given by $1mod2$.
+
+
+%drawing 1 vertical 1 hor
+\begin{figure}
+	\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (\i,-2) -- (\i,2);
+		}
+		\foreach \j in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (-2,\j) -- (2,\j);
+		}
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-2,-2) grid (2,2);
+		\foreach \i in {-1.5,...,1.5}
+		{
+			\foreach \j in {-1.5,...,1.5}
+			{
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=1
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=1
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		
+		\foreach \i in {0,...,0}
+		{
+			\draw[black, line width=1.5mm] (\i,-2) -- (\i,2);
+			\node[draw, circle, fill=black] at (\i,-0.5) {};
+			\node[draw, circle, fill=black] at (\i,0.5) {};		
+			\node[draw, circle, fill=black] at (\i,-1.5) {};
+			\node[draw, circle, fill=black] at (\i,1.5) {};		
+			
+		}
+		
+		\foreach \j in {0,...,0}
+		{
+			\draw[black, line width=1.5mm] (-2,\j) -- (2,\j);
+			\node[draw, circle, fill=black] at (-0.5,\j) {};
+			\node[draw, circle, fill=black] at (0.5,\j) {};		
+			\node[draw, circle, fill=black] at (-1.5,\j) {};
+			\node[draw, circle, fill=black] at (1.5,\j) {};		
+			
+		}
+		
+		
+	\end{tikzpicture}		
+\end{center}
+
+\caption{Notice that the above mentioned intersections are meant to be computed by fixing two circles (figure 1.9): one horizontal circle and one vertical circle passing passing through the spins of the main lattice.}
+\label{fig:thirdkind}
+\end{figure}
+
+
+Similarly, if we go back to the configuration in figure 1.8, this would mean that, after having applied $B_{\vec{p}} $ we do not land in class 1, as thought, but in class 0; this is because we have an even number of horizontal intersections and an even number of vertical intersections, i.e.   $(\overline{0}, \overline{0})$.
+
+What follows naturally is that all the classes are $B_{\vec{p}} $-$invariant$ due to the topological characteristics of the torus. More formally we can write that, given a set of eigenstates of $A_{\vec{v}} $ named $|\psi_1\rangle,...,|\psi_i\rangle,...,|\psi_n\rangle$ all belonging to the same class and forming state $|\psi\rangle$. Given that we know that $B_{\vec{v}} |\psi_i\rangle=+|\psi_j\rangle$, then if we apply $B_{\vec{p}} $ to the normalized state $|\psi\rangle$ we get:
+
+\begin{center}
+	$|\Xi\rangle= B_{\vec{p}}  \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_i\rangle = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} B_{\vec{p}} |\psi_i\rangle = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_J\rangle =|\Xi\rangle$
+\end{center}
+
+because, as anticipated in the previous pages, what $B_{\vec{p}} $ does is only permuting the $|\psi_i\rangle$, thus we get back our initial state. This result leads to the following proposition:
+
+\begin{proposition}(Eigenstates of $B_{\vec{p}} $) A completely symmetric superposition of a set of eigenstates of $A_v$ is an eigenstate of $B_{\vec{p}} $.
+\end{proposition}
+
+From Proposition 1.6 and Proposition 1.7, also naturally follows the degeneracy (and dimension) of the ground state: \newline
+
+\begin{proposition} (Degeneracy of the ground state) The degeneracy of the ground state manifold is $4$. 
+\end{proposition}
+
+Because the four classes of eigenstates are $B_{\vec{p}} $-$invariant$, we can construct a valid ground state through the configurations belonging to one the four classes, as these configurations respect both constraint (1) and (2).\newline 
+
+Now that we have derived the ground state configurations of the toric code, we focus on studying its excited states. These states arise from perturbations or interactions within the system and offer valuable insights into the dynamic behavior of the toric code beyond its ground state equilibrium. While the ground state embodies the system's lowest energy configuration and serves as the foundation of its stability, the excited states provide an insight into the system's response to external influences. 
+Through the systematic study of these excitations we discover some intrinsic characteristics of the toric code that will serve us later to explain its fault-tolerant nature.
+
+
+%-------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Excited states}
+\label{sec:ES}
+
+%We shall now examine the case of a square lattice with boundary conditions, i.e. the toric code. \newline
+
+Taking into account the results yielded by the examination of the physical system in the previous chapters we will now proceed to describe, firstly, what are the excitations on the ground state and what kind of excitations we can obtain on it; secondly, we will study their exchange statistics. In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent deviations from the system's ground state. These excitations are associated with elementary quantum particles that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties and response to external perturbations. \newline
+In the particular case of the toric code, such low-energy excitations can be created through the application of a $S^x$ or $S^z$ string operator on the ground state (figure 1.10).
+
+\begin{definition}(Adjacent edges)
+	We say that the edges  $e_1, e_2$ $\in E$ are adjacent if $e_1\neq e_2$ and $\{ \vec{v}_1, \vec{v'}_1\}$ $\cap $ $\{ \vec{v}_2, \vec{v'}_2\}$ $\neq$ $\emptyset$.
+\end{definition}
+
+\begin{definition}(String $\ell$)
+	A string $\ell$ consists of a set of numbered edges $\{e_1, \dots, e_i, \dots e_n\}$ where $e_i$ is adjacent to $e_{i+1}$ and such that the overall length of the string is equal to $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} < N$.
+\end{definition}
+
+\begin{definition}(Endpoints of a string)
+	Given a string $\ell$ we identify its endpoints with the initial edge $e_1$ and its final edge $e_n$.
+\end{definition}
+
+\begin{definition}(Loop)
+	A loop consists of a set of numbered edges $\{e_1, \dots, e_i, \dots e_n\}$ where $e_i$ is adjacent to $e_{i+1}$ and such that the overall length of the loop is $\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y| \} \ge N$.
+\end{definition}
+
+\begin{definition}($S^x_\ell$ operator)
+	A $S^x_\ell$ operator consists of $\sigma^x$ operators applied on a string $\ell$ of $\mathcal{L}$.
+\end{definition}
+
+\begin{definition}($S^z_\ell$ operator)
+	A $S^z_\ell$ operator consists of $\sigma^z$ operators applied on a string $\ell$ of $\mathcal{L'}$.
+\end{definition}
+
+After the application of string operators on strings of edges, particles are created at their endpoints. In particular we can get two distinct types of excitations (figure 1.10):
+
+\begin{definition}(Electric charges)
+	The pairs of particles obtained at the endpoints of $S^x_\ell$ are called electric charges $e$.
+\end{definition}
+
+\begin{definition}(Magnetic vortices)
+	The pairs of particles obtained through at the endpoints of $S^z_\ell$ are called magnetic vorteces $m$.
+\end{definition}
+
+These excitations can be transported on the GS by means of Pauli operators and interact with each other and with each component of the system in several ways, influencing at the same time the low energy of ground state.\newline
+In order to understand how the string operators influence the ground state, we need to study the relationships between string operators and vertex/plaquette operators as we have defined them in section 1.2.\newline
+
+%picture
+\begin{figure}
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (\i,-3) -- (\i,3);
+			}
+			\foreach \j in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (-3,\j) -- (3,\j);
+			}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {-2,...,-2}
+			{
+				\draw[red!30, line width=1.5mm] (\i,-1) -- (\i,-0.5);
+				\draw[red!50, line width=1.5mm] (\i,-0.5) -- (\i,1.5);
+				\draw[red!30, line width=1.5mm] (\i,1.5) -- (\i,2);
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=south:\textbf{\large \bf $e$}] at (\i,-0.5) {};
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (\i,0.5) {};
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=north:\textbf{\bf \large $e$}] at (\i,1.5) {};
+				
+			}
+			
+			\foreach \j in {-1.5,...,-1.5}
+			{
+				\draw[blue!30, line width=1.5mm] (0.5, \j) -- (1, \j);
+				\draw[blue!50, line width=1.5mm] (1, \j) -- (2, \j);
+				\draw[blue!30, line width=1.5mm] (2, \j) -- (2.5, \j);
+				
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large \bf $m$}] at (1,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large \bf $m$}] at (2,\j) {};
+				
+			}
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\caption{$e$ and $m$ excitations on the ground state.}
+	\label{fig:excitations}
+\end{figure}
+
+
+
+
+
+%\newpage
+We can prove that a $S^x_\ell$ operator anticommutes with one $A_{\vec{v}} $ for each one of its endpoints. 
+
+\begin{proposition}(Anticommutation of $S^x_\ell$)
+	The $S^x_\ell$ operators anticommute with two $A_{\vec{v}} $, one for each endpoint $e_1$ and $e_n$ of the string $\ell$.
+\end{proposition}
+
+\textit{Proof.}\newline
+We want to show that $A_{\vec{v}} S^x_\ell + S^x_\ell A_{\vec{v}}=0$. Knowing that 
+
+\begin{center}
+	$A_{\vec{v}} = \prod_{i=1}^{4} \sigma_i^z$ \\ 
+	$S^x_\ell = \prod_{j=1}^{N} \sigma_j^x$
+\end{center}
+
+by substitution we obtain the following expression: 
+
+\begin{center}
+	$(1)$ $\space$ $\prod_{i=1}^{4} \sigma_i^z \prod_{j=1}^{N} \sigma_j^x + \prod_{j=1}^{N} \sigma_j^x \prod_{i=1}^{4} \sigma_i^z = 0$  
+\end{center}
+
+remeber that only one $\sigma_i^z$ will overlap with the extremity of the string $S^x$; thus, only one $\sigma_i^z$ will anticommute with the extremity of the string $S^x$. Knowing that for Pauli matrices acting on the same edge we have anticommutation
+
+\begin{center}
+	$\sigma_{v'}^x \sigma_{v'}^z = - \sigma_{v'}^z \sigma_v^x$ for $v=v'$ \\
+	$\sigma_v^x \sigma_{v'}^z =  \sigma_{v'}^z \sigma_v^x$ for $v \neq v'$ 
+\end{center}
+
+if for simplicity we fix $N=2$ we can easily see that :
+
+\begin{center}
+	$(\sigma_1^z \sigma_2^z \sigma_3^z \sigma_4^z)(\sigma_1^x \sigma_2^x)  = - (\sigma_1^x \sigma_2^x)(\sigma_1^z \sigma_2^z \sigma_3^z \sigma_4^z) $ 
+\end{center}
+
+having supposed that, for example, the extremity $\sigma_1^x$ overlaps with the $\sigma_3^z$ edge part of the $A_{\vec{v}} $ operator (figure 1.11). This can then be easily generalized for $N$ Pauli operators. Finally, if we substitute such expression in $(1)$ we obtain that the overall equation is in fact equal to zero. \newline
+This procedure should be iterated also for the other extremity of the string $S^x_\ell$ to show that the operator commutes with two $A_{\vec{v}} $ operators, one for each endpoint.
+
+\hfill $\square$ 
+
+
+\begin{figure}
+	
+	\begin{center}
+		
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (\i,-3) -- (\i,3);
+			}
+			\foreach \j in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (-3,\j) -- (3,\j);
+			}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {-2,...,-2}
+			{
+				\draw[red!50, line width=1.5mm] (\i,-0.5) -- (\i,1.5);
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x_3$}] at (\i,-0.5) {};
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x_2$}] at (\i,0.5) {};
+				
+				\draw[blue!50, line width=1.5mm] (\i,1.5) -- (\i,2.5);
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z_3$}] at (\i,1.5) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z_1$}] at (\i,2.5) {};
+				
+				
+			}
+			
+			\foreach \j in {2,...,2}
+			{
+				
+				\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (-1.5, \j);
+				
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z_1$},label=north:\textbf{Av}] at (-2.5,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z_2$}] at (-1.5,\j) {};
+				
+			}
+			
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (-1.5, \j);
+				
+			    \node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$},label=north:\textbf{Av}] at (-2.5,\j) {};
+				\node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$}] at (-1.5,\j) {};
+				
+			}
+			
+			\foreach \i in {-2,...,-2}
+			{
+				
+				\draw[blue!50, line width=1.5mm] (\i,-0.5) -- (\i,-1.5);
+				\node[draw, circle, fill=blue!50, label=center:\textbf{$\sigma^z$}] at (\i,-1.5) {};
+				\node[draw, circle, fill=blue!50, label=center:\textbf{$\sigma^z$}] at (\i,-0.5) {};
+				
+				
+			}
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\caption{String operator anticommutes with two $A_{\vec{v}}$ each.}
+	\label{fig:Av&string}
+\end{figure}
+
+
+In the same way, we could prove that, if we take a string $S^z$ it anticommutes with one $B_{\vec{p}} $ for each one of its endpoints.
+
+\begin{proposition}(Anticommutation of $S^z_\ell$)
+	The $S^z_\ell$ operators anticommute with two $B_{\vec{p}}$, one for each endpoint $e_1$ and $e_n$ of the string $\ell$.
+\end{proposition}
+
+The effect of putting such strings on the ground states correspond to raising the associated energy of the GS by 2. In fact, coherently with what said in {\cite{Her20}}, it is impossible to create unitary excitations on the ground states.
+
+\begin{proposition}(Magnitude of the excitations)
+	Placing a string operator on the ground states corresponds to raising the associated energy of the GS by 2.
+\end{proposition}
+
+\textit{Proof.} \newline
+Recall that for a string operator, here we will choose $S^x$, both equations hold:
+
+\begin{center}
+	$\begin{cases} 
+		A_{\vec{v}_1}S^x_\ell + S^x_\ell A_{\vec{v}_1}  =0 \\
+		A_{\vec{v}_2} S^x_\ell + S^x_\ell A_{\vec{v}_2} =0
+	\end{cases}$ 
+\end{center}
+
+If we apply the string operator to the Ground State, taking into account anticommutativity stated above, we obtain that:
+
+\begin{center}
+	$\begin{cases}
+		A_{\vec{v}_1} S^x_\ell |GS\rangle = - S^x A_{\vec{v}_1} |GS\rangle = - S^x_\ell |GS\rangle \\
+		
+		A_{\vec{v}_2} S^x_\ell |GS\rangle = - S^x A_{\vec{v}_2} |GS\rangle = - S^x_\ell |GS\rangle
+	\end{cases}$ 
+\end{center}
+
+since $A_{\vec{v}_1}|GS\rangle = +1|GS\rangle$ and $A_{\vec{v}_2}|GS\rangle = +1|GS\rangle$.
+Summing up term by term :
+
+\begin{center}
+	$\begin{cases}
+		A_{\vec{v}_1} S^x_\ell |GS\rangle + A_{\vec{v}_2} S^x_\ell |GS\rangle = - 2 S^x_\ell A_{\vec{v}_1} |GS\rangle
+	\end{cases}$ 
+\end{center}
+
+Thus, if the energy of the GS, as we have defined it in the previous sections, is $-2N$ by acting with a string operator on  it we obtain a final energy equal to $-2N+2$.
+
+\hfill $\square$ 
+
+%Firstly, we study the individual statistics of electric charges and magnetic votices, then we argue their mutual statistics.\newline
+
+
+
+
+
+
+\subsection{Fermionic and bosonic exchange statistics in 3D and 2D}
+We shall give a brief description of the statistics of fermions and bosons in both cases of three and two dimensions. \newline
+Take a system of $N$ indistinguishable particles in three dimensions, if we exchange any two of them such that $i<j$ we can only obtain a phase $\phi=\pm \pi$ in the resulting wave function:  
+
+\begin{center}	
+	$P_{(i,j)}\psi(x_1, ..., x_i,x_j, ..., x_N)=e^{i\phi} \psi(x_1, ..., x_j,x_i, ..., x_N)=\pm \psi(x_1, ..., x_j,x_i, ..., x_N)$
+\end{center}
+
+where $P_{(i,j)}$ indicates the permutation operator that exchanges two particles according to the Permutation group $\mathbb{P_N}$ that characterizes fermionic and bosonic statistics. 
+
+\begin{definition}(Permutation operator)
+	Given a set of $N$ objects an operator $P \in P_N$ acts as $(P \psi)(x_1,...,x_N)=\psi(x_{\pi(1)}, ..., x_{\pi(N)})$ with $\pi$ permutation of $N$ objects.
+\end{definition}
+
+The permutation group $\mathbb{P}_N$ is defined as the set of all possible permutations involving $N$ objects. Within this group, the operation of group multiplication (exchange) corresponds to the sequential application of permutations, and the group inverse involves the inverse of the permutation. Here, executing a permutation twice on two objects results in the initial configuration of the system. Consequently, particles exhibiting transformations according to the representations of the permutation group can exclusively fall into the categories of either bosons or fermions.
+To visualize the behaviour described above, consider the case where particles are constrained to move on a sphere. Closed paths emerge when particles return to their original positions (no exchange) or reach the antipodal point (exchange). In fact, we will have three distinct types of paths (figure 1.12): 
+
+%picture
+\begin{enumerate}
+	\item[(a)]: closed loops without exchange; they can disappear if reduced to a point, implying that the wave-function cannot acquire any phase; 
+	
+	\item[(b)] : involve a single exchange; they connect two fixed points on the sphere, making it impossible to erase them. Consequently, this types of exchanges introduce a phase in the wave-function;
+	
+	\item[(c)] : closed loops with two exchanges, as in case 1; as a result, also in this case the wavefunction does not acquire any additional phase.
+\end{enumerate}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{"../Thesis/Immagine 2024-02-22 113658"}
+	\caption{{ Possible exchanges of two particles in 3D. From: \cite{Rao16}.}}
+	\label{fig:immagine-2024-02-22-113658}
+\end{figure}
+
+Overall, we only have two classes of paths: those that do not involve any exchange as in class (a) and (c), and those that are characterized by an exchange as in class (b). 
+Since exchanging the particles twice leads again to a direct path, we will have $e^{2i \phi} = 1$. This means that $\phi$ can either be 0 or $\pi$ giving rise, respectively, to bosonic and fermionic statistics: 
+
+\begin{enumerate}
+	\item $\phi = 0$: this case leads to the constructive interference of the exchange paths. The resulting particles are known as bosons, and their behavior is characterized by this specific phase condition;
+	
+	\item $\phi = \pi$: this case results in destructive interference between the exchange paths. The particles corresponding to this scenario are referred to as fermions, and their behavior is governed by this particular phase condition.
+\end{enumerate}
+
+In contrast to what stated above, take a system of $N$ indistinguishable particles in two dimensions, if we exchange any two of them such that $i<j$ we can obtain any phase $\phi$ in the resulting wave function, based on the number of exchanges:  
+
+\begin{center}	
+	$R_{(i,j)}\psi(x_1, ..., x_i,x_j, ..., x_N)=R_{(i,j)} e^{i\phi} \psi(x_1, ..., x_j,x_i, ..., x_N)= R_{(i,j)} e^{i2\phi} \psi(x_1, ..., x_i,x_j, ..., x_N)=R_{(i,j)} e^{i3\phi} \psi(x_1, ..., x_j,x_i, ..., x_N)= ... \ \newline
+	... = e^{in\phi} \psi(x_1, ..., x_i,x_j, ..., x_N)$
+\end{center}
+
+where $R$ represents the braiding operator, which corresponds to the exchange operator for particles in two dimensions. The resulting statistics is characterized according to the Braiding group  $\mathbb{B_N}$. When it comes to objects that are part of the braid group $\mathbb{B}_N$, we can visualise the process of moving (or exchanging) particles as paths in spacetime with time being the vertical axis and space being the horizontal axis (figure 1.14). The particles can circle around each other and form closed paths by coming back to their original positions {\cite{Wil91}}. For further details see {\cite{Rao16, Wil91}}.
+To visualize the above behaviour, consider moving on a circle. This time several possible paths are possible, in particular closed paths. In fact, if we classify again the possible paths as we did above, this time we obtain these three categories (figure 1.13):
+
+\begin{enumerate}
+	\item[(a)] : those that can be shrunk into a point;
+
+	\item[(b)] : those that cannot be contracted into a point as the endpoints remain fixed;
+
+	\item[(c)] : also this kind of paths cannot be shrunk into a point since they wind all  the way around the circle. Notice that in three dimensions the path that forms under two exchanges can be erased but this is not possible if the exchange happens in two dimensions. This will be useful to define a third type of quasiparticles that exists only in 2D (section 1.5).
+\end{enumerate}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{"../Thesis/Immagine 2024-02-22 112906"}
+	\caption{ { Possible exchanges of two particles in 2D. From: \cite{Rao16}.}}
+	\label{fig:immagine-2024-02-22-112906}
+\end{figure}
+
+Overall, for $ \phi = 0, \pi$ we would obtain the usual bosons and fermions statistics, but since in general, $e^{in\phi} \neq 1$ for any $n$ (n exchanges never yield the identity), $\phi$ can be anything so any statistic is possible in two dimensions.
+Such diverse statistics in two dimensions are called \textit{anyonic} (see section 1.5).\newline
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{"../Thesis/Immagine 2024-02-23 134521"}
+	\caption{{ Identical particles exchange position twice as
+			they travel in three dimensions (no exchange). Particle a and b move along a closed path in two dimesions (non contractible). From:\cite{Wil91}}.}
+	\label{fig:immagine-2024-02-23-134521}
+\end{figure}
+%----
+
+%\newpage
+We can now analyze the statistics of $e$-particles in the context of the ground state of the toric code. If we take a simple string operator $\sigma^z|GS\rangle$ , where $|GS\rangle$ denotes the ground state, it creates two $e$-particles in the vertices adjacent to the edge, as shown in figure 1.15. We know that a string operator allows the separation of these two excitations. In fact, as illustrated in figure 1.15, the exchange of these particles becomes possible by applying the string operator in such a way that it moves the excitations around the lattice until they reach configuration shown in figure 1.15(c). However, due to the commutation of all $\sigma^x$ with each other, after the application of a closed loop of $\sigma^x$ (last passage in figure 1.15), there is no overall acquired phase. Consequently, the $e$-excitations exhibit bosonic statistics. {\cite{Rao16, Her20}}. A similar argument can be carried out for the $m$-excitations, establishing them as bosons as well. 
+
+
+%picture
+\begin{figure}
+\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (\i,-2) -- (\i,2);
+		}
+		\foreach \j in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (-2,\j) -- (2,\j);
+		}
+		
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-2,-2) grid (2,2);
+		\foreach \i in {-1.5,...,1.5}
+		{
+			\foreach \j in {-1.5,...,1.5}
+			{
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=1
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=1
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		
+		
+		
+		\foreach \j in {1,...,1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (-1, \j) -- (-0.5, \j);
+			%\draw node[label=north:\textbf{ \large $e_1$}] at (-1,\j) {};
+			\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
+			%\draw node[label=north:\textbf{ \large $e_2$}] at (0,\j) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{ \large $e_1$},label=right:\textbf{ \large $e_2$}] at (-0.5,1) {};
+			
+		}
+		
+	\end{tikzpicture}
+\end{center}
+
+\vspace*{1cm}
+
+\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (\i,-2) -- (\i,2);
+		}
+		\foreach \j in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (-2,\j) -- (2,\j);
+		}
+		
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-2,-2) grid (2,2);
+		\foreach \i in {-1.5,...,1.5}
+		{
+			\foreach \j in {-1.5,...,1.5}
+			{
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=1
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=1
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		
+		
+		
+		\foreach \j in {1,...,1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (-1, \j) -- (-0.5, \j);
+			\draw node[label=center:\textbf{\large $e_2$}] at (0,\j) {};
+			%\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
+			
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,1) {};
+			
+		}
+		
+		\foreach \i in {-1,...,-1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (\i,1) -- (\i,-1);
+			%\draw node[label=north:\textbf{e1}] at (\i,0) {};
+			%\draw[blue!50, line width=1.5mm] (\i,0) -- (\i,0);
+			
+			\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (-1,0.5) {};
+			\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (-1,-0.5) {};
+			
+		}
+		
+		\foreach \j in {-1,...,-1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (-1, \j) -- (1, \j);
+			
+			
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (0.5,-1) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (1,-0.5) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,-1) {};
+			
+		}
+		
+		\foreach \i in {1,...,1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (\i,-0.4) -- (\i,0.4);
+			\draw node[label=north:\textbf{\large $e_1$}] at (\i,0.5) {};
+			%\draw[blue!50, line width=1.5mm] (\i,0) -- (\i,0);
+			\draw[red!50, line width=1.5mm] (\i,-1) -- (\i,-0.6);
+			
+			\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (1,0.5) {};
+			
+		}
+		
+		
+		
+	\end{tikzpicture}
+\end{center}
+
+\vspace*{1cm}
+
+\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (\i,-2) -- (\i,2);
+		}
+		\foreach \j in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (-2,\j) -- (2,\j);
+		}
+		
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-2,-2) grid (2,2);
+		\foreach \i in {-1.5,...,1.5}
+		{
+			\foreach \j in {-1.5,...,1.5}
+			{
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=1
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=1
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		
+		
+		
+		\foreach \j in {1,...,1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (0.5, \j) -- (1, \j);
+			\draw node[label=center:\textbf{\large $e_1$}] at (0,\j) {};
+			\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (0.5,\j) {};
+			%\draw node[label=center:\textbf{e2}] at (0,\j) {};
+			%\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
+			
+			%\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,1) {};
+			
+		}
+		
+		\foreach \i in {-1,...,-1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (\i,-1) -- (\i,0.5);
+			\draw node[label=center:\textbf{\large $e_2$}] at (\i,1) {};
+			
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-1,0.5) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-1,-0.5) {};
+			
+		}
+		
+		\foreach \j in {-1,...,-1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (-1, \j) -- (1, \j);
+			
+			
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (0.5,-1) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (1,-0.5) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,-1) {};
+			
+		}
+		
+		\foreach \i in {1,...,1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (\i,-0.4) -- (\i,0.4);
+			\draw[red!50, line width=1.5mm] (\i,-1) -- (\i,-0.6);
+			\draw[red!50, line width=1.5mm] (\i,0.6) -- (\i,1);
+			
+			\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (1,0.5) {};
+			
+		}
+		
+		
+		
+	\end{tikzpicture}
+\end{center}
+
+\vspace*{1cm}
+
+\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (\i,-2) -- (\i,2);
+		}
+		\foreach \j in {-2,-1.5,...,2}
+		{
+			\draw[dashed] (-2,\j) -- (2,\j);
+		}
+		
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-2,-2) grid (2,2);
+		\foreach \i in {-1.5,...,1.5}
+		{
+			\foreach \j in {-1.5,...,1.5}
+			{
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=1
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=1
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		
+		
+		
+		\foreach \j in {1,...,1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (-1, \j) -- (-0.5, \j);
+			%\draw node[label=north:\textbf{ \large $e_1$}] at (-1,\j) {};
+			\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
+			%\draw node[label=north:\textbf{ \large $e_2$}] at (0,\j) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{ \large $e_2$},label=right:\textbf{ \large $e_1$}] at (-0.5,1) {};
+			
+		}
+		
+	\end{tikzpicture}
+\end{center}
+
+
+\caption{In the first picture we show the creation of a pair of $e$-excitations on the ground state by means of $\sigma^x$ operator. In the following pictures we move around the excitations using a string operator until we reach the configuration in the third picture. In the last passage we apply a closed loop of $\sigma^x$ in order to go back to the first kind of configuration. {\cite{Rao16}}. }
+\label{fig:base}
+\end{figure}
+
+%--------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Anyonic excitations}
+\label{sec:AE}
+
+Let's examine the mutual statistics between $e$ and $m$ particles by means of an example. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x$ and $S^z$ operators as shown in figure 1.16. Afterward, we separate the excitations using string operators and we move an $e$-particle around an $m$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. {\cite{Kit02}}.
+The closed loop can be eliminated, leading to the following transformation:
+
+\begin{center}
+	$\sigma_i^z\sigma_i^x|GS\rangle = - \sigma_i^x\sigma_i^z|GS\rangle$
+\end{center}
+
+if we denote the exchange operator as {\it the braiding operator} $R$ then, according to what we said in section 1.4.1, the wave function relation should be the following:
+
+\begin{center}
+	$R^2\psi(e,m) = - \psi(e,m)$
+\end{center}
+
+since we are going all the way around the particle, we assume to have two exchanges in 2D. Then we simply find out that:
+
+\begin{center}
+	$R^2 = - 1 \rightarrow ( e^{-\frac{i\pi}{2}})^2 = - 1  \rightarrow R = e^{-\frac{i\pi}{2}} = \pm i $
+\end{center}
+
+this results falls out of the usual bosonic/fermionic statistics, thus we can say that the low-energy excitations of the ground state exhibit anyonic statistics.
+%(recalling the fact that we can obtain \textit{any} statistics). {\cite{Rao16, Kit02, Pre04}}.\newline
+
+
+%picture
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}
+			% Draw dashed lines
+			\foreach \i in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (\i,-3) -- (\i,3);
+			}
+			\foreach \j in {-3,-2.5,...,3}
+			{
+				\draw[dashed] (-3,\j) -- (3,\j);
+			}
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\else
+						\draw node[draw,circle,fill=white] at (0.5,0) {};
+						\fi
+						
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+					\end{scope}
+				}
+			}
+			
+			
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[red!50, line width=1.5mm] (-2, \j) -- (1, \j);
+				%\draw node[] at (0,\j) {};
+				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=right:\textbf{\large $e$}] at (0.5,\j) {};
+				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,\j) {};
+				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{\large $e$}] at (-1.5,\j) {};
+				
+			}
+			
+			
+			\foreach \j in {-0.5,...,-0.5}
+			{
+				
+				\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (0.5, \j);
+				
+				
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large $m$}] at (-2,\j) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large $m$}] at (0,\j) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$}] at (-1,\j) {};
+				
+			}
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	
+	\caption{Creation of the $e$-excitations and $m$-excitations.}
+	\label{fig:anyons1}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (\i,-3) -- (\i,3);
+		}
+		\foreach \j in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (-3,\j) -- (3,\j);
+		}
+		
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-3,-3) grid (3,3);
+		\foreach \i in {-2.5,...,2.5}
+		{
+			\foreach \j in {-2.5,...,2.5}
+			{
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=2
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=2
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		
+		
+		
+		\foreach \j in {1,...,1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (-2, \j) -- (1, \j);
+			%\draw node[] at (0,\j) {};
+			\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (0.5,\j) {};
+			\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,\j) {};
+			\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{\large $e$}] at (-1.5,\j) {};
+			
+		}
+		
+		\foreach \i in {-1,...,-1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (\i,-1) -- (\i,1);
+			\draw node[label=center:\textbf{\large $e$}] at (\i,1) {};
+			
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-1,0.5) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-1,-0.5) {};
+			
+		}
+		
+		\foreach \j in {-1,...,-1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (-1, \j) -- (1, \j);
+			
+			
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (0.5,-1) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (1,-0.5) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,-1) {};
+			
+		}
+		
+		\foreach \i in {1,...,1}
+		{
+			
+			\draw[red!50, line width=1.5mm] (\i,-0.4) -- (\i,0.4);
+			\draw[red!50, line width=1.5mm] (\i,-1) -- (\i,-0.6);
+			\draw[red!50, line width=1.5mm] (\i,0.6) -- (\i,1);
+			
+			\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (1,0.5) {};
+			
+		}
+		
+		\foreach \j in {-0.5,...,-0.5}
+		{
+			
+			\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (0.5, \j);
+			
+			
+			\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large $m$}] at (-2,\j) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large $m$}] at (0,\j) {};
+			\node[draw, circle, fill=purple!70,label=center:\textbf{$\pm$}] at (-1,\j) {};
+			
+		}
+		
+		
+	\end{tikzpicture}
+\end{center}
+
+
+\caption{Creation of an anyonic excitation by braiding of $e$ and $m$ pairs of particles. Here we loop the $e$-excitation around an $m$-excitation. The red loop can be removed with the result that the GS acquires a phase.}
+\label{fig:anyons}
+\end{figure}
+
+
+
+%-------------------------------
+
+
+
+
+
+
+
+
+
+\chapter{Coding on the toric code}
+\label{ch:chapter_two}
+
+\section{Classical error correction}
+\label{sec:CER}
+
+In classical computing the most elementary unit of information is the {\it bit}. A bit stores binary information, which can either assume value 1 or 0. When we transmit information in the classical world, we immagine to make strings of bits travel through a channel similar to the one depicted below in figure 2.1. During the transmission a bit can change its value either going from 1 to 0 or viceversa, this event is called {\it bit-flip} and it tells us that an error has occured in the transmission. A bit-flip can occur independently on each bit with a certain probability that we will denote in general as $p$: mathematically, this translates to the assumption that errors, i.e. bit-flips,  are assumed to be independently identically distributed on all the bits with the same probability $p$. In such a case we say that errors are i.i.d. with probability $p$.\newline
+The noisy channel described in picture 2.1 is one of the easiest error models also known as the $\textit{Binary Symmetric Channel}$. An error model, in the context of information theory and communication, is a mathematical or conceptual representation of how errors can occur during the transmission of information. It describes the types of errors that can happen, the probabilities associated with each type of error and the conditions under which these errors occur. \newline
+
+%image
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{../Thesis/324193_2_En_1_Fig3_HTML}
+	\caption{{\it Binary symmetric channel. From: \cite{Cha06}}}
+	\label{fig:3241932en1fig3html}
+\end{figure}
+
+
+\newpage
+In order to protect information what we do is introduce redundancy, which helps us detect errors and correct them. Redundacy means duplicating bits of information before sending them through a channel. We say that we encode logical bits into {\it strings of bits} (physical bits). For example: 0 can be encoded into 00 and 1 into 11. This is useful to detect errors because in this way, whenever a bit changes we know that a single error has occured since 10 and 01 pairs should never occur. Formally speaking we have introduced a {\it parity}: the strings 00 and 11 have {\it even} parity while 10 and 01 have an {\it odd} parity. Whenever we receive a string we do {\it parity-check} and signal an error whenever we get odd parity. We will call the values obtained through the parity-check procedure {\it error syndromes}.\newline
+
+In order to also be able to correct errors, the redundancy above is not enough since we wouldn't be able to define a criterion to correct the corrupted information. Thus, we introduce a third redundant bit and obtain the {\it three repetition code}; in this way, when we decode information at the destination, we can apply what is called {\it majority voting}. Majority voting decodes into 1 those triplets that have most bits set to 1 and decodes as 0 the ones that have most bits set to 0. Though, as soon as two bit-flips happen, majiority voting stops working. In fact, state 000 with two errors (110) would be associated with to 111 and vice-versa. Therefore we will need other tools to decode information correctly. In fact, in the case of the three repetition code in order to perform parity-check we look at two 'error bits' for each parity in the error syndrome, which could still yield the same error syndrome for two different bit-flip errors scenarios (figure 2.2), though if we decide to assign a fixed iid error probability of $p<\frac{1}{2}$ for each bit, we will always end up choosing to decode the codeword with less errors. This method does not erase the possibility of getting decoding mistakes but significantly decreases them. \cite{Kas19}.\newline
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{"../Thesis/Immagine 2024-02-26 133707"}
+	\caption{{ Example of error syndrome associated to a transmitted codeword of length 7. We have two equal error syndromes despite having two different codewords. Each '+' or '-' represents a parity of the bits acting as parents. From: \cite{Kas19}}}
+	\label{fig:immagine-2024-02-26-133707}
+\end{figure}
+
+The above redundant code is actually an example of what is called a {\it Linear code}.
+We can in fact reframe all of the above in terms of linear algebra. A To do so we define what is called the generator matrix  \textbf{G} as given in \cite{Cha06,Kas19}, which is the operator that we use to introduce redundancy. 
+
+\begin{definition}(Generator matrix)
+	A linear code encoding k-bit messages into an m-bit codespace \textbf{C} is specified by an m $\times$ k matrix {\bf G}.
+\end{definition}
+
+\textbf{G} encodes the original information into { codewords}. For example, if we have a single bit to be encoded in a three bit codeword we can do the following: 
+
+\begin{center}
+	\textbf{G} = $[1 \ 1 \ 1]^{T}$  
+\end{center}
+\begin{center}
+	a = $[i]$, where i = 0,1 
+\end{center}
+\begin{center}
+	$[1 \ 1 \ 1]^{T}$ $[0]$ = $[0 \ 0 \ 0]^{T}$
+\end{center}
+
+A linear code encoding k-bit messages into an m-bit codespace \textbf{C} is specified by an m $\times$ k generator matrix {\bf G} is an [m, k] code.\newline
+
+The { generator matrix} is used to encode information before sending it through a channel but we have also said that a realistic channel is noisy so it can modify the codewords we send. Thus, we also need to define an operator to specify how an error occurs and how to detect it. 
+
+\begin{definition}(Noise operator)
+	We denote a noise operator as $\textbf{N}_j \in \textbf{N}$ where $j$ denotes the element that will be modified by $\textbf{N}_j$ in the original codeword and $\in \textbf{N}$  represents the set of all possible error operators that could happen on the codeword. 
+\end{definition} 
+
+Overall, the codeword is changed by the noise operator into the correspondig codeword $c' =c + n_j$ where $\textbf{n}_j$ is an m $\times$ 1 vector having a 1 at the j-th row and zeros elsewhere; notice that, since we work with bits, addition is always performed modulo 2.\newline
+Having defined all of the above we can come to parity-check performed after transmission.
+
+\begin{definition}(Parity-check matrix)
+	Given an m-bit codespace and a k-bit encoding, we define a parity check matrix as a matrix denoted by $\textbf{H}$ having size $(m - k)\times m $.
+\end{definition}
+
+To check parity we can simply perform multiplication of {\bf H} by the received codeword, the result will be: 
+
+\begin{center}
+	\textbf{H}c = 0  
+\end{center}
+
+for any valid codeword. Instead, for any corrupted codeword the computation yields:
+
+\begin{center}
+	$\textbf{H}c'$ = $\textbf{H} ( c + n_j )$ = $0 + \textbf{H} n_j $  = $\textbf{H}n_j $ 
+\end{center}
+
+which is the error syndrome. As anticipated, the error syndrome serves as an indicator of errors within a coding and decoding system. In the absence of errors or when only a single error occurs, the error syndrome is represented as 0. This indicates a clean transmission. Conversely, in the case of a single error, the error syndrome is denoted as {\bf H}$n_j$, providing information about the specific bit j within the codeword where the error has taken place. Consequently, the corrupted codeword can be successfully decoded by correcting the jth bit. However, as already mentioned, when two errors $n_i$ and $n_j$ are present, the error syndrome becomes {\bf H}($n_i$ + $n_j$). In this case error correction becomes more difficult because there could be a type of error $n_q = n_i + n_j$ that makes error detection ambiguous, as we could correct the q-th bit instead of the j-th bit. Overall, it is possible to have multiple error combinations leading to the same syndrome. To prevent ambiguity, it is essential to verify that any additional error $n_q$ does not satisfy the condition $n_q = n_i + n_j$. If there are no such instances where $n_q$ equals $ n_i + n_j$, the decoding process can proceed with confidence. However, if such instances are detected ambiguity arises. One possible approach is to reject the codeword, prompting a request for retransmission from the sender. Alternatively, refining the encoding/decoding scheme may be considered. \newline
+
+Because of the ambiguity that can arise in error correction it is essential to discuss formally the detectability and correctability of errors according to linear codes formalism given in \cite{Cha06} and discussed above.
+We have mentioned how a codeword can be rejected if corrupted and how a receiver can ask to resend information. The efficacy of the encoding/decoding scheme is evaluated based on its ability to either maintain the integrity of information or detect errors caused by each noise operator. Therefore, we can state that a code successfully detects a noise operator $\textbf{N}$ if, for every codeword c within the code, the outcome is either $\textbf{N}$c = c or if $\textbf{N}$c is not a member of the code $\textbf{C}$.
+
+\begin{theorem}(Error detection)
+	$\textbf{N}$ is detectable by a code if and only if for each $c_m \neq c_n$ in the code, $\textbf{N}c_n \neq c_m $.
+\end{theorem} 
+
+On the otehr hand, error correction involves an active process where the decoder not only identifies errors but also corrects them. 
+In the context of a code $\textbf{C}$ and a set of error operators $\textbf{N}$, the primary goal is to establish the presence of a decoding procedure capable of correcting errors introduced by $\textbf{N}$. 
+Assuming the existence of distinct codewords $c_m$ and $c_n$ within the code, and for specific set of noise operators $\textbf{N}$, there could be situations such that if we apply $\textbf{N}_i$ to the codeword $c_m$ and the error operator $\textbf{N}_j$ to the codeword $c_n$ we end up in the same final state $c_q$. In such cases the challenge lies in determining whether the original codeword was $c_m$ or $c_n$. Thus, the error is unidentified meaning that it occurs in the set of error operators $\textbf{N}$ but we don't know which specific error operator caused it. In simpler terms, given the state $c_q$, we cannot say which codeword was initially sent due to the ambiguity in identifying the specific error that occurred.
+
+\begin{theorem}(Error correction)
+	The set $\textbf{N}$ of errors is correctable if and only if for all $c_m \neq c_n$ in the code and for all $i, j \in \textbf{N}$, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$. 
+\end{theorem} 
+
+Thanks to linear codes, we gain insights into the two essential steps of error recovery: error detection and error correction, which also serve us to assess the goodness of the code in its entirety. For further details see \cite{Kas19}. Though, in order to evaluate the robustness of a given code we define the {\it Distance of a code} by means of the {\it Hamming distance} of that code:
+
+
+\begin{definition}(Hamming distance)
+	Given two codewords, $c_m$ and $c_n$, the Hamming distance $d(c_m; c_n)$ is the minimum number of bits that must be flipped in order to transform $c_m$ into $c_n$.
+\end{definition}
+
+
+\begin{definition}(Distance of a code)
+	The distance of a code {\bf C } is the minimal Hamming distance between to distinct codewords $c_m$ and $c_n$ having $m \neq n$.
+\end{definition}
+	
+To conclude, linear codes' representation plays a crucial role in studying encoding/decoding procedures along with their performance, offering an effective framework also to be used in the quantum world.
+
+%-------------------------------------------
+
+
+
+
+
+
+
+
+
+\newpage
+\section{Quantum error correction (QEC)}
+\label{sec:QEC}
+
+Due to the no-cloning theorem, which states that  it's impossible to clone an arbitrary quantum state perfectly using quantum operations, one might be brought to think that error correction cannot be performed in the quantum setting.
+
+\begin{theorem}(No cloning theorem)
+	For any unknown quantum state $|\psi\rangle$ in a Hilbert space $\mathscr{H}$, there is no unitary operator $U$ acting on the composite Hilbert space $\mathscr{H} \otimes \mathscr{H}$ such that for any $|\psi\rangle \in \mathscr{H}$:
+	
+	\begin{center}
+		$U(|\psi\rangle\otimes|0\rangle) = |\psi\rangle \otimes |\psi\rangle$
+	\end{center}
+	
+	where $U$ represents the operator used to replicate the composite state and $|0\rangle$ represents a reference state.
+\end{theorem}
+
+Though we shall discuss that this problem can be solved despite the two main issues that arise in quantum systems,  \cite{Cha06}.: 
+
+\begin{enumerate}
+	\item No cloning limitation: the attempt to implement a repetition code in the quantum setting by duplicating a quantum state multiple times violates the no-cloning theorem. This theorem does not allow the exact replication of a quantum state.
+	
+	\item Information loss through measurement: in contrast to classical error-correction, the act of measuring a quantum state typically results in the loss of quantum information contained in that state. As a consequence, the recovery of the original quantum information becomes impossible after a measurement.
+\end{enumerate}
+
+In the context of quantum computation, classical bits are replaced by quantum bits or qubits, which are represented using a two-state quantum system. More precisely, a qubit lives in an Hilbert space of dimension 2. We can represent the Hilbert space of a system of n qubits by means of a tensor product of Hilbert spaces referring to single qubits as we did in definition 1.5. A common physical realization of qubits involves spin-$\frac{1}{2}$ particles, such as electrons. The quantum state space of a qubit is spanned by two orthogonal basis states, conventionally denoted as $ |0 \rangle$ and $ |1 \rangle$, corresponding to the classical binary states 0 and 1. Mathematically, any qubit state 
+$ |\psi \rangle$ can be expressed as a superposition of these basis states:
+
+
+\begin{center}
+	$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ =  $[ \ \alpha \ \ \beta \ ]^T $
+\end{center}
+
+where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously, which is not possible for classical bits.  \newline
+When it comes to qubits, computations are performed through operators, which are the quantum logical gates. Each quantum gate corresponds to a unitary operator, which is a linear transformation that preserves the norm of vectors (in this case, quantum states) and is represented by a square matrix that is both unitary and Hermitian. These gates can perform various operations such as changing the phase of a qubit (phase-shift), performing logical operations like NOT(bit-flip), AND, or OR and more.\newline
+In particular, a phase-shift error on a qubit alters the phase factor in the qubit's superposition state. \newline
+Having briefly recalled the quantum setting, we shall now give the quantum version of the classical error model previously defined when talking about linear codes and discussed by \cite{Cha06}. \newline
+Similarly to what we did with repetition codes, we can take the bit-flip error (generally called {\it noise}) for qubits through the $X$ gate apllied to $|\psi \rangle$ and define the probability $p$ with which the state will be flipped.\newline
+Then, we can suppose to introduce redundancy, firstly by mapping the physical basis of qubits to their respective logical counterparts in the following way as done in \cite{Nie06}:
+
+\begin{center}
+	$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ $\rightarrow$ $\alpha |000 \rangle$ + $\beta$ $|111 \rangle$
+\end{center}
+
+where we have encoded the basis as:
+
+\begin{center}
+	$|0 \rangle$ $\rightarrow$ $|0 \rangle_L$ $\equiv$ $|000 \rangle$   \\
+	$|1 \rangle$ $\rightarrow$ $|1 \rangle_L$ $\equiv$ $|111 \rangle$
+\end{center}
+
+where L stands for {\it logical qubit} and where we have encoded a quantum bit by means of the tensor product of three spins each being an eigenstate of the Pauli matrix $\sigma^z$ local: 
+
+\begin{center}
+	$|0\rangle_L = |0\rangle \otimes |0\rangle \otimes |0\rangle = |000\rangle$ \\
+	$|1\rangle_L = |1\rangle \otimes |1\rangle \otimes |1\rangle = |111\rangle$
+\end{center}
+
+If we imagine to send all of the three bits one at a time through a channel and suppose that one or fewer qubits are flipped; we can define a simple quantum error correction scheme by means of detection and analysis of error syndromes, given by projector operators in \cite{Nie06}:
+
+\begin{enumerate}
+	\item  $P_0$ = $|000 \rangle \langle 000|$ + $|111 \rangle \langle 111|$ no errors;
+	\item $P_1$= $|100 \rangle \langle 100|$ + $|011 \rangle \langle 011|$ error 1st qubit;
+	\item $P_2$ = $|010 \rangle \langle 010|$ + $|101 \rangle \langle 101|$ error 2nd qubit;
+	\item $P_3$ = $|001 \rangle \langle 001|$ + $|110 \rangle \langle 110|$ error 3rd qubit.
+\end{enumerate}
+
+In order to detect the syndrome we will compute $\langle \psi| P_i | \psi \rangle $ in the decode phase, which will be equal to 1 according to which bit $i$ was flipped.
+Measuring the syndrome doesn't affect the state in any way, neither before nor after the measurement. Furthermore, the syndrome gives no information of the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest. Though, we have already mentioned that this schema works well only if errors occur on one or less of the three qubits.\newline
+Similarly to the classical case, the minimum number of bit-flips needed to convert one valid quantum state into another represents the distance of the code. It quantifies the code's ability to correct errors, with a higher distance indicating greater resilience.
+Having discussed the feasibility of QEC and having briefly mentioned the concept of distance, we can now denote a given quantum code by means of the following three characterizing quantities: [n, k, d], where n represents the number of physical qbiuts, k denotes the number of logical qubits, and d stands for the code's distance. \newline
+
+In this paragraph, we more formally define the Quantum Error Model as we did in the classical case according to \cite{Cha06}. 
+Take quantum information to be a $|\psi \rangle$ in an Hilbert space $\mathscr{H}_A$. We can introduce ancillary qubits as to introduce redundancy. Ancillary qubits are replicas of information that will be manipulated along with the data that we want to transmit.
+Ancillary bits are part of an Hilbert space that we will call $\mathscr{H}_B$ and are initially in a state $|b \rangle$. When we encode information what we do is mapping the tensor product of $|\psi \rangle$ and $|b \rangle$ in a new Hilbert space $\mathscr{H}_C$ (the code space) through the application of an encoder operator $\textbf{E}$, which should be the equivalent of the generator matrix in classic models. In the same way we can define an Hilbert space to model the noise, we will call it $\mathscr{H}_N$; this space more generally represents the noisy environment that introduces errors and is initially in state $|n \rangle$. The interaction between information and the environment is computed as the tensor product:
+
+\begin{center}
+	$|c' \rangle$ = $|c \rangle$ $\otimes$ $|n \rangle$ = $\sum_{i} (N_i c) \otimes |n_i \rangle $
+\end{center}
+
+with $N_i$ being a noise operator acting on $i$.
+When we decode information through the decoding operator $\textbf{D}$ we want to map $|c' \rangle$ back to $|\psi \rangle$ $\otimes$ $|s_i \rangle$, which represent the original state $|\psi \rangle$ and its error syndrome $|s_i \rangle$. We can then use the error syndrome to correct $|\psi \rangle$ and get the initial state. Though, to actually do exactly what we did in the classical case, the error syndrome should be in a bijective relationship with $N_i$ in order to recover the respective errors; not only, $|s_i \rangle$ should also be independent from every $|\psi \rangle$ otehrwise we would not be able to make adjustments. Note that all $N_i$ can also be made linearly independent to avoid confounding errors. 
+%Note also that $\sum_{i} N_i^{\dagger} N_i= I$ ensures that the $Tr[\sum_{i} N_i^{\dagger} \rho N_i]= 1$ with $\rho$ a general quantum state in  $\textbf{C}$. \newline
+
+The above description of quantum error model actually contains the conditions on error correctability to protect quantum information. 
+This conditions are summed up into the equation given by the following theorem in \cite{Nie06}: 
+
+\begin{theorem}
+	 Given a quantum code $C$ over $\mathscr{H}_C$ and $P$ the projector onto $C$. Suppose $N$ is a quantum operation with operation elements $\{N_i\}$. A necessary and sufficient condition for the existence of an error-correction operation $\mathcal{R}$ correcting $N$ on $C$ is that
+	
+	\begin{center}
+		$PN_i^{\dagger}N_jP = \lambda_{ij}P$
+	\end{center}
+	
+	for some self-adjoint matrix of complex numbers $\lambda$ and for all $N_i$. 
+\end{theorem}
+
+The projector is a mathematical operation that projects any quantum state onto the code space. It ensures that any state acted upon by the error correction process is effectively confined to the subspace defined by the error-correcting code $C$ since, when quantum states undergo errors, these errors might cause the state to deviate from the code space. \newline
+The condition essentially states that the error correction is successful when applied to the states within $C$, ensuring that the corrected state remains within the code space. \newline
+We could generally say that it ensures that a noisy quantum state is not {\it too} noisy. Specifically, the projector $P$ forces the correction operation to act within the space where it provides reliable error-correction. In this sense $P$ protects against excessive noise. The $Ns$ actually represent noise operators and if such an operation exists we say that $\{N_i\}$ forms a correctable set of errors. This would make the code correctable. \newline
+
+
+
+\subsection{Fault-tolerant computation}
+
+Quantum error-correction applications regard not only the protection of transmitted quantum information from noise but also the protection of quantum information during computations. 
+We start by briefly highlighting two main issues in quantum computation. The first issue regards the fact that nearly each component of a quantum circuit is subject to noise. 
+What is done in general to make computations fault-tolerant is to substitute qubits with encoded blocks of qubits by using a code protected from noise and substitute faulty gates with encoded gates also referred to as fault-tolerant procedures. 
+The second issue regards the fact that when we periodically perform error-correction on encoded qubits we may introduce errors through error-correction itself. \newline
+%Addittionally, encoded gates aren't the only fault-tolerant procedures that we want to perform. In fact, we also want measurements of encoded qubits and state preparations to be fault-tolerant.\newline
+We know by theory taht there exists a set of quantum gates through which each quantum computation can be expressed. Such set is comprised of the hadamard, phase, controlled-NOT and $\frac{\pi}{8}$ gates. 
+We also know that each of these gates can be realized falut-tolerantly. Then, in the context of fault-tolerant quantum computation, it is possible to carry out a comprehensive range of logical operations on encoded quantum states. This is also done in a manner that results in the effective failure probability within the encoded states, scaling as a function of $p$, which is the error probability associated with the underlying gates. \newline
+%Note that the O($p^2$) scaling is associated with the effects of error correction. 
+%The individual gates in a quantum computation may have an intrinsic probability of error, denoted by $p$. 
+These errors could affect a single qubit but quantum error-correction codes are designed to correct them. However, in the process of error-correction itself, new errors can be introduced, and these are typically correlated with the original errors. The probability of introducing correlated errors during the error correction process is proportional to the square of the original error probability. This means that the effective failure probability scales quadratically with the probability of errors in the underlying gates. \newline
+The above considerations lead us to the main result concerning fault tolerant compuatation: the threshold theorem as given in \cite{Nie06}. 
+
+\begin{theorem}(Threshold theorem)
+	A quantum circuit containing a quantity of gates determined by $p(n)$ can be effectively simulated with an error probability not exceeding $\epsilon$, employing a number of gates approximately proportional to $O(poly(\log p(n)/\epsilon)p(n))$. Each of these gates may experience failure with a probability no greater than $p$, given that $p$ remains below a specified constant threshold $p < p_{th}$. This simulation holds true under the condition of reasonable assumptions regarding the noise present in the underlying hardware.
+\end{theorem}
+
+Essentially, the theorem states that as long as the noise present in individual quantum gates remains below a specific constant threshold (the probability that each gates fails is $p<p_t$) it becomes feasible to execute a quantum computation of arbitrary length reliably. In fact, if we apply fault-tolerant computations on encoded states, achieving a quadratic reduction of the errors $O(p^2)$, the desired error thershold achieved can be made as low as desired with an increase in the circuit size by means of code concatenation. For further details see \cite{Nie06}.\newline
+%We must specify that this theorem works under some reasonable assumptions reguarding the type of noise, meaning that indeed noise is not a real issue in quantum computation but we cannot correct errors from arbitrary noises.
+
+
+
+%--------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+\section{QEC in the toric code}
+\label{sec:TC}
+
+Broadly speaking, errors refer to the unintentional changes or flips in the physical signals that encode the information. These errors can be caused by various factors, such as external environmental noise. In the toric code, or in quantum systems in general, errors can be caused by what are often referred to as local perturbations. Local perturbations involve small disturbances that primarily affect individual qubits or a small region of the quantum system, causing the corruption of the stored quantum information. Single qubit errors can result in different types of errors such as bit-flips errors, phase-flips errors or a combination of them. Mathematically, local perturbations can be described as operators that act on qubits of the system and can be represented using combinations of Pauli operators. For example, consider the following perturbation:
+
+\begin{center}
+	V = $\lambda \sum_{j} \sigma^x_j $
+\end{center}
+
+such that $\lambda << 1 $, representing a reasonable perturbation with $j$ running over all the edges of the lattice. \cite{Kit02}. The ground states of the toric code Hamiltonian are protected from local perturbations of the form that we have described above but only if they are of moderate entity. In order to establish such entity, we focus on determining the two quantities given below, the second of which is strictly related to the concept of distance of a code. Given an initial state $ |k \rangle $ and  a different orthogonal state $ |\psi \rangle $ both part of the ground state of the Hamiltonian, if we want to know how much these states overlap, after having applied the perturbation $V$ for $n$ times, we compute the following terms:
+
+\begin{center}
+	 {(1)} $ \langle \psi|V^n| k \rangle=0$                                         
+\end{center}
+\begin{center}
+    {(2)} $ \langle \psi|V^n| \psi \rangle$ - $ \langle k|V^n| k \rangle$ = $N$  
+\end{center}
+
+in order for {(1)} to be equal to zero, the order of the perturbation must be less than $ \frac{N}{2}$, where $N$ is the dimension of the lattice. 
+This boundary comes from the fact that, if we compute the difference between the expectations of two eigenstates, i.e. their distance, as in (2) and we want the eigenstates to be maximally distinguishable (no overlap), then we expect (2) to be non-zero and equal to the dimension of the torus (see figure 2.3,2.4). 
+
+%image
+\begin{figure}
+	\begin{center}
+		
+		\begin{tikzpicture}
+			% Cerchio 1
+			\draw (-3,0) circle (3cm);
+			\filldraw (-3,0) circle (1pt) node[anchor=north] {$|\psi\rangle$};
+			\filldraw (-3,0.3) circle (1pt) ;
+			
+			% Cerchio 2
+			\draw (3,0) circle (3cm);
+			\filldraw (3,0) circle (1pt) node[anchor=north] {$|k\rangle$};
+			\filldraw (3,0.3) circle (1pt) ;
+			
+			\draw[] (-3,0) -- node[above] {${\bf N}$} (3,0);
+			\draw[] (-3,0.3) -- node[above] {${\bf \frac{N}{2}}$} (0,0.3);
+			\draw[] (3,0.3) -- node[above] {${\bf \frac{N}{2}}$} (0,0.3);
+		\end{tikzpicture}
+		
+	\end{center}
+	\caption{Consider the two big circles a visual representation of the state spaces of which $|\psi\rangle$ and $|k\rangle$ are part of. The distance between the eigenstates is N representing the lenght of a non-contactible loop that we need to transition between the two states. In order to safeguard the integrity of the two states (no overlap of the circles) we have a margin equal to $\frac{N}{2}$ for each state, which corresponds to the entity of the perturbation that the system can bear. }
+	\label{fig:QEC}
+\end{figure}
+
+
+This implies that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation in (1) should be of the order of $n < \frac{N}{2}$. To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{N}{2}$. The interpretation in terms of quantum error-correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$. \newline
+%This result also suggests that for $n \geq \frac{N}{2}$ theorem 2.5 does not apply anymore as the resulting codeword would diverge from the space of the codewords and quantum information would be too corrupted by noise to be recoverable. \newline
+%\newline
+% There are 2L2 physical qubits in the code, N^2−1 plaquette and N^2−1 vertex
+% operators. There are therefore 2N^2−2(2N^2) = 2 encoded qubits. 
+Thus, for $n < \frac{N}{2}$ we can use the toric code to encode two qubits of information in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the ground states of the Hamiltonian of the system. 
+The method for encoding information in the TC lies in the topological nature of the ground states. In fact, instead of directly manipulate individual qubits to store quantum information, we manipulate the entire lattice to encode and protect the logical qubit. The encoding is realized through operations on the qubits in such a way that we create the anyonic excitations presented in section 1.5. As already discussed, anyons follow specific rules, like braiding around each other, that allow us to encode the quantum information we want to store.\newline 
+
+%We can do more than just store information. In fact, we can perform fault-tolerant computation using the same anyonic framework that we have described above. \newline
+In the context of the toric code, gates are relized through braiding of pairs of anyons. As shown in figure 2.3, we can follow the braiding of anyons in time and exchange them multiple times so that we are able to create different quantum operations. \newline
+We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pairs of anyons. It is important to mention that with braiding operations we cannot reach the entire bloch sphere of a qubit, so some quantum gates that are required for quantum universal computation will be missing from the set that we can create with braiding. Such missing operations can be supplemented through not topologically protected operations on the qubits, but which will of course have lower reliability. \newline
+
+%image
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{"../Thesis/Immagine 2024-02-29 114346"}
+	\caption{Example of gate operators by means of braiding pairs of anyons on the toric code.}
+	\label{fig:immagine-2024-02-29-114346}
+\end{figure}
+
+
+We can reframe all of the above physical information into the usual logical framework by relabelling the orthogonal ground states as logical sates: $|00\rangle$, $|01\rangle$, $|10\rangle$ and $|11\rangle$, in such a way that we are able to identify logical gates into those represented in figure 2.4 labelled as: $\overline{X}_1$,$\overline{X}_2$,$\overline{Z}_1$,$\overline{Z}_2$. \newline 
+Such gates can be seen as string operators that create pairs of excitations that self-annihilate at the endpoints by winding all the way around the torus. 
+These non-contractible loops play a crucial role in encoding quantum information in the toric code. In fact, the logical states of the two encoded qubits are determined by whether these loops are traversed an even or odd number of times. \newline
+Overall we can determine the action of $\overline{X}_1$ as the logical gate maps $|00\rangle$ to $|10\rangle$, while $\overline{Z}_1$ as the logical gate that maps $|00\rangle$ to $|00\rangle$ and $|10\rangle$ to -$|10\rangle$. \newline
+Similarly, the action of $\overline{X}_2$ logical gate maps $|00\rangle$ to $|01\rangle$, while $\overline{Z}_2$ maps $|11\rangle$ to $|11\rangle$ and $|01\rangle$ to -$|01\rangle$. For further details see \cite{Her20}.\newline
+
+\begin{figure}
+\begin{center}
+	\begin{tikzpicture}
+		% Draw dashed lines
+		\foreach \i in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (\i,-3) -- (\i,3);
+		}
+		\foreach \j in {-3,-2.5,...,3}
+		{
+			\draw[dashed] (-3,\j) -- (3,\j);
+		}
+		
+		
+		
+		% Draw solid grid and nodes with circles in the middle of each side
+		\draw[step=1cm] (-3,-3) grid (3,3);
+		\foreach \i in {-2.5,...,2.5}
+		{
+			\foreach \j in {-2.5,...,2.5}
+			{
+				
+				
+				\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+					\node[right,xshift=0.2cm,yshift=0.4cm] {};
+					% Convert \j and \i to integers
+					\pgfmathtruncatemacro{\intj}{\j}
+					\pgfmathtruncatemacro{\inti}{\i}
+					
+					% Draw circles at the midpoints of each side
+					\ifnum\intj=2
+					\draw node[draw,circle,fill=gray] at (0,0.5) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0,0.5) {};
+					\fi
+					
+					\ifnum\inti=2
+					\draw node[draw,circle,fill=gray] at (0.5,0) {};
+					\else
+					\draw node[draw,circle,fill=white] at (0.5,0) {};
+					\fi
+					
+					\draw node[draw,circle,fill=white] at (0,-0.5) {};
+					\draw node[draw,circle,fill=white] at (-0.5,0) {};
+				\end{scope}
+			}
+		}
+		
+		\foreach \i in {-1.5,...,-1.5} %column
+		{
+			
+			\draw[blue!50, line width=1.5mm] (\i,-3) -- (\i,3);
+			%\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,3) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,2) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,0) {};
+			\node[draw, circle, fill=purple!50,label=center:\textbf{$\pm$}] at (\i,-1) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,-2) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,-3) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{Z}_1$}}] at (\i,-3.5) {};
+		}
+		\foreach \j in {1.5,...,1.5}
+		{
+			
+			\draw[blue!50, line width=1.5mm] (-3, \j) -- (3, \j);
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (2,\j) {};
+			\draw node[draw,circle,fill=purple!50,label=center:\textbf{$\pm$}] at (1,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (0,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-1,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-2,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-3,\j) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{Z}_2$}}] at (-3.5,\j) {};
+			
+		}
+		
+		
+		
+		\foreach \j in {-1,...,-1}
+		{
+			
+			\draw[red!80, line width=1.5mm] (-3, \j) -- (3, \j);
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (2.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (1.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (0.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (-0.5,\j) {};
+			\draw node[draw,circle,fill=purple!80,label=center:\textbf{$\pm$}] at (-1.5,\j) {};
+			\draw node[draw,circle,fill=red!80,label=center:\textbf{X}] at (-2.5,\j) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{X}_1$}}] at (-3.5,\j) {};
+			
+			
+		}
+		\foreach \i in {1,...,1}
+		{
+			
+			\draw[red!80, line width=1.5mm] (\i,-3) -- (\i,3);
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,2.5) {};
+			\node[draw, circle, fill=purple!80,label=center:\textbf{$\pm$}] at (\i,1.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,0.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-0.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-1.5) {};
+			\node[draw, circle, fill=red!80,label=center:\textbf{X}] at (\i,-2.5) {};
+			
+			\node[label={[anchor=south, inner sep=2pt]left:\textbf{$\overline{X}_2$}}] at (\i,-3.5) {};
+			
+			%
+			
+		}
+		
+		
+	\end{tikzpicture}
+\end{center}
+\caption{Logical gates on the toric code.}
+\label{fig:gates}
+\end{figure}
+
+Errors that occur in the system can disrupt these non-contractible loops. However, the topological nature of the toric code ensures that errors affecting the logical qubits can be detected and corrected by measuring the syndrome associated with these non-contractible loops. By performing appropriate error correction procedures based on the outcomes of these measurements, the encoded quantum information can be protected against errors. 
+
+
+
+\subsection{Error detection and correction}
+
+We know that the Hilbert space of the ground states of the toric code is composed by the states $|\psi\rangle $ satisfying the following constraints: 
+
+\begin{center}
+	$A_{\vec{v}}|\psi\rangle $ = $|\psi\rangle $ 
+\end{center}
+\begin{center}
+	$B_{\vec{p}}|\psi\rangle $ = $|\psi\rangle $ 
+\end{center}
+
+When errors occur on a given quantum state $|\psi\rangle$, the resulting state will diverge from such state space, as the constraints defined above would not be respected anymore. This is because, due to errors, there would be some vertex or plauqette operators that yield eigenvalue equal to -1. \newline
+By coupling simultaneous measurements of vertex and plaquette operators with the anyonic nature of the excitations we can find methods to identify and correct errors whenever it is possible. In the following paragraphs we briefly discuss how errors can be described as anyon pairs and consequently we will identify several error scenarios and study the relative error syndromes and corrective actions that can be applied. \newline
+
+%1. Errors Adjacent to Vertices:
+Due to the commutation and anticommutation properties of string operators that we have discussed in the previous sections, we can say that vertex operators are designed to detect an odd number of bit-flips errors that occur in the neighbourhood of the vertex on which they are applied. When an error affects a qubit adjacent to such vertex, it can disrupt the commuting relationship between the Pauli operators making up the vertex operator. As a result, the measurement outcome of the vertex operator may deviate from its expected +1 eigenvalue: 
+
+\begin{center}
+	$A_{\vec{v}}|\phi\rangle $ = -$|\phi\rangle $.
+\end{center}
+
+This deviation indicates that an error has occurred adjacently to the vertex $\vec{v}$. Moreover, an $e$-excitation is created in the vertex $v$, represented by the minus sign that is yielded by the vertex operator. Since excitations are alwas created in pairs, we can assume another excitation of the same kind is present at the other endpoint of the error string. \newline
+%2. Errors in Plaquette Regions:
+In view of the duality between vertex and plaquette operators, plaquette operators are designed to detect an odd number of phase-shift errors that occur within plaquette regions. When an error affects a qubit within such region, it alters the state of those qubits. As a result, the product of Pauli operators making up the plaquette operator may no longer commute with the qubit affected by the error. Consequently, the measurement outcome of the plaquette operator will not output its expected eigenvalue. This deviation indicates that an error has occurred within the plaquette region. This error is associated with the creation of an $m$-excitation in the application site $p$ of the plaquette operator. \newline
+
+Overall, errors on the TC can be more complex than the simple creation of anyon pairs; though, as mentioned in \cite{Kas19,Bro14}, in order to be able to correct them we only need to know how to correct errors given through $\sigma^x$ and $\sigma^z$ oepartors in order to be able to erase all of the other combinations. Anyon pairs are connected through paths that we have named {\it error strings}. We are now going to discuss three main error scenarios that can arise: in the first case, isolated error strings are created, resulting in anyon pairs on the lattice; in the second case, anyons pairs may self-annihilate by forming contractible closed loops, resulting in no error; in the third case, we can get a non-contactible loop and thus creates a logical operation on the quantum state. \newline
+In order to better clarify the above concepts, we take as example a bit-flip error that could occur on the lattice and always assume an odd number of errors involved in each vertex operator. There are three possible ways an error could occur, as depicted in figure 2.6: 
+
+\begin{enumerate}
+	\item Isolated error link: isolated bit-flip that can be detected through the measurement of the adjacent vertices;
+	
+	\item Adjacent error links: they are composed of multiple adjacent single erroneous edges. Similary to the case above, we are only able to identify the two endpoints through simultaneous measurements (see figure 2.7);
+	
+	\item Undetectable errors: these types of errors are not visible because their two endpoints overlap: they indeed have no endpoints. We can divide this latter category of errors in two : the contractible loops, which do not alter the state, and the non-contractible loops, which cause irreversible errors.
+	
+\end{enumerate}
+
+
+\begin{figure}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						\ifnum\intj=1
+						\ifnum\inti=0
+						\draw node[label=north:\textbf{-1}] at (-0.5,-0.5) {};
+						\else
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						\fi
+						\else
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (-1, \j) -- (-0, \j);
+				
+			}
+			
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace*{1cm}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						
+						
+						\ifnum\intj=1
+						\ifnum \inti=0
+						\draw node[label=center:\textbf{}] at (-0.5,0) {};
+						\draw node[label=center:\textbf{}] at (0.5,0) {};
+						\else
+						\ifnum \inti>1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\ifnum \inti<1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\fi
+						\else
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				%\draw[black!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				\draw[dashed,red!50, line width=1.5mm] (-1, \j) -- (0, \j);
+				\draw node[label=north:\textbf{-1}] at (-1,\j) {};
+				\draw[dashed, red!50, line width=1.5mm] (0, \j) -- (1, \j);
+				\draw node[label=north:\textbf{-1}] at (1,\j) {};
+				
+			}
+			
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace*{1cm}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						% Draw circles at the midpoints of each side
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						
+					\end{scope}
+				}
+			}
+			
+			\foreach \i in {-2,...,-2}
+			{
+				\draw[dashed,red!50, line width=1.5mm] (\i,-1) -- (\i,1.5);
+				
+				
+				\draw[dashed,red!50, line width=1.5mm] (\i,1) -- (\i,2);
+				
+				
+				
+			}
+			
+			\foreach \j in {2,...,2}
+			{
+				
+				\draw[dashed,red!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				
+				
+				\draw[dashed,red!50, line width=1.5mm] (-1.5, \j) -- (1, \j);
+				
+				
+			}
+			
+			
+			\foreach \i in {1,...,1}
+			{
+				\draw[dashed,red!50, line width=1.5mm] (\i,-1) -- (\i,2);
+				
+				
+			}
+			
+			\foreach \j in {-1,...,-1}
+			{
+				\draw[dashed, red!50, line width=1.5mm] (-2, \j) -- (1, \j);
+				
+				
+			}
+			
+			
+			\foreach \i in {2,...,2}
+			{
+				\draw[dashed,red!50, line width=1.5mm] (\i,-3) -- (\i,3);
+				
+				
+			}
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\caption{Bit-flip error scenarios on the toric code. Error strings made up by $\sigma^x$ Pauli operators (local bit-flips) are represented in red. To each vertex is assigned a +1 eigenvalue of the associated vertex operator. Whenever an odd numer of erroneous qubits is involved in a vertex operator we assign a -1 to that vertex (see figure 2.7). }
+	\label{fig:errors}
+\end{figure}
+
+
+Such errors can be detected through  simultaneous measurement of vertex (and plaquette) operators of the Hamiltonian (figure 2.7). The fact that the vertex and plaquette operators commute with each other (Proposition 1.4) along with the fact that the states in the GS are eigenfunctions of the vertex and plaquette operators (Proposition 1.6) and the fact that string operators commute and anticommute with $A_{\vec{v}}$ and $B_{\vec{p}}$ operators (Proposition 1.10, which states that the anyonic excitations are eigenfunctions of vertex and plaquette operators with eigwnvalues +1 or -1) allows us to measure the operators without destrying the initial given state. In practice, is therefore posssible to measure, on the same physical state, all the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators withouth modifying the underlying state. The resulting measurements are called {\it error syndrome}, which only gives information about the endpoints of the strings of the errors giving no information about the way two endpoints were connected. As a consequence what we do is using algorithms that estimate the way errors formed by connecting pairs of endpoints using the minimum number of edges. \newline
+
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						
+						
+						\ifnum\intj=1
+						\ifnum \inti=0
+						\draw node[label=center:\textbf{}] at (-0.5,0) {};
+						\draw node[label=center:\textbf{}] at (0.5,0) {};
+						\else
+						\ifnum \inti>1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\ifnum \inti<1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\fi
+						\else
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				%\draw[black!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				\draw[dashed,red!50, line width=1.5mm] (-1, \j) -- (0, \j);
+				\draw node[label=north:\textbf{}] at (-1,\j) {};
+				\draw[dashed, red!50, line width=1.5mm] (0, \j) -- (1, \j);
+				\draw node[label=north:\textbf{}] at (1,\j) {};
+				
+			}
+			
+			\foreach \j in {1,...,1}
+			{
+				\draw[blue!80, line width=1.5mm] (0.5, \j) -- (1.5, \j);
+				\draw[blue!80, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (1.5,\j) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (0.5,\j) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (-0.5,\j) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (-1.5,\j) {};
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[blue!80, line width=1.5mm] (\i, 0.5) -- (\i, 1.5);
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,0.5) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,1.5) {};
+				
+				
+				
+			}
+			
+			\foreach \i in {1,...,1}
+			{
+				\draw[blue!80, line width=1.5mm] (\i, 0.5) -- (\i, 1.5);
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,0.5) {};
+				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,1.5) {};
+				
+			}
+		
+	
+			% Posiziona la label "-1" nel punto (i,j)
+			\node at (1,1) {\bf \large -1};
+			\node at (-1,1) {\bf \large -1};
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	\caption{Example of error syndrome yielded by the simultaneous measurement of vertex operators after an error string as occurred (red). For the sake of clarity, the dual lattice and the spins over the edges are omitted, as they are not involved in the current matter. The boundary conditions are highlighted in gray. We represent the vertex operators involved in the error string along with their respective -1 eigenvalue, resulting from the anticommutation of $\sigma^z\sigma^x$ for an odd number of erroneous edges.}
+	\label{fig:simmes}
+\end{figure}
+
+
+
+If we consider a bit-flip error as above and we assume to start from a state $|00\rangle$ where we have no loop, we also determine three different error scenarions for error-correction, as depicted in figure 2.8: 
+
+\begin{enumerate}
+	\item First scenario: the algorithm correctly identifies an error string and erases it by applying the inverse of the Pauli operator that caused it;
+	
+	\item Second scenario: the algorithm connects two endpoints of an error string. Since there are several paths of the same length that can connect two endpoints, it might happen that we fail to correctly select all the edges involved and end up flipping previously correct ones. This would mean propagating the error on the lattice. \newline 
+	Moreover, we can also end up into two situations: we could obtain contractible loops, which can be corrected, or we end up having a non-contractible loop, which irremediably damages quantum information since we wouldn't be able to detect the two endpoints anymore due to their overlap.
+	
+	\item Third scenario: we connect separate open error strings into a single one. Then, the feasibility of erasing the error can be divided in the two cases discussed in the scenario above: we form a contractible closed loop or we end up with a non-contractible loop. 
+	
+\end{enumerate}
+
+
+Overall, the error-correction can be said to be effective whenever we end up in scenario 1 or in scenario 2 and 3 but only by forming contractible loops that leave the state unaltered. \newline
+
+As a consequence, what we would like to do is decreasing the probability of uncorrectable errors. There exist two known methods to achieve this goal. The first method involves increasing the size of the torus; by doing so, we would require a bigger number of erroneous edges in order to make a full revolution of the dimension of the torus to form a non-contractible loop. Notice that this would mean to increase the Hamming distance of the code.\newline 
+The second method involves reducing the probability $p$ with which each edge is flipped in between distinct simulatneous measuremets. In this way the errors would tend not to propagate far away from where they originated and could thus be detected and corrected in an easier way. When $p$ increases, ambiguity arises due to the fact that it would become more and more challenging to correclty identify paths connecting anyon pairs with acceptable accuracy; thus, error-correction may not succeed. \newline
+% The reduction of $p$ can be realized by measuring subsequent error syndromes more often, thus incraesing the frequency with which we produce syndrome measurements.
+\newline
+
+
+\begin{figure}
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						\ifnum\intj=1
+						\ifnum\inti=0
+						\draw node[label=north:\textbf{+1}] at (-0.5,-0.5) {};
+						\else
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						\fi
+						\else
+						\draw node[label=left:\textbf{+1}] at (0,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (-1, \j) -- (-0, \j);
+				
+				
+			}
+			
+			\foreach \j in {0.8,...,0.8}
+			{
+				
+				\draw[black, line width=1.5mm] (-1, \j) -- (-0, \j);
+				
+			}
+			
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace*{1cm}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						
+						
+						\ifnum\intj=1
+						\ifnum \inti=0
+						\draw node[label=center:\textbf{}] at (-0.5,0) {};
+						\draw node[label=center:\textbf{}] at (0.5,0) {};
+						\else
+						\ifnum \inti>1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\ifnum \inti<1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\fi
+						\else
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			\foreach \j in {1,...,1}
+			{
+				%\draw[black!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				\draw[dashed,red!50, line width=1.5mm] (-1, \j) -- (0, \j);
+				\draw node[label=north:\textbf{+1}] at (-1,\j) {};
+				\draw[dashed, red!50, line width=1.5mm] (0, \j) -- (1, \j);
+				\draw node[label=north:\textbf{+1}] at (1,\j) {};
+				
+			}
+			
+			\foreach \j in {0.8,...,0.8}
+			{
+				
+				\draw[black, line width=1.5mm] (0, \j) -- (1, \j);
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,0) -- (\i, 1 );
+				
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,0) -- (\i, 0.8 );
+				
+			}
+			
+			\foreach \j in {0,...,0}
+			{
+				
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				
+			}
+			
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[dashed,red!50, line width=1.5mm] (-3,\j) -- (-1,\j);
+				
+			}
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[dashed,red!50, line width=1.5mm] (\i,-2) -- (\i, -1 );
+				
+			}
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				
+			}
+			
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[dashed,red!50, line width=1.5mm] (1,\j) -- (3,\j);
+				
+			}
+			\foreach \i in {1,...,1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i, -1 );
+				
+			}
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (0, \j) -- (1, \j);
+				
+			}
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\vspace*{1cm}
+	
+	\begin{center}
+		\begin{tikzpicture}
+			
+			
+			
+			% Draw solid grid and nodes with circles in the middle of each side
+			\draw[step=1cm] (-3,-3) grid (3,3);
+			\foreach \i in {-2.5,...,2.5}
+			{
+				\foreach \j in {-2.5,...,2.5}
+				{
+					
+					
+					\begin{scope}[transform canvas={xshift=\i cm,yshift=\j cm}]
+						
+						\node[right,xshift=0.2cm,yshift=0.4cm] {};
+						% Convert \j and \i to integers
+						\pgfmathtruncatemacro{\intj}{\j}
+						\pgfmathtruncatemacro{\inti}{\i}
+						
+						\ifnum\intj=2
+						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\fi
+						
+						\ifnum\inti=2
+						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\fi
+						
+						
+						
+						\ifnum\intj=1
+						\ifnum \inti=1
+						\draw node[label=center:\textbf{}] at (-0.5,0) {};
+						\draw node[label=center:\textbf{}] at (0.5,0) {};
+						\else
+						\ifnum \inti>1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\ifnum \inti<1
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						\fi
+						\else
+						\draw node[label=center:\textbf{+1}] at (-0.5,-0.5) {};
+						\fi
+						
+					\end{scope}
+				}
+			}
+			
+			
+			
+			\foreach \j in {2,...,2}
+			{
+				%\draw[black!50, line width=1.5mm] (-2, \j) -- (-1.5, \j);
+				\draw[black, line width=1.5mm] (-1, \j) -- (0, \j);
+				\draw[dashed, red!50, line width=1.5mm] (0, \j) -- (1, \j);
+				
+				
+			}
+			
+			\foreach \j in {1.2,...,1.2}
+			{
+				
+				\draw[black, line width=1.5mm] (0, \j) -- (2, \j);
+				
+			}
+			\foreach \j in {1,...,1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (1, \j) -- (2, \j);
+				
+			}
+			
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (\i,0) -- (\i, 1 );
+				
+			}
+			\foreach \i in {1,...,1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (\i,1) -- (\i, 2 );
+				
+			}
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (\i,1) -- (\i, 2 );
+				
+			}
+			
+			\foreach \i in {0,...,0}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,0) -- (\i, 1.2 );
+				
+			}
+			\foreach \j in {0,...,0}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (-1,\j) -- (0,\j);
+				
+			}
+			
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (-3,\j) -- (-2,\j);
+				
+			}
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[black, line width=1.5mm] (-2,\j) -- (-1,\j);
+				
+			}
+			\foreach \i in {-1,...,-1}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (\i,-2) -- (\i, -1 );
+				
+			}
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (-1,\j) -- (0,\j);
+				
+			}
+			
+			\foreach \j in {-2,...,-2}
+			{
+				
+				\draw[dashed, red!50, line width=1.5mm] (1,\j) -- (3,\j);
+				
+			}
+			
+			\foreach \i in {1,...,1}
+			{
+				
+				\draw[black, line width=1.5mm] (\i,-2) -- (\i, -1 );
+				
+			}
+			\foreach \j in {-1,...,-1}
+			{
+				
+				\draw[black, line width=1.5mm] (0, \j) -- (1, \j);
+				
+			}
+			\foreach \j in {-2.2,...,-2.2}
+			{
+				
+				\draw[black, line width=1.5mm] (1, \j) -- (1, \j);
+				
+			}
+			
+			
+			
+		\end{tikzpicture}
+	\end{center}
+	
+	\caption{Bit-flip error correction scenarios on the toric code. The correction is shown through black strings connecting anyon pairs in several ways. The correction still consists of Pauli operators of the same type of the error string, i.e. $\sigma^x$, which represent the inverse of the bit-flip errors.}
+	\label{fig:errorscorr}
+\end{figure}
+
+To summarize, the process of identifying and correcting errors relies on the relationship between the observed syndrome and the underlying errors that occurred during quantum computation. 
+The syndrome, obtained through simultaneous measurements of vertex and plaquette operators, provides crucial information about the presence and location of errors within the quantum code. However, due to the complexity of quantum systems and the nature of errors, the mapping between the observed syndrome and the actual error is not always one-to-one. 
+This lack of a bijective correspondence between syndromes and errors arises because multiple distinct errors can lead to identical syndromes. In other words, these errors are indistinguishable based solely on their syndromes. 
+This ambiguity in error identification represents a significant challenge to error-correction techniques, as it complicates the task of precisely correcting the errors that occurred during the computation. Effectively addressing this challenge requires the development of sophisticated error correction procedures that can effectively handle the degeneracy related to the mapping between syndromes and error. These procedures may involve advanced decoding algorithms and error mitigation techniques. \newline
+
+In conclusion, the understanding of the non-trivial relationship between syndromes and errors highlights the importance of robust error-correction strategies in quantum computing. Addressing this challenge is essential for maintaining the integrity of encoded quantum information and to realize the potential of fault-tolerant quantum computation in the future. \newline
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%---------------------------------------------------------------
+
+
+\chapter{Conclusions and future developments}
+\label{ch:conclusions}%
+In conclusion, this study has provided a comprehensive description of the toric 
+code and it has examined its role in the field of quantum error correction. 
+Throughout a detailed analysis of the spin observables in quantum mechanics and an
+exhausive explanation of the model along with its properties we have gained 
+insight into the functioning of toplogical codes.
+Moreover, we have examined the practical implications of the toric code, starting
+from error detection and correction both in the classical and quantum setting in 
+the most general terms, all the way to the QEC explanation in the context of
+the toric code model.\newline
+
+As this study draws to an end, it becomes evident that while recent studies have 
+made significant strides in understanding the toric code and its applications, 
+there remain substantial opportunities for future development.
+This, further motivates reserch to understand anyonic excitations and topological 
+features of the toric code.\newline
+
+Anyonic particles offer an interesting alternative to traditional fermions and 
+bosons, with significant implications for the development of error-free 
+codes. Additionally, the topological order and degeneracy of the ground state represent 
+a key aspect of the system's robustness against local perturbations.
+Research into anyonic excitations and topological order promises to open new 
+frontiers into our understanding of quantum computing. \newline
+
+In summary, the toric code, along with other similar models, is expected to become 
+a fundamental part of quantum information. Therefore, future work should be expected to focus on advancing the theoretical understanding of the mathematical framework that provides the description of the TC model, together with the resulting practical implementations, in order to fully exploit its potential in realizing fault-tolerant 
+quantum computation. \newline
+
+
+
+
+
+
+
+
+%-------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%-------------------------------------------------------------------------
+
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+%\bibliography{Thesis_bibliography} % The references information are stored in the file named "Thesis_bibliography.bib"
+\begin{thebibliography}{99} % Replace '99' with the widest label in your bibliography
+	\bibitem[Cor23]{Cor23} M. Correggi, \textit{Aspetti Matematici della Meccanica Quantistica}, 2023.
+	\bibitem[Her20]{Her20} P. Herringer, "The Toric Code", {\it RP}, 2020.
+	\bibitem[Kit02]{Kit02} A. Yu. Kitaev, "Fault-tolearnt quantum computation by anyons", {\it Annals of Physics}, 2-30, 2002.
+	\bibitem[Rao16]{Rao16} S. Rao, "Introduction to abelian and non-abelian anyons", {\it Harish-Chandra Research Institute}, 1-20, {2016}.
+	\bibitem[Wil91]{Wil91} F. Wilczek, "Anyons", {\it Scientific American}, 58-65, 1991.
+	\bibitem[Bro14]{Bro14} D. Browne, {\it Topological Codes and Computation}, 2014.
+	\bibitem[Odd20]{Odd20} L. Oddis, {\it PhD thesis: Two-Anyon Schrödinger Operators}, 2019-2020.
+	\bibitem[Pre04]{Pre04} J. Preskill, {\it Lecture Notes for Physics 219:
+	 Quantum Computation}, 2019.
+	\bibitem[Cha06]{Cha06} Hsun-Hsien Chang, "An Introduction to Error-Correcting Codes: From Classical to Quantum", {\it arXiv: quant-ph/0602157}, 2006.
+	\bibitem[Nie06]{Nie06} M. A. Nielsen, I. L. Chuang, {\it Quantum Computation and Quantum Information}, Cambridge University Press, 2010.
+	\bibitem[Kas19]{Kas19} M. Kastroyano, {\it Quantum Error Correction}, 2018-19.
+	\bibitem[Zbi19]{Zbi19} M. Zbinden, {\it Quantum Error Correction for the Toric Code}, 2019.
+\end{thebibliography}
+
+
+%-------------------------------------------------------------------------
+%	APPENDICES
+%-------------------------------------------------------------------------
+
+\cleardoublepage
+\addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
+
+
+% LIST OF FIGURES
+\listoffigures
+
+
+
+% ACKNOWLEDGEMENTS
+\chapter*{Acknowledgements}
+Here you might want to acknowledge someone.
+
+\cleardoublepage
+
+\end{document}
