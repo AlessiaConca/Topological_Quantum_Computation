@@ -3753,17 +3753,21 @@ Broadly speaking, errors refer to the unintentional changes or flips in the phys
 	V = $\lambda \sum_{j} \sigma^x_j $
 \end{center}
 
-such that $\lambda << 1 $, representing a reasonable perturbation with $j$ running over all the edges of the lattice. \cite{Kit02}. The ground states of the toric code Hamiltonian are protected from local perturbations of the form that we have described above but only if they are of moderate entity. In order to establish such entity, we focus on determining the two quantities given below, the second of which is strictly related to the concept of distance of a code. Given an initial state $ |k \rangle $ and  a different orthogonal state $ |\psi \rangle $ both part of the ground state of the Hamiltonian, if we want to know how much these states overlap, after having applied the perturbation $V$ for $n$ times, we compute the following terms:
+such that $\lambda << 1 $, representing a reasonable perturbation with $j$ running over all the edges of the lattice. \cite{Kit02}. The ground states of the toric code Hamiltonian are protected from local perturbations of the form that we have described above but only if they are of moderate entity. In order to determine such entity of the noise we compute the below expectation. In (2.1) we consider an initial state $|k \rangle $ and a different orthogonal state $ |\psi \rangle $ both part of the ground state of the Hamiltonian: 
+%if we want to know how much these states overlap, after having applied the perturbation $V$ for $n$ times, we compute the following terms:
 
-\begin{center}
-	 {(1)} $ \langle \psi|V^n| k \rangle=0$                                         
-\end{center}
-\begin{center}
-    {(2)} $ \langle \psi|V^n| \psi \rangle$ - $ \langle k|V^n| k \rangle$ = $N$  
-\end{center}
+\begin{equation}
+	 \langle GS |V^n| GS \rangle=0.                                    
+\end{equation}
 
-in order for {(1)} to be equal to zero, the order of the perturbation must be less than $ \frac{N}{2}$, where $N$ is the dimension of the lattice. 
-This boundary comes from the fact that, if we compute the difference between the expectations of two eigenstates, i.e. their distance, as in (2) and we want the eigenstates to be maximally distinguishable (no overlap), then we expect (2) to be non-zero and equal to the dimension of the torus (see figure 2.3,2.4). 
+Conversely, in (2.2) we consider an initial state $|k \rangle $ and an orthogonal state $ |\psi \rangle $, such that they belong, respectively, to a class $i$ and a class $j$ among the ones discussed in section 1.3:
+
+\begin{equation}
+     \langle \psi|V^n| k \rangle=0  
+\end{equation}
+
+in order for {(2.1)} and {(2.2)} to be equal to zero, the order of the perturbation must be less than $ \frac{N}{2}$, where $N$ is the dimension of the lattice. 
+This boundary comes from the fact that for $n < \frac{N}{2}$ the effect of the perturbation is of the order of $O(\lambda^{2n})$. Therefore, the toric code is not subject to local perturbations because such perturbations are of size much smaller than the size of the torus.
 
 %image
 \begin{figure}
@@ -3791,7 +3795,7 @@ This boundary comes from the fact that, if we compute the difference between the
 \end{figure}
 
 
-This implies that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation in (1) should be of the order of $n < \frac{N}{2}$. To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{N}{2}$. The interpretation in terms of quantum error-correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$. \newline
+In order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation should be of the order of $n < \frac{N}{2}$. To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{N}{2}$. The interpretation in terms of quantum error-correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$. \newline
 %This result also suggests that for $n \geq \frac{N}{2}$ theorem 2.5 does not apply anymore as the resulting codeword would diverge from the space of the codewords and quantum information would be too corrupted by noise to be recoverable. \newline
 %\newline
 % There are 2L2 physical qubits in the code, N^2−1 plaquette and N^2−1 vertex
@@ -3802,15 +3806,6 @@ The method for encoding information in the TC lies in the topological nature of 
 %We can do more than just store information. In fact, we can perform fault-tolerant computation using the same anyonic framework that we have described above. \newline
 In the context of the toric code, gates are relized through braiding of pairs of anyons. As shown in figure 2.3, we can follow the braiding of anyons in time and exchange them multiple times so that we are able to create different quantum operations. \newline
 We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pairs of anyons. It is important to mention that with braiding operations we cannot reach the entire bloch sphere of a qubit, so some quantum gates that are required for quantum universal computation will be missing from the set that we can create with braiding. Such missing operations can be supplemented through not topologically protected operations on the qubits, but which will of course have lower reliability. \newline
-
-%image
-\begin{figure}
-	\centering
-	\includegraphics[width=0.7\linewidth]{"../Thesis/Immagine 2024-02-29 114346"}
-	\caption{Example of gate operators by means of braiding pairs of anyons on the toric code.}
-	\label{fig:immagine-2024-02-29-114346}
-\end{figure}
-
 
 We can reframe all of the above physical information into the usual logical framework by relabelling the orthogonal ground states as logical sates: $|00\rangle$, $|01\rangle$, $|10\rangle$ and $|11\rangle$, in such a way that we are able to identify logical gates into those represented in figure 2.4 labelled as: $\overline{X}_1$,$\overline{X}_2$,$\overline{Z}_1$,$\overline{Z}_2$. \newline 
 Such gates can be seen as string operators that create pairs of excitations that self-annihilate at the endpoints by winding all the way around the torus. 
