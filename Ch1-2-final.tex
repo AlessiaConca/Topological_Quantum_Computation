@@ -147,12 +147,8 @@
 % ABSTRACT IN ENGLISH
 \chapter*{Abstract} 
 This thesis provides an thorough description of the model of the toric code, a fundamental 
-model in the fields of quantum error-correction and topological quantum computation. \newline
-The study begins by going through the matehmatical properties of spin observables in quantum mechanics, such as self-adjointness, unitarity, commutation and anticommutation. \newline
-The study moves on to the description of the model of the toric code Hamiltonian followed by the computation of its ground states and excited states, which are later characterized by giving an overview of fermionic and bosonic exchange statistics, with a particular focus on the creation of mutual anyonic excitations in two dimensional systems.\newline
-The second part of the thesis focuses on practical applications, giving an overview of both classical and quantum error correction techniques. Consequently, it exploits the theoretical background of the first part and focuses on the potential realization of quantum error-correction 
-within the toric code, going through the examination of strategies for error detection and correction also explaining their feasibility mathematically.\newline
-Through this comprehensive analysis, the aim is to offer a valid motivation for
+reference in the fields of quantum error-correction and topological quantum computation. The study begins by going through the matehmatical properties of spin observables in quantum mechanics, such as self-adjointness, unitarity, commutation and anticommutation. The study moves on to the description of the model of the toric code Hamiltonian followed by the computation of its ground states and excited states, which are later characterized by giving an overview of fermionic and bosonic exchange statistics, with a particular focus on the creation of mutual anyonic excitations in two dimensional systems. The second part of the thesis focuses on practical applications, giving an overview of both classical and quantum error correction techniques. Consequently, it exploits the theoretical background of the first part and focuses on the potential realization of quantum error-correction 
+within the toric code, going through the examination of strategies for error detection and correction also explaining their feasibility mathematically. Through this comprehensive analysis, the aim is to offer a valid motivation for
 the study of anyonic excitations through topologically relevant features of topological
 codes as the toric code. \newline
 \\
@@ -160,11 +156,7 @@ codes as the toric code. \newline
 
 % ABSTRACT IN ITALIAN
 \chapter*{Abstract in lingua italiana}
-Questo elaborato fornisce una descrizione completa del modello del toic code, un modello fondamentale di codice quantistico nell'ambito della correzione degli errori quantistica e della computazione quantistica per codici topologici.\newline
-Lo studio comincia passando in rassegna le proprietà matematiche degli osservabili di Spin in Meccanica Quantistica, come ad esempio l'autoaggiunzione, l'unitarietà, la commutazione e l'anticommutazione.\newline
-In seguito, lo studio si focalizza sulla descrizione del modello del toric code con la sua Hamiltoniana. Segue la derivazione dei suoi stati fondamentali ed eccitati, i quali saranno in seguito caratterizzati dando una breve overview delle diverse statistiche di bosoni e fermioni, con particolare attenzione alla creazione di statistiche anioniche.\newline
-La seconda parte dell'elaborato si concentra sulle applicazioni pratiche, dando una breve panoramica dei modelli di errore usati in ambito classico e quantistico per studiare la correzione degli errori di codici. In seguito, si fa uso degli strumenti teorici studiati nella prima parte per esporre la potenziale realizzazione della correzione quantistica di errori nel toric code, esaminando stretegie di rilevamento e  correzione di errori, spiegandone l'effettiva realizzabilità da un punto di vista matematico.\newline
-Attraverso questa analisi approfondita, lo scopo è di offrire una valida motivazione allo studio di eccitazioni anioniche mediante peculiarità topologiche rilevanti proprie dei codici topologici come il toric code. 
+Questo elaborato fornisce una descrizione completa del modello del toric code, un riferimento fondamentale di codice quantistico nell'ambito della correzione degli errori quantistica e della computazione quantistica per codici topologici. Lo studio comincia passando in rassegna le proprietà matematiche degli osservabili di Spin in Meccanica Quantistica, come ad esempio l'autoaggiunzione, l'unitarietà, la commutazione e l'anticommutazione. In seguito, lo studio si focalizza sulla descrizione del modello del toric code con la sua Hamiltoniana. Segue la derivazione dei suoi stati fondamentali ed eccitati, i quali saranno in seguito caratterizzati dando una breve descrizione delle diverse statistiche di bosoni e fermioni, con particolare attenzione alla creazione di statistiche anioniche in due dimensioni. La seconda parte dell'elaborato si concentra sulle applicazioni pratiche, fornendo una panoramica dei modelli di errore usati in ambito classico e quantistico per studiare la correzione degli errori di codici. In seguito, si fa uso degli strumenti teorici studiati nella prima parte per esporre la potenziale realizzazione della correzione quantistica di errori nel toric code esaminando stretegie di rilevamento e  correzione di errori e spiegandone l'effettiva realizzabilità da un punto di vista matematico. Attraverso questa analisi approfondita, lo scopo è di offrire una valida motivazione allo studio di eccitazioni anioniche mediante proprietà topologiche rilevanti proprie dei codici topologici come il toric code. 
 \\
 \\
 \textbf{Parole chiave:} Computazione quantistica, Codici topologici, Degenerazione del ground state, Correzione degli errori quantistica % Keywords (italian)
@@ -226,14 +218,12 @@ This topological approach offers a promising method to perform quantum error cor
 
 \newpage
 As a matter of fact, in this thesis we initially give a brief mathematical characterization
-of Spin observables in Quantum Mechanics and study their mathematical properties.
-These properties are later to be used to give a precise description of the toric code model 
-along with the peculiar properties of its Hamiltonian. After the model description
-we focus on computing the ground states of the Hamiltonian and study how excited states
-can be obtained. Ultimately, we characterize the obtained excitations in terms of
-quasiparticles by giving a brief overview of bosonic and fermionic statistics in 
-order to explain how mutual anyonic statistics of quasiparticles arise in two 
-dimensional systems. \newline
+of Spin observables in Quantum Mechanics by studying their mathematical properties. 
+%In particular we discuss their self-adjointness, unitarity, commutation and anticommutation along with the definition of the spectrum of an observable, which will be foundamental concepts for the upcoming study. \newline
+These properties are later to be used to give a precise description of the toric code model along with the peculiar properties of the operators involved in the definition of its Hamiltonian. Such operators, called vertex and plaquette operators, play a crucial role in the computation of the ground state of the system, menaing the state with the lowest possible energy in which the system can be.
+In fact, because of their properties, vertex and plaquette operators are simultaneously diagonalizable and thusit is easy to compute the ground state of the Hamiltonian, which we discover is four fold degenerate 
+Due to this the toric code exhibits topological order, which represents a key point in order to understand how to encode quantum information. After having computed the ground states of the Hamiltonian we study how excited states can be obtained, starting from them. Using strings of Pauli operators $\sigma^z$ and $\sigma^z$ we manage to raise the energy of the system by two units. In fcat, what we obtain are usual bosonic and fermionic excitations created in pairs. We focus on giving a brief characterization of bosonic and fermionic statistics of the excitations in order to expalin how mutual anyonic statistics arise in two dimensional systems such as the toric code and explain their braiding statistics. \newline
+
 In the second part, the first sections are dedicated to give a complete overview of 
 classical and quantum error models. In doing so, we focus on error detection and correction
 techniques in the way that they are typically performed both in the classical and quantum setting. Having such methodologies in mind, we ultimately aim to build an analogy with QEC on the toric code. In fact, the last section focuses solely on explaining why the anyonic excitations derived in the previous section are so important to be able to encode quantum states in the ground states of the Hamiltonian and why this is mathematically possible. Lastly, this section gives a complete overview of possible error scenarios on the toric code in order to explain 
