@@ -254,7 +254,7 @@ quantum computation. \newline
 %------------------------------------------------------------
 
 
-\chapter{Toric code}
+\chapter{Toric Code}
 \label{ch:chapter_one}%
 % The \label{...}% enables to remove the small indentation that is generated, always leave the % symbol.
 
@@ -266,11 +266,8 @@ In the context of quantum mechanics, an observable is a quantity that can be obs
 Formally, an observable is over an Hilbert space $\mathscr{H}$ is represented by an Hermitian operator over $\mathscr{H}$.
 
 \begin{definition} (Hilbert space)
-	An Hilbert space $\mathscr{H}$ over $\mathbb{C}$ is a vector space on $\mathbb{C}$:  
-	\begin{enumerate}
-		\item over which is defined the scalar product $\langle \cdot \vert \cdot \rangle $: $\mathbb{C} \times \mathbb{C} \rightarrow \mathbb{C}$;
-		\item which is complete with respect to the norm induced by the scalar product.
-	\end{enumerate}
+	An Hilbert space $\mathscr{H}$ over $\mathbb{C}$ is a complex vector space on $\mathbb{C}$  
+	with a scalar product $\langle \cdot \vert \cdot \rangle $: $\mathscr{H} \times \mathscr{H} \rightarrow \mathbb{C}$ and which is complete with respect to the norm induced by the scalar product.
 \end{definition}
 
 In particular, a 'spin' observable is a physical quantity associated with the intrinsic angular momentum of elementary particles, such as electrons. The spin is a fundamental property of particles and is characterized by a quantum number typically denoted as $S$, representing the spin quantum number.
@@ -280,6 +277,7 @@ In quantum mechanics, spin observables represent the possible measurements that 
 
 \subsection{Self-adjointness and unitarity}
 
+We denote as $\mathscr{B}(\mathscr{H})$ the space of bounded linear operators on $\mathscr{H}$.
 The self-adjointness of an operator can be stated as follows:
 
 \begin{definition} (Hermitian operator) Let $\mathscr{H}$ be an Hilbert space and  $A$: $\mathscr{H} \rightarrow \mathscr{H}$ be a bounded linear operator. An operator $A$ is called Hermitian if for all $\psi,\phi \in \mathscr{H}$ we have that
@@ -289,13 +287,13 @@ The self-adjointness of an operator can be stated as follows:
 	$\langle A\psi|\phi \rangle = \langle \psi|A^{\dagger}\phi \rangle = \langle \phi|A\psi \rangle^{*}$.
 \end{center}
 
-The daga symbol $\dagger$ represents the conjugate transpose and the $\langle \ \rangle$ the Hermitian inner product. A square matrix $A$ of complex numbers, representing a linear operator, is called hermitian if $A^{\dagger} = (A^*)^T = A$. One important consequences of hermiticity is that it ensures that the spectrum of the operator is real. Notice also that, for real matrices, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
+The symbol $\dagger$ denotes the Hilbert adjoint, which in the case of a finite-dimensional Hilbert space coincides with  the adjoint for matrices, i.e. for $\mathscr{H}$ and any $A$ $\in$ $\mathscr{B}(\mathscr{H})$, $A^{\dagger}$ is such that $(A^{\dagger})_{ij}=A_{ij}*$. A self-adjoint square matrix $A$ of complex numbers, representing a linear operator, is also called hermitian. One important consequence of self-adjointness is that it ensures that the spectrum of the operator is real. Notice also that, for real matrices, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
 %Furthermore, as mentioned above, vertex and plaquette operators satisfy the involutory property, which is derived from the unitarity of the matrices representing the vertex and plaquette operators, i.e. $X$ and $Z$ Pauli matrices. \newline 
 
-In order to understand the dynamics of observables in time we introduce anotehr important property: unitarity. 
+In order to understand the dynamics of observables, we introduce another important property: unitarity. 
 As previously said, observables such as position, momentum and energy are represented by hermitian operators, which ensure the existence of real eigenvalues and orthogonal eigenvectors. Though, unitarity governs the evolution in time of quantum states and operators. In particular, it ensures that the total probability of all possible outcomes of a measurement remains conserved over time, preserving the fundamental principles of quantum mechanics. 
 
-\begin{definition} (Unitary operator) Let $\mathscr{H}$ be an Hilbert space and let $U$: $\mathscr{H} \rightarrow U$ be a bounded linear operator. We define $U$ to be complex unitary if for all $\psi,\phi \in \mathscr{H}$ we have that
+\begin{definition} (Unitary operator) Let $\mathscr{H}$ be an Hilbert space and let $U \in \mathscr{B}(\mathscr{H})$. We say that $U$ is complex unitary if for all $\psi,\phi \in \mathscr{H}$ we have that
 \end{definition}
 
 \begin{center}
@@ -305,20 +303,23 @@ As previously said, observables such as position, momentum and energy are repres
 In terms of the conjugate transpose, we can define a complex matrix $U$ to be unitary if $ (U^*)^T=U^{-1}$. We can also define that a real matrix $U$, representing a linear operator, is unitary if $(U)^T = U^{-1}$ or, equivalently, if $(U)^T U=I$. 
 %In our case this directly translates to $U^2=1$ beacause for $X$ and $Z$ Pauli matrices we have that $U^T=U$. Note also that one important property of  unitary operators is that their eigenvalues have modulus equal to one.\newline
 
-Overall, hermiticity and unitarity provide a comprehensive framework for understanding the behavior of observables in quantum mechanics.
+Overall, self-adjointness and unitarity provide a comprehensive framework for describing the behavior of observables in quantum mechanics.
 
 
 \subsection{The spectrum}
 
-In the framework of quantum mechanics, the concept of the spectrum emerges as a natural consequence of the unitarity and hermiticity of observables. The spectrum of an observable refers to the set of possible values that can be obtained when measuring the physical quantity represented by the observable. 
+In the framework of quantum mechanics, the concept of the spectrum emerges as a natural consequence of the unitarity and self-adjointness of observables. The spectrum of an observable refers to the set of possible values that can be obtained when measuring the physical quantity represented by the observable. 
 
+\begin{definition}(Spectrum)
+	Given an operator $A\in\mathscr{B(\mathscr{H})}$, the spectrum $\sigma(A)$ is the set of $z\in\mathbb{C}$ such that $A$ - $z$ is not invertible.
+\end{definition}
 
 %The trivial spectrum of vertices and plaquette operators will be of fundamental importance to perform fault-tolerant quantum compuations, in particular for measuring whether any error has occurred during computation (see Chapter 3). 
 
 
 \subsection{Commutation and anticommutation}
 
-Given two observables defined as bounded linear and hermitian operators $A$ and $B$, we define the commutator as follows
+Given two observables represented by bounded self-adjoint operators $A$ and $B$, we define the commutator as follows
 
 \begin{center}
 	$[A, B] = AB - BA$.
@@ -327,10 +328,10 @@ Given two observables defined as bounded linear and hermitian operators $A$ and 
 The two observables commute if
 
 \begin{center}
-	$AB = BA$.
+	$AB = BA$
 \end{center}
 
-On the otehr hand, they anticommute if 
+while, they anticommute if 
 
 \begin{center}
 	$AB = - BA$. 
@@ -339,7 +340,7 @@ On the otehr hand, they anticommute if
 
 \subsection{Spin-$\frac{1}{2}$ particles example}
 
-In order to exemplify the above properties of observables, we take spin-$\frac{1}{2}$ particles {as discussed in \cite{Cor23}}, i.e. electrons, and define the components of the spin in three dimensions. In this case the Hilbert space is bidimensional and the observables can be written in terms of Pauli matrices in the basis $\{ | \frac{1}{2}, \pm \frac{1}{2} \rangle \}$ (spin-up and spin-down) for $\hbar=1$:
+In order to exemplify the above properties of the observables, we consider spin-$\frac{1}{2}$ particles {as discussed in \cite{Cor23}}, i.e. electrons, and define the components of the spin in three dimensions. In this case the Hilbert space is bidimensional and the observables can be written in terms of Pauli matrices in the basis $\{ | \frac{1}{2}, \pm \frac{1}{2} \rangle \}$ (spin-up and spin-down) for $\hbar=1$:
 
 
 \[
@@ -362,18 +363,16 @@ In order to exemplify the above properties of observables, we take spin-$\frac{1
 \end{array}
 \]
 
-Pauli matrices satisfy hermiticity and unitarity Moreover they satisfy some specific commuation and anticommutation properties.
+Pauli matrices are self-adjoint and unitary. Moreover they satisfy some specific commuation and anticommutation properties.
 
-Commutation properties:
 
 \begin{center}
 	$[\sigma_i, \sigma_j] = \sigma_i \sigma_j - \sigma_j \sigma_i 
 	= 2i\epsilon_{ijk} \sigma_k$
 \end{center}
 
-where $\epsilon_{ijk}$ is the Levi-Civita symbol. \newline
+where $\epsilon_{ijk}$ is the Levi-Civita symbol, and \newline
 
-Anticommutation properties:
 
 \begin{center}
 	$\{\sigma_i, \sigma_j\} = \sigma_i \sigma_j + \sigma_j \sigma_i 
@@ -486,22 +485,23 @@ A square lattice, here labelled as $\mathcal{L}$, is a particular lattice define
 Each unitary step on the lattice is identified with an edge; given the vertices or lattice points $\vec{v}=(i,j) \in V$ where $V$ coincides with $\mathcal{L}$ and the cells $\vec{p}=(i+\frac{1}{2},j+\frac{1}{2})\in P$ where $P$ coincides with $ \mathcal{L'}$ of the lattice as shown in figure 1.1, we can define the set of all edges for the lattice:
 
 \begin{definition}(Edges of $\mathcal{L}$)
-	We define the set of all edges of the lattice as: $E = \{e=(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L}$. 
+	We define the set of all edges of the lattice as: $E = \{e=(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$.
 \end{definition}
+%where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L}$. 
 
 Notice that we can identify each edge $e=((i,j),(i',j')) \in E$ with the vector that points at the middle point of the edge, namely with the vector of coordinates $\vec{e}=(i + (i'-i)/2, j + (j'-j)/2)$. In the rest of the thesis we will make use of this identification without explicit mention. We can also define the set of edges of the dual lattice as:
 
 \begin{definition}(Edges of $\mathcal{L'}$)
-	We define the set of all edges of the dual lattice as: $E' = \{e=(\vec{v_1},\vec{v_2}) \ s.t. \ \vec{v_2}=\vec{v_1}+\hat{e}_1 \ or \ \vec{v_2}=\vec{v_1}+\hat{e}_2 \}$ where $\vec{v_1}$ points to a site $(i, j)$ in $\mathcal{L'}$. 
+	We define the set of all edges of the dual lattice $\mathcal{L'}$ as: $E' = \{e'=(\vec{p_1},\vec{p_2}) \ s.t. \ \vec{p_2}=\vec{p_1}+\hat{e}_1 \ or \ \vec{p_2}=\vec{p_1}+\hat{e}_2 \}$.
 \end{definition}
 
 On each edge is located a spin-$\frac{1}{2}$ particle each belonging to a bidimensional Hilbert space $\mathbb{C}^2$. As a consequence we need to define a global Hilbert space for the lattice that takes into account every edge:
 
-\begin{definition}(Hilbert space of the lattice)
-	The overall Hilbert space of the lattice is: $\mathscr{H}= \bigotimes_{e \in E} \mathbb{C}^2$.
+\begin{definition}(Space of states)
+	The space of pure states of the whole system is: $\mathscr{H}= \bigotimes_{e \in E} \mathbb{C}^2$.
 \end{definition}
 
-For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins will correspond to $2N^2$, where $N^2$ represents the total number of cells and vertices in $\mathcal{L}$ and $N$ the dimension of the lattice. \newline
+For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins is to $2N^2$, where $N^2$ represents the total number of cells in $P$ and vertices in $V$ and $N$ the side length of the lattice. \newline
 Notice that, since all of these spins exhibit the same characteristics, they are identified with identical particles, which will be useful to know in the next sections in order to study the behaviour of the system.
 
 %\afterpage{
@@ -532,19 +532,33 @@ Notice that, since all of these spins exhibit the same characteristics, they are
 						
 						% Draw circles at the midpoints of each side
 						\ifnum\intj=2
-						\draw node[draw,circle,fill=gray] at (0,0.5) {};
+						\draw node[draw,circle,fill=blue!50] at (0,0.5) {};
+						\else
+						\ifnum\intj=-2
+						\draw node[draw,circle,fill=blue!50] at (0,-0.5) {};
 						\else
 						\draw node[draw,circle,fill=white] at (0,0.5) {};
 						\fi
+						\fi
 						
 						\ifnum\inti=2
-						\draw node[draw,circle,fill=gray] at (0.5,0) {};
+						\draw node[draw,circle,fill=red!50] at (0.5,0) {};
+						\else
+						\ifnum\inti=-2
+						\draw node[draw,circle,fill=red!50] at (-0.5,0) {};
 						\else
 						\draw node[draw,circle,fill=white] at (0.5,0) {};
 						\fi
+						\fi
 						
-						\draw node[draw,circle,fill=white] at (0,-0.5) {};
-						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+						% Draw circles at the other two sides
+						\ifnum\intj=-2
+						\draw node[draw,circle,fill=blue!50] at (0,-0.5) {};
+						\fi
+						
+						\ifnum\inti=-2
+						\draw node[draw,circle,fill=red!50] at (-0.5,0) {};
+						\fi
 					\end{scope}
 				}
 			}
@@ -783,7 +797,7 @@ The key part of the Toric Code are the so called \textit{vertex} and \textit{pla
 		\end{tikzpicture}
 	\end{center}
 	
-	\caption{In the first picture: vertex (blue) and plaquette (red) operators applied, respectively, on a vertex and cell of $\mathcal{L}$. In the second picture: vertex (blue) and plaquette (red) operators applied, respectively, on a vertex of $\mathcal{L}$ and a vertex of $\mathcal{L'}$.}
+	\caption{In the first picture: vertex (blue) and plaquette (red) operators applied in a vertex and cell of $\mathcal{L}$ respectively. In the second picture: vertex (blue) and plaquette (red) operators applied in a vertex of $\mathcal{L}$ and a vertex of $\mathcal{L'}$, respectively.}
 	\label{fig:operators}
 \end{figure}
 
@@ -837,8 +851,8 @@ All the elements that constitute the model of the toric code are brought togethe
 
 Each one of the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators that appear in the Hamiltonian share some important properties. Firstly, notice that $A_{\vec{v}}$ and $B_{\vec{p}}$ operators are Hermitian and square to the identity. Given the considerations made in definition 1.2 and 1.3 for bounded operators, we can easily prove the first following proposition:
 
-\begin{proposition} (Self-adjointness and involutory property of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators)
-$A_{\vec{v}}$ and $B_{\vec{p}}$ operators are self-adjoint and satisfy the involution property.
+\begin{proposition} (Properties of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators)
+The operators $A_{\vec{v}}$ and $B_{\vec{p}}$ are involutions, i.e. $A_{\vec{v}}^2= B_{\vec{p}}^2=\mathbb{I}$.
 \end{proposition}
 	
 \textit{Proof.}
@@ -853,7 +867,7 @@ Firstly, recall the form of the $\sigma_x$ and $\sigma_z$ matrices representing 
 	1 & 0 \\
 	0 & -1
 \end{pmatrix}
-\]
+\],
 
 
 \[
@@ -862,7 +876,7 @@ Firstly, recall the form of the $\sigma_x$ and $\sigma_z$ matrices representing 
 	0 & 1 \\
 	1 & 0
 \end{pmatrix}
-\]
+\].
 
 
 It can be proved that they are Hermitian:\newline
@@ -882,7 +896,7 @@ It can be proved that they are Hermitian:\newline
 	0 & -1
 \end{pmatrix}
 = \text{$ \sigma_z $}
-\]
+\],
 
 
 \[
@@ -900,10 +914,11 @@ It can be proved that they are Hermitian:\newline
 	1 & 0
 \end{pmatrix}
 = \text{$ \sigma_x $}
-\]\newline
+\].\newline
 
 since Pauli matrices are real matrices and thus $A^{\dagger}=A^T$.
 %Then, knowing that $[\sigma_i,\sigma_j]=0 \ for \ i=j$ we can write:
+Hence, since operators relative to different sites commute:
 
 \begin{center}
 	$(A_{\vec{v}})^{\dagger} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{\dagger} = \sigma_{x_1}^{\dagger} \sigma_{x_2}^{\dagger} \sigma_{x_3}^{\dagger} \sigma_{x_4}^{\dagger} = \sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4} = A_{\vec{v}}$ \newline
@@ -911,7 +926,7 @@ since Pauli matrices are real matrices and thus $A^{\dagger}=A^T$.
 	$(B_{\vec{p}})^{\dagger} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{\dagger} = \sigma_{z_1}^{\dagger} \sigma_{z_2}^{\dagger} \sigma_{z_3}^{\dagger} \sigma_{z_4}^{\dagger} = \sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4} = B_{\vec{p}}$ \newline
 \end{center}
 
-It can also be proved that they satisfy the involutory property:\newline
+Moreover, since the square of all Pauli matrices is the identity:\newline
 
 \[
 \text{$( \sigma_z )^{2}$} = 
@@ -949,7 +964,7 @@ It can also be proved that they satisfy the involutory property:\newline
 \]\newline
 
 
-Then, again we can write \newline
+Then, again $A_{\vec{v}}$ and $B_{\vec{p}}$ are involutions \newline
 
 \begin{center}
 	$(A_{\vec{v}})^{2} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{2} = \sigma_{x_1}^2 \sigma_{x_2}^2 \sigma_{x_3}^2 \sigma_{x_4}^2 = I$ 
@@ -1223,19 +1238,19 @@ Then the $B_{\vec{p}}$ operator becomes: \newline
 
 \begin{center}
 	
-	$B_{\vec{p}} = \sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}}$ \newline
+	$B_{\vec{p}} = \sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}}$. \newline
 	
 \end{center}
 
-and the Hamiltonian can be written by grouping the indices: \newline
+%and the Hamiltonian can be written by grouping the indices: \newline
 
-\begin{center}
+%\begin{center}
 	
-	$H = - \sum_{m,n \in \mathbb{Z}} \{ 
-	\sigma^z_{(n+\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m+\frac{1}{2})\hat{e_2}} \sigma^z_{(n-\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m-\frac{1}{2})\hat{e_2}} +
-	\sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}} \} $.\newline
+%	$H = - \sum_{m,n \in \mathbb{Z}} \{ 
+%	\sigma^z_{(n+\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m+\frac{1}{2})\hat{e_2}} \sigma^z_{(n-\frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^z_{n\hat{e_1}+(m-\frac{1}{2})\hat{e_2}} +
+%	\sigma^x_{n\hat{e_1} + (m+\frac{1}{2}\hat{e_2})} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + m\hat{e_2}} \sigma^x_{(n+ \frac{1}{2})\hat{e_1} + (m + 1)\hat{e_2}} \sigma^x_{(n+ 1)\hat{e_1} + (m + \frac{1}{2})\hat{e_2}} \} $.\newline
 	
-\end{center}
+%\end{center}
 
 Now calcuate the commutator $[A_{\vec{v}},B_{\vec{v}}] = A_{\vec{v}}B_{\vec{v}} - B_{p}A_{v}$ by focusing on the first term: \newline
 
@@ -1312,7 +1327,7 @@ Not only, as we will see, these features are intimately related to the underlyin
 
 We start by explicitly defining the ground state by making use of the properties of the vertex and plaquette operators that we have derived in the previous section.
 
-\begin{proposition} (Ground state of the toric code Hamiltonian) The ground states of the toric code Hamiltonian are the simultaneous $+1$ eigenstates of all the $A_v$ and $B_p$ operators. 
+\begin{proposition} (Ground states) The ground states of the toric code Hamiltonian are the simultaneous $+1$ eigenstates of all the $A_v$ and $B_p$ operators. 
 \end{proposition}
 
 \textit{Proof.}\newline 
@@ -1325,20 +1340,19 @@ Recall the form of the Hamiltonian as given in section 1.2:
 	
 \end{center}
 
-we already know that commuting hermitian matrices are simultaneously diagonalizable, moreover $A_{\vec{v}} $ and $B_{\vec{p}} $ operators commute for an even number of edges, thus there exists a common base of eigenvectors with their respective eigenvalues. We also know from proposition 1.2 that such eigenvalues can assume two values $\{-1,+1\}$ due to the specific properties of our operators.
+we already know that commuting hermitian matrices are simultaneously diagonalizable, moreover $A_{\vec{v}} $ and $B_{\vec{p}} $ operators commute for an even number of edges, thus there exists a common base of eigenvectors with their respective $\lambda_{\vec{v}}$ and $\lambda_{\vec{p}}$ eigenvalues. We also know from proposition 1.2 that such eigenvalues can assume two values $\{-1,+1\}$ due to the specific properties of our operators.
 
 To determine the ground state of the Hamiltonian we have to determine the minimum energy of the system. Therefore we compute all the possible combinations of the eigenvalues associated to the vertex and palquette operators to obtain the following range of values:
 
 \begin{center}
 	$\sigma( H) =$
 	$\begin{cases}
-		2N^2, \hspace{1cm} if \ all\ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= -1\\
-		2N^2-1,\\
+		2N^2, \hspace{1cm} if \ all\ \lambda_{\vec{v}}= \lambda_{\vec{p}}=1, \  \forall \ \vec{v} \in V , \vec{p} \in P\\
 		\dots\\
 		intermediate \ energies,\\
 		\dots\\
 		-2N^2+1\\
-		-2N^2, \hspace{1cm} if \ all \ A_{\vec{v}} ,B_{\vec{p}}  \ have \ \lambda_{H}= +1
+		-2N^2, \hspace{1cm} if \ all\ \lambda_{\vec{v}}= \lambda_{\vec{p}}=1, \  \forall \ \vec{v} \in V, \vec{p} \in P
 	\end{cases}$
 	
 \end{center}
@@ -1352,16 +1366,16 @@ Those are the ones that will form a basis for the ground state manifold of the s
 In order to determine which are the admissible configurations of eigenstates that we can use to form the ground state, we treat the $A_{\vec{v}} $ and $B_{\vec{p}} $ operators as constraint equations over the torus, i.e. the lattice and dual lattice.
 As a consequence, all of our configurations will need to respect the two following equations:
 
-\begin{center}
-	(1)	$A_{\vec{v}} |\psi\rangle$ = $+1|\psi\rangle$
-\end{center}
+\begin{equation}
+	A_{\vec{v}} |\psi\rangle = +1|\psi\rangle
+\end{equation}
 
-\begin{center}
-	(2)	$B_{\vec{p}} |\psi\rangle$ = $+1|\psi\rangle$
-\end{center}
+\begin{equation}
+	B_{\vec{p}} |\psi\rangle = +1|\psi\rangle
+\end{equation}
 
-This means that configuration $|\psi\rangle$ needs to be be an eigenvector for all the veretces and plaquette operators. \newline
-In order to satisfy equation (1), we look for loop configurations such that if we apply $A-{\vec{v}} $ to that state, the result would still yield an overall positive value.\newline
+This means that configuration $|\psi\rangle$ needs to be be an eigenvector for all the vertices and plaquette operators. \newline
+In order to satisfy equation (1.1), we look for loop configurations such that if we apply $A-{\vec{v}} $ to that state, the result would still yield an overall positive value.\newline
 Graphically, we identify the loop configurations through strings of 'occupied' edges (shaded in black in figure 1.4 and 1.5).
 %each identified as a qubit in configuration $|1\rangle$.
 
@@ -1370,7 +1384,7 @@ Graphically, we identify the loop configurations through strings of 'occupied' e
 \end{definition}
 
 Then, if we apply $A_{\vec{v}} $ at one of the open ends of such strings, we have two possibilities: leaving the string of occupied edges open (figure 1.4) or closing the string over the $A_{\vec{v}} $ operator (figure 1.5).
-In the first case, what we do is computing $\sigma^{z} |\psi\rangle$ for one endpoint of the string, which implies obtaining $-1|\psi\rangle$ eigenvalue for that endpoint; as a result we violate constraint (1). In the second case, instead, we end up with positive eigenvalues for each edge, this is because the negative signs obtained at the endpoints cancel themselves out. Overall, in order to respect contraint (1) we are interested only in closed loops on $A_{\vec{v}} $. Notice that such loops will always have an even length and will always involve a maximum of two extremities of the $A_{\vec{v}} $ operator.{\cite{Her20}}
+In the first case, what we do is computing $\sigma^{z} |\psi\rangle$ for one endpoint of the string, which implies obtaining $-1|\psi\rangle$ eigenvalue for that endpoint; as a result we violate constraint (1). In the second case, instead, we end up with positive eigenvalues for each edge, this is because the negative signs obtained at the endpoints cancel themselves out. Overall, in order to respect contraint (1) we are interested only in closed loops on $A_{\vec{v}} $. Notice that such loops will always have an even.{\cite{Her20}}
 
 %drawings closed/open loop with Av
 \begin{figure}
@@ -1847,7 +1861,7 @@ Each of these loops, having such characteristics, is an eigenstate for $A_{\vec{
 \end{figure}
 
 
-Now we focus on constraint (2). We want to apply the plaquette operator $B_{\vec{p}} $ only to eigenstates of $A_{\vec{v}} $, which we have determined above. The illustration in figure 1.7 shows an example of how to do it in practice with one of the eigenstates of $A_{\vec{v}} $.
+Now we focus on constraint (1.2). We want to apply the plaquette operator $B_{\vec{p}} $ only to eigenstates of $A_{\vec{v}} $, which we have determined above. The illustration in figure 1.7 shows an example of how to do it in practice with one of the eigenstates of $A_{\vec{v}} $.
 Notice that, after the transformation, we do always end up in a valid eigenstate of $A_{\vec{v}} $ but the new state $|\psi'\rangle$ is not an eigenstate of $B_{\vec{p}} $ by itself.
 
 %drawings Bp applied to loops
@@ -2031,14 +2045,13 @@ Furthermore, any new configuration that we obtain through the application of the
 This means that if we firstly partition the eigenstates of $A_{\vec{v}} $ in the following fours classes: 
 
 \begin{enumerate}
-	\item class 0 : contains all closed loops and thus the null state,
-	this is because all of the closed loops can be continuously deformed into a null state;
+	\item class 0 : contains all closed loops as well as the state without loops; in other words, all of the closed loops can be continuously deformed into the state without loops.
 	
-	\item class 1 : contains loops that wind all the way around the horizontal dimension of the torus and their permutations;
+	\item class 1 : contains loops that wind the torus all the way in the horizontal direction an odd number of times;
 	
-	\item class 2 : contains loops that wind all the way around the vertical dimension of the torus and their permutations;
+	\item class 2 : contains loops that wind the torus all the way in the vertical direction an odd number of times;
 	
-	\item class 3 : contains loops that wind all the way around both dimension of the torus and their permutations. Notice that the vertical loop must be taken on the dual lattice to yield a valid configuration.
+	\item class 3 : contains loops that wind the torus all the way in both directions an odd number of times. Notice also  that in class 3 the vertical loop must be taken on the dual lattice to yield a valid configuration.
 	
 \end{enumerate}
 
@@ -2046,9 +2059,6 @@ Then, applying a plaquette operator to any of the eigenstates belonging to one o
 
 \begin{proposition} (Invariance under $B_{\vec{p}} $) The four classes of eigenstates of $A_{\vec{v}} $ are invariant under the action of the $B_{\vec{p}} $ operator. 
 \end{proposition}
-
-We can prove that the above definition holds by means of counterexamples. 
-
 
 
 %drawing loop chiuso ma unito da Bp
@@ -2336,32 +2346,30 @@ We can prove that the above definition holds by means of counterexamples.
 \label{fig:Bpstrano}
 \end{figure}
 
+We do not provide a complete proof of the above result but illustrate various examples.
 If we take the loop illustrated in figure 1.8 and close it by means of a plaquette operator as illustrated, we would be brought to believe that there indeed exist a way to apply the operator $B_{\vec{p}} $ such that we exit class 0 and land in class 1. Though, this is not possible. \newline
 In fact, we can show the impossibility of the above action by defining two topological indeces to label the four categories of eigenstates. These indeces can assume values in $\mathbb{Z}_2=\{\overline{0},\overline{1} \}$, whose elements respectively represent the 'sets' of even and odd numbers. In our context such numerosities identify the number of vertical and horizontal loops of a configuration intersecting the vertical and horizontal dimensions of the torus. Notice that the above mentioned intersections are meant to be computed by fixing two circles (figure 1.9): one horizontal circle and one vertical circle passing passing through the spins of the main lattice.
 
 The above indeces can be expressed more clearly as follows: 
 
 \begin{center}
-	$n_x= (number \ of \ vertical \ intersections) \ \mathrm{mod} \ 2 = 
-	\begin{cases} 
-		0 \ \mathrm{mod} \ 2 \\
-		1 \ \mathrm{mod} \ 2  
-	\end{cases}$ 
+	$n_x= (number \ of \ vertical \ intersections) \ \mathrm{mod} \ 2 \ \in \ {0,1} \ with \ the \ upper \ boundary$
 \end{center}
 \begin{center}
-	$n_y= (number \ of \ horizontal \ intersections) \ \mathrm{mod} \ 2 =\begin{cases} 
-		0 \ \mathrm{mod} \ 2 \\
-		1 \ \mathrm{mod} \ 2  
-	\end{cases}$ 
+	$n_y= (number \ of \ horizontal \ intersections) \ \mathrm{mod} \ 2 \ \in \ {0,1} \ with \ the \ upper \ boundary$
 \end{center}
 
+%\begin{cases} 
+%	0 \ \mathrm{mod} \ 2 \\
+%	1 \ \mathrm{mod} \ 2  
+%\end{cases}$ 
 
 in order to create a correspondence with the actual definition of the torus over $(\mathbb{Z}$ $\times$ $\mathbb{Z})$. 
 %We only change the representatives of the elements $\{\overline{0},\overline{1} \}$ in the intermediate step. \newline
 
-In total our classes are going to be wider than expected; we can label them as : $(\overline{0},\overline{0} )$, $(\overline{0},\overline{1} )$, $(\overline{1},\overline{0})$, $(\overline{1},\overline{1})$.\newline
+We can then label the four classes as : $(\overline{0},\overline{0} )$, $(\overline{0},\overline{1} )$, $(\overline{1},\overline{0})$, $(\overline{1},\overline{1})$.\newline
 
-For example, if we take again the configuration in figure 1.9, we have 1 vertical intersection and 1 horizontal intersection, therefore we are in the class three indexed by $n_x=1mod2$ and $n_y=1mod2$, which is labelled as $(\overline{1},\overline{1})$. This would have been true for any odd number of vertical and horizintal intersections, since they all fall in the set of numbers given by $1mod2$.
+For example, if we take again the configuration in figure 1.9, we have 1 vertical intersection and 1 horizontal intersection, therefore we are in the class 3 indexed by $n_x=1mod2$ and $n_y=1mod2$, which is labelled as $(\overline{1},\overline{1})$. This would have been true for any odd number of vertical and horizintal intersections, since they all fall in the set of numbers given by $1mod2$.
 
 
 %drawing 1 vertical 1 hor
@@ -2427,31 +2435,41 @@ For example, if we take again the configuration in figure 1.9, we have 1 vertica
 	\end{tikzpicture}		
 \end{center}
 
-\caption{One horizontal circle and one vertical circle passing passing through the spins of the dual lattice.}
+\caption{One horizontal circle and one vertical circle passing passing through the spins of the dual lattice.} 
 \label{fig:thirdkind}
 \end{figure}
 
 
-Similarly, if we go back to the configuration in figure 1.8, this would mean that, after having applied $B_{\vec{p}} $ we do not land in class 1, as thought, but in class 0; this is because we have an even number of horizontal intersections and an even number of vertical intersections, i.e.   $(\overline{0}, \overline{0})$.
+Similarly, if we go back to the configuration in figure 1.8, this would mean that, after having applied $B_{\vec{p}} $ we do not land in class 1, as thought, but in class 0; this is because we have an even number of horizontal intersections and an even number of vertical intersections, i.e. the indeces eual   $(\overline{0}, \overline{0})$.
 
-What follows naturally is that all the classes are $B_{\vec{p}} $-$invariant$ due to the topological characteristics of the torus. More formally we can write that given a class of eigenstates of $A_{\vec{v}} $ named $|\psi_1\rangle,...,|\psi_i\rangle,...,|\psi_n\rangle$ all belonging to the same class and forming state $|\psi\rangle$ and given that we know that $B_{\vec{p}} |\psi_i\rangle=+|\psi_j\rangle$, then if we apply $B_{\vec{p}} $ to the normalized state $|\psi\rangle$ we get:
+Hence all the classes are $B_{\vec{p}} $-$invariant$ due to the topological properties of the torus. More formally, given $|\psi_1\rangle,...,|\psi_i\rangle,...,|\psi_n\rangle$ the eigenstates of $A_{\vec{v}}$, $\forall \vec{v} \in V$ all belonging to the same class, we can construct a state $|\psi\rangle$:
+
+\begin{center}
+	$|\psi\rangle$=$\frac{1}{\sqrt{n}}\sum_{j=1}^{n} |\psi_j\rangle$
+\end{center} 
+
+Then since we know that for evry $\{ i \in 1 ... n \}$ $B_{\vec{p}} |\psi_i\rangle=+|\psi_j\rangle$ for some $j \in \{ 1 ... n\}$ we get:
+%then if we apply $B_{\vec{p}} $ to the normalized state $|\psi\rangle$ we get:
 
 \begin{center}
 	$|\Xi\rangle= B_{\vec{p}}  \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_i\rangle = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} B_{\vec{p}} |\psi_i\rangle = \frac{1}{\sqrt{n}} \sum_{j=1}^{n} |\psi_J\rangle =|\Xi\rangle$
 \end{center}
 
-because, as anticipated in the previous pages, what $B_{\vec{p}} $ does is only permuting the $|\psi_i\rangle$, thus we get back our initial state. This result leads to the following proposition:
+$\forall \vec{p} \in P$ because, $B_{\vec{p}} $ simply permutes all $|\psi_i\rangle$, thus we get back our initial state. This result leads to the following proposition:
 
 \begin{proposition}(Eigenstates of $B_{\vec{p}} $) A completely symmetric superposition of a set of eigenstates of $A_v$, all belonging to the same class, is an eigenstate of $B_{\vec{p}} $.
 \end{proposition}
 
-From Proposition 1.6 and Proposition 1.7, also naturally follows the degeneracy (and dimension) of the ground state: \newline
+From Proposition 1.6 and Proposition 1.7, also naturally follows the degeneracy (and dimension) of the ground state manifold: \newline
 
 \begin{proposition} (Degeneracy of the ground state) The degeneracy of the ground state manifold is $4$. 
 \end{proposition}
 
-Because the four classes of eigenstates are $B_{\vec{p}} $-$invariant$, we can construct a valid ground state through the configurations belonging to one the four classes, as these configurations respect both constraint (1) and (2).\newline 
+\textit{Proof.}\newline
+Because the four classes of eigenstates are $B_{\vec{p}} $-$invariant$, we can construct a valid ground state through the configurations belonging to one the four classes, as these configurations respect both constraint (1.1) and (1.2). 
 
+\hfill $\square$
+ 
 Now that we have derived the ground state configurations of the toric code, we focus on studying its excited states. These states arise from perturbations or interactions within the system and offer valuable insights into the dynamic behavior of the toric code beyond its ground state equilibrium. While the ground state embodies the system's lowest energy configuration and serves as the foundation of its stability, the excited states provide an insight into the system's response to external influences. 
 Through the systematic study of these excitations we discover some intrinsic characteristics of the toric code that will serve us later to explain its fault-tolerant nature.
 
@@ -2484,7 +2502,7 @@ Through the systematic study of these excitations we discover some intrinsic cha
 
 %We shall now examine the case of a square lattice with boundary conditions, i.e. the toric code. \newline
 
-Taking into account the results yielded by the examination of the physical system in the previous chapters we will now proceed to describe, firstly, what are the excitations on the ground state and what kind of excitations we can obtain on it; secondly, we will study their exchange statistics. In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent deviations from the system's ground state. These excitations are associated with elementary quantum particles that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties and response to external perturbations. \newline
+Taking into account the results of the previous chapters we will now proceed to describe, firstly, what are the excitations on the ground state and what kind of excitations we can obtain on it; secondly, we will study their exchange statistics. In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent deviations from the system's ground state. These excitations are associated with elementary quantum particles that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties and response to external perturbations. \newline
 In the particular case of the toric code, such low-energy excitations can be created through the application of a $S^x$ or $S^z$ string operator on the ground state (figure 1.10).
 
 \begin{definition}(Adjacent edges)
@@ -4719,7 +4737,7 @@ In conclusion, the understanding of the non-trivial relationship between syndrom
 \addtocontents{toc}{\vspace{2em}} % Add a gap in the Contents, for aesthetics
 %\bibliography{Thesis_bibliography} % The references information are stored in the file named "Thesis_bibliography.bib"
 \begin{thebibliography}{99} % Replace '99' with the widest label in your bibliography
-	\bibitem[Cor23]{Cor23} M. Correggi, \textit{Aspetti Matematici della Meccanica Quantistica}, 2023.
+	\bibitem[Cor23]{Cor23} M. Correggi, \textit{Aspetti Matematici della Meccanica Quantistica}, unpublished, 2023.
 	\bibitem[Her20]{Her20} P. Herringer, "The Toric Code", {\it RP}, 2020.
 	\bibitem[Kit02]{Kit02} A. Yu. Kitaev, "Fault-tolearnt quantum computation by anyons", {\it Annals of Physics}, 2-30, 2002.
 	\bibitem[Rao16]{Rao16} S. Rao, "Introduction to abelian and non-abelian anyons", {\it Harish-Chandra Research Institute}, 1-20, {2016}.
