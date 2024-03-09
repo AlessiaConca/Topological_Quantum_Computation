@@ -146,17 +146,16 @@
 
 % ABSTRACT IN ENGLISH
 \chapter*{Abstract} 
-This thesis provides an thorough description of the model of the toric code, a fundamental 
-reference in the fields of quantum error-correction and topological quantum computation. The study begins by going through the matehmatical properties of spin observables in quantum mechanics, such as self-adjointness, unitarity, commutation and anticommutation. The study moves on to the description of the model of the toric code Hamiltonian followed by the computation of its ground states and excited states, which are later characterized by giving an overview of fermionic and bosonic exchange statistics, with a particular focus on the creation of mutual anyonic excitations in two dimensional systems. The second part of the thesis focuses on practical applications, giving an overview of both classical and quantum error correction techniques. Consequently, it exploits the theoretical background of the first part and focuses on the potential realization of quantum error-correction 
-within the toric code, going through the examination of strategies for error detection and correction also explaining their feasibility mathematically. Through this comprehensive analysis, the aim is to offer a valid motivation for
-the study of anyonic excitations through topologically relevant features of topological
-codes as the toric code. \newline
+This thesis provides an detailed description of the toric code model, which plays a fundamental 
+role in the field of quantum computation as a paradigmatic example of quantum error-correction code. 
+After a preliminary introductory section on spin observables in Quantum Mechanics, the first chapter of the thesis contains the description of the model of the toric code Hamiltonian followed by the computation of its ground states and excited states, which are later characterized by giving an overview of fermionic and bosonic exchange statistics, with a particular focus on the applications to quantum computation of the toric code model. After a brief overview on classical and quantum error correction, the analysis of the anyonic excitations of the toric code done in the first chapter is used to explicitly describe the strategy behind quantum error correction for logical qubits encoded in the ground states of the toric code Hamiltonian.
+\\
 \\
 \textbf{Keywords:} Quantum computing, Topological codes, Ground state degeneracy, Anyons, Quantum error correction. % Keywords
 
 % ABSTRACT IN ITALIAN
 \chapter*{Abstract in lingua italiana}
-Questo elaborato fornisce una descrizione completa del modello del toric code, un riferimento fondamentale di codice quantistico nell'ambito della correzione degli errori quantistica e della computazione quantistica per codici topologici. Lo studio comincia passando in rassegna le proprietà matematiche degli osservabili di Spin in Meccanica Quantistica, come ad esempio l'autoaggiunzione, l'unitarietà, la commutazione e l'anticommutazione. In seguito, lo studio si focalizza sulla descrizione del modello del toric code con la sua Hamiltoniana. Segue la derivazione dei suoi stati fondamentali ed eccitati, i quali saranno in seguito caratterizzati dando una breve descrizione delle diverse statistiche di bosoni e fermioni, con particolare attenzione alla creazione di statistiche anioniche in due dimensioni. La seconda parte dell'elaborato si concentra sulle applicazioni pratiche, fornendo una panoramica dei modelli di errore usati in ambito classico e quantistico per studiare la correzione degli errori di codici. In seguito, si fa uso degli strumenti teorici studiati nella prima parte per esporre la potenziale realizzazione della correzione quantistica di errori nel toric code esaminando stretegie di rilevamento e  correzione di errori e spiegandone l'effettiva realizzabilità da un punto di vista matematico. Attraverso questa analisi approfondita, lo scopo è di offrire una valida motivazione allo studio di eccitazioni anioniche mediante proprietà topologiche rilevanti proprie dei codici topologici come il toric code. 
+Questa tesi fornisce una descrizione dettagliata del modello del codice torico, che svolge un ruolo fondamentale nel campo della computazione quantistica come esempio paradigmatico di codice di correzione degli errori quantistici. Dopo una sezione introduttiva preliminare sugli osservabili di spin in Meccanica Quantistica, il primo capitolo della tesi contiene la descrizione del modello del codice torico e bdella sua Hamiltoniana seguito dal calcolo dei suoi stati fondamentali e stati eccitati, i quali vengono successivamente caratterizzati dando una panoramica delle statistiche di scambio fermioniche e bosoniche, con particolare attenzione alle applicazioni alla computazione quantistica del modello del codice torico. Dopo una breve panoramica sulla correzione degli errori classica e quantistica, l'analisi delle eccitazioni anyoniche del codice torico svolta nel primo capitolo viene utilizzata per descrivere esplicitamente la strategia dietro la correzione degli errori quantistici per qubit logici codificati negli stati fondamentali dell'Hamiltoniana del codice torico. 
 \\
 \\
 \textbf{Parole chiave:} Computazione quantistica, Codici topologici, Degenerazione del ground state, Correzione degli errori quantistica % Keywords (italian)
@@ -202,32 +201,32 @@ Questo elaborato fornisce una descrizione completa del modello del toric code, u
 \chapter*{Introduction}
 
 Being able to leverage quantum phenomena to perform computations has brought significant 
-advancements to the field of quantum computing. Quantum systems possess unique properties promising exponential speedup over classical algorithms for specific tasks. However, realizing such potential 
+advancements to the field of quantum computing. Quantum systems possess unique properties promising exponential speedup over classical algorithms for specific tasks. \cite{Nie06}. However, realizing such potential 
 requires overcoming significant challenges, such as the exposure to
-noise of a physical system. As a consequence, quantum error correction has emerged as an important area of research. Traditional error correction techniques developed for classical computers cannot be directly applied to quantum systems due to the intrinsic fragility of quantum information. Therefore, the goal of quantum error correction is to mitigate errors by encoding quantum information into carefully designed quantum states. Several quantum computing models have been studied theoretically
+noise of a physical system. As a consequence, quantum error correction has emerged as an important area of research. Traditional error correction techniques developed for classical computers cannot be directly applied to quantum systems due to the intrinsic fragility of quantum information. \cite{Cha06}. Therefore, the main goal of quantum error correction is to mitigate errors by encoding quantum information into carefully designed quantum states. Several quantum computing models have been studied theoretically
 in order to assess this issue and give access to their practical realizations. 
-Among various quantum error correcting codes, topological codes are of particular interest due to their robustness against local perturbations and their ability to encode information in a non-local manner. \newline
-The toric code was one of the first topological quantum error correcting codes that were proposed. It was introduced by Alexei Kitaev in 1997 as a two-dimensional lattice model and is particularly notable for its robustness against local errors thanks to its topological properties. In fact, what makes the toric code special is the way it exploits the topological features of a quantum system to robustly encode information to protect it from the damaging effects of noise. In particular, not only does the toric code exhibit topological order, meaning that its ground state is 4-fold degenerate, but it also exploits the existence of anyonic excitations typical of a two dimensional system to encode quantum information.
+Among various quantum error correcting codes, topological codes are of particular interest due to their robustness against local perturbations and their ability to encode information in a non-local manner. \cite{Kit02}. \newline
+
+The toric code was one of the first topological quantum error correcting codes that has been proposed. It was introduced by Alexei Kitaev in 1997 as a two-dimensional lattice model, which is particularly notable for its robustness against local errors thanks to its topological properties. In fact, what makes the toric code special is the way it exploits the topological features of a quantum system to robustly encode information and protect it from the damaging effects of noise. In particular, not only does the toric code exhibit topological order, which manifests itself through the degeneracy of the ground state manifold and the occurrence of excitations given by quasi-particles obeying to exotic mutual statistics (anyons). \cite{Kit02}.\newline
 
 %\newpage
-As a matter of fact, in this thesis we initially give a brief mathematical characterization
-of Spin observables in Quantum Mechanics by studying their mathematical properties. 
-%In particular we discuss their self-adjointness, unitarity, commutation and anticommutation along with the definition of the spectrum of an observable, which will be foundamental concepts for the upcoming study. \newline
-These properties are later used to give a precise description of the toric code model along with the stabilizer operators encoded in the definition of its Hamiltonian. Such operators, called vertex and plaquette operators, play a crucial role in the computation of the ground states of the system, which are the ones with the lowest possible energy.
-Vertex and plaquette operators are simultaneously diagonalizable, thus, it is easy to compute the ground states of the Hamiltonian, which we discover to be 4-fold degenerate. 
-Therefore, the toric code exhibits topological order. This, represents a key point in order to encode quantum information in the ground states of the system by providing redundancy. After having computed the ground states of the Hamiltonian, we study how excited states can be obtained through the application of string operators. By means of such string operators we manage to raise the energy of the system by two units. Specifically, we create pairs of excitations: {\it magnetic vorteces} and {\it electric charges}. Ultimately, we focus on giving a brief description of the bosonic and fermionic statistics of the excitations and expalin how mutual anyonic statistics arise in two dimensional systems such as the toric code. Unlike conventional particles, anyons exhibit nontrivial phase changes upon exchange. By leveraging the braiding of anyons, we can encode quantum information in the ground states of the Hamiltonian and perform fault-tolerant operations. \newline
-In the second part, the first sections are dedicated to give a complete overview of 
+In this thesis, we initially give a brief mathematical description
+of spin observables in Quantum Mechanics by studying their mathematical properties. 
+These properties are later used to give a precise definition of the toric code model along with the stabilizer operators encoded in its Hamiltonian. Such operators, called vertex and plaquette operators, play a crucial role in the characterization of the ground states of the system, which are the states with the lowest possible energy.
+In particular, vertex and plaquette operators are simultaneously diagonalizable. This allows to explicitly compute the ground states, which have to form a manifold of dimension 4. \cite{Her20}. Such a degeneracy is in fact due to the topological features of the toric code model, which are key in order to encode quantum information in the ground states of the system by providing redundancy. Such topological features of the toric code have a two-fold relevance: on one hand, a quantum computation on it would be protected from local perturbations, and, on the other hand, there would be a natural correction algorithm to implement. \cite{Zbi19}. After the discussion of the ground states of the Hamiltonian, we study excited states that can be obtained through the application of string operators. In fact, they contain pairwise excitations: {\it magnetic vorteces} and {\it electric charges}. Ultimately, we focus on giving a brief description of identical particles in Quantum Mechanics including anyons in two dimensional systems and explain how mutual anyonic
+statistics arise in the toric code model. Unlike conventional particles, anyons exhibit nontrivial phase changes when exchanged. By leveraging the braiding of anyons, we can encode quantum information in the ground states of the Hamiltonian and perform fault-tolerant operations. \cite{Rao01,Rao16}. \newline
+In the second part of the thesis, the first sections are dedicated to give an overview of 
 classical and quantum error models. In doing so, we focus on error detection and correction
-techniques in the way that they are typically performed both in the classical and quantum setting. Having such methodologies in mind, we ultimately aim to build an analogy with QEC on the toric code. In fact, the last section focuses solely on explaining why the anyonic excitations derived in the previous section are so important to be able to encode quantum states in the ground states of the Hamiltonian and why this is mathematically possible. Lastly, this section gives a complete overview of possible error scenarios on the toric code in order to explain 
-how error detection and correction are brought out in this context. \newline
+techniques both in the classical and quantum setting. We ultimately aim to build an analogy with the quantum error correction on the toric code. In fact, the last section focuses precisely on explaining why the anyonic excitations derived in the previous section are so important to be able to encode quantum qubits in the ground states of the Hamiltonian and why this is mathematically possible. \cite{Zbi19}. \newline 
+%Lastly, this section gives a complete overview of possible error scenarios on the toric code in order to explain 
+%how error detection and correction are brought out in this context. \newline
 
-In conclusion, this thesis aims to provide a comprehensive description of the 
-toric code along with its implications to quantum error correction in topological 
+In conclusion, this thesis provides a comprehensive description of the 
+toric code together with its implications to quantum error correction in topological 
 quantum computation. 
-Through the careful study of its theoretical background, this work covers the
-practical applications to quantum information processing and error 
-correction methodologies. Through this investigation, we gain 
-understanding of the model and its potential to effectively perform fault-tolerant 
+Through the careful study of the theoretical features of the toric code model, this investigates some
+practical applications of quantum information processing and error 
+correction methodologies as well as the possibility of effectively perform fault-tolerant 
 quantum computation. \newline
 
 
@@ -2815,7 +2814,7 @@ Thus, if the energy of the GS, as we have defined it in the previous sections, i
 
 \subsection{Fermionic and bosonic exchange statistics in 3D and 2D}
 We shall give a brief description of the statistics of fermions and bosons in both cases of three and two dimensions. \newline
-Take a system of $N$ indistinguishable particles in three dimensions, if we exchange any two of them such that $i<j$ we can only obtain a phase $\phi=\pm \pi$ in the resulting wave function:  
+Take a system of $N$ indistinguishable particles in three dimensions as in \cite{Cor23}, if we exchange any two of them such that $i<j$ we can only obtain a phase $\phi=\pm \pi$ in the resulting wave function:  
 
 \begin{center}	
 	$P_{(i,j)}\psi(x_1, ..., x_i,x_j, ..., x_N)=e^{i\phi} \psi(x_1, ..., x_j,x_i, ..., x_N)=\pm \psi(x_1, ..., x_j,x_i, ..., x_N)$
@@ -3260,14 +3259,14 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 \section{Anyonic Excitations}
 \label{sec:AE}
 
-Let's examine the mutual statistics between $e$ and $m$ particles by means of an example. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x$ and $S^z$ operators as shown in figure 1.16. Afterward, we separate the excitations using string operators and we move an $e$-particle around an $m$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. {\cite{Kit02}}.
+Let's examine the mutual statistics between $e$ and $m$ particles by means of an example. \cite{Rao16}. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x$ and $S^z$ operators as shown in figure 1.16. Afterward, we separate the excitations using string operators and we move an $e$-particle around an $m$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign. {\cite{Kit02}}.
 The closed loop can be eliminated, leading to the following transformation:
 
 \begin{center}
 	$\sigma_i^z\sigma_i^x|GS\rangle = - \sigma_i^x\sigma_i^z|GS\rangle$
 \end{center}
 
-if we denote the exchange operator as {\it the braiding operator} $R$ then, according to what we said in section 1.4.1, the wave function relation should be the following:
+if we denote the exchange operator as {\it the braiding operator} $R$ (see \cite{Rao16}) then, according to what we said in section 1.4.1, the wave function relation should be the following:
 
 \begin{center}
 	$R^2\psi(e,m) = - \psi(e,m)$
@@ -3279,7 +3278,7 @@ since we are going all the way around the particle, we assume to have two exchan
 	$R^2 = - 1 \rightarrow ( e^{-\frac{i\pi}{2}})^2 = - 1  \rightarrow R = e^{-\frac{i\pi}{2}} = \pm i $
 \end{center}
 
-this results falls out of the usual bosonic/fermionic statistics, thus we can say that the low-energy excitations of the ground state exhibit anyonic statistics.
+this results falls out of the usual bosonic/fermionic statistics, thus we can say that the low-energy excitations of the ground state exhibit anyonic statistics. \cite{Rao01,Kha98}.
 %(recalling the fact that we can obtain \textit{any} statistics). {\cite{Rao16, Kit02, Pre04}}.\newline
 
 
@@ -4193,7 +4192,7 @@ In order to better clarify the above concepts, we take as example a bit-flip err
 \end{figure}
 
 
-Such errors can be detected through  simultaneous measurement of vertex (and plaquette) operators of the Hamiltonian (figure 2.7). The fact that the vertex and plaquette operators commute with each other (Proposition 1.4) along with the fact that the states in the GS are eigenfunctions of the vertex and plaquette operators (Proposition 1.6) and the fact that string operators commute and anticommute with $A_{\vec{v}}$ and $B_{\vec{p}}$ operators (Proposition 1.10, which states that the anyonic excitations are eigenfunctions of vertex and plaquette operators with eigwnvalues +1 or -1) allows us to measure the operators without destrying the initial given state. In practice, is therefore posssible to measure, on the same physical state, all the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators withouth modifying the underlying state. The resulting measurements are called {\it error syndrome}, which only gives information about the endpoints of the strings of the errors giving no information about the way two endpoints were connected. As a consequence what we do is using algorithms that estimate the way errors formed by connecting pairs of endpoints by selecting the shortest string that connects two -1 eigenvalues yielded by the vertex operators, i.e. we make use of the minium distance between two -1 eigenvalues. \newline
+Such errors can be detected through  simultaneous measurement of vertex (and plaquette) operators of the Hamiltonian (figure 2.7). The fact that the vertex and plaquette operators commute with each other (Proposition 1.4) along with the fact that the states in the GS are eigenfunctions of the vertex and plaquette operators (Proposition 1.6) and the fact that string operators commute and anticommute with $A_{\vec{v}}$ and $B_{\vec{p}}$ operators (Proposition 1.10, which states that the anyonic excitations are eigenfunctions of vertex and plaquette operators with eigwnvalues +1 or -1) allows us to measure the operators without destrying the initial given state. In practice, is therefore posssible to measure, on the same physical state, all the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators withouth modifying the underlying state. The resulting measurements are called {\it error syndrome}, which only gives information about the endpoints of the strings of the errors giving no information about the way two endpoints were connected. \cite{Den02}. As a consequence what we do is using algorithms that estimate the way errors formed by connecting pairs of endpoints by selecting the shortest string that connects two -1 eigenvalues yielded by the vertex operators, i.e. we make use of the minium distance between two -1 eigenvalues. \newline
 
 \begin{figure}
 	\begin{center}
@@ -4317,7 +4316,7 @@ If we consider a bit-flip error as above and we assume to start from a state $|0
 Overall, the error-correction can be said to be effective whenever we end up in scenario 1 or in scenario 2 and 3 but only by forming contractible loops that leave the state unaltered. \newline
 
 As a consequence, what we would like to do is decreasing the probability of uncorrectable errors. There exist two known methods to achieve this goal. The first method involves increasing the size of the torus; by doing so, we would require a bigger number of erroneous edges in order to make a full revolution of the dimension of the torus to form a non-contractible loop. Notice that this would mean to increase the Hamming distance of the code.\newline 
-The second method involves reducing the probability $p$ with which each edge is flipped in between distinct simulatneous measuremets. In this way the errors would tend not to propagate far away from where they originated and could thus be detected and corrected in an easier way. When $p$ increases, ambiguity arises due to the fact that it would become more and more challenging to correclty identify paths connecting anyon pairs with acceptable accuracy; thus, error-correction may not succeed. \newline
+The second method involves reducing the probability $p$ with which each edge is flipped in between distinct simulatneous measuremets. In this way the errors would tend not to propagate far away from where they originated and could thus be detected and corrected in an easier way. When $p$ increases, ambiguity arises due to the fact that it would become more and more challenging to correclty identify paths connecting anyon pairs with acceptable accuracy; thus, error-correction may not succeed. \cite{Zbi19}. \newline
 % The reduction of $p$ can be realized by measuring subsequent error syndromes more often, thus incraesing the frequency with which we produce syndrome measurements.
 \newline
 
@@ -4735,13 +4734,16 @@ In conclusion, the understanding of the non-trivial relationship between syndrom
 	\bibitem[Rao16]{Rao16} S. Rao, "Introduction to abelian and non-abelian anyons", {\it Harish-Chandra Research Institute}, 1-20, {2016}.
 	\bibitem[Wil91]{Wil91} F. Wilczek, "Anyons", {\it Scientific American}, 58-65, 1991.
 	\bibitem[Bro14]{Bro14} D. Browne, {\it Topological Codes and Computation}, 2014.
-	\bibitem[Odd20]{Odd20} L. Oddis, {\it PhD thesis: Two-Anyon Schrödinger Operators}, 2019-2020.
+	\bibitem[Odd20]{Odd20} L. Oddis, {\it PhD Thesis: Two-Anyon Schrödinger Operators}, 2019-2020.
 	\bibitem[Pre04]{Pre04} J. Preskill, {\it Lecture Notes for Physics 219:
 	 Quantum Computation}, 2019.
 	\bibitem[Cha06]{Cha06} Hsun-Hsien Chang, "An Introduction to Error-Correcting Codes: From Classical to Quantum", {\it arXiv: quant-ph/0602157}, 2006.
 	\bibitem[Nie06]{Nie06} M. A. Nielsen, I. L. Chuang, {\it Quantum Computation and Quantum Information}, Cambridge University Press, 2010.
 	\bibitem[Kas19]{Kas19} M. Kastroyano, {\it Quantum Error Correction}, 2018-19.
 	\bibitem[Zbi19]{Zbi19} M. Zbinden, {\it Quantum Error Correction for the Toric Code}, 2019.
+	\bibitem[Den02]{Den02} E. Dennis, A. Kitaev, A. Landhal, J. Preskill, "Topological Quantum Memory", {\it Journal of Mathematical Physics }, 2002.
+	\bibitem[Rao01]{Rao01} S. Rao, "An Anyon Primer", {\it Models and Techniques of Statistical Physics}, 2001.
+	\bibitem[Kha98]{Kha98} A. Khare, {\it Fractional statistics and quantum theory}, World Scientific, 1998.
 \end{thebibliography}
 
 
