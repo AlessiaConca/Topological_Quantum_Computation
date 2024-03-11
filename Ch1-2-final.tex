@@ -2844,8 +2844,17 @@ Thus, if the energy of the ground state is $-2N$ by acting with a string operato
 
 \subsection{Fermionic and bosonic exchange statistics in 3D and 2D}
 We give here a brief description of the statistics of fermions and bosons in three and two dimensions. \newline
+Firstly, we introduce indistinguishable particles by means of their physical properties 
 
-Take a system of indistinguishable particles in three dimensions as in \cite{Cor23}, if we exchange any two of them such that $i<j$ we can only obtain a phase $\phi=\pm \pi$ in the resulting wave function:  
+\begin{definition}(Indistinguishable particles)
+	Indistinguishable particles in Quantum Mechanics are particles that share the same mass, electric charge and spin.
+\end{definition}
+
+Moreover, we can characterize identical particles by means of their wavefunctions, which are mathematical functions that represent the probability amplitude of finding a particle at a certain position. 
+In fact, in Quantum Mechanics, due to the uncertainty principle, we know that it is not possible to measure any two physical properties, such as position and momentum of a particle, together and with infinite precision. Indeed, this would correspond to the progressive spreading and overlap of the wavefunctions of the particles in the system, leading to indistinguishability.
+Therefore, what we do is calculating a probabilistic location of the particles. As a consequence, in order to study the behaviour of the particles we look at the overall acquired phase of the wavefunction of the system of which they are part of. Observing such phase allows us to classify particles by assigning them bosonic or fermionic statistics, which correspond to symmetric or antisymmetic wavefunctions meaning that the system will acquire a phase corresponding to +1 or -1, respectively. As we will see, there also exist cases where we obtain mutual statistics that fall out of the bosonic or fermionic ones. By controlling the acquired phase of the wavefunction, we can deduce interference patterns between particles, which is important to perform quantum computations. \newline
+
+If we take a system of indistinguishable particles in three dimensions as in \cite{Cor23}, if we exchange any two of them such that $i<j$ we can only obtain a phase $\phi=\pm \pi$ in the resulting wave function:  
 
 \begin{center}	
 	$P_{(i,j)}\psi(x_1, ..., x_i,x_j, ..., x_N)=e^{i\phi} \psi(x_1, ..., x_j,x_i, ..., x_N)=\pm \psi(x_1, ..., x_j,x_i, ..., x_N)$
@@ -3753,18 +3762,13 @@ What is done in general to make computations fault-tolerant is to substitute qub
 The second issue regards the fact that when we periodically perform error-correction on encoded qubits we may introduce errors through error-correction itself. \newline
 %Addittionally, encoded gates aren't the only fault-tolerant procedures that we want to perform. In fact, we also want measurements of encoded qubits and state preparations to be fault-tolerant.\newline
 We know by theory that there exists a set of quantum gates through which each quantum computation can be expressed. Such set is comprised of the hadamard, phase, controlled-NOT and $\frac{\pi}{8}$ gates. 
-We also know that each of these gates can be realized falut-tolerantly. Then, in the context of fault-tolerant quantum computation, it is possible to carry out a comprehensive range of logical operations on encoded quantum states. This is also done in a manner that results in the effective failure probability within the encoded states, scaling as a function of $p$, which is the error probability associated with the underlying gates. \newline
-%Note that the O($p^2$) scaling is associated with the effects of error correction. 
-%The individual gates in a quantum computation may have an intrinsic probability of error, denoted by $p$. 
-These errors could affect a single qubit but quantum error-correction codes are designed to correct them. However, in the process of error-correction itself, new errors can be introduced, and these are typically correlated with the original errors. The probability of introducing correlated errors during the error correction process is proportional to the square of the original error probability. This means that the effective failure probability scales quadratically with the probability of errors in the underlying gates. \newline
-The above considerations lead us to the main result concerning fault tolerant compuatation: the threshold theorem as given in \cite{Nie06}. 
+We also know that each of these gates can be realized falut-tolerantly. Then, in the context of fault-tolerant quantum computation, it is possible to carry out a comprehensive range of logical operations on encoded quantum states. This is also done in a manner that results in the effective failure probability within the encoded states, scaling as a function of $p$, which is the error probability associated with the underlying gates. These errors could affect a single qubit but quantum error-correction codes are designed to correct them. However, in the process of error-correction itself, new errors can be introduced, and these are typically correlated with the original errors. The probability of introducing correlated errors during the error correction process is proportional to the square of the original error probability. This means that the effective failure probability scales quadratically with the probability of errors in the underlying gates. \newline
 
-\begin{theorem}(Threshold theorem)
-	A quantum circuit containing a quantity of gates determined by $p(n)$ can be effectively simulated with an error probability not exceeding $\epsilon$, employing a number of gates approximately proportional to $O(poly(\log p(n)/\epsilon)p(n))$. Each of these gates may experience failure with a probability no greater than $p$, given that $p$ remains below a specified constant threshold $p < p_{th}$. This simulation holds true under the condition of reasonable assumptions regarding the noise present in the underlying hardware.
-\end{theorem}
-
-Essentially, the theorem states that as long as the noise present in individual quantum gates remains below a specific constant threshold (the probability that each gates fails is $p<p_t$) it becomes feasible to execute a quantum computation of arbitrary length reliably. In fact, if we apply fault-tolerant computations on encoded states, achieving a quadratic reduction of the errors $O(p^2)$, the desired error thershold achieved can be made as low as desired with an increase in the circuit size by means of code concatenation. For further details see \cite{Nie06}.\newline
+The above considerations lead us to the main result concerning fault tolerant compuatation: the threshold theorem given in \cite{Nie06}. Essentially, the theorem states that as long as the noise present in individual quantum gates remains below a specific constant threshold (the probability that each gates fails is $p<p_t$) it becomes feasible to execute a quantum computation of arbitrary length reliably. In fact, if we apply fault-tolerant computations on encoded states, achieving a quadratic reduction of the errors $O(p^2)$, the desired error thershold achieved can be made as low as desired with an increase in the circuit size by means of code concatenation. For further details see \cite{Nie06}.\newline
 %We must specify that this theorem works under some reasonable assumptions reguarding the type of noise, meaning that indeed noise is not a real issue in quantum computation but we cannot correct errors from arbitrary noises.
+%\begin{theorem}(Threshold theorem)
+%A quantum circuit containing a quantity of gates determined by $p(n)$ can be effectively simulated with an error probability not exceeding $\epsilon$, employing a number of gates approximately proportional to $O(poly(\log p(n)/\epsilon)p(n))$. Each of these gates may experience failure with a probability no greater than $p$, given that $p$ remains below a specified constant threshold $p < p_{th}$. This simulation holds true under the condition of reasonable assumptions regarding the noise present in the underlying hardware.
+%\end{theorem}
 
 
 
