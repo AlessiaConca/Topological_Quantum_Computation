@@ -278,13 +278,13 @@ The self-adjointness of an operator can be stated as follows:
 	$\langle A\psi|\phi \rangle = \langle \psi|A^{\dagger}\phi \rangle = \langle \phi|A\psi \rangle^{*}$.
 \end{center}
 
-The symbol $\dagger$ denotes the Hilbert adjoint, which in the case of a finite-dimensional Hilbert space coincides with  the adjoint for matrices, i.e. for $\mathscr{H}$, finite-dimensional, and any $A$ $\in$ $\mathscr{B}(\mathscr{H})$, $A^{\dagger}$ is such that $(A^{\dagger})_{ij}=A_{ij}*$. A self-adjoint square matrix $A$ of complex numbers, representing a linear operator, is also called hermitian. One important consequence of self-adjointness is that it ensures that the spectrum of the operator is real. Notice also that, for real matrices, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
+The symbol $\dagger$ denotes the Hilbert adjoint, which in the case of a finite-dimensional Hilbert space coincides with  the adjoint for matrices, i.e. for $\mathscr{H}$, finite-dimensional, and any $A$ $\in$ $\mathscr{B}(\mathscr{H})$, $A^{\dagger}$ is such that $(A^{\dagger})_{ij}=A_{ij}^*$. A self-adjoint square matrix $A$ of complex numbers, representing a linear operator, is also called hermitian. One important consequence of self-adjointness is that it ensures that the spectrum of the operator is real. Notice also that, for real matrices, it is sufficient to compute only the transpose of the matrix to verify hermiticity. \newline
 %Furthermore, as mentioned above, vertex and plaquette operators satisfy the involutory property, which is derived from the unitarity of the matrices representing the vertex and plaquette operators, i.e. $X$ and $Z$ Pauli matrices. \newline 
 
 In order to understand the dynamics of observables, we introduce another important property: unitarity. 
 As previously said, observables such as position, momentum and energy are represented by hermitian operators, which ensure the existence of real eigenvalues and orthogonal eigenvectors. Instead, unitarity governs the evolution in time of quantum states and operators. In particular, it ensures that the total probability of all possible outcomes of a measurement remains conserved over time, preserving the fundamental principles of quantum mechanics. 
 
-\begin{definition} (Unitary operator) Let $\mathscr{H}$ be an Hilbert space and let $U \in \mathscr{B}(\mathscr{H})$. We say that $U$ is a complex unitary operator if for all $\psi,\phi \in \mathscr{H}$ we have that
+\begin{definition} (Unitary operator) Let $\mathscr{H}$ be an Hilbert space and let $U \in \mathscr{B}(\mathscr{H})$. We say that $U$ is a unitary operator if for all $\psi,\phi \in \mathscr{H}$ we have that
 \end{definition}
 
 \begin{center}
@@ -299,10 +299,10 @@ Overall, self-adjointness and unitarity provide a comprehensive framework for de
 
 \subsection{The spectrum}
 
-In the framework of quantum mechanics, the concept of the spectrum emerges as a natural consequence of the unitarity and self-adjointness of observables. The spectrum of an observable refers to the set of possible values that can be obtained when measuring the physical quantity represented by the observable. 
+The spectrum of an observable refers to the set of possible values that can be obtained when measuring the physical quantity represented by the observable. 
 
 \begin{definition}(Spectrum)
-	Given an operator $A\in\mathscr{B(\mathscr{H})}$, the spectrum $\sigma(A)$ is the set of $z\in\mathbb{C}$ such that $A$ - $z$ is not invertible.
+	Given an operator $A\in\mathscr{B(\mathscr{H})}$, the spectrum $\sigma(A)$ is the set of $z\in\mathbb{C}$ such that ($A$ - $z$) is not invertible.
 \end{definition}
 
 %The trivial spectrum of vertices and plaquette operators will be of fundamental importance to perform fault-tolerant quantum compuations, in particular for measuring whether any error has occurred during computation (see Chapter 3). 
@@ -314,6 +314,12 @@ Given two observables represented by bounded self-adjoint operators $A$ and $B$,
 
 \begin{center}
 	$[A, B] = AB - BA$.
+\end{center}
+
+and the anticommutator as
+
+\begin{center}
+	$\{A,B\} = AB + BA$.
 \end{center}
 
 The two observables commute if
@@ -336,24 +342,25 @@ In order to exemplify the above properties of the observables, we consider spin-
 
 \[
 \begin{array}{ccc}
-	\text{$S_1$} = 
+	\text{$\sigma_1$} = 
 	\begin{pmatrix}
 		0 & 1 \\
 		1 & 0
 	\end{pmatrix} &
-	\text{$S_2$} = 
+	\text{$\sigma_2$} = 
 	\begin{pmatrix}
 		0 & -i \\
 		i & 0
 	\end{pmatrix} &
-	\text{$S_3$} = 
+	\text{$\sigma_3$} = 
 	\begin{pmatrix}
 		1 & 0 \\
 		0 & -1
 	\end{pmatrix}
-\end{array}
+\end{array}.
 \]
 
+We are also going to consider $\sigma_1=\sigma_x$, $\sigma_2=\sigma_y$ and $\sigma_3=\sigma_z$.
 Pauli matrices are self-adjoint and unitary. Moreover they satisfy some specific commuation and anticommutation properties.
 
 
@@ -427,7 +434,7 @@ which correspond to:
 		1  \\
 		0 
 	\end{pmatrix} &
-\end{array}
+\end{array}.
 \]
 
 Then, we can then write:
@@ -468,11 +475,16 @@ Similarly if we compute the scalar product of two factorized states explicitly, 
 %------------------------------------
 
 \newpage
-\section{Description of the model}
+\section{Description of the Model}
 \label{sec:Model}
 
 The toric code model is defined on a square lattice with periodic boundary conditions in both directions. These latter characteristics are typical of what is known as a torus topology or simply a torus, after which the model takes name.\newline
-A square lattice, here labelled as $\mathcal{L}$, is a particular lattice defined in a two dimensional space. Such lattice is denoted as $\mathbb{Z}^{2}$ such that each lattice point is identified with a pair of integers. Though, the above mentioned boundary conditions also specify that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1)\mathrm{mod}N, j)$, $((i-1)\mathrm{mod} N, j)$, $(i, (j+1)\mathrm{mod}N)$ and $(i, (j-1)\mathrm{mod}N)$, where $N$ is the dimension of the torus. We are also going to consider a dual lattice, which will be labelled as $\mathcal{L}'$, and that will be positioned as represented in figure 1.1, where the continuous line represents the main lattice $\mathcal{L}$, while the dashed line represents its dual $\mathcal{L'}$.  \newline	
+Our lattice $\mathcal{L}$, is a subset of $\mathbb{Z}^{2}$, such that each lattice point is identified with a pair of integers. The periodic boundary conditions are imposed by specifying that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1)\mathrm{mod}N, j)$, $((i-1)\mathrm{mod} N, j)$, $(i, (j+1)\mathrm{mod}N)$ and $(i, (j-1)\mathrm{mod}N)$, where $N$ is the side-length of the torus. We are also going to consider a dual lattice, which will be denoted as $\mathcal{L}'$ and which is given by 
+
+\[
+  \mathcal{L}' = \{ (i\mathrm{mod}N +\frac{1}{2}), (j\mathrm{mod}N +\frac{1}{2})\}.
+\]
+
 Each unitary step on the lattice is identified with an edge; given the vertices or lattice points $\vec{v}=(i,j) \in V$ where $V$ coincides with $\mathcal{L}$ and the cells $\vec{p}=(i+\frac{1}{2},j+\frac{1}{2})\in P$ where $P$ coincides with $ \mathcal{L'}$ of the lattice as shown in figure 1.1, we can define the set of all edges for the lattice:
 
 \begin{definition}(Edges of $\mathcal{L}$)
@@ -489,7 +501,7 @@ Notice that we can identify each edge $e=((i,j),(i',j')) \in E$ with the vector 
 On each edge is located a spin-$\frac{1}{2}$ particle each belonging to a bidimensional Hilbert space $\mathbb{C}^2$. As a consequence we need to define a global Hilbert space for the lattice that takes into account every edge:
 
 \begin{definition}(Space of states)
-	The space of pure states of the whole system is: $\mathscr{H}= \bigotimes_{e \in E} \mathbb{C}^2$.
+	The Hilbert space of the system is: $\mathscr{H}= \bigotimes_{e \in E} \mathbb{C}^2$.
 \end{definition}
 
 For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins is to $2N^2$, where $N^2$ represents the total number of cells in $P$ and vertices in $V$ and $N$ the side length of the lattice. \newline
@@ -590,7 +602,8 @@ Notice that, all these spins exhibit are identical particles, which will play an
 		\end{tikzpicture}
 	\end{center}
 	
-	\caption{Square lattice with boundary conditions. The spins are represented with an empty circle while circles shaded in blue/red represent the boundary conditions. $\hat{e}_1$ and $\hat{e}_2$ are unitary vectors identifying the coordinate system used to identify the sites of the lattice through vectors $\vec{v}$ and $\vec{p}$ with application point in the origin of the coordinate system.}
+	\caption{Square lattice with boundary conditions. The spins are represented with an empty circle while circles shaded in blue/red represent the boundary conditions. $\hat{e}_1$ and $\hat{e}_2$ are unitary vectors identifying the coordinate system used to identify the sites of the lattice through vectors $\vec{v}$ and $\vec{p}$ with application point in the origin of the coordinate system.
+	In the following sections we are going to indicate the boundary conditions in gray.}
 	\label{fig:lattice}
 \end{figure}
 %}
@@ -659,7 +672,7 @@ The key part of the Toric Code are the so called \textit{vertex} and \textit{pla
 			{
 				
 				\draw[blue!50, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
-				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},,label=\textbf{Av}] at (-1.5,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},,label=\textbf{$A_{\vec{v}}$}] at (-1.5,\j) {};
 				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-0.5,\j) {};
 				
 			}
@@ -683,7 +696,7 @@ The key part of the Toric Code are the so called \textit{vertex} and \textit{pla
 			{
 				
 				\draw[red!70, line width=1.5mm] (\i,-1) -- (\i,0);
-				\node[draw, circle, fill=red!70,label=center:\textbf{X},label=left:\textbf{Bp}] at (\i,-0.5) {};
+				\node[draw, circle, fill=red!70,label=center:\textbf{X},label=left:\textbf{$B_{\vec{p}}$}] at (\i,-0.5) {};
 				
 			}
 			\foreach \j in {0,...,0}
@@ -758,7 +771,7 @@ The key part of the Toric Code are the so called \textit{vertex} and \textit{pla
 			{
 				
 				\draw[blue!50, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
-				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=\textbf{$A_v$}] at (-1.5,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=\textbf{$A_{\vec{v}}$}] at (-1.5,\j) {};
 				\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z} ] at (-0.5,\j) {};
 				
 			}
@@ -770,7 +783,7 @@ The key part of the Toric Code are the so called \textit{vertex} and \textit{pla
 			{
 				
 				\draw[red!70, line width=1.5mm] (\i,-1) -- (\i,0);
-				\node[draw, circle, fill=red!70,label=center:\textbf{X},label=left:\textbf{$B_p$}] at (\i,0) {};
+				\node[draw, circle, fill=red!70,label=center:\textbf{X},label=left:\textbf{$B_{\vec{p}}$}] at (\i,0) {};
 				\node[draw, circle,fill=red!70,label=center:\textbf{X}] at (\i,-1) {};
 				
 			}
@@ -796,7 +809,7 @@ The key part of the Toric Code are the so called \textit{vertex} and \textit{pla
 	We define a generic operator $A$ acting on an edge $e$ of $\mathcal{L}$ as: $A_e$=$A_{(i+\frac{i'-i}{2}, j+\frac{j'-j}{2})}$ where the tuples $(i,j),(i',j')$ uniquely identify an edge $e\in E$.
 \end{definition}
 
-\begin{definition} (Groups of neighbouring spins of $\mathcal{L}$) We define the quartets of spins sorrounding a vertex $\vec{v}$ and a plaquette $\vec{p}$ of $\mathcal{L}$, respectively, as the following groups of spins: $\mathrm{star(\vec{v})}=\{ \vec{v} \pm \frac{1}{2}\hat{e}_1, \vec{v} \pm \frac{1}{2}\hat{e}_2\}$ and $\mathrm{bdy(\vec{p})} =\{ \vec{p} \pm \frac{1}{2}\hat{e}_1, \vec{p} \pm \frac{1}{2}\hat{e}_2 \} $.
+\begin{definition} (Groups of neighbouring spins of $\mathcal{L}$) We define the quartets of spins sorrounding a vertex $\vec{v}$ and a plaquette $\vec{p}$ of $\mathcal{L}$, respectively, as the following groups of spins: ${star(\vec{v})}=\{ \vec{v} \pm \frac{1}{2}\hat{e}_1, \vec{v} \pm \frac{1}{2}\hat{e}_2\}$ and ${bdy(\vec{p})} =\{ \vec{p} \pm \frac{1}{2}\hat{e}_1, \vec{p} \pm \frac{1}{2}\hat{e}_2 \} $.
 \end{definition}
 
 Then we can define vertex and plaquette operators as:
@@ -827,7 +840,7 @@ For the sake of simplicity, we will usually omit the tensor product because ther
 
 
 
-All the elements that constitute the model of the toric code are brought together by its Hamiltonian. Definition 1.2 describes the Hamiltonian of the toric code 
+All the elements that constitute the model of the toric code are brought together by its Hamiltonian. definition 1.2 describes the Hamiltonian of the toric code 
 {according to \cite{Kit02}}. For recent reviews on the subject see \cite{Her20}.
 
 \begin{definition} (Toric Code Hamiltonian) Given vertex and plaquette operators, we can define the following Hamiltonian for the system:
@@ -965,9 +978,9 @@ Then, again $A_{\vec{v}}$ and $B_{\vec{p}}$ are involutions \newline
 
 \hfill $\square$
 
-Given proposition 1.1, we can know further characterize the opeartors in terms of their eigenvalues and define their spectrum.
+Given proposition 1.1, we can now further characterize the spectrum of the opeartors. First we prove the property of involution.
 
-\begin{proposition} (Eigenvalues of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) Given Hermitian operators $A_{\vec{v}}$ and $B_{\vec{p}}$, which satisfy the involutory property, their possible eigenvalues are $\pm 1$.
+\begin{proposition} (Eigenvalues of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) Let $A \in \mathscr{B(\mathscr{H})}$ be a self-adjoint unitary operator on a finite-dimansional Hilbert space and such that $A^2=\mathbb{I}$, thwn $\sigma(A) \in \{-1,+1\}$.
 \end{proposition}
 
 
@@ -1030,7 +1043,7 @@ Given the result of proposition 1.2, is easy to find the spectrum of the operato
 \end{proposition}
 
 \textit{Proof.}\newline
-If we choose the eigenvalues of the $\sigma^z$ and $\sigma^x$ making up, respectively, the vertex and plaquette operator, to be positive and equal to +1 we obtain the following eigenvalues assosciated with the vertex and plquette operator:
+If we choose the eigenvalues of the $\sigma^z$ and $\sigma^x$ making up, respectively, the vertex and plaquette operator, to be positive and equal to +1 we obtain the following eigenvalues assosciated with the vertex and plaquette operator:
 
 \begin{center}
 	$A_{\vec{v}} |\psi\rangle = |\psi\rangle$ \\
@@ -1050,12 +1063,25 @@ Overall, if we compute the corresponding eigenvalue of $A_{\vec{v}}$ (or $B_{\ve
 
 Given proposition 1.3, we can in fact prove that the following relationships between vertex and plaquette operators holds:
 
-\begin{proposition} (Commutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ commutes with the operator $B_{\vec{p}}$ whenever the intersection between $star(\vec{v})$ and $bdy(\vec{p})$ contains an even number of edges.
+\begin{proposition} (Commutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The commutator between two vertex or plaquette operators is always zero.
+
+\begin{center}
+	$[A_{\vec{v}},A_{\vec{v}}]=0$ 
+\end{center}
+
+\begin{center}
+	$[B_{\vec{p}},B_{\vec{p}}]=0$ 
+\end{center}
+
+\begin{center}
+	$[A_{\vec{v}},B_{\vec{p}}]=0$ 
+\end{center}
+	
 \end{proposition}
 
 
-\begin{proposition} (Anticommutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ anticommutes with the operator $B_{\vec{p}}$ whenever the intersection between $star(\vec{v})$ and $bdy(\vec{p})$ contains an odd number of edges. 
-\end{proposition}
+%\begin{proposition} (Anticommutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The operator $A_{\vec{v}}$ anticommutes with the operator $B_{\vec{p}}$ whenever the intersection between $star(\vec{v})$ and $bdy(\vec{p})$ contains an odd number of edges. 
+%\end{proposition}
 
 
 \textit{Proof.}\newline 
@@ -1243,7 +1269,7 @@ Then the $B_{\vec{p}}$ operator becomes: \newline
 	
 %\end{center}
 
-Now calcuate the commutator $[A_{\vec{v}},B_{\vec{v}}] = A_{\vec{v}}B_{\vec{v}} - B_{p}A_{v}$ by focusing on the first term: \newline
+Now calcuate the commutator $[A_{\vec{v}},B_{\vec{p}}] = A_{\vec{v}}B_{\vec{p}} - B_{p}A_{v}$ by focusing on the first term: \newline
 
 \begin{center}
 	
@@ -1533,7 +1559,7 @@ In the first case, what we get is $\sigma^{z} |\psi\rangle$ at one endpoint of t
 		\draw[black, line width=1.5mm] (-1.5, \j) -- (1, \j);
 		\draw node[draw,circle,fill=black] at (-0.5,\j) {};
 		\draw node[draw,circle,fill=black] at (0.5,\j) {};
-		\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=north:\textbf{Av}] at (-2.5,\j) {};
+		\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=north:\textbf{$A_{\vec{v}}$}] at (-2.5,\j) {};
 		\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z}] at (-1.5,\j) {};
 		
 	}
@@ -2494,7 +2520,7 @@ Through the systematic study of these excitations we discover some intrinsic fea
 %We shall now examine the case of a square lattice with boundary conditions, i.e. the toric code. \newline
 
 Taking into account the results of the previous chapters we will now proceed to describe, firstly, what are the excitations on the ground state and what kind of excitations we can obtain on it; secondly, we will study their exchange statistics. In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent deviations from the system's ground state. These excitations are associated with elementary quantum particles that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties and response to external perturbations. \newline
-In the particular case of the toric code, such low-energy excitations can be created through the application of a $S^x$ or $S^z$ string operator on the ground state (figure 1.10). Let us start by introducing some definitions that will be useful in the following.
+In the particular case of the toric code, such low-energy excitations can be created through the application of a string operator on the ground state (figure 1.10). Let us start by introducing some definitions that will be useful in the following.
 
 \begin{definition}(Adjacent edges)
 	We say that the edges  $e_1, e_2$ $\in E$ are adjacent if $e_1\neq e_2$ and $\{ \vec{v}_1, \vec{v'}_1\}$ $\cap $ $\{ \vec{v}_2, \vec{v'}_2\}$ $\neq$ $\emptyset$.
@@ -2523,11 +2549,11 @@ In the particular case of the toric code, such low-energy excitations can be cre
 After the application of string operators on strings of edges, particles are created at their endpoints. In particular we can get two distinct types of excitations (figure 1.10):
 
 \begin{definition}(Electric charges)
-	The pairs of particles obtained at the endpoints of $S^x_\ell$ are called electric charges $e$.
+	The pairs of particles obtained at the endpoints of $S^x_\ell$ are called electric charges $\epsilon$.
 \end{definition}
 
 \begin{definition}(Magnetic vortices)
-	The pairs of particles obtained through at the endpoints of $S^z_\ell$ are called magnetic vorteces $m$.
+	The pairs of particles obtained through at the endpoints of $S^z_\ell$ are called magnetic vorteces $\mu$.
 \end{definition}
 
 These excitations can be transported on the ground states by means of Pauli operators and interact with each other and with each component of the system in several ways, influencing at the same time the low energy of ground state.\newline
@@ -2589,9 +2615,9 @@ In order to understand how the string operators influence the ground state, we n
 				\draw[red!30, line width=1.5mm] (\i,-1) -- (\i,-0.5);
 				\draw[red!50, line width=1.5mm] (\i,-0.5) -- (\i,1.5);
 				\draw[red!30, line width=1.5mm] (\i,1.5) -- (\i,2);
-				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=south:\textbf{\large \bf $e$}] at (\i,-0.5) {};
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=south:\textbf{\large \bf $\epsilon$}] at (\i,-0.5) {};
 				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (\i,0.5) {};
-				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=north:\textbf{\bf \large $e$}] at (\i,1.5) {};
+				\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=north:\textbf{\bf \large $\epsilon$}] at (\i,1.5) {};
 				
 			}
 			
@@ -2601,8 +2627,8 @@ In order to understand how the string operators influence the ground state, we n
 				\draw[blue!50, line width=1.5mm] (1, \j) -- (2, \j);
 				\draw[blue!30, line width=1.5mm] (2, \j) -- (2.5, \j);
 				
-				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large \bf $m$}] at (1,\j) {};
-				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large \bf $m$}] at (2,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large \bf $\mu$}] at (1,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large \bf $\mu$}] at (2,\j) {};
 				
 			}
 			
@@ -2610,7 +2636,7 @@ In order to understand how the string operators influence the ground state, we n
 		\end{tikzpicture}
 	\end{center}
 	
-	\caption{$e$ and $m$ excitations on the ground state.}
+	\caption{$\epsilon$ and $\mu$ excitations on the ground state.}
 	\label{fig:excitations}
 \end{figure}
 
@@ -2726,7 +2752,7 @@ This procedure should be iterated also for the other extremity of the string $S^
 				
 				\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (-1.5, \j);
 				
-				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z_1$},label=north:\textbf{Av}] at (-2.5,\j) {};
+				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z_1$},label=north:\textbf{$A_{\vec{v}}$}] at (-2.5,\j) {};
 				\draw node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z_2$}] at (-1.5,\j) {};
 				
 			}
@@ -2736,7 +2762,7 @@ This procedure should be iterated also for the other extremity of the string $S^
 				
 				\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (-1.5, \j);
 				
-			    \node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$},label=north:\textbf{Av}] at (-2.5,\j) {};
+			    \node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$},label=north:\textbf{$A_{\vec{v}}$}] at (-2.5,\j) {};
 				\node[draw,circle,fill=blue!50,label=center:\textbf{$\sigma^z$}] at (-1.5,\j) {};
 				
 			}
@@ -2952,7 +2978,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 			%\draw node[label=north:\textbf{ \large $e_1$}] at (-1,\j) {};
 			\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
 			%\draw node[label=north:\textbf{ \large $e_2$}] at (0,\j) {};
-			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{ \large $e_1$},label=right:\textbf{ \large $e_2$}] at (-0.5,1) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{ \large $\epsilon_1$},label=right:\textbf{ \large $\epsilon_2$}] at (-0.5,1) {};
 			
 		}
 		
@@ -3012,7 +3038,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 		{
 			
 			\draw[red!50, line width=1.5mm] (-1, \j) -- (-0, \j);
-			\draw node[label=center:\textbf{\large $e_2$}] at (0,\j) {};
+			\draw node[label=center:\textbf{\large $\epsilon_2$}] at (0,\j) {};
 			%\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
 			
 			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,1) {};
@@ -3047,11 +3073,11 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 		{
 			
 			\draw[red!50, line width=1.5mm] (\i,-0.4) -- (\i,0.4);
-			\draw node[label=north:\textbf{\large $e_1$}] at (\i,0.5) {};
+			\draw node[label=north:\textbf{\large $	\epsilon_1$}] at (\i,0.5) {};
 			%\draw[blue!50, line width=1.5mm] (\i,0) -- (\i,0);
 			\draw[red!50, line width=1.5mm] (\i,-1) -- (\i,-0.6);
 			
-			\node[draw, circle, fill=red!50,,label=center:\textbf{$\sigma^x$}] at (1,0.5) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (1,0.5) {};
 			\draw[red!50, line width=1.5mm] (\i,0.3) -- (\i,1);
 			
 		}
@@ -3114,7 +3140,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 		{
 			
 			\draw[red!50, line width=1.5mm] (0, \j) -- (1, \j);
-			\draw node[label=center:\textbf{\large $e_1$}] at (0,\j) {};
+			\draw node[label=center:\textbf{\large $\epsilon_1$}] at (0,\j) {};
 			\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (0.5,\j) {};
 			%\draw node[label=center:\textbf{e2}] at (0,\j) {};
 			%\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
@@ -3128,7 +3154,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 			
 			\draw[red!50, line width=1.5mm] (\i,-1) -- (\i,0.5);
 			\draw[red!50, line width=1.5mm] (\i,0.7) -- (\i,1);
-			\draw node[label=center:\textbf{\large $e_2$}] at (\i,1) {};
+			\draw node[label=center:\textbf{\large $\epsilon_2$}] at (\i,1) {};
 			
 			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-1,0.5) {};
 			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-1,-0.5) {};
@@ -3219,7 +3245,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 			%\draw node[label=north:\textbf{ \large $e_1$}] at (-1,\j) {};
 			\draw[red!50, line width=1.5mm] (-0.5, \j) -- (0, \j);
 			%\draw node[label=north:\textbf{ \large $e_2$}] at (0,\j) {};
-			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{ \large $e_2$},label=right:\textbf{ \large $e_1$}] at (-0.5,1) {};
+			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{ \large $\epsilon_2$},label=right:\textbf{ \large $\epsilon_1$}] at (-0.5,1) {};
 			
 		}
 		
@@ -3227,7 +3253,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 \end{center}
 
 
-\caption{In the first picture we show the creation of a pair of $e$-excitations on the ground state by means of $\sigma^x$ operator. In the following pictures we move around the excitations using a string operator until we reach the configuration in the third picture. In the last passage we apply a closed loop of $\sigma^x$ in order to go back to the first kind of configuration. {\cite{Rao16}}. }
+\caption{In the first picture we show the creation of a pair of $\epsilon$-excitations on the ground state by means of $\sigma^x$ operator. In the following pictures we move around the excitations using a string operator until we reach the configuration in the third picture. In the last passage we apply a closed loop of $\sigma^x$ in order to go back to the first kind of configuration {\cite{Rao16}}. }
 \label{fig:base}
 \end{figure}
 
@@ -3261,7 +3287,7 @@ We can now analyze the statistics of $e$-particles in the context of the ground 
 \section{Anyonic Excitations}
 \label{sec:AE}
 
-Let us examine the mutual statistics between $e$ and $m$ particles by means of an example. \cite{Rao16}. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x_{\ell}$ and $S^z_{\ell}$ operators as shown in figure 1.16. Afterward, we separate the excitations using string operators and we move an $e$-particle around an $m$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign {\cite{Kit02}}.
+Let us examine the mutual statistics between $\epsilon$ and $\mu$ particles by means of an example. \cite{Rao16}. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x_{\ell}$ and $S^z_{\ell}$ operators as shown in figure 1.16. Afterward, we separate the excitations using string operators and we move an $\epsilon$-particle around an $\mu$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must pass beyond a $\sigma^x$ spin, resulting in an anticommutation and thus introducing a minus sign {\cite{Kit02}}.
 The closed loop can be eliminated, leading to the following transformation:
 
 \begin{center}
@@ -3271,7 +3297,7 @@ The closed loop can be eliminated, leading to the following transformation:
 if we denote the exchange operator as {\it the braiding operator} $R$ (see \cite{Rao16}) then, according to what we said in section 1.4.1, the wave function relation should be the following:
 
 \begin{center}
-	$R^2\psi(e,m) = - \psi(e,m)$
+	$R^2\psi(\epsilon,\mu) = - \psi(\epsilon,\mu)$
 \end{center}
 
 since we are going all the way around the particle, we assume to have two exchanges in 2D. Then we simply find out that:
@@ -3338,9 +3364,9 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 				
 				\draw[red!50, line width=1.5mm] (-2, \j) -- (1, \j);
 				%\draw node[] at (0,\j) {};
-				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=right:\textbf{\large $e$}] at (0.5,\j) {};
+				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=right:\textbf{\large $\epsilon$}] at (0.5,\j) {};
 				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,\j) {};
-				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{\large $e$}] at (-1.5,\j) {};
+				\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{\large $\epsilon$}] at (-1.5,\j) {};
 				
 			}
 			
@@ -3351,8 +3377,8 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 				\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (0.5, \j);
 				
 				
-				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large $m$}] at (-2,\j) {};
-				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large $m$}] at (0,\j) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large $\mu$}] at (-2,\j) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large $\mu$}] at (0,\j) {};
 				\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$}] at (-1,\j) {};
 				
 			}
@@ -3362,7 +3388,7 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 	\end{center}
 	
 	
-	\caption{Creation of the $e$-excitations and $m$-excitations.}
+	\caption{Creation of the $\epsilon$-excitations and $\mu$-excitations.}
 	\label{fig:anyons1}
 \end{figure}
 
@@ -3421,7 +3447,7 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 			%\draw node[] at (0,\j) {};
 			\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (0.5,\j) {};
 			\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-0.5,\j) {};
-			\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{\large $e$}] at (-1.5,\j) {};
+			\draw node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$},label=left:\textbf{\large $\epsilon$}] at (-1.5,\j) {};
 			
 		}
 		
@@ -3429,7 +3455,7 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 		{
 			
 			\draw[red!50, line width=1.5mm] (\i,-1) -- (\i,1);
-			\draw node[label=center:\textbf{\large $e$}] at (\i,1) {};
+			\draw node[label=center:\textbf{\large $\epsilon$}] at (\i,1) {};
 			
 			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-1,0.5) {};
 			\node[draw, circle, fill=red!50,label=center:\textbf{$\sigma^x$}] at (-1,-0.5) {};
@@ -3465,8 +3491,8 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 			\draw[blue!50, line width=1.5mm] (-2.5, \j) -- (0.5, \j);
 			
 			
-			\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large $m$}] at (-2,\j) {};
-			\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large $m$}] at (0,\j) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=left:\textbf{\large $\mu$}] at (-2,\j) {};
+			\node[draw, circle, fill=blue!50,label=center:\textbf{$\sigma^z$},label=right:\textbf{\large $\mu$}] at (0,\j) {};
 			\node[draw, circle, fill=purple!70,label=center:\textbf{$\pm$}] at (-1,\j) {};
 			
 		}
@@ -3476,7 +3502,7 @@ this results falls out of the usual bosonic/fermionic statistics, thus we can sa
 \end{center}
 
 
-\caption{Creation of an anyonic excitation by braiding of $e$ and $m$ pairs of particles. Here we loop the $e$-excitation around an $m$-excitation. The red loop can be removed with the result that the ground states acquires a phase.}
+\caption{Creation of an anyonic excitation by braiding of $\epsilon$ and $\mu$ pairs of particles. Here we loop the $\epsilon$-excitation around an $\mu$-excitation. The red loop can be removed with the result that the ground states acquires a phase.}
 \label{fig:anyons}
 \end{figure}
 
