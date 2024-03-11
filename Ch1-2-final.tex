@@ -3808,7 +3808,7 @@ Conversely, in (2.2) we consider an initial state $|k \rangle $ and an orthogona
 \end{equation}
 
 in order for {(2.1)} and {(2.2)} to be equal to zero, the order of the perturbation must be less than $ \frac{N}{2}$, where $N$ is the length of the side of the lattice. 
-This boundary comes from the fact that for $n < \frac{N}{2}$ the effect of the perturbation is of the order of $O(\lambda^{2n})$. Therefore, the toric code is not subject to local perturbations because such perturbations are of size much smaller than the size of the torus.
+This boundary comes from the fact that for $n < \frac{N}{2}$ the effect of the perturbation is of the order of $O(\lambda^{2n})$; for such order the toric code is not subject to local perturbations because such perturbations are of size much smaller than the size of the torus.
 
 %image
 \begin{figure}
@@ -3831,16 +3831,19 @@ This boundary comes from the fact that for $n < \frac{N}{2}$ the effect of the p
 		\end{tikzpicture}
 		
 	\end{center}
-	\caption{Consider the two big circles a visual representation of the state spaces of which $|\psi\rangle$ and $|k\rangle$ are part of. The distance between the eigenstates is N representing the lenght of a non-contactible loop that we need to transition between the two states. In order to safeguard the integrity of the two states (no overlap of the circles) we have a margin equal to $\frac{N}{2}$ for each state, which corresponds to the entity of the perturbation that the system can bear. }
+	\caption{Consider the two big circles a visual representation of the state spaces of which $|\psi\rangle$ and $|k\rangle$ are part of. The distance between the eigenstates is N representing the length of a non-contactible loop that we need in order to be able to transition between the two states. In order to safeguard the integrity of the two states (no overlap of the circles) we have a margin equal to $\frac{N}{2}$ for each state, which corresponds to the entity of the perturbation that the system can bear. }
 	\label{fig:QEC}
 \end{figure}
 
 
-In order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation should be of the order of $n < \frac{N}{2}$. To summarize, the eigenstates have no overlap in their quantum properties and thus no transition is allowed between these two states only for $n < \frac{N}{2}$. The interpretation in terms of quantum error-correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$. \newline
-%This result also suggests that for $n \geq \frac{N}{2}$ theorem 2.5 does not apply anymore as the resulting codeword would diverge from the space of the codewords and quantum information would be too corrupted by noise to be recoverable. \newline
+To summarize, we can state that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation should be of the order of $n < \frac{N}{2}$. 
+Indeed, when it comes to error correction we in principle convert an erroneous state into the one which is closer to it, i.e. into the one with minimum distance from it, because it takes less effort to do so. For instance, if a perturbation is of the order of $\frac{3N}{2}$ it would be more convienient to close the error string into a non-contractible loop rather than erasing it.
+Overall, the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$ (see figure 2.3). \newline
+
 %\newline
 % There are 2L2 physical qubits in the code, N^2−1 plaquette and N^2−1 vertex
 % operators. There are therefore 2N^2−2(2N^2) = 2 encoded qubits. 
+
 Thus, for $n < \frac{N}{2}$ we can use the toric code to encode two qubits of information in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the ground states of the Hamiltonian of the system. 
 The method for encoding information in the toric code lies in the topological nature of the ground states. In fact, instead of directly manipulate individual qubits to store quantum information, we manipulate the entire lattice to encode and protect the logical qubit. The encoding is realized through operations on the qubits in such a way that we create the anyonic excitations presented in section 1.5. As already discussed, anyons follow specific rules, like braiding around each other, that allow us to encode the quantum information we want to store.\newline 
 
