@@ -3795,21 +3795,22 @@ Broadly speaking, errors refer to the unintentional changes or flips in the phys
 	V = $\lambda \sum_{j} \sigma^x_j $
 \end{center}
 
-such that $\lambda << 1 $, representing a reasonable perturbation with $j$ running over all the edges of the lattice. \cite{Kit02}. The ground states of the toric code Hamiltonian are protected from local perturbations of the form that we have described above but only if they are of moderate entity. In order to determine such entity of the noise we compute the below expectation. In (2.1) we consider an initial state $|k \rangle $ and a different orthogonal state $ |\psi \rangle $ both part of the ground state of the Hamiltonian: 
+such that $\lambda \ll 1 $\cite{Kit02}. The ground states of the toric code Hamiltonian are protected from local perturbations of the form that we have described above but only if they are of moderate entity. In order to determine such entity we apply perturbation theory. Given an initial state $|k \rangle $ and a different orthogonal state $ |\psi \rangle $ both ground states of the toric code Hamiltonian, we have
 %if we want to know how much these states overlap, after having applied the perturbation $V$ for $n$ times, we compute the following terms:
 
 \begin{equation}
-	 \langle GS |V^n| GS \rangle=0.                                    
+	 \langle \psi |V^n| k \rangle=0.                                    
 \end{equation}
 
-Conversely, in (2.2) we consider an initial state $|k \rangle $ and an orthogonal state $ |\psi \rangle $, such that they belong, respectively, to a class $i$ and a class $j$ among the ones discussed in section 1.3:
+%Conversely, in (2.2) we consider an initial state $|k \rangle $ and an orthogonal state $ |\psi \rangle $, such that they belong, respectively, to a class $i$ and a class $j$ among the ones discussed in section 1.3:
 
-\begin{equation}
-     \langle \psi|V^n| k \rangle=0  
-\end{equation}
+%\begin{equation}
+  %   \langle \psi|V^n| k \rangle=0  
+%\end{equation}
 
-in order for {(2.1)} and {(2.2)} to be equal to zero, the order of the perturbation must be less than $ \frac{N}{2}$, where $N$ is the length of the side of the lattice. 
-This boundary comes from the fact that for $n < \frac{N}{2}$ the effect of the perturbation is of the order of $O(\lambda^{2n})$; for such order the toric code is not subject to local perturbations because such perturbations are of size much smaller than the size of the torus.
+%in order for {(2.1)} and {(2.2)} to be equal to zero, 
+where we assumed that the order of the perturbation is less than $ \frac{N}{2}$, where $N$ is the length of the side of the lattice. 
+If $n < \frac{N}{2}$, then the effect of the perturbation is of the order of $O(\lambda^{2n})$; for such order the toric code is not subject to local perturbations if their size is much smaller than the size of the torus.
 
 %image
 \begin{figure}
@@ -3838,23 +3839,23 @@ This boundary comes from the fact that for $n < \frac{N}{2}$ the effect of the p
 
 
 To summarize, we can state that in order not to diverge from the state space of which state $| k \rangle$  is part of, the perturbation should be of the order of $n < \frac{N}{2}$. 
-Indeed, when it comes to error correction we in principle convert an erroneous state into the one which is closer to it, i.e. into the one with minimum distance from it, because it takes less effort to do so. For instance, if a perturbation is of the order of $\frac{3N}{2}$ it would be more convienient to close the error string into a non-contractible loop rather than erasing it.
-Overall, the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$ (see figure 2.3). \newline
+The interpretation in terms of quantum error correction is that the codewords are maximally distinguishable and therefore not corrupted by noise only for a perturbation of the order of $n < \frac{N}{2}$ (see figure 2.3). 
+Indeed, when it comes to error correction we in principle convert an erroneous state into the one which is closer to it, i.e. into the one with minimum distance from it, because it takes less effort to do so. For instance, if a perturbation is of the order of $\frac{3N}{2}$ it would be more convienient to close the error string into a non-contractible loop rather than erasing it. \newline
 
 %\newline
 % There are 2L2 physical qubits in the code, N^2−1 plaquette and N^2−1 vertex
 % operators. There are therefore 2N^2−2(2N^2) = 2 encoded qubits. 
 
-Thus, for $n < \frac{N}{2}$ we can use the toric code to encode two qubits of information in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. The physical qubits are arranged on the edges of the lattice but the logical qubits are encoded in the ground states of the Hamiltonian of the system. 
-The method for encoding information in the toric code lies in the topological nature of the ground states. In fact, instead of directly manipulate individual qubits to store quantum information, we manipulate the entire lattice to encode and protect the logical qubit. The encoding is realized through operations on the qubits in such a way that we create the anyonic excitations presented in section 1.5. As already discussed, anyons follow specific rules, like braiding around each other, that allow us to encode the quantum information we want to store.\newline 
+Thus, for $n < \frac{N}{2}$ we can use the toric code to encode two qubits of information in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. The physical qubits are stored on the spins of the lattice but the logical qubits are encoded in the ground states of the Hamiltonian of the system. 
+The method for encoding information in the toric code lies in the topological nature of the ground states. In fact, instead of directly manipulate individual qubits to store quantum information, we manipulate the entire lattice to encode and protect the logical qubit. The protection is due to the fact that errors generate the anyonic excitations presented in section 1.5. As already discussed, anyons follow specific rules, like braiding around each other, that allow us to protect the quantum information we want to store.\newline 
 
 %We can do more than just store information. In fact, we can perform fault-tolerant computation using the same anyonic framework that we have described above. \newline
 %In the context of the toric code, gates are relized through braiding of pairs of anyons. As shown in figure 2.3, we can follow the braiding of anyons in time and exchange them multiple times so that we are able to create different quantum operations. \newline
-We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pairs of anyons. It is important to mention that with braiding operations we cannot reach the entire bloch sphere of a qubit, so some quantum gates that are required for quantum universal computation will be missing from the set that we can create with braiding. Such missing operations can be supplemented through not topologically protected operations on the qubits, but which will of course have lower reliability. \newline
+%We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pairs of anyons. It is important to mention that with braiding operations we cannot reach the entire bloch sphere of a qubit, so some quantum gates that are required for quantum universal computation will be missing from the set that we can create with braiding. Such missing operations can be supplemented through not topologically protected operations on the qubits, but which will of course have lower reliability. \newline
 
 We can reframe all of the above physical information into the usual logical framework by relabelling the orthogonal ground states as logical sates: $|00\rangle$, $|01\rangle$, $|10\rangle$ and $|11\rangle$, in such a way that we are able to identify logical gates into those represented in figure 2.4 labelled as: $\overline{X}_1$,$\overline{X}_2$,$\overline{Z}_1$,$\overline{Z}_2$. \newline 
 Such gates can be seen as string operators that create pairs of excitations that self-annihilate at the endpoints by winding all the way around the torus. 
-These non-contractible loops play a crucial role in encoding quantum information in the toric code. In fact, the logical states of the two encoded qubits are determined by whether these loops are traversed an even or odd number of times. \newline
+These non-contractible loops play a crucial role in encoding quantum information in the toric code. In fact, the logical states of the two encoded qubits are determined by whether these loops are crossed an even or odd number of times. \newline
 Overall we can determine the action of $\overline{X}_1$ as the logical gate maps $|00\rangle$ to $|10\rangle$, while $\overline{Z}_1$ as the logical gate that maps $|00\rangle$ to $|00\rangle$ and $|10\rangle$ to -$|10\rangle$. \newline
 Similarly, the action of $\overline{X}_2$ logical gate maps $|00\rangle$ to $|01\rangle$, while $\overline{Z}_2$ maps $|11\rangle$ to $|11\rangle$ and $|01\rangle$ to -$|01\rangle$. For further details see \cite{Her20}.\newline
 
@@ -3991,21 +3992,21 @@ We know that the Hilbert space of the ground states of the toric code is compose
 	$B_{\vec{p}}|\psi\rangle $ = $|\psi\rangle $.
 \end{center}
 
-When errors occur on a given quantum state $|\psi\rangle$, the resulting state will diverge from such state space, as the constraints defined above would not be respected anymore. This is because, due to errors, there would be some vertex or plauqette operators that yield eigenvalue equal to -1. \newline
-By coupling simultaneous measurements of vertex and plaquette operators with the anyonic nature of the excitations we can find methods to identify and correct errors whenever it is possible. In the following paragraphs we briefly discuss how errors can be described as anyon pairs and consequently we will identify several error scenarios and study the relative error syndromes and corrective actions that can be applied. \newline
+When errors occur on a given ground state $|\psi\rangle$, the resulting state does not belong anymore to the ground state manifold. This is because, due to errors, there would be some vertex or plauqette operators that yield eigenvalue equal to -1. \newline
+By combining simultaneous measurements of vertex and plaquette operators with the anyonic nature of the excitations, we can find methods to identify and correct errors whenever it is possible. In the following paragraphs, we briefly discuss how errors can be described as anyon pairs and consequently we will identify several error scenarios and study the relative error syndromes and corrective actions that can be applied. \newline
 
 %1. Errors Adjacent to Vertices:
-Due to the commutation and anticommutation properties of string operators that we have discussed in the previous sections, we can say that vertex operators are designed to detect an odd number of bit-flips errors that occur in the neighbourhood of the vertex on which they are applied. When an error affects a qubit adjacent to such vertex, it can disrupt the commuting relationship between the Pauli operators making up the vertex operator. As a result, the measurement outcome of the vertex operator may deviate from its expected +1 eigenvalue: 
+Due to the commutation properties of string operators that we have discussed in the previous sections, we can say that vertex operators are designed to detect an odd number of bit-flips errors that occur in the neighbourhood of the vertex on which they are applied. When an error affects a qubit adjacent to such vertex, it can disrupt the commuting relationship between the Pauli operators making up the vertex operator. As a result, the measurement outcome of the vertex operator may deviate from its expected +1 eigenvalue, i.e.
 
 \begin{center}
 	$A_{\vec{v}}|\phi\rangle $ = -$|\phi\rangle $.
 \end{center}
 
-This deviation indicates that an error has occurred adjacently to the vertex $\vec{v}$. However, the measurement of the a single vertex operator is not sufficient to detect the exact position of the error. Moreover, an $e$-excitation is created in the vertex $v$, represented by the minus sign that is yielded by the vertex operator. Since excitations are alwas created in pairs, we can assume another excitation of the same kind is present at the other endpoint of the error string. \newline
+This deviation indicates that an error has occurred adjacently to the vertex $\vec{v}$. However, the measurement of the a single vertex operator is not sufficient to detect the exact position of the error. Moreover, an $\epsilon$-excitation is created in the vertex $\vec{v}$. Since excitations are always created in pairs, we can assume another excitation of the same kind is present at the other endpoint of the error string. \newline
 %2. Errors in Plaquette Regions:
-In view of the duality between vertex and plaquette operators, plaquette operators are designed to detect an odd number of phase-shift errors that occur within plaquette regions. When an error affects a qubit within such region, it alters the state of those qubits. As a result, the product of Pauli operators making up the plaquette operator may no longer commute with the qubit affected by the error. Consequently, the measurement outcome of the plaquette operator will not output its expected eigenvalue. This deviation indicates that an error has occurred within the plaquette region. This error is associated with the creation of an $m$-excitation in the application site $p$ of the plaquette operator. \newline
+In view of the duality between vertex and plaquette operators, plaquette operators are designed to detect an odd number of phase-shift errors that occur within plaquette regions. When an error affects a qubit within such region, it alters the state of those qubits. As a result, the product of Pauli operators making up the plaquette operator may no longer commute with the qubit affected by the error. Consequently, the measurement outcome of the plaquette operator will not output its expected eigenvalue. This deviation indicates that an error has occurred within the plaquette region. This error is associated with the creation of an $\mu$-excitation in the application site $\vec{p}$ of the plaquette operator. \newline
 
-Overall, errors on the toric code can be more complex than the simple creation of anyon pairs; though, as mentioned in \cite{Kas19,Bro14}, in order to be able to correct them we only need to know how to correct errors given through $\sigma^x$ and $\sigma^z$ oepartors in order to be able to erase all of the other combinations. Anyon pairs are connected through paths that we have named {\it error strings}. We are now going to discuss three main error scenarios that can arise: in the first case, isolated error strings are created, resulting in anyon pairs on the lattice; in the second case, anyons pairs may self-annihilate by forming contractible closed loops, resulting in no error; in the third case, we can get a non-contactible loop and thus creates a logical operation on the quantum state. \newline
+More in general, errors on the toric code can be more complex than the simple creation of anyon pairs; though, as mentioned in \cite{Kas19,Bro14}, in order to be able to correct them we only need to know how to correct errors generated through $\sigma^x$ and $\sigma^z$ operators. Anyon pairs are connected through paths that we have named {\it error strings}. We are now going to discuss the three main error scenarios that can arise: in the first case, isolated error strings are created, resulting in anyon pairs on the lattice; in the second case, anyons pairs may self-annihilate by forming contractible closed loops, resulting in no error; in the third case, we can get a non-contactible loop and thus creates a logical operation on the quantum state. \newline
 In order to better clarify the above concepts, we take as example a bit-flip error that could occur on the lattice and always assume an odd number of errors involved in each vertex operator. There are three possible ways an error could occur, as depicted in figure 2.6: 
 
 \begin{enumerate}
@@ -4234,7 +4235,7 @@ In order to better clarify the above concepts, we take as example a bit-flip err
 \end{figure}
 
 
-Such errors can be detected through  simultaneous measurement of vertex (and plaquette) operators of the Hamiltonian (figure 2.7). The fact that the vertex and plaquette operators commute with each other (Proposition 1.4) along with the fact that the states in the ground states are eigenfunctions of the vertex and plaquette operators (Proposition 1.6) and the fact that string operators commute and anticommute with $A_{\vec{v}}$ and $B_{\vec{p}}$ operators (Proposition 1.10, which states that the anyonic excitations are eigenfunctions of vertex and plaquette operators with eigwnvalues +1 or -1) allows us to measure the operators without destrying the initial given state. In practice, is is posssible to measure, on the same physical state, all the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators withouth modifying the underlying state. The resulting measurements are called {\it error syndrome}, which only gives information about the endpoints of the strings of the errors giving no information about the way two endpoints were connected. \cite{Den02}. As a consequence what we do is using algorithms that estimate the way errors formed by connecting pairs of endpoints by selecting the shortest string that connects two -1 eigenvalues yielded by the vertex operators, i.e. we make use of the minium distance between two -1 eigenvalues. \newline
+Such errors can be detected through  simultaneous measurement of vertex (and plaquette) operators of the Hamiltonian (figure 2.7). The fact that the vertex and plaquette operators commute with each other (Proposition 1.4) along with the fact that the states in the ground state manifold are eigenfunctions of the vertex and plaquette operators (Proposition 1.6) and the fact that string operators commute and anticommute with $A_{\vec{v}}$ and $B_{\vec{p}}$ operators (Proposition 1.10, which states that the anyonic excitations are eigenfunctions of vertex and plaquette operators with eigwnvalues +1 or -1) allows us to measure the operators without destrying the initial given state. In practice, it is is posssible to measure, on the same physical state, all the $A_{\vec{v}}$ and $B_{\vec{p}}$ operators withouth modifying the underlying state. The resulting measurements are called {\it error syndrome}, which gives information about the error strings \cite{Den02}. As a consequence what we do is using algorithms that estimate the way errors formed by connecting pairs of endpoints by selecting the shortest string that connects two -1 eigenvalues yielded by the vertex operators, i.e. we make use of the minium distance between two -1 eigenvalues. \newline
 
 \begin{figure}
 	\begin{center}
@@ -4342,13 +4343,13 @@ Such errors can be detected through  simultaneous measurement of vertex (and pla
 
 
 
-If we consider a bit-flip error as above and we assume to start from a state $|00\rangle$ where we have no loop, we also determine three different error scenarions for error-correction, as depicted in figure 2.8: 
+Given a bit-flip error as above, starting from a state $|00\rangle$ where we have no loop, we also determine three different error scenarions for error-correction, as depicted in figure 2.8: 
 
 \begin{enumerate}
 	\item First scenario: the algorithm correctly identifies an error string and erases it by applying the inverse of the Pauli operator that caused it;
 	
 	\item Second scenario: the algorithm connects two endpoints of an error string. Since there are several paths of the same length that can connect two endpoints, it might happen that we fail to correctly select all the edges involved and end up flipping previously correct ones. This would mean propagating the error on the lattice. \newline 
-	Moreover, we can also end up into two situations: we could obtain contractible loops or we could end up having a non-contractible loop, which irremediably damages quantum information since we wouldn't be able to detect the two endpoints anymore due to their overlap.
+	Moreover, we can also end up into two situations: we could obtain contractible loops or we could end up having a non-contractible loop, which irremediably damages quantum information since we would not be able to detect the two endpoints anymore due to their overlap.
 	
 	\item Third scenario: we connect separate open error strings into a single one. Then, the feasibility of erasing the error can be divided in the two cases discussed in the scenario above: we form a contractible closed loop or we end up with a non-contractible loop. 
 	
@@ -4357,8 +4358,8 @@ If we consider a bit-flip error as above and we assume to start from a state $|0
 
 Overall, the error-correction can be said to be effective whenever we end up in scenario 1 or in scenario 2 and 3 but only by forming contractible loops that leave the state unaltered. \newline
 
-As a consequence, what we would like to do is decreasing the probability of uncorrectable errors. There exist two known methods to achieve this goal. The first method involves increasing the size of the torus; by doing so, we would require a bigger number of erroneous edges in order to make a full revolution of the dimension of the torus to form a non-contractible loop. Notice that this would mean to increase the Hamming distance of the code.\newline 
-The second method involves reducing the probability $p$ with which each edge is flipped in between distinct simulatneous measuremets. In this way the errors would tend not to propagate far away from where they originated and could thus be detected and corrected in an easier way. When $p$ increases, ambiguity arises due to the fact that it would become more and more challenging to correclty identify paths connecting anyon pairs with acceptable accuracy; thus, error-correction may not succeed \cite{Zbi19}. \newline
+As a consequence, the goal is to decrease the probability of uncorrectable errors. There exist two known methods to achieve this goal. The first method involves increasing the size of the torus; by doing so, we increase the number of erroneous edges needed to form a non-contractible loop. Notice that this would mean to increase the Hamming distance of the code.\newline 
+The second method involves reducing the probability $p$ with which each edge is flipped. In this way the errors would tend not to propagate far away from where they originated and could thus be detected and corrected in an easier way. When $p$ increases, ambiguity arises due to the fact that it would become more and more challenging to correclty identify paths connecting anyon pairs with acceptable accuracy; thus, error-correction may not succeed \cite{Zbi19}. \newline
 % The reduction of $p$ can be realized by measuring subsequent error syndromes more often, thus incraesing the frequency with which we produce syndrome measurements.
 \newline
 
@@ -4771,7 +4772,7 @@ In conclusion, the understanding of the non-trivial relationship between syndrom
 %\bibliography{Thesis_bibliography} % The references information are stored in the file named "Thesis_bibliography.bib"
 \begin{thebibliography}{99} % Replace '99' with the widest label in your bibliography
 	\bibitem[Cor23]{Cor23} M. Correggi, \textit{Aspetti Matematici della Meccanica Quantistica}, unpublished, 2023.
-	\bibitem[Her20]{Her20} P. Herringer, "The Toric Code", {\it RP}, 2020.
+	\bibitem[Her20]{Her20} P. Herringer, "The Toric Code", {\it Rutgers Physics}, 2020.
 	\bibitem[Kit02]{Kit02} A. Yu. Kitaev, "Fault-tolearnt quantum computation by anyons", {\it Annals of Physics}, 2-30, 2002.
 	\bibitem[Rao16]{Rao16} S. Rao, "Introduction to abelian and non-abelian anyons", {\it Harish-Chandra Research Institute}, 1-20, {2016}.
 	\bibitem[Wil91]{Wil91} F. Wilczek, "Anyons", {\it Scientific American}, 58-65, 1991.
