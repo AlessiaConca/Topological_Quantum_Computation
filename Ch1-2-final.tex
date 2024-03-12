@@ -2871,13 +2871,13 @@ Consequently, the Hilbert space of a quantum system of indistinguishable particl
 To visualize the behaviour described above, consider the case where the relative coordinate of the particles is constrained to move on a sphere. Closed paths emerge when particles return to their original positions (no exchange) or reach the antipodal point (exchange). In fact, we will have three distinct types of paths (figure 1.12): 
 
 %picture
-\begin{center}
+\begin{itemize}
 	\item[(a)]: closed loops without exchange; they can disappear if reduced to a point, implying that the wave-function cannot acquire any phase; 
 	
 	\item[(b)] : involve a single exchange; they connect two fixed points on the sphere, making it impossible to erase them. Consequently, this types of exchanges introduce a phase in the wave-function;
 	
 	\item[(c)] : closed loops with two exchanges, as in case 1; as a result, also in this case the wavefunction does not acquire any additional phase.
-\end{center}
+\end{itemize}
 
 \begin{figure}
 	\centering
@@ -2903,15 +2903,15 @@ In contrast to what stated above, take a system of $N$ indistinguishable particl
 \end{center}
 
 where $R$ represents the braiding operator, which corresponds to the exchange operator for particles in two dimensions. The resulting statistics is characterized according to the braiding group  $\mathbb{B_N}$. We can visualise the process of moving (or exchanging) particles as paths in spacetime with time being the vertical axis and space being the horizontal axis (figure 1.14). The particles can circle around each other and form closed paths by coming back to their original positions {\cite{Wil91}}. For further details see {\cite{Rao16, Wil91}}.
-To visualize the above behaviour, consider moving particles on a circle. This time several possible paths are possible, in particular closed paths. In fact, if we classify again the possible paths as we did before, this time we obtain these three classes (figure 1.13):
+To visualize the above behaviour, consider moving particles on a circle. This time several possible paths are possible, in particular closed paths. In fact, if we classify again the possible paths as we did before, this time we obtain these three classes (figure 1.13): 
 
-\begin{center}
+\begin{itemize}
 	\item[(a)] : those that can be shrunk into a point;
 
 	\item[(b)] : those that cannot be contracted into a point as the endpoints remain fixed;
 
 	\item[(c)] : also this kind of paths cannot be shrunk into a point since they wind all  the way around the circle. Notice that in three dimensions the path corresponding to two exchanges is equivalent to no exchange at all, while this is not possible in two dimensions. This will be crucial for the existence of intermidiate statistics that exist only in 2D (section 1.5).
-\end{center}
+\end{itemize}
 
 \begin{figure}[H]
 	\centering
@@ -3546,7 +3546,7 @@ The noisy channel described in picture 2.1 is one of the easiest error models al
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{../Thesis/324193_2_En_1_Fig3_HTML}
-	\caption{{ Binary symmetric channel. From: \cite{Cha06}}}
+	\caption{{ Binary symmetric channel \cite{Cha06}}}
 	\label{fig:3241932en1fig3html}
 \end{figure}
 
@@ -3844,10 +3844,6 @@ Indeed, when it comes to error correction we in principle convert an erroneous s
 
 Thus, for $n < \frac{N}{2}$ we can use the toric code to encode two qubits of information in a large number of physical qubits arranged on the squared lattice in such a way that the logical qubit can be protected from noise. The physical qubits are stored on the spins of the lattice but the logical qubits are encoded in the ground states of the Hamiltonian of the system. 
 The method for encoding information in the toric code lies in the topological nature of the ground states. In fact, instead of directly manipulate individual qubits to store quantum information, we manipulate the entire lattice to encode and protect the logical qubit. The protection is due to the fact that errors generate the anyonic excitations presented in section 1.5. As already discussed, anyons follow specific rules, like braiding around each other, that allow us to protect the quantum information we want to store.\newline 
-
-%We can do more than just store information. In fact, we can perform fault-tolerant computation using the same anyonic framework that we have described above. \newline
-%In the context of the toric code, gates are relized through braiding of pairs of anyons. As shown in figure 2.3, we can follow the braiding of anyons in time and exchange them multiple times so that we are able to create different quantum operations. \newline
-%We can have the usual $X$, $Z$ and Hadamard gates as shown below, by braiding pairs of anyons. It is important to mention that with braiding operations we cannot reach the entire bloch sphere of a qubit, so some quantum gates that are required for quantum universal computation will be missing from the set that we can create with braiding. Such missing operations can be supplemented through not topologically protected operations on the qubits, but which will of course have lower reliability. \newline
 
 We can reframe all of the above physical information into the usual logical framework by relabelling the orthogonal ground states as logical sates: $|00\rangle$, $|01\rangle$, $|10\rangle$ and $|11\rangle$, in such a way that we are able to identify logical gates into those represented in figure 2.4 labelled as: $\overline{X}_1$,$\overline{X}_2$,$\overline{Z}_1$,$\overline{Z}_2$. \newline 
 Such gates can be seen as string operators that create pairs of excitations that self-annihilate at the endpoints by winding all the way around the torus. 
