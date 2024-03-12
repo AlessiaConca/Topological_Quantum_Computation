@@ -3591,7 +3591,7 @@ The { generator matrix} is used to encode information before sending it through 
 	We denote a noise operator as $\textbf{N}_j \in \mathcal{N}$ where $j$ denotes the element that will be modified by $\textbf{N}_j$ in the original codeword and $\mathcal{N}$  represents the set of all possible error operators that could happen on the codeword. 
 \end{definition} 
 
-Overall, the codeword is changed by the noise operator into the correspondig codeword $c' =c + \textbf{n}_j$ where $\textbf{n}_j$ is an m $\times$ 1 vector having a 1 at the j-th row and zeros elsewhere; notice that, since we work with bits, addition is always performed modulo 2.\newline
+Overall, the codeword is changed by the noise operator into the correspondig codeword $c' =c + {n}_j$ where ${n}_j$ is an m $\times$ 1 vector having a 1 at the j-th row and zeros elsewhere; notice that, since we work with bits, addition is always performed modulo 2.\newline
 Having defined all of the above we can come to parity-check performed after transmission.
 
 \begin{definition}(Parity-check matrix)
@@ -3608,7 +3608,7 @@ for any valid codeword. This exactly means that the code {\bf C} is the kernel o
 Instead, for any corrupted codeword the computation yields:
 
 \begin{center}
-	$\textbf{H}c'$ = $\textbf{H} ( c + \textbf{n}_j )$ = $0 + \textbf{H} n_j $  = $\textbf{H}n_j $ 
+	$\textbf{H}c'$ = $\textbf{H} ( c + {n}_j )$ = $0 + \textbf{H} n_j $  = $\textbf{H}n_j $ 
 \end{center}
 
 which is the error syndrome. As anticipated, the error syndrome serves as an indicator of errors within a coding and decoding system. In the absence of errors, the error syndrome is represented as 0. This indicates a clean transmission. Conversely, in the case of a single error, the error syndrome is denoted as {\bf H}$n_j$, providing information about the specific bit j within the codeword where the error has taken place. Consequently, the corrupted codeword can be successfully decoded by correcting the jth bit. However, as already mentioned, when two errors $n_i$ and $n_j$ are present, the error syndrome becomes {\bf H}($n_i$ + $n_j$). In this case error correction becomes more difficult because there could be a type of error $n_q = n_i + n_j$ that makes error detection ambiguous, as we could correct the q-th bit instead of the j-th bit. Overall, it is possible to have multiple error combinations leading to the same syndrome. To prevent ambiguity, it is essential to verify that any additional error $n_q$ does not satisfy the condition $n_q = n_i + n_j$. If there are no such instances where $n_q$ equals $ n_i + n_j$, the decoding process can proceed with confidence. However, if such instances are detected, then ambiguity arises. One possible approach is to reject the codeword, prompting a request for retransmission from the sender. Alternatively, refining the encoding/decoding scheme may be considered. \newline
