@@ -147,7 +147,7 @@
 % ABSTRACT IN ENGLISH
 \chapter*{Abstract} 
 This thesis provides a detailed description of the toric code model, which plays an important
-role in the field of quantum computation as a paradigmatic example of quantum error-correction code. 
+role in the field of quantum computation as a paradigmatic example of quantum error correction code. 
 After a preliminary introductory section on spin observables in Quantum Mechanics, the first chapter of the thesis contains the description of the model of the toric code Hamiltonian followed by the computation of its ground states and excited states, which are classified in terms of their topological properties. In particular, we will show that the excitations are represented by two species of quasi-particles obeying to mutual fractional statisctics. After a brief overview of classical and quantum error correction, the analysis of the anyonic excitations of the toric code done in the first chapter is then used to explicitly describe the strategy behind quantum error correction for logical qubits encoded in the ground states of the toric code Hamiltonian.
 \\
 \\
@@ -478,11 +478,10 @@ Similarly if we compute the scalar product of two factorized states explicitly, 
 \section{Description of the Model}
 \label{sec:Model}
 
-The toric code model is defined on a square lattice with periodic boundary conditions in both directions. These latter characteristics are typical of what is known as a torus topology or simply a torus, after which the model takes name.\newline
-Our lattice $\mathcal{L}$, is a subset of $\mathbb{Z}^{2}$, such that each lattice point is identified with a pair of integers. The periodic boundary conditions are imposed by specifying that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1)\mathrm{mod}N, j)$, $((i-1)\mathrm{mod} N, j)$, $(i, (j+1)\mathrm{mod}N)$ and $(i, (j-1)\mathrm{mod}N)$, where $N$ is the side-length of the torus. We are also going to consider a dual lattice, which will be denoted as $\mathcal{L}'$ and which is given by 
+The toric code model is defined on a square lattice with periodic boundary conditions in both directions. These latter characteristics are typical of what is known as a torus topology or simply a torus, after which the model takes name. Our lattice $\mathcal{L}$, is a subset of $\mathbb{Z}^{2}$, such that each lattice point is identified with a pair of integers. The periodic boundary conditions are imposed by specifying that for any site $(i, j)$ in the lattice, the neighboring sites are going to be: $((i+1)\mathrm{mod}N, j)$, $((i-1)\mathrm{mod} N, j)$, $(i, (j+1)\mathrm{mod}N)$ and $(i, (j-1)\mathrm{mod}N)$, where $N$ is the side-length of the torus. We are also going to consider a dual lattice, which will be denoted as $\mathcal{L}'$ and which is given by 
 
 \[
-  \mathcal{L}' = \{ (i\mathrm{mod}N +\frac{1}{2}), (j\mathrm{mod}N +\frac{1}{2})\}.
+  \mathcal{L}' = \{ (i \ \mathrm{mod}N +\frac{1}{2}), (j \ \mathrm{mod}N +\frac{1}{2})\}.
 \]
 
 Each unitary step on the lattice is identified with an edge; given the vertices or lattice points $\vec{v}=(i,j) \in V$ where $V$ coincides with $\mathcal{L}$ and the cells $\vec{p}=(i+\frac{1}{2},j+\frac{1}{2})\in P$ where $P$ coincides with $ \mathcal{L'}$ of the lattice as shown in figure 1.1, we can define the set of all edges for the lattice:
@@ -504,8 +503,7 @@ On each edge is located a spin-$\frac{1}{2}$ particle each belonging to a bidime
 	The Hilbert space of the system is: $\mathscr{H}= \bigotimes_{e \in E} \mathbb{C}^2$.
 \end{definition}
 
-For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins is to $2N^2$, where $N^2$ represents the total number of cells in $P$ and vertices in $V$ and $N$ the side length of the lattice. \newline
-Notice that, all these spins exhibit are identical particles, which will play an important role to know in the next sections in order to study the behaviour of the system.
+For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins is to $2N^2$, where $N^2$ represents the total number of cells in $P$ and vertices in $V$ and $N$ the side length of the lattice. Notice that, all these spins exhibit are identical particles, which will play an important role in the next sections to study the behaviour of the system.
 
 %\afterpage{
 \begin{figure}
@@ -827,9 +825,9 @@ Where we have defined each edge operator $Z_e$ and $X_e$ to be equal to the foll
 
 \begin{center}
 	
-	$Z_e = \mathbb{I}_{\mathcal{E} \setminus  e} \otimes \sigma^z_{e}$ 
+	$Z_e = \mathbb{I}_{{E} \setminus  e} \otimes \sigma^z_{e}$ 
 	
-	$X_e = \mathbb{I}_{\mathcal{E} \setminus  e} \otimes \sigma^x_{e} $ .
+	$X_e = \mathbb{I}_{{E} \setminus  e} \otimes \sigma^x_{e} $ .
 	
 \end{center}
 \end{definition}
@@ -927,7 +925,7 @@ Hence, by the properties of the tensor product of Hilbert spaces,
 \begin{center}
 	$(A_{\vec{v}})^{\dagger} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{\dagger} = \sigma_{x_1}^{\dagger} \sigma_{x_2}^{\dagger} \sigma_{x_3}^{\dagger} \sigma_{x_4}^{\dagger} = \sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4} = A_{\vec{v}}$ \newline
 	
-	$(B_{\vec{p}})^{\dagger} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{\dagger} = \sigma_{z_1}^{\dagger} \sigma_{z_2}^{\dagger} \sigma_{z_3}^{\dagger} \sigma_{z_4}^{\dagger} = \sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4} = B_{\vec{p}}$ \newline
+	$(B_{\vec{p}})^{\dagger} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{\dagger} = \sigma_{z_1}^{\dagger} \sigma_{z_2}^{\dagger} \sigma_{z_3}^{\dagger} \sigma_{z_4}^{\dagger} = \sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4} = B_{\vec{p}}$. \newline
 \end{center}
 
 Moreover, since the square of all Pauli matrices is the identity:\newline
@@ -973,20 +971,19 @@ Then, again $A_{\vec{v}}$ and $B_{\vec{p}}$ are involutions \newline
 \begin{center}
 	$(A_{\vec{v}})^{2} = (\sigma_{x_1} \sigma_{x_2} \sigma_{x_3} \sigma_{x_4})^{2} = \sigma_{x_1}^2 \sigma_{x_2}^2 \sigma_{x_3}^2 \sigma_{x_4}^2 = \mathbb{I}$ 
 	
-	$(B_{\vec{p}})^{2} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{2} = \sigma_{z_1}^2 \sigma_{z_2}^2 \sigma_{z_3}^2 \sigma_{z_4}^2 = \mathbb{I}$
+	$(B_{\vec{p}})^{2} = (\sigma_{z_1} \sigma_{z_2} \sigma_{z_3} \sigma_{z_4})^{2} = \sigma_{z_1}^2 \sigma_{z_2}^2 \sigma_{z_3}^2 \sigma_{z_4}^2 = \mathbb{I}$.
 \end{center}
 
 \hfill $\square$
 
-Given proposition 1.1, we can now further characterize the spectrum of the opeartors. First we prove the property of involution.
+Given proposition 1.1, we can now further characterize the spectrum of the operators. First we prove the property of involution.
 
-\begin{proposition} (Eigenvalues of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) Let $A \in \mathscr{B(\mathscr{H})}$ be a self-adjoint unitary operator on a finite-dimansional Hilbert space and such that $A^2=\mathbb{I}$, thwn $\sigma(A) \in \{-1,+1\}$.
+\begin{proposition} (Eigenvalues of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators)
+	Given Hermitian operators $A_{\vec{v}}$ and $B_{\vec{p}}$, which satisfy the involution, their possible eigenvalues are $\pm 1$.
 \end{proposition}
 
 
 \textit{Proof.}\newline
-%Given the Self-adjointness and involutory proof in 1.1, we firstly prove that vertex and plaquette operators have real eigenvalues: 
-
 Let us start by writing the expression for the eigenvalues $A_{\vec{v}} |\xi \rangle = \lambda |\xi \rangle$ and take as hypothesis that $|\xi \rangle \neq 0$. Then, by means of the scalar product:
 
 \begin{center}
@@ -1063,7 +1060,7 @@ Overall, if we compute the corresponding eigenvalue of $A_{\vec{v}}$ (or $B_{\ve
 
 Given proposition 1.3, we can in fact prove that the following relationships between vertex and plaquette operators holds:
 
-\begin{proposition} (Commutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The commutator between two vertex or plaquette operators is always zero.
+\begin{proposition} (Commutation of $A_{\vec{v}}$ and $B_{\vec{p}}$ operators) The commutator between two vertex or plaquette operators is always zero:
 
 \begin{center}
 	$[A_{\vec{v}},A_{\vec{v}}]=0$ 
@@ -2370,7 +2367,7 @@ In fact, we can show the impossibility of the above action by defining two topol
 The above indeces can be expressed more clearly as follows: 
 
 \begin{center}
-	$n_x= (number \ of \ vertical \ intersections) \ \mathrm{mod} \ 2 \ \in \ {0,1} \ with \ the \ upper \ boundary$
+	$n_x= (number \ of \ vertical \ intersections) \ \mathrm{mod} \ 2 \ \in \ {0,1} \ with \ the \ right \ boundary$
 \end{center}
 \begin{center}
 	$n_y= (number \ of \ horizontal \ intersections) \ \mathrm{mod} \ 2 \ \in \ {0,1} \ with \ the \ upper \ boundary$
@@ -2474,7 +2471,7 @@ Then since we know that for every $\{ i \in 1 ... n \}$ $B_{\vec{p}} |\psi_i\ran
 
 because, $B_{\vec{p}} $ simply permutes all $|\psi_i\rangle$, thus we get back our initial state. This result leads to the following proposition:
 
-\begin{proposition}(Eigenstates of $B_{\vec{p}} $) A completely symmetric superposition of all the eigenstates of $A_v$, all belonging to the same class, is an eigenstate of $B_{\vec{p}} $.
+\begin{proposition}(Eigenstates of $B_{\vec{p}} $) A completely symmetric superposition of all the eigenstates of $A_{\vec{v}}$ belonging to the same class, is an eigenstate of $B_{\vec{p}} $.
 \end{proposition}
 
 From Proposition 1.6 and Proposition 1.7, also naturally follows the degeneracy (and dimension) of the ground state manifold: \newline
@@ -2527,27 +2524,34 @@ In the particular case of the toric code, such low-energy excitations can be cre
 \end{definition}
 
 \begin{definition}(Length of a string)
-	We define the length of a strin as $\ell_\Sigma$=$\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y|, |(\vec{v'}_n-\vec{v}_1)_x|, |(\vec{v}_n-\vec{v'}_1)_x| \}$
+	We define the length of a string as $\ell_\Sigma$=$\max \{ |(\vec{v'}_n-\vec{v}_1)_y|, |(\vec{v}_n-\vec{v'}_1)_y|, |(\vec{v'}_n-\vec{v}_1)_x|, |(\vec{v}_n-\vec{v'}_1)_x| \}$
 \end{definition}
 
 \begin{definition}(String $\Sigma$)
-	A string $\Sigma$ consists of a set of numbered edges $\{e_1, \dots, e_i, \dots e_n\}$ where $e_i$ is adjacent to $e_{i+1}$ and such that the overall length of the string is equal to $\ell_\Sigma < N$.
+	A string $\Sigma$ of the lattice consists of a set of numbered edges $\{e_1, \dots, e_i, \dots e_n\}$ where $e_i$ is adjacent to $e_{i+1}$ and such that the overall length of the string is equal to $\ell_\Sigma < N$.
 \end{definition}
 
 \begin{definition}(Endpoints of a string)
-	Given a string $\ell$ we identify its endpoints with the initial vertex $\vec{v_1}$ and its final vertex $\vec{v_n'}$.
+	Given a string $\Sigma$ we identify its endpoints with the initial vertex $\vec{v_1}$ and its final vertex $\vec{v_n'}$.
 \end{definition}
 
 \begin{definition}(Macroscopic loop)
 	A macroscopic loop consists of a set of $\{e_1, \dots, e_n\}$ such that $e_1$=$e_n$ and $\ell_\Sigma \ge N$.
 \end{definition}
 
+Analogously, we can define the notion of adjacent edges, strings and length of a string and macroscopic loop also on the dual lattice. We give here explicitly only the definition of a string on the dual lattice:
+
+\begin{definition}(Dual string ${\Sigma'}$)
+	A dual string ${\Sigma'}$ of the lattice consists of a set of numbered dual edges $\{e_1', \dots, e_i', \dots e_n'\}$ where $e_i'$ is adjacent to $e_{i+1}'$ and such that the overall length of the string is equal to $\ell_\Sigma < N$.
+\end{definition}
+
+
 \begin{definition}($S^x_\Sigma$ string operator)
 	Given a string $\Sigma$, the string operator is given by $S_\Sigma^x = \prod_{j=1}^{n}\sigma_{e_j}$.
 \end{definition}
 
-\begin{definition}($S^z_\Sigma$ string operator)
-	Given a string $\Sigma$, the string operator is given by $S_\Sigma^z = \prod_{j=1}^{n}\sigma_{e_j}$.
+\begin{definition}($S^z_{\Sigma'}$ string operator)
+	Given a string $\Sigma$, the string operator is given by $S^z_{\Sigma'} = \prod_{j=1}^{n}\sigma_{e_j'}$.
 \end{definition}
 
 The application of string operators creates quasi-particles at their endpoints. In particular we can get two distinct types of excitations (figure 1.10):
@@ -2557,7 +2561,7 @@ The application of string operators creates quasi-particles at their endpoints. 
 \end{definition}
 
 \begin{definition}(Magnetic vortices)
-	The pairs of particles generated by the application of a string operator $S^z_\Sigma$ on a ground state are called magnetic vorteces $\mu$.
+	The pairs of particles generated by the application of a string operator $S^z_{\Sigma'}$ on a ground state are called magnetic vorteces $\mu$.
 \end{definition}
 
 These excitations can be transported on the lattice via the action of vertex and plaquette operators and interact with each other so characterizing the low energy spectrum.\newline
@@ -2652,7 +2656,7 @@ In order to understand this, we study the relationships between string operators
 We can indeed prove that a string operator $S^x_\Sigma$ operator anticommutes with $A_{\vec{v}} $ for each one of its endpoints. 
 
 \begin{proposition}(Anticommutation of $S^x_\Sigma$)
-	Given a string $\Sigma$, the string operator $S^x_\Sigma$ anticommutes with $A_{\vec{v}} $, for any $\vec{v}$ $\in$($\vec{v_1},\vec{v_n'}$) where $\vec{v_1},\vec{v_n'}$ are the endpoints of the string $\Sigma$.
+	Given a string $\Sigma$, the string operator $S^x_\Sigma$ anticommutes with $A_{\vec{v}} $, for any $\vec{v}$ $\in$\{$\vec{v_1},\vec{v_n'}$\} where $\vec{v_1},\vec{v_n'}$ are the endpoints of the string $\Sigma$.
 \end{proposition}
 
 \textit{Proof.}\newline
@@ -2790,10 +2794,10 @@ This procedure should be iterated also for the other extremity of the string $S^
 \end{figure}
 
 
-In the same way, we could prove that, if we take a string $S^z_\Sigma$ it anticommutes with one $B_{\vec{p}} $ for each one of its endpoints.
+In the same way, we could prove that, if we take a string $S^z_{\Sigma}$ it anticommutes with one $B_{\vec{p}} $ for each one of its endpoints.
 
-\begin{proposition}(Anticommutation of $S^z_\Sigma$)
-	The $S^z_\Sigma$ operators anticommute with two $B_{\vec{p}}$, one for each endpoint $e_1$ and $e_n$ of the string $\Sigma$.
+\begin{proposition}(Anticommutation of $S^z_{\Sigma'}$)
+	The $S^z_{\Sigma'}$ operators anticommute with $B_{\vec{p}}$ for any $\vec{p}$ $\in$ $\{p_1, p_n' \}$ where $ p_1$ and $ p_n'$ are the endpoints of the dual string.
 \end{proposition}
 
 The effect of putting such strings on the ground states correspond to raising the associated energy of the ground states by 2. In fact, coherently with what said in {\cite{Her20}}, it is impossible to create unitary excitations on the ground states.
@@ -2807,8 +2811,8 @@ Recall that for a string operator, here we will choose $S^x_\Sigma$, both equati
 
 \begin{center}
 	$\begin{cases} 
-		A_{\vec{v}_1}S^x_\Sigma + S^x_\ell A_{\vec{v}_1}  =0 \\
-		A_{\vec{v}_2} S^x_\Sigma + S^x_\ell A_{\vec{v}_2} =0
+		A_{\vec{v}_1}S^x_\Sigma + S^x_\Sigma A_{\vec{v}_1}  =0 \\
+		A_{\vec{v}_2} S^x_\Sigma + S^x_\Sigma A_{\vec{v}_2} =0
 	\end{cases}$ 
 \end{center}
 
@@ -2816,9 +2820,9 @@ If we apply the string operator to the ground state, taking into account anticom
 
 \begin{center}
 	$\begin{cases}
-		A_{\vec{v}_1} S^x_\Sigma |GS\rangle = - S^x A_{\vec{v}_1} |GS\rangle = - S^x_\Sigma |GS\rangle \\
+		A_{\vec{v}_1} S^x_\Sigma |GS\rangle = - S^x_\Sigma A_{\vec{v}_1} |GS\rangle = - S^x_\Sigma |GS\rangle \\
 		
-		A_{\vec{v}_2} S^x_\Sigma |GS\rangle = - S^x A_{\vec{v}_2} |GS\rangle = - S^x_\Sigma |GS\rangle
+		A_{\vec{v}_2} S^x_\Sigma |GS\rangle = - S^x_\Sigma A_{\vec{v}_2} |GS\rangle = - S^x_\Sigma |GS\rangle
 	\end{cases}$ 
 \end{center}
 
@@ -2827,11 +2831,11 @@ Summing up term by term :
 
 \begin{center}
 	$\begin{cases}
-		A_{\vec{v}_1} S^x_\Sigma |GS\rangle + A_{\vec{v}_2} S^x_\ell |GS\rangle = - 2 S^x_\Sigma A_{\vec{v}_1} |GS\rangle
+		A_{\vec{v}_1} S^x_\Sigma |GS\rangle + A_{\vec{v}_2} S^x_\Sigma |GS\rangle = - 2 S^x_\Sigma A_{\vec{v}_1} |GS\rangle
 	\end{cases}$ 
 \end{center}
 
-Thus, if the energy of the ground state is $-2N$ by acting with a string operator on  it we obtain a final energy equal to $-2N+2$.
+Thus, if the energy of the ground state is $-2N^2$ by acting with a string operator on  it we obtain a final energy equal to $-2N^2+2$.
 
 \hfill $\square$ 
 
@@ -4765,7 +4769,7 @@ In conclusion, the understanding of the non-trivial relationship between syndrom
 \begin{thebibliography}{99} % Replace '99' with the widest label in your bibliography
 	\bibitem[Bro14]{Bro14} D. Browne, {\it Topological Codes and Computation}, Lecture notes, unpublished, 2014.
 	\bibitem[Cor23]{Cor23} M. Correggi, \textit{Aspetti Matematici della Meccanica Quantistica}, Lecture notes, unpublished, 2023.
-	\bibitem[Cha06]{Cha06} Hsun-Hsien Chang, "An Introduction to Error-Correcting Codes: From Classical to Quantum", {\it arXiv: quant-ph/0602157}, 2006.
+	\bibitem[Cha06]{Cha06} H.H. Chang, "An Introduction to Error-Correcting Codes: From Classical to Quantum", {\it arXiv: quant-ph/0602157}, 2006.
 	\bibitem[Den02]{Den02} E. Dennis, A. Kitaev, A. Landhal, J. Preskill, "Topological Quantum Memory", {\it Journal of Mathematical Physics }, 2002.
 	\bibitem[Her20]{Her20} P. Herringer, "The Toric Code", {\it Rutgers Physics}, 2020.
 	\bibitem[Kas19]{Kas19} M. Kastroyano, {\it Quantum Error Correction}, Lecture notes, unpublished, 2018-19.
@@ -4803,7 +4807,7 @@ Michele Correggi, for giving me not only the opportunity to write my disseration
 on a topic that in part diverged from my field of study but also for having
 introduced me to the Principles of Quantum Mechanics, despite the deeply
 challenging mathematical background that was required to do so. 
-I would also like to sincerely thank my co-advisor, Dr. Massimo Moscolaro, who
+I would also like to sincerely thank my co-advisor, Dr. Massimo Moscolari, who
 has promptly answered to all my doubts while I was writing my thesis and who
 revised every piece of notation I mistaken.
 
