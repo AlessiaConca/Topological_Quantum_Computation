@@ -146,19 +146,19 @@
 
 % ABSTRACT IN ENGLISH
 \chapter*{Abstract} 
-This thesis provides a detailed description of the toric code model, which plays a fundamental 
+This thesis provides a detailed description of the toric code model, which plays an important
 role in the field of quantum computation as a paradigmatic example of quantum error-correction code. 
-After a preliminary introductory section on spin observables in Quantum Mechanics, the first chapter of the thesis contains the description of the model of the toric code Hamiltonian followed by the computation of its ground states and excited states, which are later characterized by giving an overview of fermionic and bosonic exchange statistics, with a particular focus on the applications to quantum computation of the toric code model. After a brief overview on classical and quantum error correction, the analysis of the anyonic excitations of the toric code done in the first chapter is used to explicitly describe the strategy behind quantum error correction for logical qubits encoded in the ground states of the toric code Hamiltonian.
+After a preliminary introductory section on spin observables in Quantum Mechanics, the first chapter of the thesis contains the description of the model of the toric code Hamiltonian followed by the computation of its ground states and excited states, which are classified in terms of their topological properties. In particular, we will show that the excitations are represented by two species of quasi-particles obeying to mutual fractional statisctics. After a brief overview of classical and quantum error correction, the analysis of the anyonic excitations of the toric code done in the first chapter is then used to explicitly describe the strategy behind quantum error correction for logical qubits encoded in the ground states of the toric code Hamiltonian.
 \\
 \\
-\textbf{Keywords:} Quantum computing, Topological codes, Ground state degeneracy, Anyons, Quantum error correction. % Keywords
+\textbf{Keywords:} Quantum computing, Topological codes, Spin lattices, Anyons, Quantum error correction. % Keywords
 
 % ABSTRACT IN ITALIAN
 \chapter*{Abstract in lingua italiana}
-Questa tesi fornisce una descrizione dettagliata del modello del toric code. Questo modello ricopre un ruolo fondamentale nel campo della computazione quantistica in quanto rappresenta l'archetipo di codice topologico per la correzione di errori quantistici. Dopo una sezione introduttiva preliminare sulle osservabili di spin in Meccanica Quantistica, il primo capitolo della tesi contiene la descrizione del modello e della sua Hamiltoniana seguito dal calcolo dei suoi stati fondamentali e stati eccitati, i quali vengono successivamente caratterizzati dando una panoramica delle statistiche di scambio fermioniche e bosoniche, con particolare attenzione alle applicazioni alla computazione quantistica del modello del codice torico. Nel secondo capitolo, dopo una breve panoramica sulla correzione degli errori classica e quantistica, l'analisi delle eccitazioni anioniche del toric code svolta nel primo capitolo viene utilizzata per descrivere esplicitamente la strategia dietro la correzione degli errori quantistici per qubit logici codificati negli stati fondamentali dell'Hamiltoniana del toric code. 
+Questa tesi fornisce una descrizione dettagliata del modello del toric code. Questo modello è importante nel campo della computazione quantistica in quanto rappresenta l'archetipo di codice topologico per la correzione di errori quantistici. Dopo una sezione introduttiva preliminare sulle osservabili di spin in Meccanica Quantistica, il primo capitolo della tesi contiene la descrizione del modello e della sua Hamiltoniana seguito dal calcolo dei suoi stati fondamentali e stati eccitati, i quali vengono classificati in base alle loro proprietà topologiche. In particolare, mostreremo che le eccitazioni sono rappresentate da due tipi di quasi-particelle che obbediscono ad una statistica frazionaria reciproca. Dopo una breve panoramica sulla correzione degli errori classica e quantistica, l'analisi delle eccitazioni anioniche del toric code svolta nel primo capitolo viene utilizzata per descrivere esplicitamente la strategia dietro la correzione degli errori quantistici per qubit logici codificati negli stati fondamentali dell'Hamiltoniana del toric code. 
 \\
 \\
-\textbf{Parole chiave:} Computazione quantistica, Codici topologici, Degenerazione del ground state, Correzione degli errori quantistica % Keywords (italian)
+\textbf{Parole chiave:} Computazione quantistica, Codici topologici, Reti di spin, Correzione degli errori quantistica % Keywords (italian)
 
 %----------------------------------------------------------------------------
 %	LIST OF CONTENTS/FIGURES/TABLES/SYMBOLS
@@ -3533,10 +3533,10 @@ which cannot be described by the usual bosonic/fermionic statistics. Thus we can
 
 
 
-\chapter{Coding on the toric code}
+\chapter{Coding on the Toric Code}
 \label{ch:chapter_two}
 
-\section{Classical error correction}
+\section{Classical Error Correction}
 \label{sec:CER}
 
 In classical computing the most elementary unit of information is the {\it bit}. A bit stores binary information, which can either assume value 1 or 0. When we transmit information in the classical world, we immagine to make strings of bits travel through a channel similar to the one depicted below in figure 2.1. During the transmission a bit can change its value either going from 1 to 0 or viceversa, this event is called {\it bit-flip} and it tells us that an error has occured in the transmission. A bit-flip can occur independently on each bit with a certain probability that we will denote in general as $p$: mathematically, this translates to the assumption that errors, i.e. bit-flips,  are assumed to be independently identically distributed on all the bits with the same probability $p$. In such a case we say that errors are i.i.d. with probability $p$.\newline
