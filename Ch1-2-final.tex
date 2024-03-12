@@ -3540,7 +3540,7 @@ which cannot be described by the usual bosonic/fermionic statistics. Thus we can
 \label{sec:CER}
 
 In classical computing the most elementary unit of information is the {\it bit}. A bit stores binary information, which can either assume value 1 or 0. When we transmit information in the classical world, we immagine to make strings of bits travel through a channel similar to the one depicted below in figure 2.1. During the transmission a bit can change its value either going from 1 to 0 or viceversa, this event is called {\it bit-flip} and it tells us that an error has occured in the transmission. A bit-flip can occur independently on each bit with a certain probability that we will denote in general as $p$: mathematically, this translates to the assumption that errors, i.e. bit-flips,  are assumed to be independently identically distributed on all the bits with the same probability $p$. In such a case we say that errors are i.i.d. with probability $p$.\newline
-The noisy channel described in picture 2.1 is one of the easiest error models also known as the $\textit{Binary Symmetric Channel}$. An error model, in the context of information theory and communication, is a mathematical or conceptual representation of how errors can occur during the transmission of information. It describes the types of errors that can happen, the probabilities associated with each type of error and the conditions under which these errors occur. \newline
+The noisy channel described in picture 2.1 is one of the easiest error models also known as the $\textit{Binary Symmetric Channel}$. An error model, in the context of information theory and communication, is a mathematical or conceptual representation of how errors can occur during the transmission of information. It describes the types of errors that can happen, the probabilities associated to each type of error and the conditions under which these errors occur. \newline
 
 %image
 \begin{figure}
@@ -3552,35 +3552,35 @@ The noisy channel described in picture 2.1 is one of the easiest error models al
 
 
 \newpage
-In order to protect information what we do is introduce redundancy, which helps us detect errors and correct them. Redundacy means duplicating bits of information before sending them through a channel. We say that we encode logical bits into {\it strings of bits} (physical bits). For example: 0 can be encoded into 00 and 1 into 11. This is useful to detect errors because in this way, whenever a bit changes we know that a single error has occured since 10 and 01 pairs should never occur. Formally speaking we have introduced a {\it parity}: the strings 00 and 11 have {\it even} parity while 10 and 01 have an {\it odd} parity. Whenever we receive a string we do {\it parity-check} and signal an error whenever we get odd parity. We will call the values obtained through the parity-check procedure {\it error syndromes}.\newline
+In order to protect information what we do is introduce redundancy, which allows us to detect errors and correct them. Redundacy means duplicating bits of information before sending them through a channel. We say that we encode logical bits into {\it strings of bits} (physical bits). For example: the bit 0 can be encoded into the pair of bits 00 and 1 into 11. This is useful to detect errors because in this way, whenever a bit changes we know that a single error has occured since the pairs 10 and 01 should never occur. Formally speaking, we have introduced a {\it parity}: the strings 00 and 11 have an {\it even} parity while 10 and 01 have an {\it odd} parity. Whenever we receive a string, we perform {\it parity-check} and signal an error whenever we get odd parity. We will call the values obtained through the parity-check procedure {\it error syndromes}.\newline
 
-In order to also be able to correct errors, the redundancy above is not enough since we wouldn't be able to define a criterion to correct the corrupted information. Thus, we introduce a third redundant bit and obtain the {\it three repetition code}; in this way, when we decode information at the destination, we can apply what is called {\it majority voting}. Majority voting decodes into 1 those triplets that have most bits set to 1 and decodes as 0 the ones that have most bits set to 0. Though, as soon as two bit-flips happen, majiority voting stops working. In fact, state 000 with two errors (110) would be associated with to 111 and vice-versa. Therefore we will need other tools to decode information correctly. In fact, in the case of the three repetition code in order to perform parity-check we look at two 'error bits' for each parity in the error syndrome, which could still yield the same error syndrome for two different bit-flip errors scenarios (figure 2.2), though if we decide to assign a fixed iid error probability of $p<\frac{1}{2}$ for each bit, we will always end up choosing to decode the codeword with less errors. This method does not erase the possibility of getting decoding mistakes but significantly decreases them. \cite{Kas19}.\newline
+In order to also be able to correct errors, the redundancy above is not enough since we would not be able to decide a criterion to correct the corrupted information. Thus, we introduce a third redundant bit and generate the {\it three repetition code}; in this way, when we decode information at the destination, we can apply what is called {\it majority voting}. Majority voting decodes into 1 those triplets that have most bits set to 1 and decodes as 0 the ones that have most bits set to 0. Though, as soon as two bit-flips happen, majiority voting stops working. In fact, the state 000 with two errors (110) would be associated to 111 and vice-versa. Therefore we will need other tools to decode information correctly. In fact, in the case of the three repetition code, in order to perform a parity-check we look at two 'error bits' for each parity in the error syndrome, which could still yield the same error syndrome for two different bit-flip errors scenarios (figure 2.2). Though, if we can assign a fixed iid error probability of $p<\frac{1}{2}$ for each bit, we will always end up choosing to decode the codeword with less errors. This method does not erase the possibility of getting decoding mistakes but significantly decreases them \cite{Kas19}.\newline
 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{"../Thesis/Immagine 2024-02-26 133707"}
-	\caption{{ Example of error syndrome associated to a transmitted codeword of length 7. We have two equal error syndromes despite having two different codewords. Each '+' or '-' represents a parity of the bits acting as parents. From: \cite{Kas19}}}
+	\caption{{ Example of error syndrome associated to a transmitted codeword of length 7. We have two equal error syndromes despite having two different codewords. Each '+' or '-' represents the parity of the bits acting as parents \cite{Kas19}}}
 	\label{fig:immagine-2024-02-26-133707}
 \end{figure}
 
-The above redundant code is actually an example of what is called a {\it Linear code}.
-We can in fact reframe all of the above in terms of linear algebra. A To do so we define what is called the generator matrix  \textbf{G} as given in \cite{Cha06,Kas19}, which is the operator that we use to introduce redundancy. 
+The above redundant code is actually an example of what is called a {\it linear code}.
+We can in fact reframe all of the above in terms of linear algebra. To do so we define what is called the generator matrix  \textbf{G} as given in \cite{Cha06,Kas19}, which is the operator that we use to introduce redundancy. 
 
 \begin{definition}(Generator matrix)
 	A linear code encoding k-bit messages into an m-bit codespace \textbf{C} is specified by an m $\times$ k matrix {\bf G}.
 \end{definition}
 
-\textbf{G} encodes the original information into { codewords}. For example, if we have a single bit to be encoded in a three bit codeword we can do the following: 
+The matrix \textbf{G} encodes the original information into { codewords}. For example, if we have a single bit to be encoded in a three bit codeword we can do the following: 
 
 \begin{center}
-	\textbf{G} = $[1 \ 1 \ 1]^{T}$  
+	\textbf{G} = $[1 \ 1 \ 1]^{T}$,  
 \end{center}
 \begin{center}
-	a = $[i]$, where i = 0,1 
+	a = $[i]$, where i = 0,1 ,
 \end{center}
 \begin{center}
-	$[1 \ 1 \ 1]^{T}$ $[0]$ = $[0 \ 0 \ 0]^{T}$
+	$[1 \ 1 \ 1]^{T}$ $[0]$ = $[0 \ 0 \ 0]^{T}$.
 \end{center}
 
 A linear code encoding k-bit messages into an m-bit codespace \textbf{C} is specified by an m $\times$ k generator matrix {\bf G} is an [m, k] code.\newline
@@ -3588,17 +3588,17 @@ A linear code encoding k-bit messages into an m-bit codespace \textbf{C} is spec
 The { generator matrix} is used to encode information before sending it through a channel but we have also said that a realistic channel is noisy so it can modify the codewords we send. Thus, we also need to define an operator to specify how an error occurs and how to detect it. 
 
 \begin{definition}(Noise operator)
-	We denote a noise operator as $\textbf{N}_j \in \textbf{N}$ where $j$ denotes the element that will be modified by $\textbf{N}_j$ in the original codeword and $\in \textbf{N}$  represents the set of all possible error operators that could happen on the codeword. 
+	We denote a noise operator as $\textbf{N}_j \in \mathcal{N}$ where $j$ denotes the element that will be modified by $\textbf{N}_j$ in the original codeword and $\mathcal{N}$  represents the set of all possible error operators that could happen on the codeword. 
 \end{definition} 
 
-Overall, the codeword is changed by the noise operator into the correspondig codeword $c' =c + n_j$ where $\textbf{n}_j$ is an m $\times$ 1 vector having a 1 at the j-th row and zeros elsewhere; notice that, since we work with bits, addition is always performed modulo 2.\newline
+Overall, the codeword is changed by the noise operator into the correspondig codeword $c' =c + \textbf{n}_j$ where $\textbf{n}_j$ is an m $\times$ 1 vector having a 1 at the j-th row and zeros elsewhere; notice that, since we work with bits, addition is always performed modulo 2.\newline
 Having defined all of the above we can come to parity-check performed after transmission.
 
 \begin{definition}(Parity-check matrix)
 	Given an m-bit codespace and a k-bit encoding, we define a parity check matrix as a matrix denoted by $\textbf{H}$ having size $(m - k)\times m $ and such that the code {\bf C} is the kernel of the parity-check matrix. 
 \end{definition}
 
-To check parity we can simply perform multiplication of {\bf H} by the received codeword, the result will be: 
+To check parity we can simply act with {\bf H} on the received codeword: 
 
 \begin{center}
 	\textbf{H}c = 0  
@@ -3608,27 +3608,27 @@ for any valid codeword. This exactly means that the code {\bf C} is the kernel o
 Instead, for any corrupted codeword the computation yields:
 
 \begin{center}
-	$\textbf{H}c'$ = $\textbf{H} ( c + n_j )$ = $0 + \textbf{H} n_j $  = $\textbf{H}n_j $ 
+	$\textbf{H}c'$ = $\textbf{H} ( c + \textbf{n}_j )$ = $0 + \textbf{H} n_j $  = $\textbf{H}n_j $ 
 \end{center}
 
 which is the error syndrome. As anticipated, the error syndrome serves as an indicator of errors within a coding and decoding system. In the absence of errors, the error syndrome is represented as 0. This indicates a clean transmission. Conversely, in the case of a single error, the error syndrome is denoted as {\bf H}$n_j$, providing information about the specific bit j within the codeword where the error has taken place. Consequently, the corrupted codeword can be successfully decoded by correcting the jth bit. However, as already mentioned, when two errors $n_i$ and $n_j$ are present, the error syndrome becomes {\bf H}($n_i$ + $n_j$). In this case error correction becomes more difficult because there could be a type of error $n_q = n_i + n_j$ that makes error detection ambiguous, as we could correct the q-th bit instead of the j-th bit. Overall, it is possible to have multiple error combinations leading to the same syndrome. To prevent ambiguity, it is essential to verify that any additional error $n_q$ does not satisfy the condition $n_q = n_i + n_j$. If there are no such instances where $n_q$ equals $ n_i + n_j$, the decoding process can proceed with confidence. However, if such instances are detected, then ambiguity arises. One possible approach is to reject the codeword, prompting a request for retransmission from the sender. Alternatively, refining the encoding/decoding scheme may be considered. \newline
 
 Because of the ambiguity that can arise in error correction it is essential to discuss formally the detectability and correctability of errors according to linear codes formalism given in \cite{Cha06} and discussed above.
-We have mentioned how a codeword can be rejected if corrupted and how a receiver can ask to resend information. The efficacy of the encoding/decoding scheme is evaluated based on its ability to either maintain the integrity of information or detect errors caused by each noise operator. Therefore, we can state that a code successfully detects a noise operator $\textbf{N}$ if, for every codeword c within the code, the outcome is either $\textbf{N}$c = c or if $\textbf{N}$c is not a member of the code $\textbf{C}$.
+We have mentioned how a codeword can be rejected if corrupted and how a receiver can ask to resend information. The efficacy of the encoding/decoding scheme is evaluated based on its ability to either maintain the integrity of information or detect errors caused by each noise operator. Therefore, we can state that a code successfully detects a noise operator $\textbf{N}$ if, for every codeword c within the code, the outcome is either $\textbf{N}$c = c or $\textbf{N}$c does not belong to the code $\textbf{C}$.
 
 \begin{theorem}(Error detection)
 	$\textbf{N}$ is detectable by a code if and only if for each $c_m \neq c_n$ in the code, $\textbf{N}c_n \neq c_m $.
 \end{theorem} 
 
-On the otehr hand, error correction involves an active process where the decoder does not only identifies errors but also corrects them. 
+On the other hand, error correction involves an active process where the decoder does not only identifies errors but also corrects them. 
 In the context of a code $\textbf{C}$ and a set of error operators $\textbf{N}$, the primary goal is to establish the presence of a decoding procedure capable of correcting errors introduced by $\textbf{N}$. 
-Assuming the existence of distinct codewords $c_m$ and $c_n$ within the code, and for specific set of noise operators $\textbf{N}$, there could be situations such that if we apply $\textbf{N}_i$ to the codeword $c_m$ and the error operator $\textbf{N}_j$ to the codeword $c_n$ we end up in the same final state $c_q$. In such cases the challenge lies in determining whether the original codeword was $c_m$ or $c_n$. Thus, the error is unidentified meaning that it occurs in the set of error operators $\textbf{N}$ but we don't know which specific error operator caused it. In simpler terms, given the state $c_q$, we cannot say which codeword was initially sent due to the ambiguity in identifying the specific error that occurred.
+Assuming the existence of distinct codewords $c_m$ and $c_n$ within the code, and for specific set of noise operators $\textbf{N}$, there could be situations such that if we apply $\textbf{N}_i$ to the codeword $c_m$ and the error operator $\textbf{N}_j$ to the codeword $c_n$ we end up in the same final state $c_q$. In such cases the challenge lies in determining whether the original codeword was $c_m$ or $c_n$. Thus, the error is unidentified meaning that it occurs in the set of error operators $\textbf{N}$ but we do not know which specific error operator caused it. In other words, given the state $c_q$, we cannot say which codeword was initially sent due to the ambiguity in identifying the specific error that occurred.
 
 \begin{theorem}(Error correction)
 	The set $\textbf{N}$ of errors is correctable if and only if for all $c_m \neq c_n$ in the code and for all $i, j \in \textbf{N}$, it is true that $\textbf{N}_ic_m$ $\neq$ $\textbf{N}_jc_n$. 
 \end{theorem} 
 
-Thanks to linear codes, we gain insights into the two essential steps of error recovery: error detection and error correction, which also serve us to assess the goodness of the code in its entirety. For further details see \cite{Kas19}. Moreover, in order to evaluate the robustness of a given code we define the {\it Distance of a code} by means of the {\it Hamming distance} of that code:
+Thanks to linear codes, we gain insights into the two essential steps of error recovery: error detection and error correction, which allows us to assess the efficacy of the code in its entirety. For further details see \cite{Kas19}. Moreover, in order to evaluate the robustness of a given code we can define the notion of {\it distance of a code} :
 
 
 \begin{definition}(Hamming distance)
@@ -3640,7 +3640,7 @@ Thanks to linear codes, we gain insights into the two essential steps of error r
 	The distance of a code {\bf C } is the minimal Hamming distance between any two distinct codewords $c_m$ and $c_n$ having $m \neq n$.
 \end{definition}
 	
-To conclude, linear codes' representation plays a crucial role in studying encoding/decoding procedures along with their performance, offering an effective framework also to be used in the quantum world.
+To conclude, linear codes' representation plays a crucial role in studying encoding/decoding procedures along with their performance, offering an effective framework also to be used for the quantum world as well.
 
 %-------------------------------------------
 
@@ -3656,7 +3656,7 @@ To conclude, linear codes' representation plays a crucial role in studying encod
 \section{Quantum error correction (QEC)}
 \label{sec:QEC}
 
-Due to the no-cloning theorem, which states that  it is impossible to clone an arbitrary quantum state perfectly using quantum operations, one might be brought to think that error correction cannot be performed in the quantum setting.
+Due to the no-cloning theorem, which states that  it is impossible to perfectly clone an arbitrary quantum state using quantum operations, one might be brought to think that error correction cannot be performed in the quantum setting.
 
 \begin{theorem}(No cloning theorem)
 	There is no unitary operator $U$ acting on the composite Hilbert space $\mathscr{H} \otimes \mathscr{H}$ such that for any $|\psi\rangle \in \mathscr{H}$:
@@ -3665,51 +3665,51 @@ Due to the no-cloning theorem, which states that  it is impossible to clone an a
 		$U(|\psi\rangle\otimes|0\rangle) = |\psi\rangle \otimes |\psi\rangle$
 	\end{center}
 	
-	where $U$ represents the operator used to replicate the composite state and $|0\rangle$ represents a reference state.
+	where $|0\rangle$ is a reference state.
 \end{theorem}
 
-In general, in the developement of quantum computation devices we can identify two main problems \cite{Cha06}.: 
+We will see that this problem can be solved, despite the two main issues that arise in quantum systems \cite{Cha06}.: 
 
 \begin{enumerate}
-	\item No cloning limitation: the attempt to implement a repetition code in the quantum setting by duplicating a quantum state multiple times violates the no-cloning theorem. This theorem does not allow the exact replication of a quantum state.
+	\item No cloning limitation: the attempt to implement a repetition code in the quantum setting by duplicating a quantum state multiple times violates the no-cloning theorem, which prevents the exact replication of a quantum state;
 	
-	\item Information loss through measurement: in contrast to classical error-correction, the act of measuring a quantum state typically results in the loss of quantum information contained in that state. As a consequence, the recovery of the original quantum information becomes impossible after a measurement.
+	\item Information loss through measurement: in contrast to classical error-correction, the act of measuring a quantum state typically results in the loss of quantum information contained in that state, as a consequence, the recovery of the original quantum information becomes impossible after a measurement.
 \end{enumerate}
 
-In the context of quantum computation, classical bits are replaced by quantum bits or qubits, which are represented using a two-state quantum system. More precisely, a qubit lives in an Hilbert space of dimension 2. We can represent the Hilbert space of a system of n qubits by means of a tensor product of Hilbert spaces referring to single qubits as we did in definition 1.7. A common physical realization of qubits involves spin-$\frac{1}{2}$ particles, such as electrons. The quantum state space of a qubit is spanned by two orthogonal basis states, conventionally denoted as $ |0 \rangle$ and $ |1 \rangle$, corresponding to the classical binary states 0 and 1. Mathematically, any qubit state 
-$ |\psi \rangle$ can be expressed as a superposition of these basis states:
+In the context of quantum computation, classical bits are replaced by quantum bits or qubits, which are represented by a two-level quantum system. More precisely, a qubit lives in an Hilbert space of dimension 2. A common physical realization of qubits involves spin-$\frac{1}{2}$ particles, such as electrons. The quantum state space of a qubit is spanned by two orthogonal basis vectors, conventionally denoted as $ |0 \rangle$ and $ |1 \rangle$, corresponding to the classical binary states 0 and 1. Mathematically, any qubit state 
+$ |\psi \rangle$ can be expressed as a superposition of these states as:
 
 
 \begin{center}
 	$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ =  $[ \ \alpha \ \ \beta \ ]^T $
 \end{center}
 
-where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. This linear combination allows qubits to exist in a superposition of both $|0 \rangle$ and $ |1 \rangle$  states simultaneously, which is not possible for classical bits.  \newline
-When it comes to qubits, computations are performed through operators, which are the quantum logical gates. Each quantum gate corresponds to a unitary operator, which is a linear transformation that preserves the norm of vectors (in this case, quantum states) and is represented by a square matrix that is both unitary and Hermitian. These gates can perform various operations such as changing the phase of a qubit (phase-shift), performing logical operations like NOT(bit-flip), AND, or OR and more.\newline
-In particular, a phase-shift error on a qubit alters the phase factor in the qubit's superposition state. \newline
-Having briefly recalled the quantum setting, we shall now give the quantum version of the classical error model previously defined when talking about linear codes and discussed by \cite{Cha06}. \newline
-Similarly to what we did with repetition codes, we can take the bit-flip error (generally called {\it noise}) for qubits by applying $\sigma^x$ to $|\psi \rangle$ and define the probability $p$ with which the state will be flipped.\newline
-Then, we can suppose to introduce redundancy, firstly by mapping the physical basis of qubits to their respective logical counterparts in the following way as done in \cite{Nie06}:
+where $\alpha$ and $\beta$ are complex numbers and satisfy the normalization condition $|\alpha|^2$ + $|\beta|^2$ = 1. \newline
+When it comes to qubits, computations are performed through operators, which are the quantum logical gates. Each quantum gate corresponds to a unitary operator, which is a linear transformation that preserves the norm of vectors (in this case, quantum states) and is represented by a unitary square matrix. These gates can perform various operations such as changing the phase of a qubit (phase-shift), performing logical operations like NOT(bit-flip), AND, or OR and more. In particular, a phase-shift error on a qubit alters the phase factor in the qubit's superposition state. \newline
+We shall now discuss the quantum analog of the classical error correction theory \cite{Cha06}. \newline
+Similarly to what we did with repetition codes, we can represent the bit-flip error (generally called {\it noise}) for qubits thrugh the gate $X$ and associate to it a proability $p$. \newline
+Then, we can introduce redundancy, firstly by mapping the physical basis of qubits to their respective logical counterparts in the following way \cite{Nie06}:
 
 \begin{center}
 	$\alpha |0 \rangle$ + $\beta$ $|1 \rangle$ $\rightarrow$ $\alpha |000 \rangle$ + $\beta$ $|111 \rangle$
 \end{center}
 
-where we have encoded the basis as:
+where we have encoded the basis vector as:
 
 \begin{center}
 	$|0 \rangle$ $\rightarrow$ $|0 \rangle_L$ $\equiv$ $|000 \rangle$   \\
 	$|1 \rangle$ $\rightarrow$ $|1 \rangle_L$ $\equiv$ $|111 \rangle$
 \end{center}
 
-where L stands for {\it logical qubit} and where we have encoded a quantum bit by means of the tensor product of three spins each being an eigenstate of the Pauli matrix $\sigma^z$ acting on each local Hilbert space: 
-
 \begin{center}
 	$|0\rangle_L = |0\rangle \otimes |0\rangle \otimes |0\rangle = |000\rangle$ \\
 	$|1\rangle_L = |1\rangle \otimes |1\rangle \otimes |1\rangle = |111\rangle$
 \end{center}
 
-If we imagine to send all of the three bits one at a time through a channel and suppose that one or fewer qubits are flipped; we can define a simple quantum error correction scheme by means of detection and analysis of error syndromes, given by projector operators in \cite{Nie06}:
+where L stands for {\it logical qubit} 
+%and where we have encoded a quantum bit by means of the tensor product of three spins each being an eigenstate of the Pauli matrix $\sigma^z$ acting on each local Hilbert space: 
+
+If we imagine to send all of the three bits one at a time through a channel and suppose that one or fewer qubits are flipped; we can define a simple quantum error correction scheme by means of detection and analysis of error syndromes, given by projector operators \cite{Nie06}:
 
 \begin{enumerate}
 	\item  $P_0$ = $|000 \rangle \langle 000|$ + $|111 \rangle \langle 111|$, which corresponds to the projector for which no error has occurred;
@@ -3718,53 +3718,54 @@ If we imagine to send all of the three bits one at a time through a channel and 
 	\item $P_3$ = $|001 \rangle \langle 001|$ + $|110 \rangle \langle 110|$, which corresponds to the projector for which an error on the 3rd qubit has occurred.
 \end{enumerate}
 
-In order to detect the syndrome we will compute $\langle \psi| P_i | \psi \rangle $ in the decode phase, which will be equal to 1 according to which bit $i$ was flipped.
-Measuring the syndrome doesn't affect the state in any way, neither before nor after the measurement. Furthermore, the syndrome gives no information of the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest. Though, we have already mentioned that this schema works well only if errors occur on one or less of the three qubits.\newline
-Similarly to the classical case, the minimum number of bit-flips needed to convert one valid quantum state into another represents the distance of the code. It quantifies the code's ability to correct errors, with a higher distance indicating greater resilience.
-Having discussed the feasibility of QEC and having briefly mentioned the concept of distance, we can now denote a given quantum code by means of the following three characterizing quantities: [n, k, d], where n represents the number of physical qubits, k denotes the number of logical qubits, and d stands for the code's distance. \newline
+In order to detect the syndrome we compute $\langle \psi| P_i | \psi \rangle $ in the decoded phase, which will be equal to 1 for the $i$-bit that has been flipped.
+Measuring the syndrome does not affect the state in any way, neither before nor after the measurement. Furthermore, the syndrome gives no information on the state phase. We can recover the initial state with perfect accuracy by flipping again the qubit of interest. Though, we have already mentioned that this scheme works well only if errors occur on one or less of the three qubits.\newline
+Similarly to the classical case, the minimum number of bit-flips needed to convert one valid quantum state into another represents the distance of the code. It quantifies the code's ability to correct errors, with higher distance indicating greater resilience.
+We can now denote a given quantum code by means of the following three characterizing quantities: [n, k, d], where n represents the number of physical qubits, k denotes the number of logical qubits, and d stands for the code's distance. \newline
 
-In this paragraph, we more formally define the Quantum Error Model as we did in the classical case according to \cite{Cha06}. 
-Take quantum information to be a state $|\psi \rangle$ in an Hilbert space $\mathscr{H}_A$. We can introduce ancillary qubits as to introduce redundancy. Ancillary qubits are replicas of information that will be manipulated along with the data that we want to transmit.
-Ancillary bits are part of an Hilbert space that we will call $\mathscr{H}_B$ and are initially in a state $|b \rangle$. When we encode information what we do is mapping the tensor product of $|\psi \rangle$ and $|b \rangle$ in a new Hilbert space $\mathscr{H}_C$ (the code space) through the application of an encoder operator $\textbf{E}$, which should be the equivalent of the generator matrix in classic models. In the same way we can define an Hilbert space to model the noise, we will call it $\mathscr{H}_N$; this space more generally represents the noisy environment that introduces errors and is initially in state $|n \rangle$. As given in \cite{Cha06}, the interaction between information and the environment is computed as the tensor product:
+In this paragraph, we more formally define the Quantum Error Correctio (QEC) as we did in the classical case according to \cite{Cha06}. 
+Let the quantum information to be a state $|\psi \rangle$ $\in$ $\mathscr{H}_A$. We can introduce ancillary qubits for redundancy. Ancillary qubits are replicas of the information that will be manipulated along with the data that we want to transmit.
+Ancillary bits are part of an Hilbert space $\mathscr{H}_B$ and are initially in a state $|b \rangle$. When we encode information what we do is mapping the tensor product of $|\psi \rangle$ and $|b \rangle$ in a new Hilbert space $\mathscr{H}_C$ (the code space) through the application of an encoder operator $\textbf{E}$, which should be the equivalent of the generator matrix in classic models. In the same way we can define an Hilbert space  $\mathscr{H}_N$ to model the noise; this space more generally represents the noisy environment that introduces errors and is initially in a state $|n \rangle$. As given in \cite{Cha06}, the interaction between the information state and the environment is computed as the tensor product:
 
 \begin{center}
 	$|c' \rangle$ = $|c \rangle$ $\otimes$ $|n \rangle$ = $\sum_{i} (N_i c) \otimes |n_i \rangle $
 \end{center}
 
 with $N_i$ being a noise operator acting on $i$.
-When we decode information through the decoding operator $\textbf{D}$ we want to map $|c' \rangle$ back to $|\psi \rangle$ $\otimes$ $|s_i \rangle$, which represent the original state $|\psi \rangle$ and its error syndrome $|s_i \rangle$. We can then use the error syndrome to correct $|\psi \rangle$ and get the initial state. Though, to actually do exactly what we did in the classical case, the error syndrome should be in a bijective relationship with $N_i$ in order to recover the respective errors; not only, $|s_i \rangle$ should also be independent from every $|\psi \rangle$ otehrwise we would not be able to make adjustments. Note that all $N_i$ can also be made linearly independent to avoid confounding errors. 
+When we decode information through the decoding operator $\textbf{D}$ we want to map $|c' \rangle$ back to $|\psi \rangle$ $\otimes$ $|s_i \rangle$, which represent the original state $|\psi \rangle$ and its error syndrome $|s_i \rangle$. We can then use the error syndrome to correct $|\psi \rangle$ and get the initial state. However, in order to reproduce the classical case, the error syndrome should be in a bijective relationship with $N_i$ in order to recover the respective errors; furthermore, $|s_i \rangle$ should also be independent from $|\psi \rangle$ . Note that all $N_i$ can also be made linearly independent to avoid confounding errors. 
 %Note also that $\sum_{i} N_i^{\dagger} N_i= I$ ensures that the $Tr[\sum_{i} N_i^{\dagger} \rho N_i]= 1$ with $\rho$ a general quantum state in  $\textbf{C}$. \newline
 
-The above description of quantum error model actually contains the conditions on error correctability to protect quantum information. 
-This conditions are summed up into the equation given by the following theorem in \cite{Nie06}: 
+The above description of the quantum error behavior actually contains the conditions on error correctability to protect quantum information. 
+This conditions are summed up into the equation given by the following theorem \cite{Nie06}: 
 
 \begin{theorem}
-	 Given a quantum code over $\mathscr{H}_C$ and $P$ the projector onto $C$. Suppose $N$ is a quantum operation with operation elements $\{N_i\}$. A necessary and sufficient condition for the existence of an error-correction operation $\mathcal{R}$ correcting $N$ on $C$ is that
+	 Let $\mathscr{H}_C$ be a quantum code and $P$ the projector onto $C$. Suppose $N$ is a quantum operation with operation elements $\{N_i\}$. A necessary and sufficient condition for the existence of an error-correction operation $\mathcal{R}$ correcting $N$ on $C$ is that
 	
 	\begin{center}
 		$PN_i^{\dagger}N_jP = \lambda_{ij}P$
 	\end{center}
 	
-	for some self-adjoint matrix of complex numbers $\lambda$ and for all $N_i$. 
+	for some self-adjoint matrix ($\lambda_{ij}$), $i,j\in\{1 \dots n\}$ with $\lambda_{ij} \in \mathbb{C}$ and for all $N_i$. 
 \end{theorem}
 
 The projector is a mathematical operation that projects any quantum state onto the code space. It ensures that any state acted upon by the error correction process is effectively confined to the subspace defined by the error-correcting code $C$ since, when quantum states undergo errors, these errors might cause the state to deviate from the code space. \newline
-The condition essentially states that the error correction is successful when applied to the states within $C$, ensuring that the corrected state remains within the code space. \newline
-We could generally say that it ensures that a noisy quantum state is not {\it too} noisy. Specifically, the projector $P$ forces the correction operation to act within the space where it provides reliable error-correction. In this sense $P$ protects against excessive noise. The $Ns$ actually represent noise operators and if such an operation exists we say that $\{N_i\}$ forms a correctable set of errors. This would make the code correctable. \newline
+The condition essentially states that the error correction is successful if when applied to the states within $C$, the corrected state remains within the code space. \newline
+We could generally say that it ensures that a noisy quantum state is not {\it too} noisy. More precisely, the projector $P$ forces the correction operation to act within the space where it provides reliable error-correction. In this sense, $P$ protects against excessive noise. The $Ns$ actually represent noise operators and if such an operation exists we say that $\{N_i\}$ forms a correctable set of errors. This would make the code correctable. \newline
 
 
 
 \subsection{Fault-tolerant computation}
 
-Quantum error-correction applications regard not only the protection of transmitted quantum information from noise but also the protection of quantum information during computations. 
-We start by briefly highlighting two main issues in quantum computation. The first issue regards the fact that nearly each component of a quantum circuit is subject to noise. 
-What is done in general to make computations fault-tolerant is to substitute qubits with encoded blocks of qubits by using a code protected from noise and substitute faulty gates with encoded gates also referred to as fault-tolerant procedures. 
-The second issue regards the fact that when we periodically perform error-correction on encoded qubits we may introduce errors through error-correction itself. \newline
+Quantum error-correction applications concerns not only the protection of transmitted quantum information from noise but also the protection of quantum information during computations. 
+We start by briefly highlighting two main issues in quantum computation. The first issue is due to the fact that each component of a quantum circuit is subject to noise. 
+What is done in general to make the computation fault-tolerant is to substitute qubits with encoded blocks of qubits by using a code protected from noise and substitute faulty gates with encoded gates also referred to as fault-tolerant procedures. 
+The second issue concerns the fact that when we perform error-correction on encoded qubits we may introduce errors through the error-correction itself. \newline
 %Addittionally, encoded gates aren't the only fault-tolerant procedures that we want to perform. In fact, we also want measurements of encoded qubits and state preparations to be fault-tolerant.\newline
-We know by theory that there exists a set of quantum gates through which each quantum computation can be expressed. Such set is comprised of the hadamard, phase, controlled-NOT and $\frac{\pi}{8}$ gates. 
-We also know that each of these gates can be realized falut-tolerantly. Then, in the context of fault-tolerant quantum computation, it is possible to carry out a comprehensive range of logical operations on encoded quantum states. This is also done in a manner that results in the effective failure probability within the encoded states, scaling as a function of $p$, which is the error probability associated with the underlying gates. These errors could affect a single qubit but quantum error-correction codes are designed to correct them. However, in the process of error-correction itself, new errors can be introduced, and these are typically correlated with the original errors. The probability of introducing correlated errors during the error correction process is proportional to the square of the original error probability. This means that the effective failure probability scales quadratically with the probability of errors in the underlying gates. \newline
+%We know by theory that there exists a set of quantum gates through which each quantum computation can be expressed. Such set is comprised of the hadamard, phase, controlled-NOT and $\frac{\pi}{8}$ gates. 
+%We also know that each of these gates can be realized falut-tolerantly. 
+In the context of fault-tolerant quantum computation, it is possible to carry out a comprehensive range of logical operations on encoded quantum states. This is also done in a manner that results in the effective failure probability within the encoded states, scaling as a function of $p$, which is the error probability associated with the underlying gates. These errors could affect a single qubit but quantum error-correction codes are designed to correct them. However, in the process of error-correction itself, new errors can be introduced, and these are typically correlated with the original errors. The probability of introducing correlated errors during the error correction process is proportional to the square of the original error probability. This means that the effective failure probability scales quadratically with the probability of errors in the underlying gates. \newline
 
-The above considerations lead us to the main result concerning fault tolerant compuatation: the threshold theorem given in \cite{Nie06}. Essentially, the theorem states that as long as the noise present in individual quantum gates remains below a specific constant threshold (the probability that each gates fails is $p<p_t$) it becomes feasible to execute a quantum computation of arbitrary length reliably. In fact, if we apply fault-tolerant computations on encoded states, achieving a quadratic reduction of the errors $O(p^2)$, the desired error thershold achieved can be made as low as desired with an increase in the circuit size by means of code concatenation. For further details see \cite{Nie06}.\newline
+The above considerations lead us to the main result concerning fault tolerant compuatation: the threshold theorem \cite{Nie06}. Essentially, the theorem states that as long as the noise present in individual quantum gates remains below a specific constant threshold (the probability that each gates fails is $p<p_t$) it becomes feasible to reliably execute a quantum computation of arbitrary length. In fact, if we apply fault-tolerant computations on encoded states, achieving a quadratic reduction of the errors $O(p^2)$, the desired error thershold achieved can be made as low as desired with an increase in the circuit size by means of code concatenation. For further details see \cite{Nie06}.\newline
 %We must specify that this theorem works under some reasonable assumptions reguarding the type of noise, meaning that indeed noise is not a real issue in quantum computation but we cannot correct errors from arbitrary noises.
 %\begin{theorem}(Threshold theorem)
 %A quantum circuit containing a quantity of gates determined by $p(n)$ can be effectively simulated with an error probability not exceeding $\epsilon$, employing a number of gates approximately proportional to $O(poly(\log p(n)/\epsilon)p(n))$. Each of these gates may experience failure with a probability no greater than $p$, given that $p$ remains below a specified constant threshold $p < p_{th}$. This simulation holds true under the condition of reasonable assumptions regarding the noise present in the underlying hardware.
@@ -3785,7 +3786,7 @@ The above considerations lead us to the main result concerning fault tolerant co
 
 
 \newpage
-\section{QEC in the toric code}
+\section{QEC in the Toric Code}
 \label{sec:TC}
 
 Broadly speaking, errors refer to the unintentional changes or flips in the physical signals that encode the information. These errors can be caused by various factors, such as external environmental noise. In the toric code, or in quantum systems in general, errors can be caused by what are often referred to as local perturbations. Local perturbations involve small disturbances that primarily affect individual qubits or a small region of the quantum system, causing the corruption of the stored quantum information. Single qubit errors can result in different types of errors such as bit-flips errors, phase-flips errors or a combination of them. Mathematically, local perturbations in the toric code framework can be described as operators that act on qubits of the system and can be represented using combinations of Pauli operators. For example, consider the following perturbation:
