@@ -2542,7 +2542,7 @@ In the particular case of the toric code, such low-energy excitations can be cre
 Analogously, we can define the notion of adjacent edges, strings and length of a string and macroscopic loop also on the dual lattice. We give here explicitly only the definition of a string on the dual lattice:
 
 \begin{definition}(Dual string ${\Sigma'}$)
-	A dual string ${\Sigma'}$ of the lattice consists of a set of numbered dual edges $\{e_1', \dots, e_i', \dots e_n'\}$ where $e_i'$ is adjacent to $e_{i+1}'$ and such that the overall length of the string is equal to $\ell_\Sigma < N$.
+	A dual string ${\Sigma'}$ of the dual lattice consists of a set of numbered dual edges $\{e_1', \dots, e_i', \dots e_n'\}$ where $e_i'$ is adjacent to $e_{i+1}'$ and such that the overall length of the string is equal to $\ell_{\Sigma' }< N$.
 \end{definition}
 
 
@@ -2664,13 +2664,13 @@ Let $\vec{v}$ be one of the endpoints of $\Sigma$. We want to show that $A_{\vec
 
 \begin{center}
 	$A_{\vec{v}} = \prod_{i=1}^{4} \sigma_i^z$ \\ 
-	$S^x_\Sigma = \prod_{j=1}^{N} \sigma_j^x$
+	$S^x_\Sigma = \prod_{j=1}^{n} \sigma_j^x$
 \end{center}
 
 by substitution we obtain the following expression: 
 
 \begin{equation}
-	\space\prod_{i=1}^{4} \sigma_i^z \prod_{j=1}^{N} \sigma_j^x + \prod_{j=1}^{N} \sigma_j^x \prod_{i=1}^{4} \sigma_i^z = 0  
+	\space\prod_{i=1}^{4} \sigma_i^z \prod_{j=1}^{n} \sigma_j^x + \prod_{j=1}^{n} \sigma_j^x \prod_{i=1}^{4} \sigma_i^z = 0  
 \end{equation}
 
 remeber that only one $\sigma_i^z$ will overlaps with the endpoints of the string $S^x_\Sigma$; thus, only one $\sigma_i^z$ anticommutes with the endpoints of the string $S^x_\Sigma$. Knowing that Pauli matrices acting on the same edge anticommute
@@ -2794,10 +2794,10 @@ This procedure should be iterated also for the other extremity of the string $S^
 \end{figure}
 
 
-In the same way, we could prove that, if we take a string $S^z_{\Sigma}$ it anticommutes with one $B_{\vec{p}} $ for each one of its endpoints.
+In the same way, we could prove that, if we take a string $S^z_{\Sigma'}$ it anticommutes with one $B_{\vec{p}} $ for each one of its endpoints.
 
 \begin{proposition}(Anticommutation of $S^z_{\Sigma'}$)
-	The $S^z_{\Sigma'}$ operators anticommute with $B_{\vec{p}}$ for any $\vec{p}$ $\in$ $\{p_1, p_n' \}$ where $ p_1$ and $ p_n'$ are the endpoints of the dual string.
+	The $S^z_{\Sigma'}$ operators anticommute with $B_{\vec{p}}$ for any $\vec{p}$ $\in$ $\{\vec{p}_1, \vec{p'}_n \}$ where $ \vec{p}_1$ and $ \vec{p'}_n$ are the endpoints of the dual string.
 \end{proposition}
 
 The effect of putting such strings on the ground states correspond to raising the associated energy of the ground states by 2. In fact, coherently with what said in {\cite{Her20}}, it is impossible to create unitary excitations on the ground states.
