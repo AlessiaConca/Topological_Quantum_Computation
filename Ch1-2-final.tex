@@ -535,24 +535,18 @@ For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the
 						\ifnum\intj=2
 						\draw node[draw,circle,fill=blue!50] at (0,0.5) {};
 						\else
-						\ifnum\intj=-2
-						\draw node[draw,circle,fill=blue!50] at (0,-0.5) {};
-						\else
 						\draw node[draw,circle,fill=white] at (0,0.5) {};
-						\fi
 						\fi
 						
 						\ifnum\inti=2
 						\draw node[draw,circle,fill=red!50] at (0.5,0) {};
 						\else
-						\ifnum\inti=-2
-						\draw node[draw,circle,fill=red!50] at (-0.5,0) {};
-						\else
 						\draw node[draw,circle,fill=white] at (0.5,0) {};
 						\fi
-						\fi
 						
-						% Draw circles at the other two sides
+						\draw node[draw,circle,fill=white] at (0,-0.5) {};
+						\draw node[draw,circle,fill=white] at (-0.5,0) {};
+						
 						\ifnum\intj=-2
 						\draw node[draw,circle,fill=blue!50] at (0,-0.5) {};
 						\fi
