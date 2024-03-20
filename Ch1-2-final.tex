@@ -503,7 +503,7 @@ On each edge is located a spin-$\frac{1}{2}$ particle each belonging to a bidime
 	The Hilbert space of the system is: $\mathscr{H}= \bigotimes_{e \in E} \mathbb{C}^2$.
 \end{definition}
 
-For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins is to $2N^2$, where $N^2$ represents the total number of cells in $P$ and vertices in $V$ and $N$ the side length of the lattice. Notice that, all these spins exhibit are identical particles, which will play an important role in the next sections to study the behaviour of the system.
+For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the total number of spins is $2N^2$, where $N^2$ represents the total number of cells in $P$ and vertices in $V$ and $N$ the side length of the lattice. Notice that, all these spins are identical particles, which will play an important role in the next sections to study the behaviour of the system.
 
 %\afterpage{
 \begin{figure}
@@ -601,7 +601,7 @@ For each cell in $\mathcal{L}$ we are going to consider two spins, therefore the
 %}
 
 \newpage
-The key part of the Toric Code are the so called \textit{vertex} and \textit{plaquette} operators that are going to be placed, respectively, on the vertices and cells of $\mathcal{L}$. Such operators can be defined formally as in definition 1.10 and implemented by means of Pauli matrices as exemplified in figure 1.2. In order to give definition 1.10 we define the following:
+The key part of the toric code are the so called \textit{vertex} and \textit{plaquette} operators that are going to be placed, respectively, on the vertices and cells of $\mathcal{L}$. Such operators can be defined formally as in definition 1.10 and implemented by means of Pauli matrices as exemplified in figure 1.2. In order to give definition 1.10 we define the following:
 
 
 \begin{figure}
@@ -1141,7 +1141,7 @@ Fix the origin of the coordinate system in the bottom left corner of the lattice
 		{
 			
 			\draw[blue!50, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
-			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=\textbf{Av}] at (-1.5,\j) {};
+			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z},label=\textbf{$A_{\vec{v}}$}] at (-1.5,\j) {};
 			\draw node[draw,circle,fill=blue!50,label=center:\textbf{Z} ] at (-0.5,\j) {};
 			
 		}
@@ -1153,7 +1153,7 @@ Fix the origin of the coordinate system in the bottom left corner of the lattice
 		{
 			
 			\draw[red!70, line width=1.5mm] (\i,-1) -- (\i,0);
-			\node[draw, circle, fill=red!70,label=center:\textbf{X},label=left:\textbf{Bp}] at (\i,0) {};
+			\node[draw, circle, fill=red!70,label=center:\textbf{X},label=left:\textbf{$B_{\vec{p}}$}] at (\i,0) {};
 			\node[draw, circle,fill=red!70,label=center:\textbf{X}] at (\i,-1) {};
 			
 		}
@@ -1329,8 +1329,8 @@ In the following section, we derive the unique features of the ground state, inc
 \section{Ground States}
 \label{sec:GS}
 
-The ground states of the toric code represent the system's lowest energy configurations. What makes these ground states particularly intriguing is its highly degenerate nature, meaning that there are numerous distinct configurations that all share the same minimum energy. 
-The ground states exhibit topological order, characterized by non-local correlations between spins \cite{Kit02}. This means that the model is robust  even when the system is subjected to local perturbations.  In fact, quantum entanglement between spins is not confined to neighboring pairs, instead, it extends over long distances and involves collective behaviours of spins that cannot be understood by considering them individually.
+The ground states of the toric code represent the system's lowest energy configurations. What makes these ground state particularly intriguing is its highly degenerate nature, meaning that there are numerous distinct configurations that all share the same minimum energy. 
+The ground states exhibit topological order, characterized by non-local correlations between spins \cite{Kit02}. This means that the model is robust  even when the system is subject to local perturbations.  In fact, quantum entanglement between spins is not confined to neighboring pairs, instead, it extends over long distances and involves collective behaviours of spins that cannot be understood by considering them individually.
 Not only, as we will see, these features are intimately related to the underlying topology of the torus. This topological protection ensures also the robustness of quantum information against local perturbations, giving the toric code the potential to be feasibly applied in quantum information processing (see Chapter 3).\newline
 
 We start by explicitly defining the ground state by making use of the properties of the vertex and plaquette operators that we have derived in the previous section.
@@ -1392,7 +1392,7 @@ Graphically, we identify the loop configurations through strings of 'occupied' e
 \end{definition}
 
 Then, if we apply $A_{\vec{v}} $ at one of the open ends of such strings, we have two possibilities: leaving the string of occupied edges open (figure 1.4) or closing the string over the $A_{\vec{v}} $ operator (figure 1.5).
-In the first case, what we get is $\sigma^{z} |\psi\rangle$ at one endpoint of the string, which implies obtaining $-1|\psi\rangle$ eigenvalue for that endpoint; as a result we violate constraint (1). In the second case, instead, we end up with positive eigenvalues for each edge, this is because the negative signs obtained at the endpoints cancel themselves out. Overall, in order to respect contraint (1) we are interested only in closed loops on $A_{\vec{v}} $. Notice that such loops will always have an even length.{\cite{Her20}}
+In the first case, what we get is $\sigma^{z} |\psi\rangle$ at one endpoint of the string, which implies obtaining $-1|\psi\rangle$ eigenvalue for that endpoint; as a result we violate constraint (1.1). In the second case, instead, we end up with positive eigenvalues for each edge, this is because the negative signs obtained at the endpoints cancel themselves out. Overall, in order to respect contraint (1.1) we are interested only in closed loops on $A_{\vec{v}} $. Notice that such loops will always have an even length {\cite{Her20}}.
 
 %drawings closed/open loop with Av
 \begin{figure}
@@ -2377,7 +2377,7 @@ in order to create a correspondence with the actual definition of the torus over
 
 We can then label the four classes as : $(\overline{0},\overline{0} )$, $(\overline{0},\overline{1} )$, $(\overline{1},\overline{0})$, $(\overline{1},\overline{1})$.\newline
 
-For example, if we take again the configuration in figure 1.9, we have 1 vertical intersection and 1 horizontal intersection, therefore we are in the class 3 indexed by $n_x$ and $n_y=1$, which is labelled as $(\overline{1},\overline{1})$. This would holds for any odd number of vertical and horizintal intersections.
+%For example, if we take again the configuration in figure 1.9, we have 1 vertical intersection and 1 horizontal intersection, therefore we are in the class 3 indexed by $n_x$ and $n_y=1$, which is labelled as $(\overline{1},\overline{1})$. This would holds for any odd number of vertical and horizintal intersections.
 
 
 %drawing 1 vertical 1 hor
@@ -2448,7 +2448,7 @@ For example, if we take again the configuration in figure 1.9, we have 1 vertica
 \end{figure}
 
 
-Similarly, if we go back to the configuration in figure 1.8, after the application of the operator $B_{\vec{p}} $ we do not land in class 1, but we remain in class 0; this is because we have an even number of horizontal intersections and an even number of vertical intersections, i.e. the indeces eual   $(\overline{0}, \overline{0})$.
+If we go back to the configuration in figure 1.8, after the application of the operator $B_{\vec{p}} $ we do not land in class 1, but we remain in class 0; this is because we have an even number of horizontal intersections and an even number of vertical intersections, i.e. the indeces equal   $(\overline{0}, \overline{0})$.
 
 Hence all the classes are $B_{\vec{p}} $-$invariant$ due to the topological properties of the torus. More formally, given $|\psi_1\rangle,...,|\psi_i\rangle,...,|\psi_n\rangle$ the eigenstates of $A_{\vec{v}}$, $\forall \vec{v} \in V$ all belonging to the same class, we can construct a state $|\psi\rangle$:
 
@@ -4291,21 +4291,21 @@ Such errors can be detected through  simultaneous measurement of vertex (and pla
 			
 			\foreach \j in {1,...,1}
 			{
-				\draw[blue!80, line width=1.5mm] (0.5, \j) -- (1.5, \j);
-				\draw[blue!80, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (1.5,\j) {};
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (0.5,\j) {};
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (-0.5,\j) {};
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (-1.5,\j) {};
+				\draw[blue!50, line width=1.5mm] (0.5, \j) -- (1.5, \j);
+				\draw[blue!50, line width=1.5mm] (-1.5, \j) -- (-0.5, \j);
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (1.5,\j) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (0.5,\j) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (-0.5,\j) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (-1.5,\j) {};
 				
 			}
 			
 			\foreach \i in {-1,...,-1}
 			{
 				
-				\draw[blue!80, line width=1.5mm] (\i, 0.5) -- (\i, 1.5);
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,0.5) {};
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,1.5) {};
+				\draw[blue!50, line width=1.5mm] (\i, 0.5) -- (\i, 1.5);
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,0.5) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1.5) {};
 				
 				
 				
@@ -4313,9 +4313,9 @@ Such errors can be detected through  simultaneous measurement of vertex (and pla
 			
 			\foreach \i in {1,...,1}
 			{
-				\draw[blue!80, line width=1.5mm] (\i, 0.5) -- (\i, 1.5);
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,0.5) {};
-				\node[draw, circle, fill=blue!80,label=center:\textbf{Z}] at (\i,1.5) {};
+				\draw[blue!50, line width=1.5mm] (\i, 0.5) -- (\i, 1.5);
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,0.5) {};
+				\node[draw, circle, fill=blue!50,label=center:\textbf{Z}] at (\i,1.5) {};
 				
 			}
 		
