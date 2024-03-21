@@ -2510,7 +2510,7 @@ Through the systematic study of these excitations we discover some intrinsic fea
 
 %We shall now examine the case of a square lattice with boundary conditions, i.e. the toric code. \newline
 
-Taking into account the results of the previous chapters, we now proceed to describe, firstly, what are the excitations of the ground states and what is their exchange statistics. In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent deviations from the system's ground state. These excitations are associated to elementary quantum particles that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties and response to external perturbations. \newline
+Taking into account the results of the previous chapters, we now proceed to describe, firstly, what are the excitations of the ground states and what are their exchange statistics. In general, the low-energy excitations of a quantum system, often referred to as quasiparticles, represent deviations from the system's ground state. These excitations are associated to elementary quantum particles that can be created or annihilated with relatively low energy. The properties of these quasiparticles, including their statistics, are crucial for gaining insights into the system's ground state degeneracy, topological properties and response to external perturbations. \newline
 In the particular case of the toric code, such low-energy excitations can be created through the application of a string operator on the ground state (figure 1.10). Let us start by introducing some definitions that will be useful in the following.
 
 \begin{definition}(Adjacent edges)
@@ -2541,11 +2541,11 @@ Analogously, we can define the notion of adjacent edges, strings and length of a
 
 
 \begin{definition}($S^x_\Sigma$ string operator)
-	Given a string $\Sigma$, the string operator is given by $S_\Sigma^x = \prod_{j=1}^{n}\sigma_{e_j}$.
+	Given a string $\Sigma$, the string operator is given by $S_\Sigma^x = \prod_{j=1}^{n}\sigma^x_{e_j}$.
 \end{definition}
 
 \begin{definition}($S^z_{\Sigma'}$ string operator)
-	Given a string $\Sigma'$, the string operator is given by $S^z_{\Sigma'} = \prod_{j=1}^{n}\sigma_{e_j'}$.
+	Given a string $\Sigma'$, the string operator is given by $S^z_{\Sigma'} = \prod_{j=1}^{n}\sigma^z_{e_j'}$.
 \end{definition}
 
 The application of string operators creates quasi-particles at their endpoints. In particular we can get two distinct types of excitations (figure 1.10):
@@ -2559,8 +2559,7 @@ The application of string operators creates quasi-particles at their endpoints. 
 \end{definition}
 
 These excitations can be transported on the lattice via the action of vertex and plaquette operators and interact with each other so characterizing the low energy spectrum.\newline
-In order to understand this, we study the relationships between string operators and vertex/plaquette operators as we have defined them in  (see section 1.2).\newline
-
+In order to understand this, we study the relationships between string operators and vertex/plaquette operators as we have defined them (see section 1.2).\newline
 %picture
 \begin{figure}
 	
@@ -2658,7 +2657,7 @@ Let $\vec{v}$ be one of the endpoints of $\Sigma$. We want to show that $A_{\vec
 
 \begin{center}
 	$A_{\vec{v}} = \prod_{i=1}^{4} \sigma_i^z$ \\ 
-	$S^x_\Sigma = \prod_{j=1}^{n} \sigma_j^x$
+	$S^x_\Sigma = \prod_{j=1}^{n} \sigma_{e_j}^x$
 \end{center}
 
 by substitution we obtain the following expression: 
@@ -2932,7 +2931,7 @@ Such diverse statistics in two dimensions are called fractional or \textit{anyon
 %----
 
 %\newpage
-We can now analyze the statistics of $\epsilon$-particles in the context of the ground state of the toric code. If we consider the action of a string operator $S^z_e$ on any ground state $|GS\rangle$, it creates two $\epsilon$-particles of the vertices adjacent to the edge $e$, as shown in figure 1.15. As we are going to see, a string operator implements the exchange of these two excitations. In fact, as illustrated in figure 1.15, the exchange of these particles becomes possible by applying the string operator in such a way that it moves the excitations around the lattice until they reach the final configuration (c) shown in figure 1.15. However, due to the commutation of all $\sigma^x$ with each other, after the application of a closed loop of $\sigma^x$ (last step in figure 1.15), there is no overall acquired phase. Consequently, the $\epsilon$-excitations obey bosonic statistics {\cite{Rao16, Her20}}. A similar argument can be carried out for the $\mu$-excitations, proving that they behave as bosons as well. 
+We can now analyze the statistics of $\epsilon$-particles in the context of the ground state of the toric code. If we consider the action of a string operator $S^x_{\Sigma}$ on any ground state $|GS\rangle$, it creates two $\epsilon$-particles of the vertices adjacent to the edge $e$, as shown in figure 1.15. As we are going to see, a string operator implements the exchange of these two excitations. In fact, as illustrated in figure 1.15, the exchange of these particles becomes possible by applying the string operator in such a way that it moves the excitations around the lattice until they reach the final configuration (c) shown in figure 1.15. However, due to the commutation of all $\sigma^x$ with each other, after the application of a closed loop of $\sigma^x$ (last step in figure 1.15), there is no overall acquired phase. Consequently, the $\epsilon$-excitations obey bosonic statistics {\cite{Rao16, Her20}}. A similar argument can be carried out for the $\mu$-excitations, proving that they behave as bosons as well. 
 
 
 %picture
@@ -3300,11 +3299,11 @@ We can now analyze the statistics of $\epsilon$-particles in the context of the 
 \section{Anyonic Excitations}
 \label{sec:AE}
 
-Let us examine now the mutual statistics between the $\epsilon$ and $\mu$ particles by means of an example. \cite{Rao16}. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x_{\ell}$ and $S^z_{\ell}$ operators as shown in figure 1.16. There, we separate the excitations using string operators and we move an $\epsilon$-particle around an $\mu$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must cross a $\sigma^x$ operator, resulting in an anticommutation and thus introducing a minus sign {\cite{Kit02}}.
+Let us examine now the mutual statistics between the $\epsilon$ and $\mu$ particles by means of an example. \cite{Rao16}. Initially, we generate pairs of excitations at distinct chosen sites by applying two $S^x_{\Sigma}$ and $S^z_{\Sigma'}$ operators as shown in figure 1.16. There, we separate the excitations using string operators and we move an $\epsilon$-particle around an $\mu$-particle, as depicted in figure 1.17. Notice that there is a site where $\sigma^z$ must cross a $\sigma^x$ operator, resulting in an anticommutation and thus introducing a minus sign {\cite{Kit02}}.
 The closed loop can be eliminated, leading to the following transformation:
 
 \begin{center}
-	$\sigma_i^z\sigma_i^x|\psi\rangle = - \sigma_i^x\sigma_i^z|\psi\rangle$
+	$\sigma_{e_i'}^z\sigma_{e_i}^x|\psi\rangle = - \sigma_{e_i}^x\sigma_{e_i'}^z|\psi\rangle$
 \end{center}
 
 if we denote the exchange operator as {\it the braiding operator} $R$ (see \cite{Rao16}) then, according to the discussion in Section 1.4.1, we have that
