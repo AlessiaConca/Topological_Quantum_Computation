@@ -1,7 +1,7 @@
 >ABSTRACT:
 
 This thesis provides a detailed description of the toric code model, which plays an important
-role in the eld of quantum computation as a paradigmatic example of quantum error
+role in the field of quantum computation as a paradigmatic example of quantum error
 correction code. After a preliminary introductory section on spin observables in Quantum
 Mechanics, the rst chapter of the thesis contains the description of the model of the toric
 code Hamiltonian followed by the computation of its ground states and excited states,
