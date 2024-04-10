@@ -12,6 +12,8 @@ the analysis of the anyonic excitations of the toric code done in the first chap
 used to explicitly describe the strategy behind quantum error correction for logical qubits
 encoded in the ground states of the toric code Hamiltonian.
 
+
+
 >ABSTRACT (ita):
 
 Questa tesi fornisce una descrizione dettagliata del modello del toric code. Questo modello
