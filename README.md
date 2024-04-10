@@ -8,7 +8,7 @@ code Hamiltonian followed by the computation of its ground states and excited st
 which are classified in terms of their topological properties. In particular, we will show
 that the excitations are represented by two species of quasi-particles obeying to mutual
 fractional statisctics. After a brief overview of classical and quantum error correction,
-the analysis of the anyonic excitations of the toric code done in the rst chapter is then
+the analysis of the anyonic excitations of the toric code done in the first chapter is then
 used to explicitly describe the strategy behind quantum error correction for logical qubits
 encoded in the ground states of the toric code Hamiltonian.
 
